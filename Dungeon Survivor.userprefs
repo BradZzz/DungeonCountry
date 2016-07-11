@@ -1,0 +1,19 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Player.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Player.cs" Line="36" Column="34" />
+      <File FileName="Assets/NewGame/Shader/OverlayShader.shader" Line="25" Column="32" />
+      <File FileName="../../../Mauve3/Downloads/Lynda - Advanced Unity 2D Sprite Palette Swapping/Exercise Files/Final Project/PaletteSwapping/Assets/Scripts/PaletteSwapper.cs" Line="1" Column="1" />
+      <File FileName="../../../Mauve3/Downloads/Lynda - Advanced Unity 2D Sprite Palette Swapping/Exercise Files/Final Project/PaletteSwapping/Assets/Scripts/ColorPalette.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/BoardManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MazeGenerator.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Enemy.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
