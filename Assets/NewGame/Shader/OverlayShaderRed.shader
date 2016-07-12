@@ -1,4 +1,4 @@
-﻿Shader "Custom/OverlayShader" {
+﻿Shader "Custom/OverlayShaderRed" {
 	Properties 
      {
          _MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}
@@ -48,11 +48,12 @@
              {
                  float4 tex = tex2D(_MainTex, i.texcoord);
 
+                 i.color.g = 0;
                  i.color.b = 0;
 
                  float4 final;                
                  final.rgb = i.color.rgb * tex.rgb * 2;
-                 final.a = i.color.a * tex.a;
+                 final.a = (i.color.a * tex.a);
                  return lerp(float4(0.5f,0.5f,0.5f,0.1f), final, final.a);   
              }
              ENDCG   

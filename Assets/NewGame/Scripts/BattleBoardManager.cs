@@ -26,28 +26,24 @@ public class BattleBoardManager : MonoBehaviour {
 	private bool isMoving = false;
 	public int columns = 8;                                         //Number of columns in our game board.
 	public int rows = 8;                                            //Number of rows in our game board.
-	//public Count wallCount = new Count (5, 9);                      //Lower and upper limit for our random number of walls per level.
-	//public Count foodCount = new Count (1, 5);                      //Lower and upper limit for our random number of food items per level.
-	//public Count potionCount = new Count (0, 1);                      //Lower and upper limit for our random number of food items per level.
-	//public GameObject exit;                                         //Prefab to spawn for exit.
 	public GameObject[] floorTiles;                                 //Array of floor prefabs.
 	public GameObject[] armyTiles;                                 //Array of floor prefabs.
-	//public GameObject[] wallTiles;                                  //Array of wall prefabs.
-	//public GameObject[] foodTiles;                                  //Array of food prefabs.
-	//public GameObject[] enemyTiles;                                 //Array of enemy prefabs.
-	//public GameObject[] outerWallTiles;                             //Array of outer tile prefabs.
-	//public GameObject[] potionTiles;                                //Array of potion tile prefabs.
 
 	private Transform lastClicked;
 	private Transform boardHolder;                                  //A variable to store a reference to the transform of our Board object.
-	private List <Vector3> gridPositions = new List <Vector3> ();   //A list of possible locations to place tiles.
-	private List <Transform> movePositions = new List <Transform> (); 
+	private List <Vector3> gridPositions;   //A list of possible locations to place tiles.
+	private List <Transform> movePositions; 
+	private List <Transform> characterPositions; 
 	//Camera mainCamera;
 
 	void Awake(){
 		//mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 		//Debug.Log (mainCamera.transform.position.ToString());
 		lastClicked = null;
+
+		gridPositions = new List <Vector3> ();   //A list of possible locations to place tiles.
+		movePositions = new List <Transform> (); 
+		characterPositions = new List <Transform> (); 
 	}
 
 	public void setArmy(GameObject[] armyTiles){
@@ -189,14 +185,14 @@ public class BattleBoardManager : MonoBehaviour {
 				foreach (Transform child in boardHolder)
 				{
 					if (Math.Abs(clickedObject.position.x - child.position.x) + Math.Abs(clickedObject.position.y - child.position.y) <= meta.movement) {
-						if (!hasParent(boardHolder, child)){
+						if (!hasParent(boardHolder, child)) {
 							SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
-							sprRend.material.shader = Shader.Find ("Custom/OverlayShader2");
+							sprRend.material.shader = Shader.Find ("Custom/OverlayShaderBlue");
 							movePositions.Add(child); 
 						} else if (child.position.x != clickedObject.position.x || child.position.y != clickedObject.position.y) {
 							SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
-							sprRend.material.shader = Shader.Find ("Custom/OverlayShader");
-							movePositions.Add(child); 
+							sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
+							characterPositions.Add(child); 
 						}
 					}
 				}
@@ -219,25 +215,53 @@ public class BattleBoardManager : MonoBehaviour {
 	}
 
 	public void moveClick(Transform hit){
-		Debug.Log ("MoveClick");
-		Debug.Log ("Click: " + hit.position.x + ":" + hit.position.y);
-		Debug.Log ("LastClicked: " + lastClicked.name);
 		BattleMeta meta = lastClicked.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+
 		foreach (Transform child in movePositions)
 		{
 			SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
 			sprRend.material.shader = Shader.Find ("Sprites/Default");
-			if (meta != null && hit.position.x == child.position.x && hit.position.y == child.position.y &&
-				Math.Abs (hit.position.x - lastClicked.position.x) + Math.Abs (hit.position.y - lastClicked.position.y) <= meta.movement) {
-				Vector3 start = new Vector3 ((float)lastClicked.position.x, (float)lastClicked.position.y, (float)lastClicked.position.z);
-				Vector3 end = new Vector3 ((float)hit.position.x, (float)hit.position.y, (float)lastClicked.position.z);
-				StartCoroutine (smooth_move (lastClicked, end, 1f));
+			if (meta != null) {
+				checkMovement (meta.movement, child, hit);
+			}
+		}
+		foreach (Transform child in characterPositions)
+		{
+			SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
+			sprRend.material.shader = Shader.Find ("Sprites/Default");
+			if (meta != null) {
+				checkAttack (meta, child, hit);
 			}
 		}
 		//Remove the valid positions from the map
 		movePositions.Clear ();
+		characterPositions.Clear ();
+
 		//Set the click object to null so we can click again
 		lastClicked = null;
+	}
+
+	public void checkMovement(int movement, Transform child, Transform hit){
+		if (hit.position.x == child.position.x && hit.position.y == child.position.y &&
+		    Math.Abs (hit.position.x - lastClicked.position.x) + Math.Abs (hit.position.y - lastClicked.position.y) <= movement) {
+			Vector3 start = new Vector3 ((float)lastClicked.position.x, (float)lastClicked.position.y, (float)lastClicked.position.z);
+			Vector3 end = new Vector3 ((float)hit.position.x, (float)hit.position.y, (float)lastClicked.position.z);
+			StartCoroutine (smooth_move (lastClicked, end, 1f));
+		}
+	}
+
+	public void checkAttack(BattleMeta meta, Transform child, Transform hit){
+		if (hit.position.x == child.position.x && hit.position.y == child.position.y &&
+			Math.Abs (hit.position.x - lastClicked.position.x) + Math.Abs (hit.position.y - lastClicked.position.y) <= meta.range) {
+
+			meta.atkAnim ();
+
+			BattleMeta enemy = hit.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+
+			if (enemy != null) {
+				enemy.isAttacked (meta.attack);
+			}
+		}
 	}
 
 	IEnumerator smooth_move(Transform origin, Vector3 direction,float speed){

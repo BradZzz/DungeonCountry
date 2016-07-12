@@ -1,4 +1,4 @@
-﻿Shader "Custom/OverlayShader2" {
+﻿Shader "Custom/OverlayShaderBlue" {
 	Properties 
      {
          _MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}

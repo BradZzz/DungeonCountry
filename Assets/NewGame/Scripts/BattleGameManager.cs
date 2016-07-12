@@ -119,42 +119,45 @@ public class BattleGameManager : MonoBehaviour {
 	//Update is called every frame.
 	void Update()
 	{
-		//Check that playersTurn or enemiesMoving or doingSetup are not currently true.
-		//if(playersTurn || enemiesMoving || doingSetup)
-
-			//If any of these are true, return and do not start MoveEnemies.
-		//	return;
-
-		//Start moving enemies.
-		//StartCoroutine (MoveEnemies ());
 		if ( Input.GetMouseButtonDown (0)){ 
-			Debug.Log("Clicked on button");
-
 			Vector2 ray = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
-			RaycastHit2D hit = (Physics2D.Raycast (ray,Vector2.zero,Mathf.Infinity,Physics2D.DefaultRaycastLayers));
+			RaycastHit2D [] hit = Physics2D.RaycastAll(ray,Vector2.zero,Mathf.Infinity,Physics2D.DefaultRaycastLayers);
+			Transform hitValid = null;
+			foreach (RaycastHit2D shot in hit){
 
-			if (hit && boardScript.charMoving()) {
-				Debug.Log ("Hit2!");
-				boardScript.moveClick (hit.transform);
-			} else if (hit){
-				Debug.Log ("Hit!");
-				boardScript.boardClicked (hit.transform);
-			} else {
-				Debug.Log ("Miss...");
+				BattleMeta enemy = shot.transform.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+				if (enemy != null) {
+					Debug.Log ("Valid Iteration!");
+					Debug.Log ("It: " + shot.transform.name);
+					Debug.Log ("It: " + enemy.gameObject.name);
+				}
+
+				if (!boardScript.charMoving() && !shot.transform.name.Contains("Floor")){
+					hitValid = shot.transform;
+					Debug.Log ("Using: " + hitValid.gameObject.name);
+					break;
+				} else if (boardScript.charMoving()) {
+					hitValid = shot.transform;
+					Debug.Log ("Using: " + hitValid.gameObject.name);
+					break;
+				}
 			}
 
-			//RaycastHit hit; 
-			//Vector2 ray = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
-			//RaycastHit2D hit = (Physics2D.Raycast (ray,Vector2.zero,Mathf.Infinity));
+			if (hitValid != null) {
 
-			/*if (hit) {
-				Debug.Log ("Hit!");
-				//Debug.Log (hit.point);
-				//Debug.Log (hit.transform.tag);
-				boardScript.boardClicked (hit.transform);
-			} else {
-				Debug.Log ("Miss...");
-			}*/
+				BattleMeta enemy = hitValid.transform.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+				if (enemy != null) {
+					Debug.Log ("Valid Hit!");
+				}
+
+				if (boardScript.charMoving()) {
+					Debug.Log ("Hit2!");
+					boardScript.moveClick (hitValid.transform);
+				} else {
+					Debug.Log ("Hit!");
+					boardScript.boardClicked (hitValid.transform);
+				}
+			}
 		}
 	}
 
