@@ -120,35 +120,19 @@ public class BattleBoardManager : MonoBehaviour {
 	//RandomPosition returns a random position from our list gridPositions.
 	Vector3 RandomPosition ()
 	{
-		//Declare an integer randomIndex, set it's value to a random number between 0 and the count of items in our List gridPositions.
 		int randomIndex = Random.Range (0, gridPositions.Count);
-
-		//Declare a variable of type Vector3 called randomPosition, set it's value to the entry at randomIndex from our List gridPositions.
 		Vector3 randomPosition = gridPositions[randomIndex];
-
-		//Remove the entry at randomIndex from the list so that it can't be re-used.
 		gridPositions.RemoveAt (randomIndex);
-
-		//Return the randomly selected Vector3 position.
 		return randomPosition;
 	}
 
-	//LayoutObjectAtRandom accepts an array of game objects to choose from along with a minimum and maximum range for the number of objects to create.
 	void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum)
 	{
-		//Choose a random number of objects to instantiate within the minimum and maximum limits
 		int objectCount = Random.Range (minimum, maximum+1);
-
-		//Instantiate objects until the randomly chosen limit objectCount is reached
 		for(int i = 0; i < objectCount; i++)
 		{
-			//Choose a position for randomPosition by getting a random position from our list of available Vector3s stored in gridPosition
 			Vector3 randomPosition = RandomPosition();
-
-			//Choose a random tile from tileArray and assign it to tileChoice
 			GameObject tileChoice = tileArray[Random.Range (0, tileArray.Length)];
-
-			//Instantiate tileChoice at the position returned by RandomPosition with no change in rotation
 			Instantiate(tileChoice, randomPosition, Quaternion.identity);
 		}
 	}
@@ -179,24 +163,48 @@ public class BattleBoardManager : MonoBehaviour {
 				lastClicked = clickedObject;
 				for(int x = -1; x <= getColumns(level); x++) {
 					for (int y = -1; y <= getRows(level); y++) {
-						if (Math.Abs(clickedObject.position.x - x) + Math.Abs(clickedObject.position.y - y) <= meta.movement) {
+						if (Math.Abs(clickedObject.position.x - x) + Math.Abs(clickedObject.position.y - y) <= Mathf.Max(meta.movement, meta.range)) {
 							Vector2 pos = new Vector2 (x, y);
 							Transform child = dict[pos];
-							if (!hasParent(boardHolder, child)) {
-								SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
-								sprRend.material.shader = Shader.Find ("Custom/OverlayShaderBlue");
-								movePositions.Add(child); 
-							} else if ((x != clickedObject.position.x || y != clickedObject.position.y) && 
-								(Math.Abs(clickedObject.position.x - x) + Math.Abs(clickedObject.position.y - y) <= meta.range)) {
-								SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
-								sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
-								characterPositions.Add(child); 
+							if (meta.movement >= meta.range) {
+								if (!hasParent(boardHolder, child) && checkRange(clickedObject.position, pos, meta.movement)) {
+									SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
+									sprRend.material.shader = Shader.Find ("Custom/OverlayShaderBlue");
+									movePositions.Add(child); 
+								} else if ((x != clickedObject.position.x || y != clickedObject.position.y) && 
+									(checkRange(clickedObject.position, pos, meta.range))) {
+									SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
+									sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
+									characterPositions.Add(child); 
+								}
+							} else {
+								if ((x != clickedObject.position.x || y != clickedObject.position.y) && 
+									(checkRange(clickedObject.position, pos, meta.range))) {
+									SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
+									sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
+									if (hasParent (boardHolder, child)) {
+										characterPositions.Add (child); 
+									} else {
+										movePositions.Add(child); 
+									}
+								}
+
+								if (!hasParent(boardHolder, child) && checkRange(clickedObject.position, pos, meta.movement)) {
+									Debug.Log ("Movement: " + meta.movement + " - " + Math.Abs(pos.x - x) + ":" + Math.Abs(pos.y - y));
+									SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
+									sprRend.material.shader = Shader.Find ("Custom/OverlayShaderBlue");
+									movePositions.Add(child); 
+								}
 							}
 						}
 					}
 				}
 			}
 		}
+	}
+
+	public bool checkRange(Vector2 pos, Vector2 sqr, int range){
+		return Math.Abs(pos.x - sqr.x) + Math.Abs(pos.y - sqr.y) <= range;
 	}
 
 	public void moveClick(Transform hit){
