@@ -1,0 +1,1852 @@
+fileFormatVersion: 2
+guid: 60c63bfa58e6240f0ae40d258803aea4
+timeCreated: 1468355503
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: EnemySpriteSheet2.png-par-Kazzador_0
+    21300002: EnemySpriteSheet2.png-par-Kazzador_1
+    21300004: EnemySpriteSheet2.png-par-Kazzador_2
+    21300006: EnemySpriteSheet2.png-par-Kazzador_3
+    21300008: EnemySpriteSheet2.png-par-Kazzador_4
+    21300010: EnemySpriteSheet2.png-par-Kazzador_5
+    21300012: EnemySpriteSheet2.png-par-Kazzador_6
+    21300014: EnemySpriteSheet2.png-par-Kazzador_7
+    21300016: EnemySpriteSheet2.png-par-Kazzador_8
+    21300018: EnemySpriteSheet2.png-par-Kazzador_9
+    21300020: EnemySpriteSheet2.png-par-Kazzador_10
+    21300022: EnemySpriteSheet2.png-par-Kazzador_11
+    21300024: EnemySpriteSheet2.png-par-Kazzador_12
+    21300026: EnemySpriteSheet2.png-par-Kazzador_13
+    21300028: EnemySpriteSheet2.png-par-Kazzador_14
+    21300030: EnemySpriteSheet2.png-par-Kazzador_15
+    21300032: EnemySpriteSheet2.png-par-Kazzador_16
+    21300034: EnemySpriteSheet2.png-par-Kazzador_17
+    21300036: EnemySpriteSheet2.png-par-Kazzador_18
+    21300038: EnemySpriteSheet2.png-par-Kazzador_19
+    21300040: EnemySpriteSheet2.png-par-Kazzador_20
+    21300042: EnemySpriteSheet2.png-par-Kazzador_21
+    21300044: EnemySpriteSheet2.png-par-Kazzador_22
+    21300046: EnemySpriteSheet2.png-par-Kazzador_23
+    21300048: EnemySpriteSheet2.png-par-Kazzador_24
+    21300050: EnemySpriteSheet2.png-par-Kazzador_25
+    21300052: EnemySpriteSheet2.png-par-Kazzador_26
+    21300054: EnemySpriteSheet2.png-par-Kazzador_27
+    21300056: EnemySpriteSheet2.png-par-Kazzador_28
+    21300058: EnemySpriteSheet2.png-par-Kazzador_29
+    21300060: EnemySpriteSheet2.png-par-Kazzador_30
+    21300062: EnemySpriteSheet2.png-par-Kazzador_31
+    21300064: EnemySpriteSheet2.png-par-Kazzador_32
+    21300066: EnemySpriteSheet2.png-par-Kazzador_33
+    21300068: EnemySpriteSheet2.png-par-Kazzador_34
+    21300070: EnemySpriteSheet2.png-par-Kazzador_35
+    21300072: EnemySpriteSheet2.png-par-Kazzador_36
+    21300074: EnemySpriteSheet2.png-par-Kazzador_37
+    21300076: EnemySpriteSheet2.png-par-Kazzador_38
+    21300078: EnemySpriteSheet2.png-par-Kazzador_39
+    21300080: EnemySpriteSheet2.png-par-Kazzador_40
+    21300082: EnemySpriteSheet2.png-par-Kazzador_41
+    21300084: EnemySpriteSheet2.png-par-Kazzador_42
+    21300086: EnemySpriteSheet2.png-par-Kazzador_43
+    21300088: EnemySpriteSheet2.png-par-Kazzador_44
+    21300090: EnemySpriteSheet2.png-par-Kazzador_45
+    21300092: EnemySpriteSheet2.png-par-Kazzador_46
+    21300094: EnemySpriteSheet2.png-par-Kazzador_47
+    21300096: EnemySpriteSheet2.png-par-Kazzador_48
+    21300098: EnemySpriteSheet2.png-par-Kazzador_49
+    21300100: EnemySpriteSheet2.png-par-Kazzador_50
+    21300102: EnemySpriteSheet2.png-par-Kazzador_51
+    21300104: EnemySpriteSheet2.png-par-Kazzador_52
+    21300106: EnemySpriteSheet2.png-par-Kazzador_53
+    21300108: EnemySpriteSheet2.png-par-Kazzador_54
+    21300110: EnemySpriteSheet2.png-par-Kazzador_55
+    21300112: EnemySpriteSheet2.png-par-Kazzador_56
+    21300114: EnemySpriteSheet2.png-par-Kazzador_57
+    21300116: EnemySpriteSheet2.png-par-Kazzador_58
+    21300118: EnemySpriteSheet2.png-par-Kazzador_59
+    21300120: EnemySpriteSheet2.png-par-Kazzador_60
+    21300122: EnemySpriteSheet2.png-par-Kazzador_61
+    21300124: EnemySpriteSheet2.png-par-Kazzador_62
+    21300126: EnemySpriteSheet2.png-par-Kazzador_63
+    21300128: EnemySpriteSheet2.png-par-Kazzador_64
+    21300130: EnemySpriteSheet2.png-par-Kazzador_65
+    21300132: EnemySpriteSheet2.png-par-Kazzador_66
+    21300134: EnemySpriteSheet2.png-par-Kazzador_67
+    21300136: EnemySpriteSheet2.png-par-Kazzador_68
+    21300138: EnemySpriteSheet2.png-par-Kazzador_69
+    21300140: EnemySpriteSheet2.png-par-Kazzador_70
+    21300142: EnemySpriteSheet2.png-par-Kazzador_71
+    21300144: EnemySpriteSheet2.png-par-Kazzador_72
+    21300146: EnemySpriteSheet2.png-par-Kazzador_73
+    21300148: EnemySpriteSheet2.png-par-Kazzador_74
+    21300150: EnemySpriteSheet2.png-par-Kazzador_75
+    21300152: EnemySpriteSheet2.png-par-Kazzador_76
+    21300154: EnemySpriteSheet2.png-par-Kazzador_77
+    21300156: EnemySpriteSheet2.png-par-Kazzador_78
+    21300158: EnemySpriteSheet2.png-par-Kazzador_79
+    21300160: EnemySpriteSheet2.png-par-Kazzador_80
+    21300162: EnemySpriteSheet2.png-par-Kazzador_81
+    21300164: EnemySpriteSheet2.png-par-Kazzador_82
+    21300166: EnemySpriteSheet2.png-par-Kazzador_83
+    21300168: EnemySpriteSheet2.png-par-Kazzador_84
+    21300170: EnemySpriteSheet2.png-par-Kazzador_85
+    21300172: EnemySpriteSheet2.png-par-Kazzador_86
+    21300174: EnemySpriteSheet2.png-par-Kazzador_87
+    21300176: EnemySpriteSheet2.png-par-Kazzador_88
+    21300178: EnemySpriteSheet2.png-par-Kazzador_89
+    21300180: EnemySpriteSheet2.png-par-Kazzador_90
+    21300182: EnemySpriteSheet2.png-par-Kazzador_91
+    21300184: EnemySpriteSheet2.png-par-Kazzador_92
+    21300186: EnemySpriteSheet2.png-par-Kazzador_93
+    21300188: EnemySpriteSheet2.png-par-Kazzador_94
+    21300190: EnemySpriteSheet2.png-par-Kazzador_95
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 5
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: EnemySpriteSheet2.png-par-Kazzador_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1, y: 16}
+        - {x: -13, y: 2}
+        - {x: -13, y: -5}
+        - {x: -12, y: -15}
+        - {x: -10, y: -16}
+        - {x: 6, y: -16}
+        - {x: 10, y: -9}
+        - {x: 10, y: 5}
+        - {x: 8, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 16}
+        - {x: -14, y: 8}
+        - {x: -14, y: -16}
+        - {x: 9, y: -16}
+        - {x: 9, y: 8}
+        - {x: 1, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 15}
+        - {x: -13, y: 15}
+        - {x: -15, y: 13}
+        - {x: -15, y: -11}
+        - {x: -14, y: -16}
+        - {x: 5, y: -16}
+        - {x: 8, y: -12}
+        - {x: 8, y: 4}
+    - name: EnemySpriteSheet2.png-par-Kazzador_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1, y: 16}
+        - {x: -13, y: 6}
+        - {x: -13, y: -16}
+        - {x: 6, y: -16}
+        - {x: 10, y: -9}
+        - {x: 10, y: 5}
+        - {x: 8, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 16}
+        - {x: -14, y: 8}
+        - {x: -14, y: -16}
+        - {x: 9, y: -16}
+        - {x: 9, y: 8}
+        - {x: 1, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1, y: 15}
+        - {x: -10, y: 15}
+        - {x: -13, y: 14}
+        - {x: -15, y: 9}
+        - {x: -15, y: -7}
+        - {x: -12, y: -16}
+        - {x: 8, y: -16}
+        - {x: 8, y: 7}
+    - name: EnemySpriteSheet2.png-par-Kazzador_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 16}
+        - {x: -16, y: 6}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 16}
+        - {x: -15, y: -16}
+        - {x: 15, y: -16}
+        - {x: 16, y: -15}
+        - {x: 16, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -14, y: 14}
+        - {x: -15, y: 1}
+        - {x: -15, y: -15}
+        - {x: -13, y: -16}
+        - {x: 15, y: -16}
+        - {x: 16, y: -15}
+        - {x: 16, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -16, y: 13}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 9}
+        - {x: 14, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 11}
+        - {x: 10, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -15}
+        - {x: -15, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 14}
+        - {x: 15, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 12}
+        - {x: -16, y: -15}
+        - {x: 10, y: -15}
+        - {x: 16, y: -6}
+        - {x: 16, y: 12}
+    - name: EnemySpriteSheet2.png-par-Kazzador_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2, y: 16}
+        - {x: -16, y: 8}
+        - {x: -16, y: -14}
+        - {x: -11, y: -15}
+        - {x: 15, y: -15}
+        - {x: 16, y: -14}
+        - {x: 16, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 11}
+        - {x: -16, y: 10}
+        - {x: -16, y: -12}
+        - {x: -9, y: -15}
+        - {x: 15, y: -15}
+        - {x: 16, y: -14}
+        - {x: 16, y: 11}
+    - name: EnemySpriteSheet2.png-par-Kazzador_15
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 12}
+        - {x: -16, y: -12}
+        - {x: -15, y: -15}
+        - {x: 12, y: -15}
+        - {x: 16, y: -6}
+        - {x: 16, y: 12}
+      - - {x: 4, y: 14}
+        - {x: 4, y: 16}
+        - {x: -1, y: 16}
+        - {x: 1, y: 13}
+    - name: EnemySpriteSheet2.png-par-Kazzador_16
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2, y: 16}
+        - {x: -16, y: 8}
+        - {x: -16, y: -14}
+        - {x: -11, y: -15}
+        - {x: 15, y: -15}
+        - {x: 16, y: -14}
+        - {x: 16, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_17
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 11}
+        - {x: -16, y: 9}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 11}
+    - name: EnemySpriteSheet2.png-par-Kazzador_18
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -5}
+        - {x: -10, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 3}
+        - {x: 12, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_19
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 7}
+        - {x: 14, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_20
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -13}
+        - {x: -12, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_21
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -16, y: 11}
+        - {x: -16, y: -10}
+        - {x: -14, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 14}
+        - {x: 10, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_22
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 13, y: 16}
+        - {x: -16, y: 16}
+        - {x: -16, y: -15}
+        - {x: -15, y: -16}
+        - {x: 12, y: -16}
+        - {x: 15, y: -15}
+        - {x: 16, y: -13}
+        - {x: 16, y: 14}
+    - name: EnemySpriteSheet2.png-par-Kazzador_23
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -16, y: 11}
+        - {x: -16, y: -7}
+        - {x: -15, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12, y: 12}
+        - {x: 4, y: 13}
+        - {x: -16, y: 13}
+        - {x: -16, y: -6}
+        - {x: -11, y: -14}
+        - {x: 13, y: -14}
+        - {x: 16, y: -13}
+        - {x: 16, y: 7}
+    - name: EnemySpriteSheet2.png-par-Kazzador_25
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 9, y: -16}
+        - {x: 16, y: -13}
+        - {x: 16, y: 13}
+        - {x: -1, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_26
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 13}
+        - {x: -16, y: 13}
+        - {x: -16, y: -14}
+        - {x: 8, y: -14}
+        - {x: 16, y: -13}
+        - {x: 16, y: 10}
+        - {x: 13, y: 11}
+    - name: EnemySpriteSheet2.png-par-Kazzador_27
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3, y: 13}
+        - {x: -16, y: 13}
+        - {x: -16, y: -10}
+        - {x: -10, y: -14}
+        - {x: 13, y: -14}
+        - {x: 15, y: -13}
+        - {x: 16, y: -11}
+        - {x: 16, y: 7}
+        - {x: 12, y: 12}
+    - name: EnemySpriteSheet2.png-par-Kazzador_28
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -13}
+        - {x: -13, y: -16}
+        - {x: 9, y: -16}
+        - {x: 16, y: -13}
+        - {x: 16, y: 13}
+        - {x: 2, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_29
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 13}
+        - {x: -16, y: 13}
+        - {x: -16, y: -14}
+        - {x: 8, y: -14}
+        - {x: 16, y: -13}
+        - {x: 16, y: 10}
+        - {x: 13, y: 11}
+    - name: EnemySpriteSheet2.png-par-Kazzador_30
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 13, y: 16}
+        - {x: -12, y: 16}
+        - {x: -13, y: 15}
+        - {x: -16, y: -1}
+        - {x: -16, y: -16}
+        - {x: 9, y: -16}
+        - {x: 12, y: -15}
+        - {x: 12, y: -11}
+        - {x: 13, y: -3}
+    - name: EnemySpriteSheet2.png-par-Kazzador_31
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 16}
+        - {x: -16, y: 13}
+        - {x: -16, y: -16}
+        - {x: 13, y: -16}
+        - {x: 13, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_32
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 16}
+        - {x: -16, y: 4}
+        - {x: -16, y: -16}
+        - {x: 13, y: -16}
+        - {x: 13, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_33
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 16}
+        - {x: -16, y: 15}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 14}
+        - {x: 12, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_34
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -16, y: 10}
+        - {x: -16, y: -15}
+        - {x: -13, y: -16}
+        - {x: 15, y: -16}
+        - {x: 15, y: 13}
+        - {x: 13, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_35
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 11}
+        - {x: 15, y: 16}
+        - {x: -11, y: 16}
+        - {x: -16, y: 9}
+    - name: EnemySpriteSheet2.png-par-Kazzador_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -5}
+        - {x: -9, y: -14}
+        - {x: 6, y: -14}
+        - {x: 10, y: -8}
+        - {x: 10, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_37
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 16}
+        - {x: -14, y: -11}
+        - {x: -7, y: -16}
+        - {x: 1, y: -16}
+        - {x: 9, y: -11}
+        - {x: 9, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_38
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 16}
+        - {x: -15, y: -11}
+        - {x: -6, y: -14}
+        - {x: 6, y: -14}
+        - {x: 8, y: -10}
+        - {x: 8, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_39
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -5}
+        - {x: -9, y: -14}
+        - {x: 5, y: -14}
+        - {x: 10, y: -8}
+        - {x: 10, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_40
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: -16}
+        - {x: 1, y: -16}
+        - {x: 9, y: -8}
+        - {x: 9, y: 16}
+        - {x: -14, y: 16}
+        - {x: -14, y: -7}
+    - name: EnemySpriteSheet2.png-par-Kazzador_41
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 16}
+        - {x: -15, y: -11}
+        - {x: -6, y: -14}
+        - {x: 6, y: -14}
+        - {x: 8, y: -10}
+        - {x: 8, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_42
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_43
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -15, y: 12}
+        - {x: -15, y: -15}
+        - {x: -14, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 15}
+        - {x: 14, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_44
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -16, y: -5}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_45
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -16, y: 4}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 15}
+        - {x: 15, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_46
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -16, y: 10}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 13}
+        - {x: 11, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_47
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 16}
+        - {x: -16, y: 9}
+        - {x: -16, y: -16}
+        - {x: 14, y: -16}
+        - {x: 16, y: -15}
+        - {x: 16, y: 14}
+        - {x: 13, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_49
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_50
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 16}
+        - {x: -16, y: 11}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 12}
+        - {x: 15, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_51
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -13, y: 14}
+        - {x: -13, y: -10}
+        - {x: -11, y: -16}
+        - {x: 12, y: -16}
+        - {x: 14, y: -15}
+        - {x: 14, y: 13}
+        - {x: 10, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_52
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -10}
+        - {x: -9, y: -16}
+        - {x: 12, y: -16}
+        - {x: 14, y: -9}
+        - {x: 14, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_53
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -13, y: 15}
+        - {x: -13, y: -10}
+        - {x: -9, y: -16}
+        - {x: 9, y: -16}
+        - {x: 15, y: -14}
+        - {x: 15, y: 12}
+        - {x: 12, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_54
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -14, y: 11}
+        - {x: -14, y: -13}
+        - {x: -12, y: -15}
+        - {x: -8, y: -16}
+        - {x: 11, y: -16}
+        - {x: 14, y: -14}
+        - {x: 14, y: 11}
+        - {x: 12, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_55
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -16, y: 11}
+        - {x: -16, y: -6}
+        - {x: -10, y: -16}
+        - {x: 8, y: -16}
+        - {x: 15, y: -7}
+        - {x: 15, y: 15}
+        - {x: 12, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_56
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -13, y: 14}
+        - {x: -13, y: -14}
+        - {x: -10, y: -16}
+        - {x: 15, y: -16}
+        - {x: 15, y: 15}
+        - {x: 10, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_57
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -14, y: 11}
+        - {x: -14, y: -12}
+        - {x: -13, y: -16}
+        - {x: 11, y: -16}
+        - {x: 15, y: -14}
+        - {x: 15, y: 13}
+        - {x: 11, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_58
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -10}
+        - {x: -8, y: -16}
+        - {x: 10, y: -16}
+        - {x: 14, y: -13}
+        - {x: 14, y: 14}
+        - {x: 13, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_59
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 16}
+        - {x: -14, y: -16}
+        - {x: 12, y: -16}
+        - {x: 15, y: -15}
+        - {x: 15, y: 12}
+        - {x: 13, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -13, y: 14}
+        - {x: -13, y: -14}
+        - {x: -12, y: -16}
+        - {x: 15, y: -16}
+        - {x: 15, y: 15}
+        - {x: 13, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_61
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -3}
+        - {x: -9, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_62
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: 16}
+        - {x: -9, y: 16}
+        - {x: -10, y: 14}
+        - {x: -16, y: 13}
+        - {x: -16, y: -13}
+        - {x: -10, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: -1}
+        - {x: 12, y: 12}
+      - - {x: -13, y: 12}
+        - {x: -13, y: 15}
+        - {x: -16, y: 16}
+        - {x: -16, y: 11}
+    - name: EnemySpriteSheet2.png-par-Kazzador_63
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -14, y: 14}
+        - {x: -14, y: -7}
+        - {x: -7, y: -16}
+        - {x: 9, y: -16}
+        - {x: 12, y: -8}
+        - {x: 12, y: 12}
+        - {x: 10, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_64
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 16}
+        - {x: -14, y: -16}
+        - {x: 8, y: -16}
+        - {x: 12, y: -5}
+        - {x: 12, y: 15}
+        - {x: 11, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_65
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 16}
+        - {x: -14, y: -9}
+        - {x: -8, y: -16}
+        - {x: 11, y: -16}
+        - {x: 12, y: -13}
+        - {x: 12, y: 11}
+        - {x: 10, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_66
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8, y: 16}
+        - {x: -9, y: 16}
+        - {x: -13, y: 13}
+        - {x: -13, y: -8}
+        - {x: -7, y: -16}
+        - {x: 8, y: -16}
+        - {x: 9, y: -15}
+        - {x: 12, y: -5}
+        - {x: 12, y: 11}
+    - name: EnemySpriteSheet2.png-par-Kazzador_67
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -13}
+        - {x: -8, y: -16}
+        - {x: 6, y: -16}
+        - {x: 10, y: -10}
+        - {x: 12, y: -2}
+        - {x: 12, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_68
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -15}
+        - {x: -12, y: -16}
+        - {x: 11, y: -16}
+        - {x: 12, y: -5}
+        - {x: 12, y: 11}
+        - {x: 8, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_69
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -14, y: 15}
+        - {x: -14, y: -7}
+        - {x: -8, y: -16}
+        - {x: 11, y: -16}
+        - {x: 12, y: -15}
+        - {x: 12, y: 14}
+        - {x: 10, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_70
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -14, y: 15}
+        - {x: -14, y: -8}
+        - {x: -5, y: -16}
+        - {x: 7, y: -16}
+        - {x: 12, y: -2}
+        - {x: 12, y: 11}
+        - {x: 10, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_71
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 16}
+        - {x: -14, y: -9}
+        - {x: -8, y: -16}
+        - {x: 11, y: -16}
+        - {x: 12, y: -13}
+        - {x: 12, y: 11}
+        - {x: 10, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -13, y: 13}
+        - {x: -15, y: -5}
+        - {x: -15, y: -14}
+        - {x: -13, y: -16}
+        - {x: 9, y: -16}
+        - {x: 13, y: -6}
+        - {x: 13, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_73
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -15, y: 15}
+        - {x: -15, y: -16}
+        - {x: 8, y: -16}
+        - {x: 13, y: -5}
+        - {x: 13, y: 12}
+        - {x: 11, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_74
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -15, y: 14}
+        - {x: -15, y: -16}
+        - {x: 12, y: -16}
+        - {x: 13, y: -12}
+        - {x: 13, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_75
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -12, y: 14}
+        - {x: -12, y: -4}
+        - {x: -9, y: -16}
+        - {x: 9, y: -16}
+        - {x: 14, y: -8}
+        - {x: 14, y: 15}
+        - {x: 12, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_76
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -12, y: 1}
+        - {x: -8, y: -16}
+        - {x: 5, y: -16}
+        - {x: 14, y: -7}
+        - {x: 14, y: 14}
+        - {x: 13, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_77
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -12, y: 13}
+        - {x: -12, y: -4}
+        - {x: -9, y: -16}
+        - {x: 10, y: -16}
+        - {x: 14, y: -14}
+        - {x: 14, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_78
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -12, y: 13}
+        - {x: -12, y: -8}
+        - {x: -10, y: -16}
+        - {x: 8, y: -16}
+        - {x: 13, y: -7}
+        - {x: 13, y: 15}
+        - {x: 11, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_79
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -12, y: -15}
+        - {x: -7, y: -16}
+        - {x: 9, y: -16}
+        - {x: 13, y: -11}
+        - {x: 13, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_80
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -12, y: -12}
+        - {x: -11, y: -16}
+        - {x: 9, y: -16}
+        - {x: 13, y: -11}
+        - {x: 13, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_81
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 16}
+        - {x: -12, y: 12}
+        - {x: -12, y: -1}
+        - {x: -9, y: -16}
+        - {x: 11, y: -16}
+        - {x: 14, y: -10}
+        - {x: 14, y: 14}
+        - {x: 12, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_82
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -12, y: -4}
+        - {x: -7, y: -16}
+        - {x: 5, y: -16}
+        - {x: 14, y: -7}
+        - {x: 14, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_83
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -12, y: -16}
+        - {x: 9, y: -16}
+        - {x: 14, y: -14}
+        - {x: 14, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_84
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_85
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_86
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_87
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -13, y: 9}
+        - {x: -13, y: -10}
+        - {x: -10, y: -16}
+        - {x: 5, y: -16}
+        - {x: 14, y: -12}
+        - {x: 14, y: 10}
+        - {x: 10, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_88
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -13}
+        - {x: -8, y: -16}
+        - {x: 10, y: -16}
+        - {x: 14, y: -13}
+        - {x: 14, y: 13}
+        - {x: 13, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_89
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -13, y: 15}
+        - {x: -13, y: -11}
+        - {x: -9, y: -16}
+        - {x: 9, y: -16}
+        - {x: 14, y: -13}
+        - {x: 14, y: 13}
+        - {x: 11, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_90
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 16}
+        - {x: -13, y: 12}
+        - {x: -13, y: -13}
+        - {x: -12, y: -16}
+        - {x: 7, y: -16}
+        - {x: 14, y: -9}
+        - {x: 14, y: 12}
+        - {x: 12, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_91
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -13, y: 12}
+        - {x: -13, y: -13}
+        - {x: -8, y: -16}
+        - {x: 14, y: -16}
+        - {x: 14, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_92
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -13, y: 14}
+        - {x: -13, y: -9}
+        - {x: -11, y: -16}
+        - {x: 11, y: -16}
+        - {x: 14, y: -9}
+        - {x: 14, y: 14}
+        - {x: 8, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_93
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -13, y: 12}
+        - {x: -13, y: -14}
+        - {x: -10, y: -16}
+        - {x: 7, y: -16}
+        - {x: 14, y: -14}
+        - {x: 14, y: 12}
+        - {x: 10, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_94
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -16}
+        - {x: 14, y: -16}
+        - {x: 14, y: 13}
+        - {x: 13, y: 16}
+    - name: EnemySpriteSheet2.png-par-Kazzador_95
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -13, y: 9}
+        - {x: -13, y: -9}
+        - {x: -4, y: -16}
+        - {x: 8, y: -16}
+        - {x: 14, y: -13}
+        - {x: 14, y: 12}
+        - {x: 13, y: 16}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

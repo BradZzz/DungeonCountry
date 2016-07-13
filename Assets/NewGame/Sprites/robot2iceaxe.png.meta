@@ -1,0 +1,386 @@
+fileFormatVersion: 2
+guid: 23a601dad4e224888ba8c95d6d8a9d4a
+timeCreated: 1468355889
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: robot2iceaxe_0
+    21300002: robot2iceaxe_1
+    21300004: robot2iceaxe_2
+    21300006: robot2iceaxe_3
+    21300008: robot2iceaxe_4
+    21300010: robot2iceaxe_5
+    21300012: robot2iceaxe_6
+    21300014: robot2iceaxe_7
+    21300016: robot2iceaxe_8
+    21300018: robot2iceaxe_9
+    21300020: robot2iceaxe_10
+    21300022: robot2iceaxe_11
+    21300024: robot2iceaxe_12
+    21300026: robot2iceaxe_13
+    21300028: robot2iceaxe_14
+    21300030: robot2iceaxe_15
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 5
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: robot2iceaxe_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 17}
+        - {x: -18, y: 13}
+        - {x: -18, y: -31}
+        - {x: 22, y: -31}
+        - {x: 26, y: -27}
+        - {x: 26, y: 17}
+    - name: robot2iceaxe_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 15}
+        - {x: -18, y: 3}
+        - {x: -18, y: -18}
+        - {x: -12, y: -30}
+        - {x: 16, y: -30}
+        - {x: 26, y: -12}
+        - {x: 26, y: 4}
+        - {x: 13, y: 15}
+    - name: robot2iceaxe_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 17}
+        - {x: -19, y: 13}
+        - {x: -19, y: -31}
+        - {x: 21, y: -31}
+        - {x: 25, y: -27}
+        - {x: 25, y: 17}
+    - name: robot2iceaxe_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 15}
+        - {x: -19, y: 3}
+        - {x: -19, y: -17}
+        - {x: -8, y: -30}
+        - {x: 16, y: -30}
+        - {x: 25, y: -20}
+        - {x: 25, y: 7}
+        - {x: 21, y: 15}
+    - name: robot2iceaxe_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2, y: 15}
+        - {x: -19, y: 9}
+        - {x: -19, y: -26}
+        - {x: -18, y: -30}
+        - {x: -11, y: -31}
+        - {x: 17, y: -31}
+        - {x: 22, y: -18}
+        - {x: 22, y: 11}
+        - {x: 20, y: 15}
+    - name: robot2iceaxe_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: -8}
+        - {x: -18, y: -10}
+        - {x: -18, y: -27}
+        - {x: -11, y: -32}
+        - {x: 21, y: -32}
+        - {x: 21, y: 14}
+        - {x: -3, y: 14}
+        - {x: -19, y: 6}
+        - {x: -20, y: 4}
+    - name: robot2iceaxe_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2, y: 15}
+        - {x: -19, y: 9}
+        - {x: -19, y: -26}
+        - {x: -18, y: -30}
+        - {x: -11, y: -31}
+        - {x: 17, y: -31}
+        - {x: 22, y: -18}
+        - {x: 22, y: 11}
+        - {x: 20, y: 15}
+    - name: robot2iceaxe_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18, y: 14}
+        - {x: -18, y: -32}
+        - {x: 23, y: -32}
+        - {x: 23, y: 13}
+        - {x: 22, y: 14}
+    - name: robot2iceaxe_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 28, y: 10}
+        - {x: 10, y: 15}
+        - {x: -10, y: 15}
+        - {x: -13, y: 9}
+        - {x: -13, y: -14}
+        - {x: -10, y: -29}
+        - {x: -2, y: -31}
+        - {x: 17, y: -31}
+        - {x: 19, y: -25}
+        - {x: 19, y: -21}
+        - {x: 28, y: -7}
+    - name: robot2iceaxe_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 14}
+        - {x: -12, y: 9}
+        - {x: -12, y: -29}
+        - {x: -9, y: -32}
+        - {x: 29, y: -32}
+        - {x: 29, y: 14}
+    - name: robot2iceaxe_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 28, y: 10}
+        - {x: 10, y: 15}
+        - {x: -10, y: 15}
+        - {x: -13, y: 9}
+        - {x: -13, y: -14}
+        - {x: -10, y: -29}
+        - {x: -2, y: -31}
+        - {x: 17, y: -31}
+        - {x: 19, y: -25}
+        - {x: 19, y: -21}
+        - {x: 28, y: -7}
+    - name: robot2iceaxe_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 19, y: 14}
+        - {x: -10, y: 14}
+        - {x: -12, y: 13}
+        - {x: -14, y: 9}
+        - {x: -14, y: -14}
+        - {x: -11, y: -31}
+        - {x: -3, y: -32}
+        - {x: 23, y: -32}
+        - {x: 24, y: -31}
+        - {x: 27, y: -25}
+        - {x: 27, y: 6}
+    - name: robot2iceaxe_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 24, y: -14}
+        - {x: 24, y: 10}
+        - {x: 17, y: 18}
+        - {x: -12, y: 18}
+        - {x: -16, y: 17}
+        - {x: -16, y: -10}
+        - {x: -9, y: -24}
+        - {x: -5, y: -29}
+        - {x: 21, y: -29}
+    - name: robot2iceaxe_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -16, y: 8}
+        - {x: -16, y: -6}
+        - {x: -10, y: -25}
+        - {x: 0, y: -29}
+        - {x: 13, y: -29}
+        - {x: 18, y: -27}
+        - {x: 24, y: -17}
+        - {x: 24, y: 9}
+        - {x: 22, y: 16}
+    - name: robot2iceaxe_14
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23, y: 15}
+        - {x: 21, y: 18}
+        - {x: -14, y: 18}
+        - {x: -17, y: 8}
+        - {x: -17, y: -14}
+        - {x: -10, y: -24}
+        - {x: -6, y: -29}
+        - {x: 13, y: -29}
+        - {x: 17, y: -28}
+        - {x: 23, y: -22}
+    - name: robot2iceaxe_15
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 22, y: 11}
+        - {x: 15, y: 16}
+        - {x: -12, y: 16}
+        - {x: -17, y: 14}
+        - {x: -17, y: -27}
+        - {x: -16, y: -29}
+        - {x: 15, y: -29}
+        - {x: 23, y: -17}
+        - {x: 23, y: 8}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

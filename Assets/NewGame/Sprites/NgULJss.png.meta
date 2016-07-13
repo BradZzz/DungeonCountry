@@ -1,0 +1,1939 @@
+fileFormatVersion: 2
+guid: 6421c7ecc2bd940619533254bddfacc6
+timeCreated: 1468355591
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: NgULJss_0
+    21300002: NgULJss_1
+    21300004: NgULJss_2
+    21300006: NgULJss_3
+    21300008: NgULJss_4
+    21300010: NgULJss_5
+    21300012: NgULJss_6
+    21300014: NgULJss_7
+    21300016: NgULJss_8
+    21300018: NgULJss_9
+    21300020: NgULJss_10
+    21300022: NgULJss_11
+    21300024: NgULJss_12
+    21300026: NgULJss_13
+    21300028: NgULJss_14
+    21300030: NgULJss_15
+    21300032: NgULJss_16
+    21300034: NgULJss_17
+    21300036: NgULJss_18
+    21300038: NgULJss_19
+    21300040: NgULJss_20
+    21300042: NgULJss_21
+    21300044: NgULJss_22
+    21300046: NgULJss_23
+    21300048: NgULJss_24
+    21300050: NgULJss_25
+    21300052: NgULJss_26
+    21300054: NgULJss_27
+    21300056: NgULJss_28
+    21300058: NgULJss_29
+    21300060: NgULJss_30
+    21300062: NgULJss_31
+    21300064: NgULJss_32
+    21300066: NgULJss_33
+    21300068: NgULJss_34
+    21300070: NgULJss_35
+    21300072: NgULJss_36
+    21300074: NgULJss_37
+    21300076: NgULJss_38
+    21300078: NgULJss_39
+    21300080: NgULJss_40
+    21300082: NgULJss_41
+    21300084: NgULJss_42
+    21300086: NgULJss_43
+    21300088: NgULJss_44
+    21300090: NgULJss_45
+    21300092: NgULJss_46
+    21300094: NgULJss_47
+    21300096: NgULJss_48
+    21300098: NgULJss_49
+    21300100: NgULJss_50
+    21300102: NgULJss_51
+    21300104: NgULJss_52
+    21300106: NgULJss_53
+    21300108: NgULJss_54
+    21300110: NgULJss_55
+    21300112: NgULJss_56
+    21300114: NgULJss_57
+    21300116: NgULJss_58
+    21300118: NgULJss_59
+    21300120: NgULJss_60
+    21300122: NgULJss_61
+    21300124: NgULJss_62
+    21300126: NgULJss_63
+    21300128: NgULJss_64
+    21300130: NgULJss_65
+    21300132: NgULJss_66
+    21300134: NgULJss_67
+    21300136: NgULJss_68
+    21300138: NgULJss_69
+    21300140: NgULJss_70
+    21300142: NgULJss_71
+    21300144: NgULJss_72
+    21300146: NgULJss_73
+    21300148: NgULJss_74
+    21300150: NgULJss_75
+    21300152: NgULJss_76
+    21300154: NgULJss_77
+    21300156: NgULJss_78
+    21300158: NgULJss_79
+    21300160: NgULJss_80
+    21300162: NgULJss_81
+    21300164: NgULJss_82
+    21300166: NgULJss_83
+    21300168: NgULJss_84
+    21300170: NgULJss_85
+    21300172: NgULJss_86
+    21300174: NgULJss_87
+    21300176: NgULJss_88
+    21300178: NgULJss_89
+    21300180: NgULJss_90
+    21300182: NgULJss_91
+    21300184: NgULJss_92
+    21300186: NgULJss_93
+    21300188: NgULJss_94
+    21300190: NgULJss_95
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 5
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: NgULJss_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -13, y: 14}
+        - {x: -15, y: 6}
+        - {x: -15, y: -13}
+        - {x: -14, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -10}
+        - {x: 16, y: 12}
+        - {x: 10, y: 16}
+    - name: NgULJss_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 16}
+        - {x: -15, y: -12}
+        - {x: -13, y: -16}
+        - {x: 10, y: -16}
+        - {x: 16, y: -13}
+        - {x: 16, y: 11}
+        - {x: 12, y: 16}
+    - name: NgULJss_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -14, y: 12}
+        - {x: -14, y: -10}
+        - {x: -10, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 14}
+        - {x: 12, y: 16}
+    - name: NgULJss_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -13, y: 14}
+        - {x: -15, y: 6}
+        - {x: -15, y: -13}
+        - {x: -14, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -10}
+        - {x: 16, y: 12}
+        - {x: 10, y: 16}
+    - name: NgULJss_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 16}
+        - {x: -15, y: -12}
+        - {x: -13, y: -16}
+        - {x: 10, y: -16}
+        - {x: 16, y: -13}
+        - {x: 16, y: 11}
+        - {x: 12, y: 16}
+    - name: NgULJss_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -14, y: 12}
+        - {x: -14, y: -10}
+        - {x: -10, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 14}
+        - {x: 12, y: 16}
+    - name: NgULJss_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -14, y: 15}
+        - {x: -15, y: 13}
+        - {x: -15, y: -16}
+        - {x: 14, y: -16}
+        - {x: 16, y: -9}
+        - {x: 16, y: 15}
+        - {x: 15, y: 16}
+    - name: NgULJss_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -15, y: 11}
+        - {x: -15, y: -10}
+        - {x: -12, y: -16}
+        - {x: 13, y: -16}
+        - {x: 16, y: -15}
+        - {x: 16, y: 9}
+        - {x: 13, y: 16}
+    - name: NgULJss_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: 16}
+        - {x: -9, y: 16}
+        - {x: -14, y: 12}
+        - {x: -14, y: -10}
+        - {x: -8, y: -16}
+        - {x: 9, y: -16}
+        - {x: 16, y: -12}
+        - {x: 16, y: 10}
+    - name: NgULJss_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -14, y: 15}
+        - {x: -15, y: 13}
+        - {x: -15, y: -16}
+        - {x: 14, y: -16}
+        - {x: 16, y: -9}
+        - {x: 16, y: 15}
+        - {x: 15, y: 16}
+    - name: NgULJss_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -15, y: 11}
+        - {x: -15, y: -10}
+        - {x: -12, y: -16}
+        - {x: 13, y: -16}
+        - {x: 16, y: -15}
+        - {x: 16, y: 9}
+        - {x: 13, y: 16}
+    - name: NgULJss_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: 16}
+        - {x: -9, y: 16}
+        - {x: -14, y: 12}
+        - {x: -14, y: -10}
+        - {x: -8, y: -16}
+        - {x: 9, y: -16}
+        - {x: 16, y: -12}
+        - {x: 16, y: 10}
+    - name: NgULJss_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: -16}
+        - {x: 13, y: -16}
+        - {x: 13, y: 16}
+        - {x: -15, y: 16}
+        - {x: -15, y: -10}
+    - name: NgULJss_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 16}
+        - {x: -15, y: 13}
+        - {x: -15, y: 1}
+        - {x: -11, y: -7}
+        - {x: -7, y: -16}
+        - {x: 11, y: -16}
+        - {x: 13, y: -6}
+        - {x: 13, y: 13}
+        - {x: 9, y: 16}
+    - name: NgULJss_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -15, y: 12}
+        - {x: -15, y: 1}
+        - {x: -9, y: -16}
+        - {x: 10, y: -16}
+        - {x: 13, y: -14}
+        - {x: 13, y: 12}
+        - {x: 8, y: 16}
+    - name: NgULJss_15
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: -16}
+        - {x: 13, y: -16}
+        - {x: 13, y: 16}
+        - {x: -15, y: 16}
+        - {x: -15, y: -10}
+    - name: NgULJss_16
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 16}
+        - {x: -15, y: 13}
+        - {x: -15, y: 1}
+        - {x: -11, y: -7}
+        - {x: -7, y: -16}
+        - {x: 11, y: -16}
+        - {x: 13, y: -6}
+        - {x: 13, y: 13}
+        - {x: 9, y: 16}
+    - name: NgULJss_17
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -15, y: 12}
+        - {x: -15, y: 1}
+        - {x: -9, y: -16}
+        - {x: 10, y: -16}
+        - {x: 13, y: -14}
+        - {x: 13, y: 12}
+        - {x: 8, y: 16}
+    - name: NgULJss_18
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -15, y: 11}
+        - {x: -15, y: 1}
+        - {x: -9, y: -16}
+        - {x: 10, y: -16}
+        - {x: 11, y: -13}
+        - {x: 11, y: 15}
+        - {x: 9, y: 16}
+    - name: NgULJss_19
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 16}
+        - {x: -15, y: -16}
+        - {x: 10, y: -16}
+        - {x: 11, y: -14}
+        - {x: 11, y: 12}
+        - {x: 8, y: 16}
+    - name: NgULJss_20
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 16}
+        - {x: -15, y: 3}
+        - {x: -11, y: -12}
+        - {x: -9, y: -16}
+        - {x: 11, y: -16}
+        - {x: 11, y: 16}
+    - name: NgULJss_21
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -15, y: 11}
+        - {x: -15, y: 1}
+        - {x: -9, y: -16}
+        - {x: 10, y: -16}
+        - {x: 11, y: -13}
+        - {x: 11, y: 15}
+        - {x: 9, y: 16}
+    - name: NgULJss_22
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 16}
+        - {x: -15, y: -16}
+        - {x: 10, y: -16}
+        - {x: 11, y: -14}
+        - {x: 11, y: 12}
+        - {x: 8, y: 16}
+    - name: NgULJss_23
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 16}
+        - {x: -15, y: 3}
+        - {x: -11, y: -12}
+        - {x: -9, y: -16}
+        - {x: 11, y: -16}
+        - {x: 11, y: 16}
+    - name: NgULJss_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -13, y: 12}
+        - {x: -13, y: -8}
+        - {x: -10, y: -16}
+        - {x: 10, y: -16}
+        - {x: 15, y: -7}
+        - {x: 15, y: 16}
+    - name: NgULJss_25
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -13, y: 12}
+        - {x: -13, y: -7}
+        - {x: -11, y: -14}
+        - {x: -8, y: -16}
+        - {x: 8, y: -16}
+        - {x: 11, y: -15}
+        - {x: 15, y: 3}
+        - {x: 15, y: 16}
+    - name: NgULJss_26
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -13, y: 11}
+        - {x: -13, y: -9}
+        - {x: -12, y: -14}
+        - {x: -8, y: -16}
+        - {x: 11, y: -16}
+        - {x: 15, y: -5}
+        - {x: 15, y: 14}
+        - {x: 11, y: 16}
+    - name: NgULJss_27
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -13, y: 12}
+        - {x: -13, y: -8}
+        - {x: -10, y: -16}
+        - {x: 10, y: -16}
+        - {x: 15, y: -7}
+        - {x: 15, y: 16}
+    - name: NgULJss_28
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -13, y: 12}
+        - {x: -13, y: -7}
+        - {x: -11, y: -14}
+        - {x: -8, y: -16}
+        - {x: 8, y: -16}
+        - {x: 11, y: -15}
+        - {x: 15, y: 3}
+        - {x: 15, y: 16}
+    - name: NgULJss_29
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -13, y: 11}
+        - {x: -13, y: -9}
+        - {x: -12, y: -14}
+        - {x: -8, y: -16}
+        - {x: 11, y: -16}
+        - {x: 15, y: -5}
+        - {x: 15, y: 14}
+        - {x: 11, y: 16}
+    - name: NgULJss_30
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 13, y: 16}
+        - {x: -11, y: 16}
+        - {x: -11, y: -12}
+        - {x: -9, y: -16}
+        - {x: 10, y: -16}
+        - {x: 15, y: -5}
+        - {x: 15, y: 14}
+    - name: NgULJss_31
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -11, y: -16}
+        - {x: 11, y: -16}
+        - {x: 15, y: 2}
+        - {x: 15, y: 16}
+    - name: NgULJss_32
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -11, y: 10}
+        - {x: -11, y: -15}
+        - {x: -10, y: -16}
+        - {x: 10, y: -16}
+        - {x: 15, y: -14}
+        - {x: 15, y: 16}
+    - name: NgULJss_33
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 13, y: 16}
+        - {x: -11, y: 16}
+        - {x: -11, y: -12}
+        - {x: -9, y: -16}
+        - {x: 10, y: -16}
+        - {x: 15, y: -5}
+        - {x: 15, y: 14}
+    - name: NgULJss_34
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -11, y: -16}
+        - {x: 11, y: -16}
+        - {x: 15, y: 2}
+        - {x: 15, y: 16}
+    - name: NgULJss_35
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -11, y: 10}
+        - {x: -11, y: -15}
+        - {x: -10, y: -16}
+        - {x: 10, y: -16}
+        - {x: 15, y: -14}
+        - {x: 15, y: 16}
+    - name: NgULJss_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -13, y: 14}
+        - {x: -13, y: -9}
+        - {x: -8, y: -16}
+        - {x: 14, y: -16}
+        - {x: 15, y: -10}
+        - {x: 15, y: 13}
+        - {x: 12, y: 16}
+    - name: NgULJss_37
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8, y: 16}
+        - {x: -10, y: 16}
+        - {x: -15, y: 7}
+        - {x: -15, y: -13}
+        - {x: -13, y: -16}
+        - {x: 13, y: -16}
+        - {x: 16, y: -11}
+        - {x: 16, y: 4}
+        - {x: 12, y: 12}
+    - name: NgULJss_38
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 16}
+        - {x: -14, y: -13}
+        - {x: -13, y: -16}
+        - {x: 9, y: -16}
+        - {x: 14, y: -9}
+        - {x: 14, y: 14}
+        - {x: 10, y: 16}
+    - name: NgULJss_39
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -13, y: 14}
+        - {x: -13, y: -9}
+        - {x: -8, y: -16}
+        - {x: 14, y: -16}
+        - {x: 15, y: -10}
+        - {x: 15, y: 13}
+        - {x: 12, y: 16}
+    - name: NgULJss_40
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8, y: 16}
+        - {x: -10, y: 16}
+        - {x: -15, y: 7}
+        - {x: -15, y: -13}
+        - {x: -13, y: -16}
+        - {x: 13, y: -16}
+        - {x: 16, y: -11}
+        - {x: 16, y: 4}
+        - {x: 12, y: 12}
+    - name: NgULJss_41
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 16}
+        - {x: -14, y: -13}
+        - {x: -13, y: -16}
+        - {x: 9, y: -16}
+        - {x: 14, y: -9}
+        - {x: 14, y: 14}
+        - {x: 10, y: 16}
+    - name: NgULJss_42
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -9}
+        - {x: -8, y: -16}
+        - {x: 14, y: -16}
+        - {x: 15, y: -13}
+        - {x: 15, y: 8}
+        - {x: 12, y: 16}
+    - name: NgULJss_43
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: 16}
+        - {x: -10, y: 16}
+        - {x: -15, y: 5}
+        - {x: -15, y: -11}
+        - {x: -9, y: -16}
+        - {x: 9, y: -16}
+        - {x: 16, y: -12}
+        - {x: 16, y: 6}
+        - {x: 15, y: 12}
+    - name: NgULJss_44
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -14, y: 0}
+        - {x: -14, y: -13}
+        - {x: -12, y: -16}
+        - {x: 14, y: -16}
+        - {x: 14, y: 14}
+        - {x: 11, y: 16}
+    - name: NgULJss_45
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -9}
+        - {x: -8, y: -16}
+        - {x: 14, y: -16}
+        - {x: 15, y: -13}
+        - {x: 15, y: 8}
+        - {x: 12, y: 16}
+    - name: NgULJss_46
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: 16}
+        - {x: -10, y: 16}
+        - {x: -15, y: 5}
+        - {x: -15, y: -11}
+        - {x: -9, y: -16}
+        - {x: 9, y: -16}
+        - {x: 16, y: -12}
+        - {x: 16, y: 6}
+        - {x: 15, y: 12}
+    - name: NgULJss_47
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -14, y: 0}
+        - {x: -14, y: -13}
+        - {x: -12, y: -16}
+        - {x: 14, y: -16}
+        - {x: 14, y: 14}
+        - {x: 11, y: 16}
+    - name: NgULJss_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -14, y: 15}
+        - {x: -15, y: 13}
+        - {x: -15, y: -16}
+        - {x: 14, y: -16}
+        - {x: 16, y: -9}
+        - {x: 16, y: 15}
+        - {x: 15, y: 16}
+    - name: NgULJss_49
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -15, y: 11}
+        - {x: -15, y: -10}
+        - {x: -12, y: -16}
+        - {x: 13, y: -16}
+        - {x: 16, y: -15}
+        - {x: 16, y: 9}
+        - {x: 13, y: 16}
+    - name: NgULJss_50
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: 16}
+        - {x: -9, y: 16}
+        - {x: -14, y: 12}
+        - {x: -14, y: -10}
+        - {x: -8, y: -16}
+        - {x: 9, y: -16}
+        - {x: 16, y: -12}
+        - {x: 16, y: 10}
+    - name: NgULJss_51
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -14, y: 15}
+        - {x: -15, y: 13}
+        - {x: -15, y: -16}
+        - {x: 14, y: -16}
+        - {x: 16, y: -9}
+        - {x: 16, y: 15}
+        - {x: 15, y: 16}
+    - name: NgULJss_52
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -15, y: 11}
+        - {x: -15, y: -10}
+        - {x: -12, y: -16}
+        - {x: 13, y: -16}
+        - {x: 16, y: -15}
+        - {x: 16, y: 9}
+        - {x: 13, y: 16}
+    - name: NgULJss_53
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: 16}
+        - {x: -9, y: 16}
+        - {x: -14, y: 12}
+        - {x: -14, y: -10}
+        - {x: -8, y: -16}
+        - {x: 9, y: -16}
+        - {x: 16, y: -12}
+        - {x: 16, y: 10}
+    - name: NgULJss_54
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -15, y: 9}
+        - {x: -15, y: -14}
+        - {x: -13, y: -16}
+        - {x: 10, y: -16}
+        - {x: 15, y: -13}
+        - {x: 15, y: 8}
+        - {x: 10, y: 16}
+    - name: NgULJss_55
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12, y: 16}
+        - {x: -11, y: 16}
+        - {x: -15, y: 15}
+        - {x: -15, y: -10}
+        - {x: -11, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -9}
+        - {x: 16, y: 7}
+    - name: NgULJss_56
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -14, y: 13}
+        - {x: -14, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 14}
+        - {x: 12, y: 16}
+    - name: NgULJss_57
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -15, y: 9}
+        - {x: -15, y: -14}
+        - {x: -13, y: -16}
+        - {x: 10, y: -16}
+        - {x: 15, y: -13}
+        - {x: 15, y: 8}
+        - {x: 10, y: 16}
+    - name: NgULJss_58
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12, y: 16}
+        - {x: -11, y: 16}
+        - {x: -15, y: 15}
+        - {x: -15, y: -10}
+        - {x: -11, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -9}
+        - {x: 16, y: 7}
+    - name: NgULJss_59
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -14, y: 13}
+        - {x: -14, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 14}
+        - {x: 12, y: 16}
+    - name: NgULJss_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -14, y: 13}
+        - {x: -15, y: 8}
+        - {x: -15, y: 7}
+        - {x: -13, y: 1}
+        - {x: -9, y: -15}
+        - {x: -8, y: -16}
+        - {x: 10, y: -16}
+        - {x: 11, y: -12}
+        - {x: 11, y: 15}
+        - {x: 9, y: 16}
+    - name: NgULJss_61
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 16}
+        - {x: -15, y: 13}
+        - {x: -15, y: -1}
+        - {x: -10, y: -15}
+        - {x: -7, y: -16}
+        - {x: 9, y: -16}
+        - {x: 11, y: -14}
+        - {x: 11, y: 12}
+        - {x: 8, y: 16}
+    - name: NgULJss_62
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -14, y: 13}
+        - {x: -15, y: 11}
+        - {x: -15, y: 4}
+        - {x: -11, y: -12}
+        - {x: -9, y: -16}
+        - {x: 10, y: -16}
+        - {x: 11, y: -14}
+        - {x: 11, y: 12}
+        - {x: 7, y: 16}
+    - name: NgULJss_63
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -14, y: 13}
+        - {x: -15, y: 8}
+        - {x: -15, y: 7}
+        - {x: -13, y: 1}
+        - {x: -9, y: -15}
+        - {x: -8, y: -16}
+        - {x: 10, y: -16}
+        - {x: 11, y: -12}
+        - {x: 11, y: 15}
+        - {x: 9, y: 16}
+    - name: NgULJss_64
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 16}
+        - {x: -15, y: 13}
+        - {x: -15, y: -1}
+        - {x: -10, y: -15}
+        - {x: -7, y: -16}
+        - {x: 9, y: -16}
+        - {x: 11, y: -14}
+        - {x: 11, y: 12}
+        - {x: 8, y: 16}
+    - name: NgULJss_65
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -14, y: 13}
+        - {x: -15, y: 11}
+        - {x: -15, y: 4}
+        - {x: -11, y: -12}
+        - {x: -9, y: -16}
+        - {x: 10, y: -16}
+        - {x: 11, y: -14}
+        - {x: 11, y: 12}
+        - {x: 7, y: 16}
+    - name: NgULJss_66
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -7}
+        - {x: -9, y: -16}
+        - {x: 11, y: -16}
+        - {x: 12, y: -11}
+        - {x: 12, y: 16}
+    - name: NgULJss_67
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -4}
+        - {x: -7, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 15}
+        - {x: 10, y: 16}
+    - name: NgULJss_68
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -12}
+        - {x: -10, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 13}
+        - {x: 8, y: 16}
+    - name: NgULJss_69
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -7}
+        - {x: -9, y: -16}
+        - {x: 11, y: -16}
+        - {x: 12, y: -11}
+        - {x: 12, y: 16}
+    - name: NgULJss_70
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -4}
+        - {x: -7, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 15}
+        - {x: 10, y: 16}
+    - name: NgULJss_71
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -12}
+        - {x: -10, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 13}
+        - {x: 8, y: 16}
+    - name: NgULJss_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 16}
+        - {x: -9, y: 15}
+        - {x: -11, y: 12}
+        - {x: -11, y: -16}
+        - {x: 12, y: -16}
+        - {x: 15, y: -9}
+        - {x: 15, y: 14}
+        - {x: 14, y: 16}
+    - name: NgULJss_73
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -11, y: -12}
+        - {x: -10, y: -16}
+        - {x: 7, y: -16}
+        - {x: 10, y: -15}
+        - {x: 15, y: 3}
+        - {x: 15, y: 16}
+    - name: NgULJss_74
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -11, y: 13}
+        - {x: -11, y: -15}
+        - {x: -10, y: -16}
+        - {x: 10, y: -16}
+        - {x: 15, y: -14}
+        - {x: 15, y: 16}
+    - name: NgULJss_75
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 16}
+        - {x: -9, y: 15}
+        - {x: -11, y: 12}
+        - {x: -11, y: -16}
+        - {x: 12, y: -16}
+        - {x: 15, y: -9}
+        - {x: 15, y: 14}
+        - {x: 14, y: 16}
+    - name: NgULJss_76
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -11, y: -12}
+        - {x: -10, y: -16}
+        - {x: 7, y: -16}
+        - {x: 10, y: -15}
+        - {x: 15, y: 3}
+        - {x: 15, y: 16}
+    - name: NgULJss_77
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -11, y: 13}
+        - {x: -11, y: -15}
+        - {x: -10, y: -16}
+        - {x: 10, y: -16}
+        - {x: 15, y: -14}
+        - {x: 15, y: 16}
+    - name: NgULJss_78
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -12, y: 12}
+        - {x: -12, y: -10}
+        - {x: -11, y: -16}
+        - {x: 10, y: -16}
+        - {x: 14, y: -6}
+        - {x: 14, y: 11}
+        - {x: 12, y: 16}
+    - name: NgULJss_79
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -12, y: 12}
+        - {x: -12, y: -16}
+        - {x: 7, y: -16}
+        - {x: 14, y: -3}
+        - {x: 14, y: 13}
+        - {x: 13, y: 16}
+    - name: NgULJss_80
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -12, y: 9}
+        - {x: -12, y: -16}
+        - {x: 11, y: -16}
+        - {x: 14, y: 0}
+        - {x: 14, y: 14}
+        - {x: 10, y: 16}
+    - name: NgULJss_81
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -12, y: 12}
+        - {x: -12, y: -10}
+        - {x: -11, y: -16}
+        - {x: 10, y: -16}
+        - {x: 14, y: -6}
+        - {x: 14, y: 11}
+        - {x: 12, y: 16}
+    - name: NgULJss_82
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -12, y: 12}
+        - {x: -12, y: -16}
+        - {x: 7, y: -16}
+        - {x: 14, y: -3}
+        - {x: 14, y: 13}
+        - {x: 13, y: 16}
+    - name: NgULJss_83
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -12, y: 9}
+        - {x: -12, y: -16}
+        - {x: 11, y: -16}
+        - {x: 14, y: 0}
+        - {x: 14, y: 14}
+        - {x: 10, y: 16}
+    - name: NgULJss_84
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -9}
+        - {x: -8, y: -16}
+        - {x: 14, y: -16}
+        - {x: 15, y: -13}
+        - {x: 15, y: 8}
+        - {x: 12, y: 16}
+    - name: NgULJss_85
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: 16}
+        - {x: -10, y: 16}
+        - {x: -15, y: 5}
+        - {x: -15, y: -11}
+        - {x: -9, y: -16}
+        - {x: 9, y: -16}
+        - {x: 16, y: -12}
+        - {x: 16, y: 6}
+        - {x: 15, y: 12}
+    - name: NgULJss_86
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -14, y: 0}
+        - {x: -14, y: -13}
+        - {x: -12, y: -16}
+        - {x: 14, y: -16}
+        - {x: 14, y: 14}
+        - {x: 11, y: 16}
+    - name: NgULJss_87
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -9}
+        - {x: -8, y: -16}
+        - {x: 14, y: -16}
+        - {x: 15, y: -13}
+        - {x: 15, y: 8}
+        - {x: 12, y: 16}
+    - name: NgULJss_88
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: 16}
+        - {x: -10, y: 16}
+        - {x: -15, y: 5}
+        - {x: -15, y: -11}
+        - {x: -9, y: -16}
+        - {x: 9, y: -16}
+        - {x: 16, y: -12}
+        - {x: 16, y: 6}
+        - {x: 15, y: 12}
+    - name: NgULJss_89
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -14, y: 0}
+        - {x: -14, y: -13}
+        - {x: -12, y: -16}
+        - {x: 14, y: -16}
+        - {x: 14, y: 14}
+        - {x: 11, y: 16}
+    - name: NgULJss_90
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -13, y: 13}
+        - {x: -13, y: -15}
+        - {x: -11, y: -16}
+        - {x: 14, y: -16}
+        - {x: 15, y: -13}
+        - {x: 15, y: 13}
+        - {x: 8, y: 16}
+    - name: NgULJss_91
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -13, y: 11}
+        - {x: -15, y: 0}
+        - {x: -15, y: -13}
+        - {x: -13, y: -16}
+        - {x: 10, y: -16}
+        - {x: 16, y: -14}
+        - {x: 16, y: 15}
+        - {x: 11, y: 16}
+    - name: NgULJss_92
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -14, y: 6}
+        - {x: -14, y: -10}
+        - {x: -12, y: -16}
+        - {x: 14, y: -16}
+        - {x: 14, y: 12}
+        - {x: 8, y: 16}
+    - name: NgULJss_93
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -13, y: 13}
+        - {x: -13, y: -15}
+        - {x: -11, y: -16}
+        - {x: 14, y: -16}
+        - {x: 15, y: -13}
+        - {x: 15, y: 13}
+        - {x: 8, y: 16}
+    - name: NgULJss_94
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -13, y: 11}
+        - {x: -15, y: 0}
+        - {x: -15, y: -13}
+        - {x: -13, y: -16}
+        - {x: 10, y: -16}
+        - {x: 16, y: -14}
+        - {x: 16, y: 15}
+        - {x: 11, y: 16}
+    - name: NgULJss_95
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -14, y: 6}
+        - {x: -14, y: -10}
+        - {x: -12, y: -16}
+        - {x: 14, y: -16}
+        - {x: 14, y: 12}
+        - {x: 8, y: 16}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

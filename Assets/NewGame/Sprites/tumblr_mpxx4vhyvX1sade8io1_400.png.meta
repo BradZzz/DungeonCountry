@@ -1,0 +1,2012 @@
+fileFormatVersion: 2
+guid: 93320ae4cc1d84f66a2d39a49d09983a
+timeCreated: 1468355695
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: tumblr_mpxx4vhyvX1sade8io1_400_0
+    21300002: tumblr_mpxx4vhyvX1sade8io1_400_1
+    21300004: tumblr_mpxx4vhyvX1sade8io1_400_2
+    21300006: tumblr_mpxx4vhyvX1sade8io1_400_3
+    21300008: tumblr_mpxx4vhyvX1sade8io1_400_4
+    21300010: tumblr_mpxx4vhyvX1sade8io1_400_5
+    21300012: tumblr_mpxx4vhyvX1sade8io1_400_6
+    21300014: tumblr_mpxx4vhyvX1sade8io1_400_7
+    21300016: tumblr_mpxx4vhyvX1sade8io1_400_8
+    21300018: tumblr_mpxx4vhyvX1sade8io1_400_9
+    21300020: tumblr_mpxx4vhyvX1sade8io1_400_10
+    21300022: tumblr_mpxx4vhyvX1sade8io1_400_11
+    21300024: tumblr_mpxx4vhyvX1sade8io1_400_12
+    21300026: tumblr_mpxx4vhyvX1sade8io1_400_13
+    21300028: tumblr_mpxx4vhyvX1sade8io1_400_14
+    21300030: tumblr_mpxx4vhyvX1sade8io1_400_15
+    21300032: tumblr_mpxx4vhyvX1sade8io1_400_16
+    21300034: tumblr_mpxx4vhyvX1sade8io1_400_17
+    21300036: tumblr_mpxx4vhyvX1sade8io1_400_18
+    21300038: tumblr_mpxx4vhyvX1sade8io1_400_19
+    21300040: tumblr_mpxx4vhyvX1sade8io1_400_20
+    21300042: tumblr_mpxx4vhyvX1sade8io1_400_21
+    21300044: tumblr_mpxx4vhyvX1sade8io1_400_22
+    21300046: tumblr_mpxx4vhyvX1sade8io1_400_23
+    21300048: tumblr_mpxx4vhyvX1sade8io1_400_24
+    21300050: tumblr_mpxx4vhyvX1sade8io1_400_25
+    21300052: tumblr_mpxx4vhyvX1sade8io1_400_26
+    21300054: tumblr_mpxx4vhyvX1sade8io1_400_27
+    21300056: tumblr_mpxx4vhyvX1sade8io1_400_28
+    21300058: tumblr_mpxx4vhyvX1sade8io1_400_29
+    21300060: tumblr_mpxx4vhyvX1sade8io1_400_30
+    21300062: tumblr_mpxx4vhyvX1sade8io1_400_31
+    21300064: tumblr_mpxx4vhyvX1sade8io1_400_32
+    21300066: tumblr_mpxx4vhyvX1sade8io1_400_33
+    21300068: tumblr_mpxx4vhyvX1sade8io1_400_34
+    21300070: tumblr_mpxx4vhyvX1sade8io1_400_35
+    21300072: tumblr_mpxx4vhyvX1sade8io1_400_36
+    21300074: tumblr_mpxx4vhyvX1sade8io1_400_37
+    21300076: tumblr_mpxx4vhyvX1sade8io1_400_38
+    21300078: tumblr_mpxx4vhyvX1sade8io1_400_39
+    21300080: tumblr_mpxx4vhyvX1sade8io1_400_40
+    21300082: tumblr_mpxx4vhyvX1sade8io1_400_41
+    21300084: tumblr_mpxx4vhyvX1sade8io1_400_42
+    21300086: tumblr_mpxx4vhyvX1sade8io1_400_43
+    21300088: tumblr_mpxx4vhyvX1sade8io1_400_44
+    21300090: tumblr_mpxx4vhyvX1sade8io1_400_45
+    21300092: tumblr_mpxx4vhyvX1sade8io1_400_46
+    21300094: tumblr_mpxx4vhyvX1sade8io1_400_47
+    21300096: tumblr_mpxx4vhyvX1sade8io1_400_48
+    21300098: tumblr_mpxx4vhyvX1sade8io1_400_49
+    21300100: tumblr_mpxx4vhyvX1sade8io1_400_50
+    21300102: tumblr_mpxx4vhyvX1sade8io1_400_51
+    21300104: tumblr_mpxx4vhyvX1sade8io1_400_52
+    21300106: tumblr_mpxx4vhyvX1sade8io1_400_53
+    21300108: tumblr_mpxx4vhyvX1sade8io1_400_54
+    21300110: tumblr_mpxx4vhyvX1sade8io1_400_55
+    21300112: tumblr_mpxx4vhyvX1sade8io1_400_56
+    21300114: tumblr_mpxx4vhyvX1sade8io1_400_57
+    21300116: tumblr_mpxx4vhyvX1sade8io1_400_58
+    21300118: tumblr_mpxx4vhyvX1sade8io1_400_59
+    21300120: tumblr_mpxx4vhyvX1sade8io1_400_60
+    21300122: tumblr_mpxx4vhyvX1sade8io1_400_61
+    21300124: tumblr_mpxx4vhyvX1sade8io1_400_62
+    21300126: tumblr_mpxx4vhyvX1sade8io1_400_63
+    21300128: tumblr_mpxx4vhyvX1sade8io1_400_64
+    21300130: tumblr_mpxx4vhyvX1sade8io1_400_65
+    21300132: tumblr_mpxx4vhyvX1sade8io1_400_66
+    21300134: tumblr_mpxx4vhyvX1sade8io1_400_67
+    21300136: tumblr_mpxx4vhyvX1sade8io1_400_68
+    21300138: tumblr_mpxx4vhyvX1sade8io1_400_69
+    21300140: tumblr_mpxx4vhyvX1sade8io1_400_70
+    21300142: tumblr_mpxx4vhyvX1sade8io1_400_71
+    21300144: tumblr_mpxx4vhyvX1sade8io1_400_72
+    21300146: tumblr_mpxx4vhyvX1sade8io1_400_73
+    21300148: tumblr_mpxx4vhyvX1sade8io1_400_74
+    21300150: tumblr_mpxx4vhyvX1sade8io1_400_75
+    21300152: tumblr_mpxx4vhyvX1sade8io1_400_76
+    21300154: tumblr_mpxx4vhyvX1sade8io1_400_77
+    21300156: tumblr_mpxx4vhyvX1sade8io1_400_78
+    21300158: tumblr_mpxx4vhyvX1sade8io1_400_79
+    21300160: tumblr_mpxx4vhyvX1sade8io1_400_80
+    21300162: tumblr_mpxx4vhyvX1sade8io1_400_81
+    21300164: tumblr_mpxx4vhyvX1sade8io1_400_82
+    21300166: tumblr_mpxx4vhyvX1sade8io1_400_83
+    21300168: tumblr_mpxx4vhyvX1sade8io1_400_84
+    21300170: tumblr_mpxx4vhyvX1sade8io1_400_85
+    21300172: tumblr_mpxx4vhyvX1sade8io1_400_86
+    21300174: tumblr_mpxx4vhyvX1sade8io1_400_87
+    21300176: tumblr_mpxx4vhyvX1sade8io1_400_88
+    21300178: tumblr_mpxx4vhyvX1sade8io1_400_89
+    21300180: tumblr_mpxx4vhyvX1sade8io1_400_90
+    21300182: tumblr_mpxx4vhyvX1sade8io1_400_91
+    21300184: tumblr_mpxx4vhyvX1sade8io1_400_92
+    21300186: tumblr_mpxx4vhyvX1sade8io1_400_93
+    21300188: tumblr_mpxx4vhyvX1sade8io1_400_94
+    21300190: tumblr_mpxx4vhyvX1sade8io1_400_95
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 5
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 336
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: -17}
+        - {x: -9, y: -22}
+        - {x: 4, y: -22}
+        - {x: 14, y: -16}
+        - {x: 14, y: 6}
+        - {x: 10, y: 14}
+        - {x: -6, y: 14}
+        - {x: -14, y: 10}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 336
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 12}
+        - {x: -12, y: 7}
+        - {x: -12, y: -15}
+        - {x: -6, y: -23}
+        - {x: 6, y: -23}
+        - {x: 12, y: -18}
+        - {x: 12, y: 10}
+        - {x: 7, y: 12}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 336
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: -15}
+        - {x: -4, y: -22}
+        - {x: 3, y: -22}
+        - {x: 14, y: -16}
+        - {x: 14, y: 7}
+        - {x: 8, y: 14}
+        - {x: -6, y: 14}
+        - {x: -14, y: 11}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 336
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 14}
+        - {x: -16, y: 8}
+        - {x: -16, y: -5}
+        - {x: -15, y: -13}
+        - {x: -7, y: -22}
+        - {x: 3, y: -22}
+        - {x: 16, y: -17}
+        - {x: 16, y: 12}
+        - {x: 15, y: 14}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 336
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 12}
+        - {x: -16, y: 6}
+        - {x: -16, y: -1}
+        - {x: -14, y: -16}
+        - {x: -6, y: -23}
+        - {x: 10, y: -23}
+        - {x: 16, y: -13}
+        - {x: 16, y: 10}
+        - {x: 15, y: 12}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 336
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 14}
+        - {x: -16, y: 12}
+        - {x: -16, y: -15}
+        - {x: -9, y: -22}
+        - {x: 7, y: -22}
+        - {x: 16, y: -14}
+        - {x: 16, y: 6}
+        - {x: 14, y: 13}
+        - {x: 11, y: 14}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 336
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 15}
+        - {x: -14, y: 12}
+        - {x: -14, y: -22}
+        - {x: -10, y: -24}
+        - {x: 11, y: -24}
+        - {x: 13, y: -21}
+        - {x: 13, y: 11}
+        - {x: 10, y: 15}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 336
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5, y: 17}
+        - {x: -14, y: 10}
+        - {x: -14, y: 2}
+        - {x: -13, y: -1}
+        - {x: -14, y: -3}
+        - {x: -14, y: -19}
+        - {x: -11, y: -23}
+        - {x: -8, y: -24}
+        - {x: 9, y: -24}
+        - {x: 14, y: -17}
+        - {x: 14, y: 9}
+        - {x: 8, y: 17}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 336
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 15}
+        - {x: -14, y: 13}
+        - {x: -14, y: -24}
+        - {x: 12, y: -24}
+        - {x: 13, y: -21}
+        - {x: 13, y: 9}
+        - {x: 8, y: 15}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 336
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12, y: 9}
+        - {x: 6, y: 14}
+        - {x: -8, y: 14}
+        - {x: -13, y: 5}
+        - {x: -13, y: -6}
+        - {x: -12, y: -14}
+        - {x: -10, y: -19}
+        - {x: -7, y: -24}
+        - {x: 6, y: -24}
+        - {x: 12, y: -16}
+        - {x: 13, y: -11}
+        - {x: 13, y: 3}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 336
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -14, y: 12}
+        - {x: -14, y: -16}
+        - {x: -12, y: -24}
+        - {x: 13, y: -24}
+        - {x: 14, y: -21}
+        - {x: 14, y: 14}
+        - {x: 10, y: 16}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 336
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: 14}
+        - {x: -8, y: 14}
+        - {x: -13, y: 12}
+        - {x: -13, y: -20}
+        - {x: -5, y: -24}
+        - {x: 9, y: -24}
+        - {x: 13, y: -15}
+        - {x: 13, y: 6}
+        - {x: 12, y: 9}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5, y: 14}
+        - {x: -12, y: 13}
+        - {x: -12, y: -9}
+        - {x: -10, y: -20}
+        - {x: -6, y: -22}
+        - {x: 12, y: -22}
+        - {x: 12, y: 12}
+        - {x: 8, y: 14}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 288
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 12}
+        - {x: -12, y: 5}
+        - {x: -12, y: -11}
+        - {x: -9, y: -19}
+        - {x: -4, y: -23}
+        - {x: 7, y: -23}
+        - {x: 12, y: -11}
+        - {x: 12, y: 11}
+        - {x: 10, y: 12}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 288
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 14}
+        - {x: -12, y: 8}
+        - {x: -12, y: -14}
+        - {x: -9, y: -22}
+        - {x: 4, y: -22}
+        - {x: 9, y: -21}
+        - {x: 12, y: -15}
+        - {x: 12, y: 10}
+        - {x: 10, y: 14}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_15
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 288
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8, y: 14}
+        - {x: -7, y: 14}
+        - {x: -12, y: 8}
+        - {x: -12, y: -21}
+        - {x: -9, y: -22}
+        - {x: 12, y: -22}
+        - {x: 14, y: -10}
+        - {x: 14, y: 9}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_16
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 288
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 12}
+        - {x: -7, y: 12}
+        - {x: -7, y: 11}
+        - {x: -12, y: 5}
+        - {x: -12, y: -4}
+        - {x: -9, y: -19}
+        - {x: -3, y: -23}
+        - {x: 7, y: -23}
+        - {x: 14, y: -10}
+        - {x: 14, y: 11}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_17
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 288
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 14}
+        - {x: -12, y: 8}
+        - {x: -12, y: -8}
+        - {x: -10, y: -20}
+        - {x: -9, y: -22}
+        - {x: 11, y: -22}
+        - {x: 14, y: -14}
+        - {x: 14, y: 7}
+        - {x: 10, y: 14}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_18
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 288
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 15}
+        - {x: -14, y: 11}
+        - {x: -14, y: -14}
+        - {x: -10, y: -24}
+        - {x: 11, y: -24}
+        - {x: 13, y: -21}
+        - {x: 13, y: 14}
+        - {x: 12, y: 15}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_19
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 288
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 17}
+        - {x: -14, y: 10}
+        - {x: -14, y: 0}
+        - {x: -6, y: -24}
+        - {x: 8, y: -24}
+        - {x: 13, y: -13}
+        - {x: 13, y: 14}
+        - {x: 5, y: 17}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_20
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 288
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 13, y: -5}
+        - {x: 13, y: 12}
+        - {x: 5, y: 15}
+        - {x: -9, y: 15}
+        - {x: -14, y: 8}
+        - {x: -14, y: -8}
+        - {x: -11, y: -23}
+        - {x: -9, y: -24}
+        - {x: 5, y: -24}
+        - {x: 11, y: -18}
+        - {x: 10, y: -13}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_21
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 288
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 14}
+        - {x: -13, y: -24}
+        - {x: 8, y: -24}
+        - {x: 12, y: -22}
+        - {x: 13, y: -12}
+        - {x: 13, y: 7}
+        - {x: 8, y: 14}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_22
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 288
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -13, y: 15}
+        - {x: -13, y: -9}
+        - {x: -11, y: -23}
+        - {x: -5, y: -24}
+        - {x: 6, y: -24}
+        - {x: 13, y: -19}
+        - {x: 13, y: 15}
+        - {x: 12, y: 16}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_23
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 288
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 14}
+        - {x: -13, y: 12}
+        - {x: -13, y: -18}
+        - {x: -9, y: -24}
+        - {x: 11, y: -24}
+        - {x: 13, y: -22}
+        - {x: 13, y: 11}
+        - {x: 10, y: 14}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 6, y: 14}
+        - {x: -10, y: 14}
+        - {x: -12, y: 11}
+        - {x: -12, y: -8}
+        - {x: -9, y: -21}
+        - {x: -4, y: -22}
+        - {x: 9, y: -22}
+        - {x: 10, y: -20}
+        - {x: 12, y: -13}
+        - {x: 12, y: 11}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_25
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 240
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 12}
+        - {x: -12, y: 6}
+        - {x: -12, y: -14}
+        - {x: -8, y: -21}
+        - {x: -4, y: -23}
+        - {x: 5, y: -23}
+        - {x: 12, y: -11}
+        - {x: 12, y: 7}
+        - {x: 9, y: 12}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_26
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 240
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 14}
+        - {x: -12, y: 11}
+        - {x: -12, y: -5}
+        - {x: -8, y: -22}
+        - {x: 12, y: -22}
+        - {x: 12, y: 13}
+        - {x: 8, y: 14}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_27
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 240
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 14}
+        - {x: -14, y: 9}
+        - {x: -14, y: -3}
+        - {x: -8, y: -22}
+        - {x: 9, y: -22}
+        - {x: 12, y: -21}
+        - {x: 12, y: 8}
+        - {x: 7, y: 14}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_28
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 240
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 12}
+        - {x: -14, y: -18}
+        - {x: -7, y: -23}
+        - {x: 1, y: -23}
+        - {x: 10, y: -19}
+        - {x: 12, y: -8}
+        - {x: 12, y: 7}
+        - {x: 8, y: 12}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_29
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 240
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 14}
+        - {x: -14, y: 8}
+        - {x: -14, y: -11}
+        - {x: -8, y: -22}
+        - {x: 9, y: -22}
+        - {x: 12, y: -12}
+        - {x: 12, y: 11}
+        - {x: 7, y: 14}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_30
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 240
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: 15}
+        - {x: -6, y: 15}
+        - {x: -13, y: 12}
+        - {x: -13, y: -7}
+        - {x: -10, y: -17}
+        - {x: -6, y: -24}
+        - {x: 8, y: -24}
+        - {x: 14, y: -11}
+        - {x: 14, y: 8}
+        - {x: 12, y: 13}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_31
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 240
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11, y: 17}
+        - {x: -6, y: 17}
+        - {x: -13, y: 15}
+        - {x: -13, y: -6}
+        - {x: -11, y: -15}
+        - {x: -3, y: -24}
+        - {x: 1, y: -24}
+        - {x: 10, y: -21}
+        - {x: 14, y: -3}
+        - {x: 14, y: 14}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_32
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 240
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: 15}
+        - {x: -9, y: 15}
+        - {x: -13, y: 13}
+        - {x: -13, y: -24}
+        - {x: 11, y: -24}
+        - {x: 14, y: -4}
+        - {x: 14, y: 8}
+        - {x: 12, y: 13}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_33
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 240
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 14}
+        - {x: -13, y: 13}
+        - {x: -13, y: -19}
+        - {x: -6, y: -24}
+        - {x: 13, y: -24}
+        - {x: 13, y: 12}
+        - {x: 10, y: 14}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_34
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 240
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -13, y: 10}
+        - {x: -13, y: -11}
+        - {x: -12, y: -18}
+        - {x: -5, y: -24}
+        - {x: 6, y: -24}
+        - {x: 13, y: -9}
+        - {x: 13, y: 13}
+        - {x: 6, y: 16}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_35
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 240
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 14}
+        - {x: -13, y: 7}
+        - {x: -13, y: -18}
+        - {x: -10, y: -24}
+        - {x: 6, y: -24}
+        - {x: 12, y: -21}
+        - {x: 13, y: -15}
+        - {x: 13, y: 7}
+        - {x: 7, y: 14}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: -17}
+        - {x: -9, y: -22}
+        - {x: 4, y: -22}
+        - {x: 14, y: -16}
+        - {x: 14, y: 6}
+        - {x: 10, y: 14}
+        - {x: -6, y: 14}
+        - {x: -14, y: 10}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_37
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 12}
+        - {x: -12, y: 7}
+        - {x: -12, y: -15}
+        - {x: -6, y: -23}
+        - {x: 6, y: -23}
+        - {x: 12, y: -18}
+        - {x: 12, y: 10}
+        - {x: 7, y: 12}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_38
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: -15}
+        - {x: -4, y: -22}
+        - {x: 3, y: -22}
+        - {x: 14, y: -16}
+        - {x: 14, y: 7}
+        - {x: 8, y: 14}
+        - {x: -6, y: 14}
+        - {x: -14, y: 11}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_39
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 14}
+        - {x: -16, y: 8}
+        - {x: -16, y: -5}
+        - {x: -15, y: -13}
+        - {x: -7, y: -22}
+        - {x: 3, y: -22}
+        - {x: 16, y: -17}
+        - {x: 16, y: 12}
+        - {x: 15, y: 14}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_40
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 12}
+        - {x: -16, y: 6}
+        - {x: -16, y: -1}
+        - {x: -14, y: -16}
+        - {x: -6, y: -23}
+        - {x: 10, y: -23}
+        - {x: 16, y: -13}
+        - {x: 16, y: 10}
+        - {x: 15, y: 12}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_41
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 192
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 14}
+        - {x: -16, y: 12}
+        - {x: -16, y: -15}
+        - {x: -9, y: -22}
+        - {x: 7, y: -22}
+        - {x: 16, y: -14}
+        - {x: 16, y: 6}
+        - {x: 14, y: 13}
+        - {x: 11, y: 14}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_42
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: 15}
+        - {x: -7, y: 15}
+        - {x: -13, y: 8}
+        - {x: -13, y: -17}
+        - {x: -7, y: -24}
+        - {x: 6, y: -24}
+        - {x: 13, y: -17}
+        - {x: 14, y: -12}
+        - {x: 14, y: 8}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_43
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 192
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 17}
+        - {x: -14, y: 12}
+        - {x: -14, y: -24}
+        - {x: 12, y: -24}
+        - {x: 14, y: -23}
+        - {x: 14, y: 12}
+        - {x: 12, y: 17}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_44
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 15}
+        - {x: -13, y: 12}
+        - {x: -13, y: -18}
+        - {x: -9, y: -24}
+        - {x: 10, y: -24}
+        - {x: 14, y: -22}
+        - {x: 14, y: 13}
+        - {x: 13, y: 15}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_45
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 192
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12, y: 9}
+        - {x: 6, y: 14}
+        - {x: -8, y: 14}
+        - {x: -13, y: 5}
+        - {x: -13, y: -6}
+        - {x: -12, y: -14}
+        - {x: -10, y: -19}
+        - {x: -7, y: -24}
+        - {x: 6, y: -24}
+        - {x: 12, y: -16}
+        - {x: 13, y: -11}
+        - {x: 13, y: 3}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_46
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -14, y: 12}
+        - {x: -14, y: -16}
+        - {x: -12, y: -24}
+        - {x: 13, y: -24}
+        - {x: 14, y: -21}
+        - {x: 14, y: 14}
+        - {x: 10, y: 16}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_47
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 192
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: 14}
+        - {x: -8, y: 14}
+        - {x: -13, y: 12}
+        - {x: -13, y: -20}
+        - {x: -5, y: -24}
+        - {x: 9, y: -24}
+        - {x: 13, y: -15}
+        - {x: 13, y: 6}
+        - {x: 12, y: 9}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 15}
+        - {x: -13, y: -18}
+        - {x: -7, y: -24}
+        - {x: 10, y: -24}
+        - {x: 13, y: -15}
+        - {x: 13, y: 15}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_49
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 144
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 17}
+        - {x: -14, y: 14}
+        - {x: -14, y: -15}
+        - {x: -7, y: -24}
+        - {x: 9, y: -24}
+        - {x: 14, y: -20}
+        - {x: 14, y: 14}
+        - {x: 12, y: 17}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_50
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 144
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 15}
+        - {x: -13, y: -21}
+        - {x: -8, y: -24}
+        - {x: 11, y: -24}
+        - {x: 13, y: -16}
+        - {x: 13, y: 15}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_51
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 144
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 15}
+        - {x: -15, y: 6}
+        - {x: -15, y: -19}
+        - {x: -14, y: -23}
+        - {x: -12, y: -24}
+        - {x: 12, y: -24}
+        - {x: 15, y: -20}
+        - {x: 15, y: 10}
+        - {x: 6, y: 15}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_52
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 144
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 17}
+        - {x: -15, y: 15}
+        - {x: -15, y: -24}
+        - {x: 10, y: -24}
+        - {x: 15, y: -18}
+        - {x: 15, y: 13}
+        - {x: 5, y: 17}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_53
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 144
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 15}
+        - {x: -15, y: 8}
+        - {x: -15, y: -10}
+        - {x: -10, y: -24}
+        - {x: 14, y: -24}
+        - {x: 15, y: -20}
+        - {x: 15, y: 6}
+        - {x: 9, y: 15}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_54
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 144
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 11}
+        - {x: -13, y: 9}
+        - {x: -13, y: -24}
+        - {x: 7, y: -24}
+        - {x: 13, y: -17}
+        - {x: 13, y: 7}
+        - {x: 9, y: 11}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_55
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 144
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 13}
+        - {x: -13, y: 11}
+        - {x: -13, y: -18}
+        - {x: -11, y: -24}
+        - {x: 11, y: -24}
+        - {x: 13, y: -18}
+        - {x: 13, y: 13}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_56
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 144
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 11}
+        - {x: -13, y: 9}
+        - {x: -13, y: -15}
+        - {x: -11, y: -24}
+        - {x: 12, y: -24}
+        - {x: 13, y: -12}
+        - {x: 13, y: 6}
+        - {x: 10, y: 11}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_57
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 144
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 11}
+        - {x: -13, y: 2}
+        - {x: -13, y: -17}
+        - {x: -10, y: -24}
+        - {x: 12, y: -24}
+        - {x: 13, y: -17}
+        - {x: 13, y: 3}
+        - {x: 9, y: 11}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_58
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 144
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 13}
+        - {x: -13, y: 7}
+        - {x: -13, y: -14}
+        - {x: -12, y: -19}
+        - {x: -8, y: -24}
+        - {x: 6, y: -24}
+        - {x: 13, y: -21}
+        - {x: 13, y: 7}
+        - {x: 6, y: 13}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_59
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 144
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 11}
+        - {x: -13, y: 2}
+        - {x: -13, y: -17}
+        - {x: -10, y: -24}
+        - {x: 12, y: -24}
+        - {x: 13, y: -17}
+        - {x: 13, y: 3}
+        - {x: 9, y: 11}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12, y: 15}
+        - {x: -10, y: 15}
+        - {x: -13, y: 14}
+        - {x: -13, y: -23}
+        - {x: -10, y: -24}
+        - {x: 10, y: -24}
+        - {x: 11, y: -22}
+        - {x: 13, y: -7}
+        - {x: 13, y: 12}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_61
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: 17}
+        - {x: -4, y: 17}
+        - {x: -13, y: 14}
+        - {x: -13, y: -1}
+        - {x: -9, y: -17}
+        - {x: -4, y: -24}
+        - {x: 3, y: -24}
+        - {x: 7, y: -22}
+        - {x: 13, y: 1}
+        - {x: 13, y: 13}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_62
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: -24}
+        - {x: 9, y: -24}
+        - {x: 13, y: -23}
+        - {x: 13, y: 15}
+        - {x: -13, y: 15}
+        - {x: -13, y: -19}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_63
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 14}
+        - {x: -14, y: 10}
+        - {x: -14, y: -13}
+        - {x: -10, y: -24}
+        - {x: 11, y: -24}
+        - {x: 15, y: -23}
+        - {x: 15, y: 10}
+        - {x: 6, y: 14}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_64
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: 16}
+        - {x: -9, y: 16}
+        - {x: -14, y: 9}
+        - {x: -14, y: 1}
+        - {x: -11, y: -20}
+        - {x: -6, y: -24}
+        - {x: 8, y: -24}
+        - {x: 14, y: -21}
+        - {x: 15, y: -12}
+        - {x: 15, y: 14}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_65
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 96
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5, y: 14}
+        - {x: -14, y: 7}
+        - {x: -14, y: -4}
+        - {x: -12, y: -24}
+        - {x: 15, y: -24}
+        - {x: 15, y: 11}
+        - {x: 7, y: 14}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_66
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 11}
+        - {x: -12, y: 7}
+        - {x: -12, y: -12}
+        - {x: -10, y: -24}
+        - {x: 12, y: -24}
+        - {x: 12, y: 5}
+        - {x: 7, y: 11}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_67
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 96
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 13}
+        - {x: -6, y: 13}
+        - {x: -12, y: 8}
+        - {x: -12, y: -23}
+        - {x: -8, y: -24}
+        - {x: 10, y: -24}
+        - {x: 12, y: -20}
+        - {x: 12, y: 7}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_68
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 96
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12, y: 6}
+        - {x: 5, y: 11}
+        - {x: -4, y: 11}
+        - {x: -7, y: 10}
+        - {x: -11, y: 6}
+        - {x: -12, y: 3}
+        - {x: -12, y: -4}
+        - {x: -11, y: -23}
+        - {x: -10, y: -24}
+        - {x: 12, y: -24}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_69
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 96
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 12}
+        - {x: -13, y: 7}
+        - {x: -13, y: -4}
+        - {x: -8, y: -20}
+        - {x: -4, y: -24}
+        - {x: 10, y: -24}
+        - {x: 14, y: -21}
+        - {x: 14, y: 11}
+        - {x: 11, y: 12}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_70
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 96
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 13}
+        - {x: -13, y: -12}
+        - {x: -8, y: -24}
+        - {x: 12, y: -24}
+        - {x: 14, y: -23}
+        - {x: 14, y: 12}
+        - {x: 10, y: 13}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_71
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 96
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 12}
+        - {x: -13, y: 7}
+        - {x: -13, y: -4}
+        - {x: -8, y: -20}
+        - {x: -4, y: -24}
+        - {x: 10, y: -24}
+        - {x: 14, y: -21}
+        - {x: 14, y: 11}
+        - {x: 11, y: 12}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 15}
+        - {x: -13, y: -24}
+        - {x: 9, y: -24}
+        - {x: 13, y: -15}
+        - {x: 13, y: 12}
+        - {x: 11, y: 15}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_73
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 17}
+        - {x: -13, y: 14}
+        - {x: -13, y: -7}
+        - {x: -9, y: -18}
+        - {x: -5, y: -24}
+        - {x: 3, y: -24}
+        - {x: 10, y: -21}
+        - {x: 13, y: -6}
+        - {x: 13, y: 14}
+        - {x: 11, y: 17}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_74
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12, y: 11}
+        - {x: 8, y: 15}
+        - {x: -6, y: 15}
+        - {x: -13, y: 13}
+        - {x: -13, y: -15}
+        - {x: -9, y: -24}
+        - {x: 4, y: -24}
+        - {x: 12, y: -21}
+        - {x: 13, y: 0}
+        - {x: 13, y: 6}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_75
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 48
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 14}
+        - {x: -15, y: -24}
+        - {x: 9, y: -24}
+        - {x: 14, y: -6}
+        - {x: 14, y: 10}
+        - {x: 10, y: 14}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_76
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 48
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: 16}
+        - {x: -8, y: 16}
+        - {x: -15, y: 14}
+        - {x: -15, y: -22}
+        - {x: -5, y: -24}
+        - {x: 7, y: -24}
+        - {x: 11, y: -20}
+        - {x: 14, y: 1}
+        - {x: 14, y: 9}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_77
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 48
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 14}
+        - {x: -15, y: 11}
+        - {x: -15, y: -15}
+        - {x: -12, y: -24}
+        - {x: 10, y: -24}
+        - {x: 14, y: -22}
+        - {x: 14, y: 10}
+        - {x: 6, y: 14}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_78
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 48
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 11}
+        - {x: -12, y: 9}
+        - {x: -12, y: -24}
+        - {x: 12, y: -24}
+        - {x: 12, y: 8}
+        - {x: 9, y: 11}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_79
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 48
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8, y: 13}
+        - {x: -6, y: 13}
+        - {x: -12, y: 11}
+        - {x: -12, y: -22}
+        - {x: -9, y: -24}
+        - {x: 10, y: -24}
+        - {x: 12, y: -15}
+        - {x: 12, y: 8}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_80
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 48
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 11}
+        - {x: -12, y: 4}
+        - {x: -12, y: -22}
+        - {x: -11, y: -24}
+        - {x: 11, y: -24}
+        - {x: 12, y: -13}
+        - {x: 12, y: 5}
+        - {x: 6, y: 11}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_81
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 48
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 12}
+        - {x: -14, y: 11}
+        - {x: -14, y: -22}
+        - {x: -10, y: -24}
+        - {x: 9, y: -24}
+        - {x: 13, y: -9}
+        - {x: 13, y: 8}
+        - {x: 11, y: 12}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_82
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 48
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 13}
+        - {x: -14, y: 10}
+        - {x: -14, y: -24}
+        - {x: 12, y: -24}
+        - {x: 13, y: -15}
+        - {x: 13, y: 7}
+        - {x: 9, y: 13}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_83
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 48
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 12}
+        - {x: -14, y: 11}
+        - {x: -14, y: -22}
+        - {x: -10, y: -24}
+        - {x: 9, y: -24}
+        - {x: 13, y: -9}
+        - {x: 13, y: 8}
+        - {x: 11, y: 12}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_84
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: 15}
+        - {x: -8, y: 15}
+        - {x: -13, y: 13}
+        - {x: -13, y: -20}
+        - {x: -8, y: -24}
+        - {x: 5, y: -24}
+        - {x: 12, y: -16}
+        - {x: 13, y: -11}
+        - {x: 13, y: 11}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_85
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 17}
+        - {x: -14, y: 16}
+        - {x: -14, y: -19}
+        - {x: -8, y: -24}
+        - {x: 8, y: -24}
+        - {x: 14, y: -16}
+        - {x: 14, y: 11}
+        - {x: 8, y: 17}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_86
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 15}
+        - {x: -13, y: 14}
+        - {x: -13, y: -20}
+        - {x: -4, y: -24}
+        - {x: 9, y: -24}
+        - {x: 13, y: -16}
+        - {x: 13, y: 13}
+        - {x: 7, y: 15}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_87
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 15}
+        - {x: -15, y: 6}
+        - {x: -15, y: -19}
+        - {x: -14, y: -23}
+        - {x: -12, y: -24}
+        - {x: 12, y: -24}
+        - {x: 15, y: -20}
+        - {x: 15, y: 10}
+        - {x: 6, y: 15}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_88
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 17}
+        - {x: -15, y: 15}
+        - {x: -15, y: -24}
+        - {x: 10, y: -24}
+        - {x: 15, y: -18}
+        - {x: 15, y: 13}
+        - {x: 5, y: 17}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_89
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 15}
+        - {x: -15, y: 8}
+        - {x: -15, y: -10}
+        - {x: -10, y: -24}
+        - {x: 14, y: -24}
+        - {x: 15, y: -20}
+        - {x: 15, y: 6}
+        - {x: 9, y: 15}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_90
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 11}
+        - {x: -13, y: 9}
+        - {x: -13, y: -18}
+        - {x: -9, y: -24}
+        - {x: 11, y: -24}
+        - {x: 13, y: -22}
+        - {x: 13, y: 11}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_91
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 13}
+        - {x: -13, y: 8}
+        - {x: -13, y: -7}
+        - {x: -12, y: -19}
+        - {x: -6, y: -24}
+        - {x: 8, y: -24}
+        - {x: 13, y: -20}
+        - {x: 13, y: 10}
+        - {x: 6, y: 13}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_92
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 11}
+        - {x: -13, y: 9}
+        - {x: -13, y: -16}
+        - {x: -11, y: -23}
+        - {x: -8, y: -24}
+        - {x: 13, y: -24}
+        - {x: 13, y: 9}
+        - {x: 11, y: 11}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_93
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 11}
+        - {x: -13, y: 9}
+        - {x: -13, y: -9}
+        - {x: -12, y: -21}
+        - {x: -10, y: -24}
+        - {x: 10, y: -24}
+        - {x: 13, y: -23}
+        - {x: 13, y: 6}
+        - {x: 9, y: 11}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_94
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: 13}
+        - {x: -11, y: 13}
+        - {x: -13, y: 9}
+        - {x: -13, y: -16}
+        - {x: -9, y: -24}
+        - {x: 7, y: -24}
+        - {x: 10, y: -21}
+        - {x: 13, y: -15}
+        - {x: 13, y: 8}
+    - name: tumblr_mpxx4vhyvX1sade8io1_400_95
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 11}
+        - {x: -13, y: 9}
+        - {x: -13, y: -9}
+        - {x: -12, y: -21}
+        - {x: -10, y: -24}
+        - {x: 10, y: -24}
+        - {x: 13, y: -23}
+        - {x: 13, y: 6}
+        - {x: 9, y: 11}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
