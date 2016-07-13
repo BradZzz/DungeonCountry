@@ -177,8 +177,7 @@ public class BattleBoardManager : MonoBehaviour {
 			BattleMeta meta = clickedObject.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 			if (meta != null){
 				lastClicked = clickedObject;
-				for(int x = -1; x <= getColumns(level); x++)
-				{
+				for(int x = -1; x <= getColumns(level); x++) {
 					for (int y = -1; y <= getRows(level); y++) {
 						if (Math.Abs(clickedObject.position.x - x) + Math.Abs(clickedObject.position.y - y) <= meta.movement) {
 							Vector2 pos = new Vector2 (x, y);
@@ -196,21 +195,6 @@ public class BattleBoardManager : MonoBehaviour {
 						}
 					}
 				}
-				/*foreach (Transform child in boardHolder)
-				{
-					if (Math.Abs(clickedObject.position.x - child.position.x) + Math.Abs(clickedObject.position.y - child.position.y) <= meta.movement) {
-						if (!hasParent(boardHolder, child)) {
-							SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
-							sprRend.material.shader = Shader.Find ("Custom/OverlayShaderBlue");
-							movePositions.Add(child); 
-						} else if ((child.position.x != clickedObject.position.x || child.position.y != clickedObject.position.y) && 
-							(Math.Abs(clickedObject.position.x - child.position.x) + Math.Abs(clickedObject.position.y - child.position.y) <= meta.range)) {
-							SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
-							sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
-							characterPositions.Add(child); 
-						}
-					}
-				}*/
 			}
 		}
 	}
@@ -268,10 +252,6 @@ public class BattleBoardManager : MonoBehaviour {
 		float startime = Time.time;
 		Vector3 start_pos = new Vector3(origin.position.x, origin.position.y, origin.position.z); //Starting position.
 		Vector3 end_pos = direction; //Ending position.
-
-		Debug.Log ("Start: " + start_pos.ToString ());
-		Debug.Log ("End: " + end_pos.ToString ());
-
 		while (origin.position != end_pos/* && ((Time.time - startime)*speed) < 1f*/) { 
 			float move = Mathf.Lerp (0,1, (Time.time - startime) * speed);
 

@@ -126,11 +126,6 @@ public class BattleGameManager : MonoBehaviour {
 			foreach (RaycastHit2D shot in hit){
 
 				BattleMeta enemy = shot.transform.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
-				if (enemy != null) {
-					Debug.Log ("Valid Iteration!");
-					Debug.Log ("It: " + shot.transform.name);
-					Debug.Log ("It: " + enemy.gameObject.name);
-				}
 
 				if (!boardScript.charMoving() && !shot.transform.name.Contains("Floor")){
 					hitValid = shot.transform;
@@ -139,16 +134,15 @@ public class BattleGameManager : MonoBehaviour {
 				} else if (boardScript.charMoving()) {
 					hitValid = shot.transform;
 					Debug.Log ("Using: " + hitValid.gameObject.name);
-					break;
+					if (hitValid.tag == "Unit") {
+						break;
+					} 
 				}
 			}
 
 			if (hitValid != null) {
 
 				BattleMeta enemy = hitValid.transform.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
-				if (enemy != null) {
-					Debug.Log ("Valid Hit!");
-				}
 
 				if (boardScript.charMoving()) {
 					Debug.Log ("Hit2!");
