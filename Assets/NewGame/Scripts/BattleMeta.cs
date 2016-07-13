@@ -18,14 +18,27 @@ public class BattleMeta : MonoBehaviour {
 	private int currentHP;
 
 	//Game Sprite Modifiers
+	//Character's health
 	public Texture2D tex;
+	//Character's ranged attack sprite
+	public GameObject projectile;
+	public float spriteScale;
 
 	private Animator animator;
+	private SpriteRenderer spriteRenderer;
+	//private GameObject thisProjectile;
 
 	void Awake()
 	{
 		currentHP = hp;
 		animator = GetComponent<Animator>();
+		spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+		//if (projectile != null){
+		//	thisProjectile = Instantiate<GameObject> (projectile);
+		//}
+		/*if (spriteScale != 1) {
+			spriteRenderer. = new Vector3 (spriteScale, spriteScale, 1.0f);
+		}*/
 	}
 
 	public bool getMove(){
@@ -46,8 +59,57 @@ public class BattleMeta : MonoBehaviour {
 		}
 	}
 
-	public void atkAnim(){
+	public void isAttacking(BattleMeta enemy){
+		if (projectile != null) {
+			//GameObject thisProjectile = Instantiate<GameObject> (projectile);
+			GameObject thisProjectile = Instantiate<GameObject> (projectile);
+			thisProjectile.transform.position = transform.position;
+			StartCoroutine (smooth_move (thisProjectile.transform, enemy.gameObject.transform.position, 1f));
+		}
 		animator.SetTrigger ("UnitAttack");
+	}
+
+	IEnumerator smooth_move(Transform origin, Vector3 direction,float speed){
+		float startime = Time.time;
+		Vector3 start_pos = new Vector3(origin.position.x, origin.position.y, origin.position.z); //Starting position.
+		Vector3 end_pos = direction; //Ending position.
+
+		Debug.Log ("Start: " + start_pos.ToString ());
+		Debug.Log ("End: " + end_pos.ToString ());
+
+		//float moveSpeed = Math.Abs (start_pos.x - end_pos.x) + Math.Abs (start_pos.y - end_pos.y);
+
+		//Debug.Log ("Speed: " + moveSpeed);
+
+		while (origin.position != end_pos/* && ((Time.time - startime)*speed) < 1f*/) { 
+			float move = Mathf.Lerp (0,1, (Time.time - startime) * speed);
+
+			Vector3 position = origin.position;
+
+			position.x += (end_pos.x - start_pos.x) * move;
+			position.y += (end_pos.y - start_pos.y) * move;
+
+			if (start_pos.x > end_pos.x && origin.position.x < end_pos.x) {
+				position.x = end_pos.x;
+			}
+
+			if (start_pos.x < end_pos.x && origin.position.x > end_pos.x) {
+				position.x = end_pos.x;
+			}
+
+			if (start_pos.y > end_pos.y && origin.position.y < end_pos.y) {
+				position.y = end_pos.y;
+			}
+
+			if (start_pos.y < end_pos.y && origin.position.y > end_pos.y) {
+				position.y = end_pos.y;
+			}
+
+			origin.position = position;
+
+			yield return null;
+		}
+		origin.gameObject.SetActive (false);
 	}
 }
 

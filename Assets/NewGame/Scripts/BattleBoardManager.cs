@@ -34,6 +34,8 @@ public class BattleBoardManager : MonoBehaviour {
 	private List <Vector3> gridPositions;   //A list of possible locations to place tiles.
 	private List <Transform> movePositions; 
 	private List <Transform> characterPositions; 
+	private int level;
+	private Dictionary<Vector2, Transform> dict = new Dictionary<Vector2, Transform>();
 	//Camera mainCamera;
 
 	void Awake(){
@@ -96,13 +98,9 @@ public class BattleBoardManager : MonoBehaviour {
 			//Loop along y axis, starting from -1 to place floor or outerwall tiles.
 			for(int y = -1; y < getRows(level) + 1; y++)
 			{
+
 				//Choose a random tile from our array of floor tile prefabs and prepare to instantiate it.
 				GameObject toInstantiate = floorTiles[Random.Range (0,floorTiles.Length)];
-
-				//Check if we current position is at board edge, if so choose a random outer wall prefab from our array of outer wall tiles.
-				/*if (x == -1 || x == getColumns(level) || y == -1 || y == getRows(level)) {
-					toInstantiate = outerWallTiles [Random.Range (0, outerWallTiles.Length)];
-				}*/
 
 				//Instantiate the GameObject instance using the prefab chosen for toInstantiate at the Vector3 corresponding to current grid position in loop, cast it to GameObject.
 				GameObject instance =
@@ -111,6 +109,10 @@ public class BattleBoardManager : MonoBehaviour {
 				//Set the parent of our newly instantiated object instance to boardHolder, this is just organizational to avoid cluttering hierarchy.
 				instance.transform.SetParent (boardHolder);
 			}
+		}
+		foreach (Transform child in boardHolder) {
+			Vector2 pos = new Vector2 (child.transform.position.x, child.transform.position.y);
+			dict[pos] = child;
 		}
 	}
 
@@ -151,58 +153,14 @@ public class BattleBoardManager : MonoBehaviour {
 		}
 	}
 
-	/*public void replacePotionsFood () {
-
-		Debug.Log ("Replacing Potions");
-		foreach (object o in GameObject.FindObjectsOfType(typeof (GameObject)))
-		{
-			if (((GameObject) o).tag == "Potion") {
-				Debug.Log ("Potion!");
-
-				Vector3 position = ((GameObject) o).transform.position;
-				GameObject tileChoice = foodTiles[Random.Range (0, foodTiles.Length)];
-				Destroy (((GameObject) o).gameObject);
-				Instantiate(tileChoice, position, Quaternion.identity);
-			}
-		}
-	}
-
-	public GameObject[] scaleDifficulty (int level, GameObject[] allObjects, int baseAmount, int scaleAmount){
-		int scale = baseAmount + level / scaleAmount >= allObjects.Length ? allObjects.Length : baseAmount + level / scaleAmount;
-		GameObject[] levelObjects = new GameObject[scale];
-		for (int i = 0; i < levelObjects.Length; i++) {
-			levelObjects [i] = allObjects [i];
-		}
-		return levelObjects;
-	}*/
-
 	public void boardClicked(Transform clickedObject){
 		Debug.Log ("parent: " + clickedObject.name + ": " + clickedObject.position.x + "-" + clickedObject.position.y);
-		if (!clickedObject.name.Contains("Floor") && lastClicked == null) {
-			BattleMeta meta = clickedObject.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
-			if (meta != null){
-				lastClicked = clickedObject;
-				foreach (Transform child in boardHolder)
-				{
-					if (Math.Abs(clickedObject.position.x - child.position.x) + Math.Abs(clickedObject.position.y - child.position.y) <= meta.movement) {
-						if (!hasParent(boardHolder, child)) {
-							SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
-							sprRend.material.shader = Shader.Find ("Custom/OverlayShaderBlue");
-							movePositions.Add(child); 
-						} else if (child.position.x != clickedObject.position.x || child.position.y != clickedObject.position.y) {
-							SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
-							sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
-							characterPositions.Add(child); 
-						}
-					}
-				}
-			}
-		}
+		//StartCoroutine (show_actions (clickedObject));
+		show_actions (clickedObject);
 	}
 
 	public bool hasParent(Transform parent, Transform child){
 		foreach (GameObject children in GameObject.FindGameObjectsWithTag("Unit")) {
-			Debug.Log ("Name: " + children.name + " Layer: " + children.layer); 
 			if (children.transform.position.x == child.position.x && children.transform.position.y == child.position.y) {
 				return true;
 			}
@@ -212,6 +170,49 @@ public class BattleBoardManager : MonoBehaviour {
 
 	public bool charMoving(){
 		return lastClicked != null;
+	}
+
+	public void show_actions(Transform clickedObject){
+		if (!clickedObject.name.Contains("Floor") && lastClicked == null) {
+			BattleMeta meta = clickedObject.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+			if (meta != null){
+				lastClicked = clickedObject;
+				for(int x = -1; x <= getColumns(level); x++)
+				{
+					for (int y = -1; y <= getRows(level); y++) {
+						if (Math.Abs(clickedObject.position.x - x) + Math.Abs(clickedObject.position.y - y) <= meta.movement) {
+							Vector2 pos = new Vector2 (x, y);
+							Transform child = dict[pos];
+							if (!hasParent(boardHolder, child)) {
+								SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
+								sprRend.material.shader = Shader.Find ("Custom/OverlayShaderBlue");
+								movePositions.Add(child); 
+							} else if ((x != clickedObject.position.x || y != clickedObject.position.y) && 
+								(Math.Abs(clickedObject.position.x - x) + Math.Abs(clickedObject.position.y - y) <= meta.range)) {
+								SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
+								sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
+								characterPositions.Add(child); 
+							}
+						}
+					}
+				}
+				/*foreach (Transform child in boardHolder)
+				{
+					if (Math.Abs(clickedObject.position.x - child.position.x) + Math.Abs(clickedObject.position.y - child.position.y) <= meta.movement) {
+						if (!hasParent(boardHolder, child)) {
+							SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
+							sprRend.material.shader = Shader.Find ("Custom/OverlayShaderBlue");
+							movePositions.Add(child); 
+						} else if ((child.position.x != clickedObject.position.x || child.position.y != clickedObject.position.y) && 
+							(Math.Abs(clickedObject.position.x - child.position.x) + Math.Abs(clickedObject.position.y - child.position.y) <= meta.range)) {
+							SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
+							sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
+							characterPositions.Add(child); 
+						}
+					}
+				}*/
+			}
+		}
 	}
 
 	public void moveClick(Transform hit){
@@ -254,9 +255,8 @@ public class BattleBoardManager : MonoBehaviour {
 		if (hit.position.x == child.position.x && hit.position.y == child.position.y &&
 			Math.Abs (hit.position.x - lastClicked.position.x) + Math.Abs (hit.position.y - lastClicked.position.y) <= meta.range) {
 
-			meta.atkAnim ();
-
 			BattleMeta enemy = hit.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+			meta.isAttacking(enemy);
 
 			if (enemy != null) {
 				enemy.isAttacked (meta.attack);
@@ -271,10 +271,6 @@ public class BattleBoardManager : MonoBehaviour {
 
 		Debug.Log ("Start: " + start_pos.ToString ());
 		Debug.Log ("End: " + end_pos.ToString ());
-
-		//float moveSpeed = Math.Abs (start_pos.x - end_pos.x) + Math.Abs (start_pos.y - end_pos.y);
-
-		//Debug.Log ("Speed: " + moveSpeed);
 
 		while (origin.position != end_pos/* && ((Time.time - startime)*speed) < 1f*/) { 
 			float move = Mathf.Lerp (0,1, (Time.time - startime) * speed);
@@ -309,51 +305,11 @@ public class BattleBoardManager : MonoBehaviour {
 	//SetupScene initializes our level and calls the previous functions to lay out the game board
 	public void SetupScene (int level)
 	{
-		Debug.Log ("SetupScene");
-		//Creates the outer walls and floor.
+		this.level = level;
 		BoardSetup (level);
-
-		Debug.Log (boardHolder.position.ToString());
-
-		//camMovingPos = new Vector3 (transform.position.x, transform.position.y, mainCamera.transform.position.z);
-
-		//mainCamera.transform.position = Vector3.SmoothDamp(mainCamera.transform.position, camMovingPos, ref velocity, smoothTime);
-
-		//mainCamera.transform.position = new Vector3 (boardHolder.position.x, boardHolder.position.y, mainCamera.transform.position.z);
-
-		//Debug.Log("" + boardHolder.GetComponentsInChildren ().Length);
-
-		Debug.Log (boardHolder.childCount);
-
-		foreach (Transform child in boardHolder) {
-			// do whatever you want with child transform here
-			Debug.Log (child.position.ToString());
-			Debug.Log (child.gameObject.name);
-		}
-
-		//Reset our list of gridpositions.
 		InitialiseList (level);
-
-		//Instantiate a random number of wall tiles based on minimum and maximum, at randomized positions.
-		LayoutObjectAtRandom (new GameObject[]{armyTiles[0]}, 2, 2);
-
-		LayoutObjectAtRandom (new GameObject[]{armyTiles[1]}, 2, 2);
-
-		LayoutObjectAtRandom (new GameObject[]{armyTiles[2]}, 2, 2);
-
-		//Instantiate a random number of food tiles based on minimum and maximum, at randomized positions.
-		/*LayoutObjectAtRandom (foodTiles, (int) (foodCount.minimum + (level * .6)), (int) (foodCount.maximum + (level * .6)));
-
-		//Instantiate a random number of food tiles based on minimum and maximum, at randomized positions.
-		LayoutObjectAtRandom (potionTiles, (int) (potionCount.minimum + (level * .35)), (int) (potionCount.maximum + (level * .35)));
-
-		//Determine number of enemies based on current level number, based on a logarithmic progression
-		int enemyCount = (int)Mathf.Log(level, 2f);
-
-		//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
-		LayoutObjectAtRandom (scaleDifficulty(level, enemyTiles, 2, 4), enemyCount, enemyCount);
-
-		//Instantiate the exit tile in the upper right hand corner of our game board
-		Instantiate (exit, new Vector3 (getColumns(level) - 1, getRows(level) - 1, 0f), Quaternion.identity);*/
+		foreach (GameObject army in armyTiles) {
+			LayoutObjectAtRandom (new GameObject[]{army}, 2, 2);
+		}
 	}
 }

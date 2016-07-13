@@ -76,6 +76,7 @@
      <Compile Include="Assets\UnitAttack.cs" />
      <None Include="Assets\Shaders\PixelReplaceShader.shader" />
      <None Include="Assets\NewGame\Shader\OverlayShaderGreen.shader" />
+     <None Include="Assets\NewGame\Shader\Circle.shader" />
      <None Include="Assets\Fonts\OFL.txt" />
      <None Include="Assets\NewGame\Shader\OverlayShaderRed.shader" />
      <None Include="Assets\NewGame\Shader\OverlayShaderBlue.shader" />
