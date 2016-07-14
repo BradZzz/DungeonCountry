@@ -14,6 +14,9 @@ public class BattleMeta : MonoBehaviour {
 	public string name;
 	public string description;
 
+	//What team are they on
+	public string affiliation;
+
 	private bool canMove;
 	private int currentHP;
 
@@ -56,7 +59,6 @@ public class BattleMeta : MonoBehaviour {
 	public void isAttacking(BattleMeta enemy){
 		if (enemy != null) {
 			if (projectile != null) {
-				//GameObject thisProjectile = Instantiate<GameObject> (projectile);
 				GameObject thisProjectile = Instantiate<GameObject> (projectile);
 				thisProjectile.transform.position = transform.position;
 				if (enemy.isActiveAndEnabled) {

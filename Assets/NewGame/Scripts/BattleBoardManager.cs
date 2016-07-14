@@ -27,7 +27,9 @@ public class BattleBoardManager : MonoBehaviour {
 	public int columns = 8;                                         //Number of columns in our game board.
 	public int rows = 8;                                            //Number of rows in our game board.
 	public GameObject[] floorTiles;                                 //Array of floor prefabs.
-	public GameObject[] armyTiles;                                 //Array of floor prefabs.
+
+	//public GameObject[] armyTiles;                                 //Array of floor prefabs.
+	//public GameObject[] enemyTiles;                                 //Array of floor prefabs.
 
 	private Transform lastClicked;
 	private Transform boardHolder;                                  //A variable to store a reference to the transform of our Board object.
@@ -36,42 +38,23 @@ public class BattleBoardManager : MonoBehaviour {
 	private List <Transform> characterPositions; 
 	private int level;
 	private Dictionary<Vector2, Transform> dict = new Dictionary<Vector2, Transform>();
-	//Camera mainCamera;
+	private BattleArmyManager armyManager;
 
 	void Awake(){
-		//mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-		//Debug.Log (mainCamera.transform.position.ToString());
 		lastClicked = null;
-
 		gridPositions = new List <Vector3> ();   //A list of possible locations to place tiles.
 		movePositions = new List <Transform> (); 
 		characterPositions = new List <Transform> (); 
 	}
-
-	public void setArmy(GameObject[] armyTiles){
-		this.armyTiles = armyTiles;
-	}
-
-	//Clears our list gridPositions and prepares it to generate a new board.
+		
 	void InitialiseList (int level)
 	{
-		Debug.Log ("InitialiseList");
-		//Clear our list gridPositions.
 		gridPositions.Clear ();
-
-		//AssemblyCSharp.MazeGenerator maze = new AssemblyCSharp.MazeGenerator (new Vector2(0, 0), new Vector2(getColumns(level) - 1, getRows(level) - 1), new Vector2(getColumns(level), getRows(level)));
-		//bool[,] map = maze.getMap ();
-
 		for(int x = 0; x < getColumns(level); x++)
 		{
 			for(int y = 0; y < getRows(level); y++)
 			{
-				//if (map [x, y]) {
-					//Instantiate (wallTiles [Random.Range (0, wallTiles.Length)], new Vector3 (x, y, 0), Quaternion.identity);
-				//} else if ((x != 0 && y != 0) && (x != getColumns(level) - 1 && y != getRows(level) - 1)) {
-					//At each index add a new Vector3 to our list with the x and y coordinates of that position.
 				gridPositions.Add (new Vector3(x, y, 0f));
-				//}
 			}
 		}
 	}
@@ -92,21 +75,12 @@ public class BattleBoardManager : MonoBehaviour {
 		//Instantiate Board and set boardHolder to its transform.
 		boardHolder = new GameObject ("Board").transform;
 
-		//Loop along x axis, starting from -1 (to fill corner) with floor or outerwall edge tiles.
 		for(int x = -1; x < getColumns(level) + 1; x++)
 		{
-			//Loop along y axis, starting from -1 to place floor or outerwall tiles.
 			for(int y = -1; y < getRows(level) + 1; y++)
 			{
-
-				//Choose a random tile from our array of floor tile prefabs and prepare to instantiate it.
 				GameObject toInstantiate = floorTiles[Random.Range (0,floorTiles.Length)];
-
-				//Instantiate the GameObject instance using the prefab chosen for toInstantiate at the Vector3 corresponding to current grid position in loop, cast it to GameObject.
-				GameObject instance =
-					Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
-
-				//Set the parent of our newly instantiated object instance to boardHolder, this is just organizational to avoid cluttering hierarchy.
+				GameObject instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
 				instance.transform.SetParent (boardHolder);
 			}
 		}
@@ -133,7 +107,9 @@ public class BattleBoardManager : MonoBehaviour {
 		{
 			Vector3 randomPosition = RandomPosition();
 			GameObject tileChoice = tileArray[Random.Range (0, tileArray.Length)];
-			Instantiate(tileChoice, randomPosition, Quaternion.identity);
+			GameObject instance = Instantiate (tileChoice, randomPosition, Quaternion.identity) as GameObject;
+			//GameObject instance = Instantiate(tileChoice, randomPosition, Quaternion.identity);
+			instance.transform.SetParent (boardHolder);
 		}
 	}
 
@@ -188,7 +164,6 @@ public class BattleBoardManager : MonoBehaviour {
 										movePositions.Add(child); 
 									}
 								}
-
 								if (!hasParent(boardHolder, child) && checkRange(clickedObject.position, pos, meta.movement)) {
 									Debug.Log ("Movement: " + meta.movement + " - " + Math.Abs(pos.x - x) + ":" + Math.Abs(pos.y - y));
 									SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
@@ -253,6 +228,16 @@ public class BattleBoardManager : MonoBehaviour {
 			if (enemy != null) {
 				enemy.isAttacked (meta.attack);
 			}
+			checkConditions ();
+		}
+	}
+
+	//Check the win/lose conditions
+	public void checkConditions(){
+		if (armyManager.iLost(boardHolder)) {
+			Debug.Log ("You Lose...");
+		} else if (armyManager.theyLost(boardHolder)) {
+			Debug.Log ("You Win!");
 		}
 	}
 
@@ -291,12 +276,17 @@ public class BattleBoardManager : MonoBehaviour {
 	}
 
 	//SetupScene initializes our level and calls the previous functions to lay out the game board
-	public void SetupScene (int level)
+	public void SetupScene (int level, BattleArmyManager armyManager)
 	{
 		this.level = level;
+		this.armyManager = armyManager;
+
 		BoardSetup (level);
 		InitialiseList (level);
-		foreach (GameObject army in armyTiles) {
+		foreach (GameObject army in armyManager.getMyArmy()) {
+			LayoutObjectAtRandom (new GameObject[]{army}, 2, 2);
+		}
+		foreach (GameObject army in armyManager.getTheirArmy()) {
 			LayoutObjectAtRandom (new GameObject[]{army}, 2, 2);
 		}
 	}
