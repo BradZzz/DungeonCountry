@@ -115,7 +115,6 @@ namespace AssemblyCSharp
 				if(Mathf.Approximately(checking.r, looking.r) &&
 					Mathf.Approximately(checking.g, looking.g) &&
 					Mathf.Approximately(checking.b, looking.b) && checking.a == 1f){
-					Debug.Log ("Match!!!");
 					return true;
 				}
 				return false;

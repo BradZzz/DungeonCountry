@@ -1,7 +1,7 @@
 sceneSetups:
-- path: Assets/Scenes/BattleScene.unity
+- path: Assets/NewGame/Scenes/MainMenu.unity
   isLoaded: 1
   isActive: 1
-- path: Assets/Scenes/MainScene.unity
+- path: Assets/NewGame/Scenes/BattleScene.unity
   isLoaded: 0
   isActive: 0
