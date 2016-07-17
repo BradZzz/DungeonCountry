@@ -7,15 +7,17 @@ public class BattleGameManager : MonoBehaviour {
 
 	public float levelStartDelay = 2f;
 	public static BattleGameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
-	public GameObject[] battleUnits;                              //Array of floor prefabs.
+	public GameObject[] battleUnits;       
 
 	private BattleBoardManager boardScript;                       //Store a reference to our BoardManager which will set up the level.
 	private BattleArmyManager armyScript;                         //Store a reference to our ArmyManager which will set up the level.
+	//private BattleGeneralMeta generalScript;                         //Store a reference to our ArmyManager which will set up the level.
 	private Transform lastHitObj;
 	private GameObject levelImage;
 	private Text levelText;
 
 	private int level = 1;
+	private int holder = 1;
 
 	//Awake is always called before any Start functions
 	void Awake()
@@ -25,9 +27,11 @@ public class BattleGameManager : MonoBehaviour {
 		} else if (instance != this) { 
 			Destroy(gameObject);   
 		} 
+		holder = 2;
 		DontDestroyOnLoad(gameObject);
 		lastHitObj = null;
 		boardScript = GetComponent<BattleBoardManager>();
+		//generalScript = GetComponent<BattleGeneralMeta>();
 		InitGame();
 	}
 
@@ -40,6 +44,12 @@ public class BattleGameManager : MonoBehaviour {
 		//Give the scene and the battle units to the board script
 		armyScript = new BattleArmyManager(battleUnits);
 		boardScript.SetupScene(level, armyScript);
+		Debug.Log ("Dict: " + boardScript.getDict().Count);
+	}
+
+	public void panelClicked(GameObject unit){
+
+		boardScript.panelClicked(unit, GetComponent<BattleGeneralMeta>());
 	}
 
 	void Start() {

@@ -7,4 +7,8 @@ public class MainMenuStart : MonoBehaviour {
 		Debug.Log ("BattleScene");
 		Application.LoadLevel ("BattleScene");
 	}
+
+	public void onClickPanel(){
+		Application.LoadLevel ("BattleScene");
+	}
 }

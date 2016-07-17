@@ -25,8 +25,8 @@ public class BattleBoardManager : MonoBehaviour {
 	}
 
 	private bool isMoving = false;
-	public int columns = 8;                                         //Number of columns in our game board.
-	public int rows = 8;                                            //Number of rows in our game board.
+	public int columns = 10;                                         //Number of columns in our game board.
+	public int rows = 10;                                            //Number of rows in our game board.
 	public GameObject[] floorTiles;                                 //Array of floor prefabs.
 
 	//public GameObject[] armyTiles;                                 //Array of floor prefabs.
@@ -38,9 +38,12 @@ public class BattleBoardManager : MonoBehaviour {
 	private List <Transform> movePositions; 
 	private List <Transform> characterPositions; 
 	private int level;
-	private Dictionary<Vector2, Transform> dict = new Dictionary<Vector2, Transform>();
+	protected Dictionary<Vector2, Transform> dict;
 	private BattleArmyManager armyManager;
 	private BattleGameManager gameManager;
+	private Panel panel;
+	private BattleGeneralMeta general;
+	private int levely;
 
 	void Awake(){
 		lastClicked = null;
@@ -48,6 +51,17 @@ public class BattleBoardManager : MonoBehaviour {
 		movePositions = new List <Transform> (); 
 		characterPositions = new List <Transform> (); 
 		gameManager = GetComponent<BattleGameManager>();
+		dict = new Dictionary<Vector2, Transform>();
+		levely = 1;
+	}
+
+	void Start(){
+		//GameObject go = GameObject.Find ("Panel");
+		//panel = (Panel) panel.GetComponent(typeof(Panel));
+	}
+
+	public Dictionary<Vector2, Transform> getDict(){
+		return dict;
 	}
 		
 	void InitialiseList (int level)
@@ -78,9 +92,9 @@ public class BattleBoardManager : MonoBehaviour {
 		//Instantiate Board and set boardHolder to its transform.
 		boardHolder = new GameObject ("Board").transform;
 
-		for(int x = -1; x < getColumns(level) + 1; x++)
+		for(int x = 0; x < getColumns(level); x++)
 		{
-			for(int y = -1; y < getRows(level) + 1; y++)
+			for(int y = 0; y < getRows(level); y++)
 			{
 				GameObject toInstantiate = floorTiles[Random.Range (0,floorTiles.Length)];
 				GameObject instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
@@ -140,8 +154,8 @@ public class BattleBoardManager : MonoBehaviour {
 			BattleMeta meta = clickedObject.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 			if (meta != null){
 				lastClicked = clickedObject;
-				for(int x = -1; x <= getColumns(level); x++) {
-					for (int y = -1; y <= getRows(level); y++) {
+				for(int x = 0; x < getColumns(level); x++) {
+					for (int y = 0; y < getRows(level); y++) {
 						if (Math.Abs(clickedObject.position.x - x) + Math.Abs(clickedObject.position.y - y) <= Mathf.Max(meta.movement, meta.range)) {
 							Vector2 pos = new Vector2 (x, y);
 							Transform child = dict[pos];
@@ -288,11 +302,34 @@ public class BattleBoardManager : MonoBehaviour {
 
 		BoardSetup (level);
 		InitialiseList (level);
-		foreach (GameObject army in armyManager.getMyArmy()) {
-			LayoutObjectAtRandom (new GameObject[]{army}, 1, 1);
-		}
-		foreach (GameObject army in armyManager.getTheirArmy()) {
-			LayoutObjectAtRandom (new GameObject[]{army}, 1, 1);
+		levely = 2;
+		//foreach (GameObject army in armyManager.getMyArmy()) {
+		//	LayoutObjectAtRandom (new GameObject[]{army}, 1, 1);
+		//}
+		//foreach (GameObject army in armyManager.getTheirArmy()) {
+		//	LayoutObjectAtRandom (new GameObject[]{army}, 1, 1);
+		//}
+		//showTacticsMap();
+	}
+
+	void showTacticsMap(){
+		//boardHolder
+	}
+
+	public void panelClicked(GameObject unit, BattleGeneralMeta general){
+		Debug.Log ("Panel Clicked");
+		Debug.Log ("Board Received Clicked: " + unit.name);
+		Debug.Log ("Tactics: " + general.tactics);
+		Debug.Log ("Dictionary: " + dict.Count);
+		Debug.Log ("Levely: " + levely);
+		for(int x = 0; x < general.tactics; x++) {
+			for (int y = 0; y < getRows(level); y++) {
+				Vector2 pos = new Vector2 (x, y);
+				Debug.Log ("Key: " + pos.ToString());
+				Transform child = dict[pos];
+				SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
+				sprRend.material.shader = Shader.Find ("Custom/OverlayShaderOrange");
+			}
 		}
 	}
 
