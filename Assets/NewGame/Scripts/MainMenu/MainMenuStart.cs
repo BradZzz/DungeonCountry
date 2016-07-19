@@ -12,5 +12,6 @@ public class MainMenuStart : MonoBehaviour {
 
 		BattleLoader game = GameObject.Find ("BattleCamera").GetComponent<BattleLoader>();
 		game.getGameManager ().startGame();
+		GameObject.Find ("Panel").SetActive (false);
 	}
 }
