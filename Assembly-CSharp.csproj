@@ -59,6 +59,7 @@
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleGameManager.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleLoader.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleMeta.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Battle\BattleSetupManager.cs" />
      <Compile Include="Assets\NewGame\Scripts\BattleGeneralMeta.cs" />
      <Compile Include="Assets\NewGame\Scripts\MainMenu\MainMenuStart.cs" />
      <Compile Include="Assets\NewGame\Scripts\UI\Panel.cs" />

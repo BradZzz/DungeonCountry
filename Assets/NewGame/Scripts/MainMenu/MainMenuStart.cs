@@ -4,11 +4,13 @@ using System.Collections;
 public class MainMenuStart : MonoBehaviour {
 
 	public void onClick(){
-		Debug.Log ("BattleScene");
 		Application.LoadLevel ("BattleScene");
 	}
 
 	public void onClickPanel(){
-		Application.LoadLevel ("BattleScene");
+		Debug.Log ("BattleScene");
+
+		BattleLoader game = GameObject.Find ("BattleCamera").GetComponent<BattleLoader>();
+		game.getGameManager ().startGame();
 	}
 }

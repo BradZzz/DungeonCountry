@@ -8,9 +8,11 @@ public class Panel : MonoBehaviour {
 	private Transform selectedChild;
 	private List<Transform> children;
 	private BattleLoader game;
+	private BattleSetupManager board;
 
 	void Start(){
-
+		game = GameObject.Find ("BattleCamera").GetComponent<BattleLoader>();
+		board = game.getGameManager ().getBoardSetup ();
 		children = new List<Transform> ();
 		foreach (Transform child in gameObject.transform) {
 			children.Add (child);
@@ -43,8 +45,11 @@ public class Panel : MonoBehaviour {
 				Debug.Log ("Name: " + GameObject.Find ("BattleCamera").name);
 				//Debug.Log ("Name: " + GameObject.Find ("Main Camera").name);
 
-				game = GameObject.Find ("BattleCamera").GetComponent<BattleLoader>();
-				game.getGameManager ().panelClicked (child.gameObject);
+				//game = GameObject.Find ("BattleCamera").GetComponent<BattleLoader>();
+
+				board.panelClicked (child.gameObject, board.GetComponent<BattleGeneralMeta>());
+				//GetComponent<BattleGeneralMeta>()
+				//game.getGameManager ().panelClicked (child.gameObject);
 			}
 		}
 	}  

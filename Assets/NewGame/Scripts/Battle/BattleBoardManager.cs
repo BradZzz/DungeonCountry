@@ -25,25 +25,15 @@ public class BattleBoardManager : MonoBehaviour {
 	}
 
 	private bool isMoving = false;
-	public int columns = 10;                                         //Number of columns in our game board.
-	public int rows = 10;                                            //Number of rows in our game board.
-	public GameObject[] floorTiles;                                 //Array of floor prefabs.
-
-	//public GameObject[] armyTiles;                                 //Array of floor prefabs.
-	//public GameObject[] enemyTiles;                                 //Array of floor prefabs.
 
 	private Transform lastClicked;
 	private Transform boardHolder;                                  //A variable to store a reference to the transform of our Board object.
 	private List <Vector3> gridPositions;   //A list of possible locations to place tiles.
 	private List <Transform> movePositions; 
 	private List <Transform> characterPositions; 
-	private int level;
 	protected Dictionary<Vector2, Transform> dict;
 	private BattleArmyManager armyManager;
 	private BattleGameManager gameManager;
-	private Panel panel;
-	private BattleGeneralMeta general;
-	private int levely;
 
 	void Awake(){
 		lastClicked = null;
@@ -51,62 +41,19 @@ public class BattleBoardManager : MonoBehaviour {
 		movePositions = new List <Transform> (); 
 		characterPositions = new List <Transform> (); 
 		gameManager = GetComponent<BattleGameManager>();
-		dict = new Dictionary<Vector2, Transform>();
-		levely = 1;
-	}
-
-	void Start(){
-		//GameObject go = GameObject.Find ("Panel");
-		//panel = (Panel) panel.GetComponent(typeof(Panel));
-	}
-
-	public Dictionary<Vector2, Transform> getDict(){
-		return dict;
 	}
 		
-	void InitialiseList (int level)
+	void InitialiseList ()
 	{
 		gridPositions.Clear ();
-		for(int x = 0; x < getColumns(level); x++)
+		for(int x = gameManager.getColumns() - 3; x < gameManager.getColumns(); x++)
 		{
-			for(int y = 0; y < getRows(level); y++)
+			for(int y = 0; y < gameManager.getRows(); y++)
 			{
 				gridPositions.Add (new Vector3(x, y, 0f));
 			}
 		}
 	}
-
-	private int getColumns(int level) {
-		return columns + level;
-	}
-
-	private int getRows(int level) {
-		return rows + level;
-	}
-
-	//Sets up the outer walls and floor (background) of the game board.
-	void BoardSetup (int level)
-	{
-		Debug.Log ("BoardSetup");
-
-		//Instantiate Board and set boardHolder to its transform.
-		boardHolder = new GameObject ("Board").transform;
-
-		for(int x = 0; x < getColumns(level); x++)
-		{
-			for(int y = 0; y < getRows(level); y++)
-			{
-				GameObject toInstantiate = floorTiles[Random.Range (0,floorTiles.Length)];
-				GameObject instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
-				instance.transform.SetParent (boardHolder);
-			}
-		}
-		foreach (Transform child in boardHolder) {
-			Vector2 pos = new Vector2 (child.transform.position.x, child.transform.position.y);
-			dict[pos] = child;
-		}
-	}
-
 
 	//RandomPosition returns a random position from our list gridPositions.
 	Vector3 RandomPosition ()
@@ -136,7 +83,7 @@ public class BattleBoardManager : MonoBehaviour {
 		show_actions (clickedObject);
 	}
 
-	public bool hasParent(Transform parent, Transform child){
+	public bool hasParent(Transform child){
 		foreach (GameObject children in GameObject.FindGameObjectsWithTag("Unit")) {
 			if (children.transform.position.x == child.position.x && children.transform.position.y == child.position.y) {
 				return true;
@@ -154,13 +101,13 @@ public class BattleBoardManager : MonoBehaviour {
 			BattleMeta meta = clickedObject.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 			if (meta != null){
 				lastClicked = clickedObject;
-				for(int x = 0; x < getColumns(level); x++) {
-					for (int y = 0; y < getRows(level); y++) {
+				for(int x = 0; x < gameManager.getColumns(); x++) {
+					for (int y = 0; y < gameManager.getRows(); y++) {
 						if (Math.Abs(clickedObject.position.x - x) + Math.Abs(clickedObject.position.y - y) <= Mathf.Max(meta.movement, meta.range)) {
 							Vector2 pos = new Vector2 (x, y);
 							Transform child = dict[pos];
 							if (meta.movement >= meta.range) {
-								if (!hasParent(boardHolder, child) && checkRange(clickedObject.position, pos, meta.movement)) {
+								if (!hasParent(child) && checkRange(clickedObject.position, pos, meta.movement)) {
 									SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
 									sprRend.material.shader = Shader.Find ("Custom/OverlayShaderBlue");
 									movePositions.Add(child); 
@@ -175,13 +122,13 @@ public class BattleBoardManager : MonoBehaviour {
 									(checkRange(clickedObject.position, pos, meta.range))) {
 									SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
 									sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
-									if (hasParent (boardHolder, child)) {
+									if (hasParent (child)) {
 										characterPositions.Add (child); 
 									} else {
 										movePositions.Add(child); 
 									}
 								}
-								if (!hasParent(boardHolder, child) && checkRange(clickedObject.position, pos, meta.movement)) {
+								if (!hasParent(child) && checkRange(clickedObject.position, pos, meta.movement)) {
 									Debug.Log ("Movement: " + meta.movement + " - " + Math.Abs(pos.x - x) + ":" + Math.Abs(pos.y - y));
 									SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
 									sprRend.material.shader = Shader.Find ("Custom/OverlayShaderBlue");
@@ -295,88 +242,22 @@ public class BattleBoardManager : MonoBehaviour {
 	}
 
 	//SetupScene initializes our level and calls the previous functions to lay out the game board
-	public void SetupScene (int level, BattleArmyManager armyManager)
+	public void setupScene (BattleArmyManager armyManager, Transform board, Dictionary<Vector2, Transform> dict)
 	{
-		this.level = level;
 		this.armyManager = armyManager;
+		this.dict = dict;
 
-		BoardSetup (level);
-		InitialiseList (level);
-		levely = 2;
+		//BoardSetup (level);
+		boardHolder = board;
+
+		InitialiseList ();
+
 		//foreach (GameObject army in armyManager.getMyArmy()) {
 		//	LayoutObjectAtRandom (new GameObject[]{army}, 1, 1);
 		//}
-		//foreach (GameObject army in armyManager.getTheirArmy()) {
-		//	LayoutObjectAtRandom (new GameObject[]{army}, 1, 1);
-		//}
-		//showTacticsMap();
-	}
-
-	void showTacticsMap(){
-		//boardHolder
-	}
-
-	public void panelClicked(GameObject unit, BattleGeneralMeta general){
-		Debug.Log ("Panel Clicked");
-		Debug.Log ("Board Received Clicked: " + unit.name);
-		Debug.Log ("Tactics: " + general.tactics);
-		Debug.Log ("Dictionary: " + dict.Count);
-		Debug.Log ("Levely: " + levely);
-		for(int x = 0; x < general.tactics; x++) {
-			for (int y = 0; y < getRows(level); y++) {
-				Vector2 pos = new Vector2 (x, y);
-				Debug.Log ("Key: " + pos.ToString());
-				Transform child = dict[pos];
-				SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
-				sprRend.material.shader = Shader.Find ("Custom/OverlayShaderOrange");
-			}
+		foreach (GameObject army in armyManager.getTheirArmy()) {
+			LayoutObjectAtRandom (new GameObject[]{army}, 1, 1);
 		}
-	}
-
-	public void populateUIPanel(List<GameObject> units){
-		//GameObject panel = GameObject.Find ("Panel");
-
-		//GameObject NewObj = new GameObject(); //Create the GameObject
-		//Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
-		//Debug.Log("Name: " + units[0].name);
-		//NewImage.sprite = units[0].GetComponent<SpriteRenderer> ().sprite; //Set the Sprite of the Image Component on the new GameObject
-		//NewObj.GetComponent<RectTransform>().SetParent(panel.transform); //Assign the newly created Image GameObject as a Child of the Parent Panel.
-		//NewObj.SetActive(true); //Activate the GameObject
-
-		Debug.Log ("Count: " + units.Count);
-
-		for (int i = 1; i <= units.Count; i++) {
-			GameObject unit1 = GameObject.Find ("Unit"+i);
-			Image image = unit1.GetComponent<Image> ();
-			image.sprite = units[i-1].GetComponent<SpriteRenderer> ().sprite;
-
-			Debug.Log ("Changing: " + units[i-1].name + ":" + image.sprite.name);
-		}
-
-
-		/*foreach (GameObject unit in units) {
-			
-			GameObject NewObj = new GameObject(); //Create the GameObject
-			Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
-			NewImage.sprite = unit.GetComponent<SpriteRenderer>().sprite; //Set the Sprite of the Image Component on the new GameObject
-			NewObj.GetComponent<RectTransform>().SetParent(panel.transform); //Assign the newly created Image GameObject as a Child of the Parent Panel.
-			NewObj.SetActive(true); //Activate the GameObject
-		}*/
-
-		//SpriteRenderer unity = units [0].GetComponent<SpriteRenderer> ();
-		//SpriteRenderer ren = units[0].GetComponent<SpriteRenderer>();
-		//NewImage.sprite = Sprite.Create (ren.sharedMaterial.mainTexture as Texture2D, new Rect(0, 0, ren.sharedMaterial.mainTexture.width, ren.sharedMaterial.mainTexture.height), new Vector2(0f, 0f)); //Set the Sprite of the Image Component on the new GameObject
-		//NewObj.GetComponent<RectTransform>().SetParent(panel.transform); //Assign the newly created Image GameObject as a Child of the Parent Panel.
-		//NewObj.SetActive(true); //Activate the GameObject
-
-		/*GameObject unit1 = GameObject.Find ("Unit1");
-		if (unit1 != null) {
-			// Loop through each image and set it's Sprite to the other Sprite.
-			Image image = unit1.GetComponent<Image> ();
-			image.sprite = units[0].GetComponent<SpriteRenderer> ().sprite;
-		} else {
-			Debug.Log ("Unit1 null");
-		}*/
 	}
 
 	public void UnloadScene(){

@@ -4,7 +4,6 @@ using System.Collections;
 public class BattleLoader : MonoBehaviour {
 
 	public GameObject battleGameManager;          //GameManager prefab to instantiate.
-	private int holder = 1;
 
 	void Awake ()
 	{

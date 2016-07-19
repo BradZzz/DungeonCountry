@@ -25,7 +25,6 @@ public class BattleMeta : MonoBehaviour {
 	public Texture2D tex;
 	//Character's ranged attack sprite
 	public GameObject projectile;
-	public float spriteScale;
 
 	private Animator animator;
 	private SpriteRenderer spriteRenderer;
@@ -38,10 +37,15 @@ public class BattleMeta : MonoBehaviour {
 		spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 		Debug.Log ("Sprite");
 		Debug.Log (spriteRenderer.sprite);
+		canMove = true;
 	}
 
 	public bool getMove(){
 		return canMove;
+	}
+
+	public void setMove(bool canMove){
+		this.canMove = canMove;
 	}
 
 	private void OnGUI() {

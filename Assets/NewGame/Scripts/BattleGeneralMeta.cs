@@ -11,12 +11,4 @@ public class BattleGeneralMeta : MonoBehaviour {
 		this.tactics = general.tactics;
 		this.army = general.army;
 	}
-
-	void OnDisable(){
-		Debug.Log ("OnDisable");
-	}
-
-	void OnDestroy(){
-		Debug.Log ("OnDestroy");
-	}
 }
