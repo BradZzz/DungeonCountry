@@ -6,23 +6,21 @@ using UnityEngine.UI;
 public class BattleGameManager : MonoBehaviour {
 
 	public float levelStartDelay = 2f;
-	public static BattleGameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
+	public static BattleGameManager instance = null;
 	public GameObject[] battleUnits;       
 
-	public int columns = 10;                                         //Number of columns in our game board.
-	public int rows = 10;                                            //Number of rows in our game board.
+	public int columns = 10;
+	public int rows = 10;
 
 	private BattleSetupManager boardSetup;
-	private BattleBoardManager boardScript;                       //Store a reference to our BoardManager which will set up the level.
-	private BattleArmyManager armyScript;                         //Store a reference to our ArmyManager which will set up the level.
-	//private BattleGeneralMeta generalScript;                         //Store a reference to our ArmyManager which will set up the level.
+	private BattleBoardManager boardScript;
+	private BattleArmyManager armyScript;
 	private Transform lastHitObj;
 	private GameObject levelImage;
 	private Text levelText;
 
 	private int level = 1;
 
-	//Awake is always called before any Start functions
 	void Awake()
 	{
 		if (instance == null){

@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+/***
+*	TODO: Make sure that units can only be placed on the orange parts of the board on setup
+***/
 public class BattleMeta : MonoBehaviour {
 
 	//Game Meta
@@ -18,6 +21,9 @@ public class BattleMeta : MonoBehaviour {
 	public string affiliation;
 
 	private bool canMove;
+	private bool canAttack;
+	private BattleActions actions;
+
 	private int currentHP;
 
 	//Game Sprite Modifiers
@@ -32,12 +38,25 @@ public class BattleMeta : MonoBehaviour {
 
 	void Awake()
 	{
+		Debug.Log ("OnAwake");
 		currentHP = hp;
 		animator = GetComponent<Animator>();
 		spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+		actions = new BattleActions (1,1,true);
 		Debug.Log ("Sprite");
 		Debug.Log (spriteRenderer.sprite);
 		canMove = true;
+	}
+
+	public void startTurn(){
+		actions.startTurn ();
+		SpriteRenderer sprRend = gameObject.GetComponent<SpriteRenderer> ();
+		sprRend.material.shader = Shader.Find ("Sprites/Default");
+	}
+
+	public bool getTurn(){
+		Debug.Log ("GetTurn: " + actions.checkTurn ());
+		return actions.checkTurn ();
 	}
 
 	public bool getMove(){
@@ -46,6 +65,27 @@ public class BattleMeta : MonoBehaviour {
 
 	public void setMove(bool canMove){
 		this.canMove = canMove;
+	}
+
+	public int getActions(){
+		return actions.getActions ();
+	}
+
+	//Called when the player has verified moving checks (getActions)
+	public void isMoving(){
+		actions.takeAction (1);
+		checkFatigue ();
+	}
+
+	public void checkFatigue(){
+		if(!getTurn()){
+			SpriteRenderer sprRend = gameObject.GetComponent<SpriteRenderer> ();
+			sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
+		}
+	}
+
+	public bool checkAttacks(){
+		return actions.getAtacks () > 0 && getTurn ();
 	}
 
 	private void OnGUI() {
@@ -63,7 +103,7 @@ public class BattleMeta : MonoBehaviour {
 	}
 
 	public void isAttacking(BattleMeta enemy){
-		if (enemy != null) {
+		if (enemy != null && checkAttacks()) {
 			if (projectile != null) {
 				GameObject thisProjectile = Instantiate<GameObject> (projectile);
 				thisProjectile.transform.position = transform.position;
@@ -75,6 +115,8 @@ public class BattleMeta : MonoBehaviour {
 			}
 			animator.SetTrigger ("UnitAttack");
 			StartCoroutine (atk_blur (enemy.gameObject.transform));
+			actions.takeAttack(1);
+			checkFatigue ();
 		}
 	}
 

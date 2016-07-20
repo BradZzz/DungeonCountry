@@ -1,22 +1,19 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections.Generic;       //Allows us to use Lists.
-using Random = UnityEngine.Random;      //Tells Random to use the Unity Engine random number generator.
+using System.Collections.Generic;
+using Random = UnityEngine.Random;
 using System.Collections;
 using UnityEngine.UI;
 
 
 public class BattleBoardManager : MonoBehaviour {
 
-	// Using Serializable allows us to embed a class with sub properties in the inspector.
 	[Serializable]
 	public class Count
 	{
-		public int minimum;             //Minimum value for our Count class.
-		public int maximum;             //Maximum value for our Count class.
+		public int minimum;
+		public int maximum;
 
-
-		//Assignment constructor.
 		public Count (int min, int max)
 		{
 			minimum = min;
@@ -27,8 +24,8 @@ public class BattleBoardManager : MonoBehaviour {
 	private bool isMoving = false;
 
 	private Transform lastClicked;
-	private Transform boardHolder;                                  //A variable to store a reference to the transform of our Board object.
-	private List <Vector3> gridPositions;   //A list of possible locations to place tiles.
+	private Transform boardHolder;
+	private List <Vector3> gridPositions;
 	private List <Transform> movePositions; 
 	private List <Transform> characterPositions; 
 	protected Dictionary<Vector2, Transform> dict;
@@ -37,7 +34,7 @@ public class BattleBoardManager : MonoBehaviour {
 
 	void Awake(){
 		lastClicked = null;
-		gridPositions = new List <Vector3> ();   //A list of possible locations to place tiles.
+		gridPositions = new List <Vector3> ();
 		movePositions = new List <Transform> (); 
 		characterPositions = new List <Transform> (); 
 		gameManager = GetComponent<BattleGameManager>();
@@ -54,8 +51,7 @@ public class BattleBoardManager : MonoBehaviour {
 			}
 		}
 	}
-
-	//RandomPosition returns a random position from our list gridPositions.
+		
 	Vector3 RandomPosition ()
 	{
 		int randomIndex = Random.Range (0, gridPositions.Count);
@@ -72,7 +68,6 @@ public class BattleBoardManager : MonoBehaviour {
 			Vector3 randomPosition = RandomPosition();
 			GameObject tileChoice = tileArray[Random.Range (0, tileArray.Length)];
 			GameObject instance = Instantiate (tileChoice, randomPosition, Quaternion.identity) as GameObject;
-			//GameObject instance = Instantiate(tileChoice, randomPosition, Quaternion.identity);
 			instance.transform.SetParent (boardHolder);
 		}
 	}
@@ -165,19 +160,18 @@ public class BattleBoardManager : MonoBehaviour {
 				checkAttack (meta, child, hit);
 			}
 		}
-		//Remove the valid positions from the map
 		movePositions.Clear ();
 		characterPositions.Clear ();
-
-		//Set the click object to null so we can click again
 		lastClicked = null;
 	}
 
 	public void checkMovement(int movement, Transform child, Transform hit){
+		BattleMeta meta = lastClicked.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 		if (hit.position.x == child.position.x && hit.position.y == child.position.y &&
-		    Math.Abs (hit.position.x - lastClicked.position.x) + Math.Abs (hit.position.y - lastClicked.position.y) <= movement) {
+			Math.Abs (hit.position.x - lastClicked.position.x) + Math.Abs (hit.position.y - lastClicked.position.y) <= movement && meta.getActions() > 0 && meta.getTurn()) {
 			Vector3 start = new Vector3 ((float)lastClicked.position.x, (float)lastClicked.position.y, (float)lastClicked.position.z);
 			Vector3 end = new Vector3 ((float)hit.position.x, (float)hit.position.y, (float)lastClicked.position.z);
+			meta.isMoving ();
 			StartCoroutine (smooth_move (lastClicked, end, 1f));
 		}
 	}
@@ -187,16 +181,17 @@ public class BattleBoardManager : MonoBehaviour {
 			Math.Abs (hit.position.x - lastClicked.position.x) + Math.Abs (hit.position.y - lastClicked.position.y) <= meta.range) {
 
 			BattleMeta enemy = hit.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
-			meta.isAttacking(enemy);
+			if (meta.checkAttacks()) {
+				meta.isAttacking(enemy);
 
-			if (enemy != null) {
-				enemy.isAttacked (meta.attack);
+				if (enemy != null) {
+					enemy.isAttacked (meta.attack);
+				}
 			}
 			checkConditions ();
 		}
 	}
-
-	//Check the win/lose conditions
+		
 	public void checkConditions(){
 		if (armyManager.iLost(boardHolder)) {
 			Debug.Log ("You Lose");
@@ -209,8 +204,8 @@ public class BattleBoardManager : MonoBehaviour {
 
 	IEnumerator smooth_move(Transform origin, Vector3 direction,float speed){
 		float startime = Time.time;
-		Vector3 start_pos = new Vector3(origin.position.x, origin.position.y, origin.position.z); //Starting position.
-		Vector3 end_pos = direction; //Ending position.
+		Vector3 start_pos = new Vector3(origin.position.x, origin.position.y, origin.position.z);
+		Vector3 end_pos = direction;
 		while (origin.position != end_pos/* && ((Time.time - startime)*speed) < 1f*/) { 
 			float move = Mathf.Lerp (0,1, (Time.time - startime) * speed);
 
@@ -240,14 +235,12 @@ public class BattleBoardManager : MonoBehaviour {
 			yield return null;
 		}
 	}
-
-	//SetupScene initializes our level and calls the previous functions to lay out the game board
+		
 	public void setupScene (BattleArmyManager armyManager, Transform board, Dictionary<Vector2, Transform> dict)
 	{
 		this.armyManager = armyManager;
 		this.dict = dict;
 
-		//BoardSetup (level);
 		boardHolder = board;
 
 		InitialiseList ();

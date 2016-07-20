@@ -53,6 +53,7 @@
      <Compile Include="Assets\Completed\Scripts\Player.cs" />
      <Compile Include="Assets\Completed\Scripts\SoundManager.cs" />
      <Compile Include="Assets\Completed\Scripts\Wall.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Battle\BattleActions.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleArmyManager.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleBoardManager.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleCharacter.cs" />
