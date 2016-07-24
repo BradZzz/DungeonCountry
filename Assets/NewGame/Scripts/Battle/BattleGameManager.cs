@@ -19,6 +19,7 @@ public class BattleGameManager : MonoBehaviour {
 	private GameObject levelImage;
 	private Text levelText;
 
+	private bool playersTurn;
 	private int level = 1;
 
 	void Awake()
@@ -32,6 +33,7 @@ public class BattleGameManager : MonoBehaviour {
 		lastHitObj = null;
 		boardScript = GetComponent<BattleBoardManager>();
 		boardSetup = GetComponent<BattleSetupManager>();
+		playersTurn = true;
 		//generalScript = GetComponent<BattleGeneralMeta>();
 		InitGame();
 	}
@@ -87,6 +89,11 @@ public class BattleGameManager : MonoBehaviour {
 		}
 	}
 
+	public void endTurn(){
+		playersTurn = !playersTurn;
+		boardScript.activateUnits (playersTurn);
+	}
+
 	public void isSettingUp(RaycastHit2D [] hit){
 
 		Debug.Log ("isSettingUp");
@@ -115,6 +122,9 @@ public class BattleGameManager : MonoBehaviour {
 	}
 
 	public void isBattle(RaycastHit2D [] hit){
+
+		Debug.Log ("isBattle");
+
 		Transform hitValid = null;
 		foreach (RaycastHit2D shot in hit){
 
@@ -156,6 +166,7 @@ public class BattleGameManager : MonoBehaviour {
 	}
 
 	public void startGame(){
+		Debug.Log ("BattleGameManager startGame");
 		boardSetup.startGame ();
 		boardScript.setupScene (armyScript, boardSetup.getBoard(), boardSetup.getDict());
 	}

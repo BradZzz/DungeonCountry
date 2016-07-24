@@ -9,7 +9,11 @@ public class BattleSetupManager : MonoBehaviour {
 	public GameObject[] floorTiles;
 
 	private Transform boardHolder;
+	//This holds all the panels
 	protected Dictionary<Vector2, Transform> dict;
+	//This holds all the panels where a character can be placed
+	protected Dictionary<Vector2, Transform> placeable;
+
 	private Transform lastClicked;
 	private Panel panel;
 	private BattleGeneralMeta general;
@@ -22,6 +26,7 @@ public class BattleSetupManager : MonoBehaviour {
 	void Awake(){
 		lastClicked = null;
 		dict = new Dictionary<Vector2, Transform>();
+		placeable = new Dictionary<Vector2, Transform>();
 		settingUp = true;
 		overlay = false;
 		lastClickedUnit = null;
@@ -29,8 +34,6 @@ public class BattleSetupManager : MonoBehaviour {
 
 	void BoardSetup ()
 	{
-		Debug.Log ("BoardSetup");
-
 		//Instantiate Board and set boardHolder to its transform.
 		boardHolder = new GameObject ("Board").transform;
 
@@ -60,7 +63,9 @@ public class BattleSetupManager : MonoBehaviour {
 
 		Debug.Log ("SetUnit");
 
-		if (lastClickedUnit != null) {
+		Vector2 pos = new Vector2 (floor.position.x, floor.position.y);
+
+		if (lastClickedUnit != null && placeable.ContainsKey(pos)) {
 			Debug.Log ("Setting unit at position: " + floor.position.ToString());
 			Debug.Log ("Unit Name: " + lastClickedUnit.transform.name);
 
@@ -83,6 +88,7 @@ public class BattleSetupManager : MonoBehaviour {
 			for (int y = 0; y < gameManager.getRows(); y++) {
 				Vector2 pos = new Vector2 (x, y);
 				Transform child = dict[pos];
+				placeable [pos] = child;
 				SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
 				sprRend.material.shader = Shader.Find ("Custom/OverlayShaderOrange");
 			}
@@ -120,6 +126,7 @@ public class BattleSetupManager : MonoBehaviour {
 	}
 
 	public bool isSettingUp() {
+		Debug.Log ("isSettingUp: " + settingUp);
 		return settingUp;
 	}
 

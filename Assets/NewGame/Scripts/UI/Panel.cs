@@ -29,7 +29,7 @@ public class Panel : MonoBehaviour {
 
 			Debug.Log ("Found: " + child.transform + " pos: " + rect.position.ToString() + " dims: " + rect.width + ":" + rect.height);
 
-			if (rect.Contains (Input.mousePosition)) {
+			if (rect.Contains (Input.mousePosition) && !child.transform.name.Contains("Button")) {
 				return child;
 			}
 		} 
@@ -45,7 +45,7 @@ public class Panel : MonoBehaviour {
 				Debug.Log ("Name: " + GameObject.Find ("BattleCamera").name);
 				//Debug.Log ("Name: " + GameObject.Find ("Main Camera").name);
 
-				//game = GameObject.Find ("BattleCamera").GetComponent<BattleLoader>();
+				game = GameObject.Find ("BattleCamera").GetComponent<BattleLoader>();
 
 				board.panelClicked (child.gameObject, board.GetComponent<BattleGeneralMeta>());
 				//GetComponent<BattleGeneralMeta>()

@@ -55,8 +55,12 @@ public class BattleMeta : MonoBehaviour {
 	}
 
 	public bool getTurn(){
-		Debug.Log ("GetTurn: " + actions.checkTurn ());
 		return actions.checkTurn ();
+	}
+
+	public void setTurn(bool isTurn){
+		actions.setTurn(isTurn);
+		checkFatigue ();
 	}
 
 	public bool getMove(){
@@ -80,7 +84,7 @@ public class BattleMeta : MonoBehaviour {
 	public void checkFatigue(){
 		if(!getTurn()){
 			SpriteRenderer sprRend = gameObject.GetComponent<SpriteRenderer> ();
-			sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
+			sprRend.material.shader = Shader.Find ("Custom/OverlayShaderGreen");
 		}
 	}
 

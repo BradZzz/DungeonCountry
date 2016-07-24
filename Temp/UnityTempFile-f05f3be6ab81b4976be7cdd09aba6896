@@ -85,6 +85,7 @@
 'Assets/Completed/Scripts/Player.cs'
 'Assets/Completed/Scripts/SoundManager.cs'
 'Assets/Completed/Scripts/Wall.cs'
+'Assets/NewGame/Scripts/Battle/BattleActions.cs'
 'Assets/NewGame/Scripts/Battle/BattleArmyManager.cs'
 'Assets/NewGame/Scripts/Battle/BattleBoardManager.cs'
 'Assets/NewGame/Scripts/Battle/BattleCharacter.cs'

@@ -15,6 +15,10 @@ public class BattleActions {
 		this.isTurn = isTurn;
 	}
 
+	public void setTurn(bool isTurn){
+		this.isTurn = isTurn;
+	}
+
 	public void startTurn(){
 		thisActions = maxActions;
 		thisAttacks = maxAttacks;

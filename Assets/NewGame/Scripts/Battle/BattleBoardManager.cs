@@ -27,7 +27,10 @@ public class BattleBoardManager : MonoBehaviour {
 	private Transform boardHolder;
 	private List <Vector3> gridPositions;
 	private List <Transform> movePositions; 
+	//This is for the sprite color overlays
 	private List <Transform> characterPositions; 
+	//This is to keep track of the units for quick activition between turns
+	private List <Transform> unitPositions; 
 	protected Dictionary<Vector2, Transform> dict;
 	private BattleArmyManager armyManager;
 	private BattleGameManager gameManager;
@@ -38,6 +41,7 @@ public class BattleBoardManager : MonoBehaviour {
 		movePositions = new List <Transform> (); 
 		characterPositions = new List <Transform> (); 
 		gameManager = GetComponent<BattleGameManager>();
+		unitPositions = new List<Transform> ();
 	}
 		
 	void InitialiseList ()
@@ -69,6 +73,21 @@ public class BattleBoardManager : MonoBehaviour {
 			GameObject tileChoice = tileArray[Random.Range (0, tileArray.Length)];
 			GameObject instance = Instantiate (tileChoice, randomPosition, Quaternion.identity) as GameObject;
 			instance.transform.SetParent (boardHolder);
+		}
+	}
+
+	//This method is for units only
+	void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum, bool active)
+	{
+		int objectCount = Random.Range (minimum, maximum+1);
+		for(int i = 0; i < objectCount; i++)
+		{
+			Vector3 randomPosition = RandomPosition();
+			GameObject tileChoice = tileArray[Random.Range (0, tileArray.Length)];
+			GameObject instance = Instantiate (tileChoice, randomPosition, Quaternion.identity) as GameObject;
+			instance.transform.SetParent (boardHolder);
+			BattleMeta meta = instance.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+			meta.setTurn (active);
 		}
 	}
 
@@ -249,7 +268,33 @@ public class BattleBoardManager : MonoBehaviour {
 		//	LayoutObjectAtRandom (new GameObject[]{army}, 1, 1);
 		//}
 		foreach (GameObject army in armyManager.getTheirArmy()) {
-			LayoutObjectAtRandom (new GameObject[]{army}, 1, 1);
+			LayoutObjectAtRandom (new GameObject[]{army}, 1, 1, false);
+		}
+
+		foreach (Transform tile in boardHolder) {
+			if (tile.tag.Contains ("Unit")) {
+				unitPositions.Add (tile);
+			}
+		}
+	}
+
+	public void activateUnits(bool playersTurn){
+		//boardHolder
+		foreach(Transform unit in unitPositions){
+			BattleMeta meta = unit.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+			if (playersTurn) {
+				if (meta.affiliation.Equals ("Human")) {
+					meta.startTurn ();
+				} else {
+					meta.setTurn (false);
+				}
+			} else if (!playersTurn) {
+				if (meta.affiliation.Equals ("Human")) {
+					meta.setTurn (false);
+				} else {
+					meta.startTurn ();
+				}
+			}
 		}
 	}
 
