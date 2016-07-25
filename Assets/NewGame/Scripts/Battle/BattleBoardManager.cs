@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Random = UnityEngine.Random;
 using System.Collections;
 using UnityEngine.UI;
+using AssemblyCSharp;
 
 
 public class BattleBoardManager : MonoBehaviour {
@@ -212,12 +213,15 @@ public class BattleBoardManager : MonoBehaviour {
 	}
 		
 	public void checkConditions(){
-		if (armyManager.iLost(boardHolder)) {
+		Debug.Log ("checkConditions");
+		if (armyManager.iLost (boardHolder)) {
 			Debug.Log ("You Lose");
 			gameManager.gameOver ("You Lose");
-		} else if (armyManager.theyLost(boardHolder)) {
+		} else if (armyManager.theyLost (boardHolder)) {
 			Debug.Log ("You Win!");
 			gameManager.gameOver ("You Win!");
+		} else {
+			Debug.Log ("Game Continues");
 		}
 	}
 
@@ -225,7 +229,7 @@ public class BattleBoardManager : MonoBehaviour {
 		float startime = Time.time;
 		Vector3 start_pos = new Vector3(origin.position.x, origin.position.y, origin.position.z);
 		Vector3 end_pos = direction;
-		while (origin.position != end_pos/* && ((Time.time - startime)*speed) < 1f*/) { 
+		while (origin.position != end_pos) { 
 			float move = Mathf.Lerp (0,1, (Time.time - startime) * speed);
 
 			Vector3 position = origin.position;
@@ -279,6 +283,9 @@ public class BattleBoardManager : MonoBehaviour {
 	}
 
 	public void activateUnits(bool playersTurn){
+
+		List <Transform> aiUnits = new List<Transform>(); 
+
 		//boardHolder
 		foreach(Transform unit in unitPositions){
 			BattleMeta meta = unit.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
@@ -293,9 +300,24 @@ public class BattleBoardManager : MonoBehaviour {
 					meta.setTurn (false);
 				} else {
 					meta.startTurn ();
+					aiUnits.Add (unit);
 				}
 			}
 		}
+		if (!playersTurn) {
+			Debug.Log ("AI turn start");
+
+			BattleAI ai = gameObject.AddComponent<BattleAI> ();
+			ai.init (boardHolder, aiUnits);
+			//BattleAI ai = new BattleAI (boardHolder, aiUnits);
+			ai.moveUnits ();
+			activateUnits (true);
+		}
+		checkConditions ();
+	}
+
+	public Transform getBoard(){
+		return boardHolder;
 	}
 
 	public void UnloadScene(){

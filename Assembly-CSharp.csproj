@@ -53,6 +53,7 @@
      <Compile Include="Assets\Completed\Scripts\Player.cs" />
      <Compile Include="Assets\Completed\Scripts\SoundManager.cs" />
      <Compile Include="Assets\Completed\Scripts\Wall.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Battle\BattleAI.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleActions.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleArmyManager.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleBoardManager.cs" />
@@ -62,6 +63,7 @@
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleMeta.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleSetupManager.cs" />
      <Compile Include="Assets\NewGame\Scripts\BattleGeneralMeta.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Coroutines.cs" />
      <Compile Include="Assets\NewGame\Scripts\MainMenu\MainMenuStart.cs" />
      <Compile Include="Assets\NewGame\Scripts\UI\Panel.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\MovingObject.cs" />
@@ -85,6 +87,7 @@
      <None Include="Assets\Fonts\OFL.txt" />
      <None Include="Assets\NewGame\Shader\OverlayShaderRed.shader" />
      <None Include="Assets\NewGame\Shader\OverlayShaderBlue.shader" />
+     <None Include="Assets\NewGame\Shader\OverlayShaderHit.shader" />
      <None Include="Assets\NewGame\Shader\OverlayShaderOrange.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

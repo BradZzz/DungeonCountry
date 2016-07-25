@@ -71,6 +71,10 @@ public class BattleMeta : MonoBehaviour {
 		this.canMove = canMove;
 	}
 
+	public int getAttacks(){
+		return actions.getAtacks ();
+	}
+
 	public int getActions(){
 		return actions.getActions ();
 	}
@@ -82,10 +86,14 @@ public class BattleMeta : MonoBehaviour {
 	}
 
 	public void checkFatigue(){
-		if(!getTurn()){
+		if(!getTurn() && affiliation.Equals("Human")){
 			SpriteRenderer sprRend = gameObject.GetComponent<SpriteRenderer> ();
-			sprRend.material.shader = Shader.Find ("Custom/OverlayShaderGreen");
+			applyShadeEnd (sprRend);
 		}
+	}
+
+	public void applyShadeEnd(SpriteRenderer sprRend){
+		sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
 	}
 
 	public bool checkAttacks(){
@@ -99,15 +107,20 @@ public class BattleMeta : MonoBehaviour {
 		GUI.DrawTexture(rect, tex);
 	}
 
-	public void isAttacked (int attack) {
+	public bool isAttacked (int attack) {
 		currentHP -= attack;
 		if (currentHP <= 0) {
 			gameObject.SetActive(false);
+			//The unit isnt active anymore
+			return false;
 		}
+		//The unit is still active
+		return true;
 	}
 
 	public void isAttacking(BattleMeta enemy){
 		if (enemy != null && checkAttacks()) {
+			actions.takeAttack(1);
 			if (projectile != null) {
 				GameObject thisProjectile = Instantiate<GameObject> (projectile);
 				thisProjectile.transform.position = transform.position;
@@ -119,16 +132,19 @@ public class BattleMeta : MonoBehaviour {
 			}
 			animator.SetTrigger ("UnitAttack");
 			StartCoroutine (atk_blur (enemy.gameObject.transform));
-			actions.takeAttack(1);
 			checkFatigue ();
 		}
 	}
 
 	IEnumerator atk_blur(Transform unit){
 		SpriteRenderer sprRend = unit.gameObject.GetComponent<SpriteRenderer> ();
-		sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
+		sprRend.material.shader = Shader.Find ("Custom/OverlayShaderHit");
 		yield return new WaitForSeconds(.5f);
-		sprRend.material.shader = Shader.Find ("Sprites/Default");
+		if (actions.checkTurn () || !affiliation.Equals("Human")) {
+			sprRend.material.shader = Shader.Find ("Sprites/Default");
+		} else {
+			checkFatigue();
+		}
 	}
 
 	IEnumerator smooth_move(Transform origin, Transform end, float speed){
