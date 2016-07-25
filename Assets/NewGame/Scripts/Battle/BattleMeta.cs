@@ -74,6 +74,14 @@ public class BattleMeta : MonoBehaviour {
 		this.canMove = canMove;
 	}
 
+	public int getMaxAttacks(){
+		return actions.getAttacks ();
+	}
+
+	public int getMaxActions(){
+		return actions.getActions ();
+	}
+
 	public int getAttacks(){
 		return actions.getAttacks ();
 	}
@@ -115,6 +123,9 @@ public class BattleMeta : MonoBehaviour {
 	}
 
 	public bool isAttacked (int attack) {
+
+		Debug.Log ("Attacked");
+
 		currentHP -= attack;
 		if (currentHP <= 0) {
 			gameObject.SetActive(false);

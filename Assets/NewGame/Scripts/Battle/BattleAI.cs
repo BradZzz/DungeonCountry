@@ -13,23 +13,8 @@ public class BattleAI : MonoBehaviour {
 	//unit. lol.
 	private static List<Transform> playersUnits; 
 	private List<Transform> floor; 
-	private static aiUnit aiMoving;
 
 	private static List<Transform> destinations; 
-
-	private class aiUnit {
-		
-		int movingAI;
-
-		public aiUnit(int ai){
-			movingAI = ai;
-		}
-
-		public bool done(){
-			movingAI--;
-			return movingAI <= 0;
-		}
-	}
 
 	public void init(Transform boardHolder, List<Transform> aiUnits){
 
@@ -54,8 +39,6 @@ public class BattleAI : MonoBehaviour {
 				floor.Add (tile);
 			}
 		}
-
-		aiMoving = new aiUnit (aiUnits.Count);
 	}
 
 	public delegate void EndTurnCallback();
@@ -102,7 +85,7 @@ public class BattleAI : MonoBehaviour {
 		}
 
 		if (attackables.Count > 0) {
-			if (meta.getAttacks () > 0) {
+			if (meta.getAttacks() > 0) {
 				Debug.Log ("Attacking...");
 				BattleMeta weakest = null;
 				//Have the ai attack the weakest unit
@@ -113,7 +96,6 @@ public class BattleAI : MonoBehaviour {
 					}
 				}
 				//if (meta.getTurn()) {
-					meta.takeAttacks (1);
 					Debug.Log ("Attacking Player. Atks: " + meta.getAttacks ());
 					meta.isAttacking (weakest);
 					weakest.isAttacked (meta.attack);
@@ -121,11 +103,16 @@ public class BattleAI : MonoBehaviour {
 
 				Debug.Log ("Attacks: " + meta.getAttacks());
 
-				StartCoroutine(smooth_move (ai, ai.position, 1f));
+				if (meta.getAttacks() > 0) {
+					aiMoveSubroutine (ai);
+				}
+
+				//StartCoroutine(smooth_move (ai, ai.position, 1f));
 				//yield return null;
 				//aiMoveSubroutine (ai);
 				//StartCoroutine(aiMove (ai));
 				//aiMove(ai);
+				meta.setTurn(false);
 			} else {
 				Debug.Log ("No Attacks. Ending Turn");
 				//End the turn here, since the enemy could attack the player, just ran out of attacks
@@ -142,16 +129,20 @@ public class BattleAI : MonoBehaviour {
 				//move ai and repeat function
 				//Get the closest enemy
 				Transform enemy = GetClosest (ai, playersUnits);
-				foreach (Transform tile in floor) {
-					//Find the list of tiles the robot can move to
-					if (Coroutines.checkRange(tile.position, ai.position, meta.movement) && !hasParent(tile) && !destinations.Contains(tile)) {
-						moveables.Add (tile);
+				if (enemy != null) {
+					foreach (Transform tile in floor) {
+						//Find the list of tiles the robot can move to
+						if (Coroutines.checkRange (tile.position, ai.position, meta.movement) && !hasParent (tile) && !destinations.Contains (tile)) {
+							moveables.Add (tile);
+						}
 					}
+					Transform closest = GetClosest (enemy, moveables);
+					destinations.Add (closest);
+					meta.isMoving ();
+					StartCoroutine (smooth_move (ai, closest.position, 1f));
+				} else {
+					meta.setTurn(false);
 				}
-				Transform closest = GetClosest (enemy, moveables);
-				destinations.Add (closest);
-				meta.isMoving ();
-				StartCoroutine(smooth_move (ai, closest.position, 1f));
 			} else {
 				Debug.Log ("No Actions ending");
 				//The ai has no actions and no attacks. end turn

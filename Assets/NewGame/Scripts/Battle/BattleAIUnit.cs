@@ -10,4 +10,24 @@ public class BattleAIUnit : MonoBehaviour {
 		this.actions = actions;
 		this.attacks = attacks;
 	}
+
+	public void decActions(){
+		actions--;
+	}
+
+	public int getActions(){
+		return actions;
+	}
+
+	public void decAttacks(){
+		attacks--;
+	}
+
+	public int getAttacks(){
+		return attacks;
+	}
+
+	public string print(){
+		return "Actions: " + actions + " Attacks: " + attacks;
+	}
 }

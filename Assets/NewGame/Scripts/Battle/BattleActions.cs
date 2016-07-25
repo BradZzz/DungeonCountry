@@ -60,6 +60,14 @@ public class BattleActions {
 		return thisAttacks;
 	}
 
+	public int getMaxAttacks(){
+		return maxAttacks;
+	}
+
+	public int getMaxActions(){
+		return maxActions;
+	}
+
 	//[MethodImpl(MethodImplOptions.Synchronized)]
 	public bool takeAction(int cost){
 

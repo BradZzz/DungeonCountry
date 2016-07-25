@@ -274,9 +274,9 @@ public class BattleBoardManager : MonoBehaviour {
 		//foreach (GameObject army in armyManager.getMyArmy()) {
 		//	LayoutObjectAtRandom (new GameObject[]{army}, 1, 1);
 		//}
-		//foreach (GameObject army in armyManager.getTheirArmy()) {
-		LayoutObjectAtRandom (new GameObject[]{armyManager.getTheirArmy()[0]}, 1, 1, false);
-		//}
+		foreach (GameObject army in armyManager.getTheirArmy()) {
+			LayoutObjectAtRandom (new GameObject[]{army}, 2, 2, false);
+		}
 
 		foreach (Transform tile in boardHolder) {
 			if (tile.tag.Contains ("Unit")) {
@@ -287,11 +287,12 @@ public class BattleBoardManager : MonoBehaviour {
 
 	public void activateUnits(){
 
+		Debug.Log ("!Activate Units!");
+
+		checkConditions ();
 		playersTurn = !playersTurn;
 
 		List <Transform> aiUnits = new List<Transform>(); 
-
-		//boardHolder
 		foreach(Transform unit in unitPositions){
 			BattleMeta meta = unit.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 			if (playersTurn) {
