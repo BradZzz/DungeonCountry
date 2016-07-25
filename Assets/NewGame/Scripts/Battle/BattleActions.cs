@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Runtime.CompilerServices;
 
 public class BattleActions {
 
@@ -15,6 +16,7 @@ public class BattleActions {
 		this.isTurn = isTurn;
 	}
 
+	//[MethodImpl(MethodImplOptions.Synchronized)]
 	public void setTurn(bool isTurn){
 		this.isTurn = isTurn;
 	}
@@ -25,10 +27,12 @@ public class BattleActions {
 		isTurn = true;
 	}
 
+	//[MethodImpl(MethodImplOptions.Synchronized)]
 	public bool checkTurn(){
 		return isTurn;
 	}
 
+	//[MethodImpl(MethodImplOptions.Synchronized)]
 	private bool checkEndTurn(){
 		if (thisAttacks <= 0 && thisActions <= 0) {
 			Debug.Log ("Ending turn...");
@@ -38,9 +42,12 @@ public class BattleActions {
 		return false;
 	}
 
+	//[MethodImpl(MethodImplOptions.Synchronized)]
 	public bool takeAttack(int cost){
+		Debug.Log ("Attacks: " + thisAttacks + " Cost: " + cost);
 		if (thisAttacks - cost >= 0) {
 			thisAttacks -= cost;
+			Debug.Log ("New Attacks: " + thisAttacks + " Cost: " + cost);
 			checkEndTurn ();
 			return true;
 		} else {
@@ -48,10 +55,12 @@ public class BattleActions {
 		}
 	}
 
-	public int getAtacks(){
+	//[MethodImpl(MethodImplOptions.Synchronized)]
+	public int getAttacks(){
 		return thisAttacks;
 	}
 
+	//[MethodImpl(MethodImplOptions.Synchronized)]
 	public bool takeAction(int cost){
 
 		Debug.Log ("Taking Action");
@@ -65,6 +74,7 @@ public class BattleActions {
 		}
 	}
 
+	//[MethodImpl(MethodImplOptions.Synchronized)]
 	public int getActions(){
 		return thisActions;
 	}

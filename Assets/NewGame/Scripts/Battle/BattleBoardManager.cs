@@ -36,6 +36,8 @@ public class BattleBoardManager : MonoBehaviour {
 	private BattleArmyManager armyManager;
 	private BattleGameManager gameManager;
 
+	private bool playersTurn;
+
 	void Awake(){
 		lastClicked = null;
 		gridPositions = new List <Vector3> ();
@@ -259,10 +261,11 @@ public class BattleBoardManager : MonoBehaviour {
 		}
 	}
 		
-	public void setupScene (BattleArmyManager armyManager, Transform board, Dictionary<Vector2, Transform> dict)
+	public void setupScene (BattleArmyManager armyManager, Transform board, Dictionary<Vector2, Transform> dict, bool playersTurn)
 	{
 		this.armyManager = armyManager;
 		this.dict = dict;
+		this.playersTurn = playersTurn;
 
 		boardHolder = board;
 
@@ -271,9 +274,9 @@ public class BattleBoardManager : MonoBehaviour {
 		//foreach (GameObject army in armyManager.getMyArmy()) {
 		//	LayoutObjectAtRandom (new GameObject[]{army}, 1, 1);
 		//}
-		foreach (GameObject army in armyManager.getTheirArmy()) {
-			LayoutObjectAtRandom (new GameObject[]{army}, 1, 1, false);
-		}
+		//foreach (GameObject army in armyManager.getTheirArmy()) {
+		LayoutObjectAtRandom (new GameObject[]{armyManager.getTheirArmy()[0]}, 1, 1, false);
+		//}
 
 		foreach (Transform tile in boardHolder) {
 			if (tile.tag.Contains ("Unit")) {
@@ -282,7 +285,9 @@ public class BattleBoardManager : MonoBehaviour {
 		}
 	}
 
-	public void activateUnits(bool playersTurn){
+	public void activateUnits(){
+
+		playersTurn = !playersTurn;
 
 		List <Transform> aiUnits = new List<Transform>(); 
 
@@ -310,10 +315,9 @@ public class BattleBoardManager : MonoBehaviour {
 			BattleAI ai = gameObject.AddComponent<BattleAI> ();
 			ai.init (boardHolder, aiUnits);
 			//BattleAI ai = new BattleAI (boardHolder, aiUnits);
-			ai.moveUnits ();
+			ai.moveUnits (activateUnits);
 			//activateUnits (true);
 		}
-		checkConditions ();
 	}
 
 	public Transform getBoard(){

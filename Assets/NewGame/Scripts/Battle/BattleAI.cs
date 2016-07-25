@@ -16,14 +16,6 @@ public class BattleAI : MonoBehaviour {
 	private static aiUnit aiMoving;
 
 	private static List<Transform> destinations; 
-	/*
-	 * Enemy actions:
-	 * 
-	 * 	if player is in attack range of enemy:
-	 * 		attack enemy, then move away from enemy
-	 *  if player is not in range of enemy:
-	 * 		move towards nearest enemy and try to attack
-	*/
 
 	private class aiUnit {
 		
@@ -66,7 +58,11 @@ public class BattleAI : MonoBehaviour {
 		aiMoving = new aiUnit (aiUnits.Count);
 	}
 
-	public void moveUnits(){
+	public delegate void EndTurnCallback();
+	static EndTurnCallback endTurnCallback;
+
+	public void moveUnits(EndTurnCallback callback){
+		endTurnCallback = callback;
 		destinations = new List<Transform> ();
 		foreach(Transform ai in aiUnits){
 			StartCoroutine (aiMove (ai));
@@ -83,15 +79,19 @@ public class BattleAI : MonoBehaviour {
 	 */
 
 	IEnumerator aiMove(Transform ai){
+		aiMoveSubroutine(ai);
+		yield return null;
+	}
+
+	private void aiMoveSubroutine(Transform ai){
+		Debug.Log ("aiMove");
+
 		//The places where we can move
 		List <Transform> moveables = new List<Transform> ();
 		//The places where we can move
 		List <Transform> attackables = new List<Transform> ();
 		//The ai unit properties
 		BattleMeta meta = ai.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
-
-		int atks = meta.getAttacks ();
-		int actions = meta.getActions ();
 
 		//Check to make sure that an enemy isn't already in the ai's range
 		foreach (Transform unit in playersUnits) {
@@ -101,10 +101,8 @@ public class BattleAI : MonoBehaviour {
 			}
 		}
 
-		Debug.Log ("Moving: " + ai.name + " atk: " + atks + " actns: " + actions + " attackables: " + attackables.Count);
-
 		if (attackables.Count > 0) {
-			if (atks > 0) {
+			if (meta.getAttacks () > 0) {
 				Debug.Log ("Attacking...");
 				BattleMeta weakest = null;
 				//Have the ai attack the weakest unit
@@ -114,10 +112,20 @@ public class BattleAI : MonoBehaviour {
 						weakest = unitProp;
 					}
 				}
-				meta.isAttacking (weakest);
-				weakest.isAttacked (meta.attack);
-				yield return null;
-				aiMove(ai);
+				//if (meta.getTurn()) {
+					meta.takeAttacks (1);
+					Debug.Log ("Attacking Player. Atks: " + meta.getAttacks ());
+					meta.isAttacking (weakest);
+					weakest.isAttacked (meta.attack);
+				//}
+
+				Debug.Log ("Attacks: " + meta.getAttacks());
+
+				StartCoroutine(smooth_move (ai, ai.position, 1f));
+				//yield return null;
+				//aiMoveSubroutine (ai);
+				//StartCoroutine(aiMove (ai));
+				//aiMove(ai);
 			} else {
 				Debug.Log ("No Attacks. Ending Turn");
 				//End the turn here, since the enemy could attack the player, just ran out of attacks
@@ -129,7 +137,7 @@ public class BattleAI : MonoBehaviour {
 				meta.setTurn(false);
 			}
 		} else {
-			if (actions > 0) {
+			if (meta.getActions () > 0) {
 				Debug.Log ("Moving");
 				//move ai and repeat function
 				//Get the closest enemy
@@ -143,36 +151,33 @@ public class BattleAI : MonoBehaviour {
 				Transform closest = GetClosest (enemy, moveables);
 				destinations.Add (closest);
 				meta.isMoving ();
-				StartCoroutine (smooth_move (ai, closest.position, 1f));
+				StartCoroutine(smooth_move (ai, closest.position, 1f));
 			} else {
 				Debug.Log ("No Actions ending");
 				//The ai has no actions and no attacks. end turn
 				meta.setTurn(false);
 			}
 		}
-		yield return null;
+		checkEndTurn ();
 	}
 
-	/*public static void pAttack(Transform ai){
-		Debug.Log ("pAttack");
-		BattleMeta meta = ai.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+	private void checkEndTurn(){
+		bool activeUnits = false;
+		int atks, actions;
+		foreach(Transform unit in aiUnits){
+			BattleMeta unitProp = unit.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+			//Check to make sure the enemy is active and the enemy is available in the heirarchy
+			atks = unitProp.getAttacks ();
+			actions = unitProp.getActions ();
 
-		//Race conditions :(
-		int atks = meta.getAttacks ();
-		foreach (Transform tile in playersUnits) {
-			if (Coroutines.checkRange(tile.position, ai.position, meta.range)) {
-				while (atks > 0){
-					Debug.Log (meta.name + " Attacking... " + meta.getAttacks());
-					BattleMeta player = tile.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
-					meta.isAttacking (player);
-					if (!player.isAttacked (meta.attack)) {
-						break;
-					}
-					atks--;
-				}
-			}
+			Debug.Log ("Calc: " + unit.name + " atk: " + atks + " actns: " + actions);
+			Debug.Log ("Unit: " + unit.name + " Active: " + unitProp.getTurn());
+			activeUnits = activeUnits || unitProp.getTurn();
 		}
-	}*/
+		if (!activeUnits) {
+			endTurnCallback ();
+		}
+	}
 
 	public bool hasParent(Transform child){
 		foreach (GameObject children in GameObject.FindGameObjectsWithTag("Unit")) {
@@ -215,22 +220,8 @@ public class BattleAI : MonoBehaviour {
 			yield return null;
 		}
 		Debug.Log ("Done Moving!");
-		aiMove (origin);
+		aiMoveSubroutine (origin);
 	}
-
-	/*public static IEnumerator delay(float delay, BattleBoardManager board)
-	{
-		yield return new WaitForSeconds(delay);
-		endTurn (board);
-	}
-
-	public static void endTurn(BattleBoardManager board){
-		board.activateUnits (true);
-	}*/
-
-	/*public static void moveAI(Transform ai, Vector3 finish){		
-		StartCoroutine (smooth_move (ai, finish, 1f));
-	}*/
 
 	//This function returns the closest unit to the player
 	Transform GetClosest(Transform ai,List<Transform> enemies)

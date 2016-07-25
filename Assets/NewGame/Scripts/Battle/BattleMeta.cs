@@ -6,6 +6,9 @@ using UnityEngine.UI;
 /***
 *	TODO: Make sure that units can only be placed on the orange parts of the board on setup
 ***/
+using System.Runtime.CompilerServices;
+
+
 public class BattleMeta : MonoBehaviour {
 
 	//Game Meta
@@ -72,7 +75,7 @@ public class BattleMeta : MonoBehaviour {
 	}
 
 	public int getAttacks(){
-		return actions.getAtacks ();
+		return actions.getAttacks ();
 	}
 
 	public int getActions(){
@@ -97,7 +100,7 @@ public class BattleMeta : MonoBehaviour {
 	}
 
 	public bool checkAttacks(){
-		return actions.getAtacks () > 0 && getTurn ();
+		return actions.getAttacks () > 0 && getTurn ();
 	}
 
 	private void OnGUI() {
@@ -122,22 +125,33 @@ public class BattleMeta : MonoBehaviour {
 		return true;
 	}
 
-	public void isAttacking(BattleMeta enemy){
-		if (enemy != null && checkAttacks()) {
-			actions.takeAttack(1);
-			if (projectile != null) {
-				GameObject thisProjectile = Instantiate<GameObject> (projectile);
-				thisProjectile.transform.position = transform.position;
-				if (enemy.isActiveAndEnabled) {
-					StartCoroutine (smooth_move (thisProjectile.transform, enemy.gameObject.transform, 1f));
-				} else {
-					thisProjectile.gameObject.SetActive (false);
-				}
-			}
-			animator.SetTrigger ("UnitAttack");
-			StartCoroutine (atk_blur (enemy.gameObject.transform));
-			checkFatigue ();
+	[MethodImpl(MethodImplOptions.Synchronized)]
+	public void takeAttacks(int attacks){
+		actions.takeAttack (attacks);
+	}
+
+	public bool isAttacking(BattleMeta enemy){
+		if (enemy != null && actions.takeAttack(1)) {
+			isAttackingUnrestricted (enemy);
+			return true;
 		}
+		return false;
+	}
+
+	public void isAttackingUnrestricted(BattleMeta enemy){
+		Debug.Log ("Attacking!");
+		if (projectile != null) {
+			GameObject thisProjectile = Instantiate<GameObject> (projectile);
+			thisProjectile.transform.position = transform.position;
+			if (enemy.isActiveAndEnabled) {
+				StartCoroutine (smooth_move (thisProjectile.transform, enemy.gameObject.transform, 1f));
+			} else {
+				thisProjectile.gameObject.SetActive (false);
+			}
+		}
+		animator.SetTrigger ("UnitAttack");
+		StartCoroutine (atk_blur (enemy.gameObject.transform));
+		checkFatigue ();
 	}
 
 	IEnumerator atk_blur(Transform unit){
