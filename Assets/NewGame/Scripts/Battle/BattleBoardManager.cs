@@ -311,7 +311,7 @@ public class BattleBoardManager : MonoBehaviour {
 			ai.init (boardHolder, aiUnits);
 			//BattleAI ai = new BattleAI (boardHolder, aiUnits);
 			ai.moveUnits ();
-			activateUnits (true);
+			//activateUnits (true);
 		}
 		checkConditions ();
 	}

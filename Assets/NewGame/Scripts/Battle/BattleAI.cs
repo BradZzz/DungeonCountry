@@ -69,41 +69,91 @@ public class BattleAI : MonoBehaviour {
 	public void moveUnits(){
 		destinations = new List<Transform> ();
 		foreach(Transform ai in aiUnits){
-			Transform enemy = GetClosest (ai, playersUnits);
-			List <Transform> moveables = new List<Transform> ();
-			BattleMeta meta = ai.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
-			foreach (Transform tile in floor) {
-				//Find the list of tiles the robot can move to
-				if (Coroutines.checkRange(tile.position, ai.position, meta.range) && !hasParent(tile) && !destinations.Contains(tile)) {
-					moveables.Add (tile);
+			StartCoroutine (aiMove (ai));
+		}
+	}
+
+	/*
+	 * Check to see if a unit is within range of the user
+	 * 	Yes:
+	 * 		Attack User
+	 *  No:
+	 * 		Move towards user
+	 *
+	 */
+
+	IEnumerator aiMove(Transform ai){
+		//The places where we can move
+		List <Transform> moveables = new List<Transform> ();
+		//The places where we can move
+		List <Transform> attackables = new List<Transform> ();
+		//The ai unit properties
+		BattleMeta meta = ai.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+
+		int atks = meta.getAttacks ();
+		int actions = meta.getActions ();
+
+		//Check to make sure that an enemy isn't already in the ai's range
+		foreach (Transform unit in playersUnits) {
+			//Find the list of tiles the robot can move to
+			if (unit.gameObject.activeInHierarchy && Coroutines.checkRange(unit.position, ai.position, meta.range)) {
+				attackables.Add (unit);
+			}
+		}
+
+		Debug.Log ("Moving: " + ai.name + " atk: " + atks + " actns: " + actions + " attackables: " + attackables.Count);
+
+		if (attackables.Count > 0) {
+			if (atks > 0) {
+				Debug.Log ("Attacking...");
+				BattleMeta weakest = null;
+				//Have the ai attack the weakest unit
+				foreach (Transform unit in attackables) {
+					BattleMeta unitProp = unit.gameObject.GetComponent (typeof(BattleMeta)) as BattleMeta;
+					if (weakest == null || weakest.getCurrentHP () > unitProp.getCurrentHP ()) {
+						weakest = unitProp;
+					}
 				}
+				meta.isAttacking (weakest);
+				weakest.isAttacked (meta.attack);
+				yield return null;
+				aiMove(ai);
+			} else {
+				Debug.Log ("No Attacks. Ending Turn");
+				//End the turn here, since the enemy could attack the player, just ran out of attacks
+
+				/*
+				 * TODO: Back up enemies here with attack range > 1
+				 */ 
+
+				meta.setTurn(false);
 			}
-
-			//Now we take the tiles and return the tile closest to the player's units
-			Transform closest = GetClosest (enemy, moveables);
-			destinations.Add (closest);
-
-			if (closest == null) {
-				Debug.Log ("closest = null");
+		} else {
+			if (actions > 0) {
+				Debug.Log ("Moving");
+				//move ai and repeat function
+				//Get the closest enemy
+				Transform enemy = GetClosest (ai, playersUnits);
+				foreach (Transform tile in floor) {
+					//Find the list of tiles the robot can move to
+					if (Coroutines.checkRange(tile.position, ai.position, meta.movement) && !hasParent(tile) && !destinations.Contains(tile)) {
+						moveables.Add (tile);
+					}
+				}
+				Transform closest = GetClosest (enemy, moveables);
+				destinations.Add (closest);
+				meta.isMoving ();
+				StartCoroutine (smooth_move (ai, closest.position, 1f));
+			} else {
+				Debug.Log ("No Actions ending");
+				//The ai has no actions and no attacks. end turn
+				meta.setTurn(false);
 			}
-
-			meta.isMoving ();
-			//moveAI (ai, closest.position);
-			Debug.Log ("AI: " + ai.name + " position: " + closest.position);
-			StartCoroutine (smooth_move (ai, closest.position, 1f));
 		}
+		yield return null;
 	}
 
-	public bool hasParent(Transform child){
-		foreach (GameObject children in GameObject.FindGameObjectsWithTag("Unit")) {
-			if (children.transform.position.x == child.position.x && children.transform.position.y == child.position.y) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public static void pAttack(Transform ai){
+	/*public static void pAttack(Transform ai){
 		Debug.Log ("pAttack");
 		BattleMeta meta = ai.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 
@@ -122,9 +172,15 @@ public class BattleAI : MonoBehaviour {
 				}
 			}
 		}
-		/*if (aiMoving.done()) {
-			StartCoroutine (delay (2, boardHolder));
-		}*/
+	}*/
+
+	public bool hasParent(Transform child){
+		foreach (GameObject children in GameObject.FindGameObjectsWithTag("Unit")) {
+			if (children.transform.position.x == child.position.x && children.transform.position.y == child.position.y) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	IEnumerator smooth_move(Transform origin, Vector3 direction, float speed){
@@ -159,7 +215,7 @@ public class BattleAI : MonoBehaviour {
 			yield return null;
 		}
 		Debug.Log ("Done Moving!");
-		pAttack (origin);
+		aiMove (origin);
 	}
 
 	/*public static IEnumerator delay(float delay, BattleBoardManager board)

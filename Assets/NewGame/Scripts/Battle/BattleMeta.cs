@@ -107,6 +107,10 @@ public class BattleMeta : MonoBehaviour {
 		GUI.DrawTexture(rect, tex);
 	}
 
+	public int getCurrentHP(){
+		return currentHP;
+	}
+
 	public bool isAttacked (int attack) {
 		currentHP -= attack;
 		if (currentHP <= 0) {
