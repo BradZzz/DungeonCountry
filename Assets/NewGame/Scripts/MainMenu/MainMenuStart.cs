@@ -20,9 +20,12 @@ public class MainMenuStart : MonoBehaviour {
 		if (game.getGameManager ().getBoardSetup ().isSettingUp ()) {
 			Debug.Log ("BattleSetup");
 
+			//This is for when the units ares
 			for (int i = 1; i <= 6; i++) {
-				GameObject unit1 = GameObject.Find ("Unit" + i);
-				unit1.SetActive (false);
+				GameObject unit = GameObject.Find ("Unit" + i);
+				if (unit != null) {
+					unit.SetActive (false);
+				}
 			}
 
 			Text t = (GameObject.Find ("Button").GetComponentsInChildren<Text> ()) [0];

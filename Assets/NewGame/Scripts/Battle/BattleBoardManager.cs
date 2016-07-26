@@ -275,7 +275,7 @@ public class BattleBoardManager : MonoBehaviour {
 		//	LayoutObjectAtRandom (new GameObject[]{army}, 1, 1);
 		//}
 		foreach (GameObject army in armyManager.getTheirArmy()) {
-			LayoutObjectAtRandom (new GameObject[]{army}, 2, 2, false);
+			LayoutObjectAtRandom (new GameObject[]{army}, 1, 1, false);
 		}
 
 		foreach (Transform tile in boardHolder) {
@@ -306,7 +306,9 @@ public class BattleBoardManager : MonoBehaviour {
 					meta.setTurn (false);
 				} else {
 					meta.startTurn ();
-					aiUnits.Add (unit);
+					if (unit.gameObject.activeInHierarchy) {
+						aiUnits.Add (unit);
+					}
 				}
 			}
 		}

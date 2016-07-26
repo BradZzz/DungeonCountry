@@ -15,6 +15,7 @@ public class BattleAI : MonoBehaviour {
 	private List<Transform> floor; 
 
 	private static List<Transform> destinations; 
+	private int movingPosition;
 
 	public void init(Transform boardHolder, List<Transform> aiUnits){
 
@@ -47,9 +48,9 @@ public class BattleAI : MonoBehaviour {
 	public void moveUnits(EndTurnCallback callback){
 		endTurnCallback = callback;
 		destinations = new List<Transform> ();
-		foreach(Transform ai in aiUnits){
-			StartCoroutine (aiMove (ai));
-		}
+
+		movingPosition = 0;
+		StartCoroutine (aiMove (aiUnits [movingPosition]));
 	}
 
 	/*
@@ -61,13 +62,34 @@ public class BattleAI : MonoBehaviour {
 	 *
 	 */
 
+	public void iterateAIUnit(){
+		movingPosition++;
+		if (movingPosition < aiUnits.Count) {
+			while (!aiUnits [movingPosition].gameObject.activeInHierarchy) {
+				movingPosition++;
+			}
+			Debug.Log ("Moving Position: " + movingPosition);
+			if (movingPosition < aiUnits.Count) {
+				StartCoroutine (aiMove (aiUnits [movingPosition]));
+			} else {
+				endTurnCallback ();
+			}
+		} else {
+			endTurnCallback ();
+		}
+	}
+
 	IEnumerator aiMove(Transform ai){
+		
+		yield return new WaitForSeconds (1);
+
 		aiMoveSubroutine(ai);
+		iterateAIUnit ();
+
 		yield return null;
 	}
 
 	private void aiMoveSubroutine(Transform ai){
-		Debug.Log ("aiMove");
 
 		//The places where we can move
 		List <Transform> moveables = new List<Transform> ();
@@ -86,7 +108,6 @@ public class BattleAI : MonoBehaviour {
 
 		if (attackables.Count > 0) {
 			if (meta.getAttacks() > 0) {
-				Debug.Log ("Attacking...");
 				BattleMeta weakest = null;
 				//Have the ai attack the weakest unit
 				foreach (Transform unit in attackables) {
@@ -96,12 +117,9 @@ public class BattleAI : MonoBehaviour {
 					}
 				}
 				//if (meta.getTurn()) {
-					Debug.Log ("Attacking Player. Atks: " + meta.getAttacks ());
-					meta.isAttacking (weakest);
-					weakest.isAttacked (meta.attack);
+				meta.isAttacking (weakest);
+				weakest.isAttacked (meta.attack);
 				//}
-
-				Debug.Log ("Attacks: " + meta.getAttacks());
 
 				if (meta.getAttacks() > 0) {
 					aiMoveSubroutine (ai);
@@ -114,7 +132,6 @@ public class BattleAI : MonoBehaviour {
 				//aiMove(ai);
 				meta.setTurn(false);
 			} else {
-				Debug.Log ("No Attacks. Ending Turn");
 				//End the turn here, since the enemy could attack the player, just ran out of attacks
 
 				/*
@@ -144,7 +161,6 @@ public class BattleAI : MonoBehaviour {
 					meta.setTurn(false);
 				}
 			} else {
-				Debug.Log ("No Actions ending");
 				//The ai has no actions and no attacks. end turn
 				meta.setTurn(false);
 			}
@@ -160,13 +176,7 @@ public class BattleAI : MonoBehaviour {
 			//Check to make sure the enemy is active and the enemy is available in the heirarchy
 			atks = unitProp.getAttacks ();
 			actions = unitProp.getActions ();
-
-			Debug.Log ("Calc: " + unit.name + " atk: " + atks + " actns: " + actions);
-			Debug.Log ("Unit: " + unit.name + " Active: " + unitProp.getTurn());
 			activeUnits = activeUnits || unitProp.getTurn();
-		}
-		if (!activeUnits) {
-			endTurnCallback ();
 		}
 	}
 
@@ -210,7 +220,6 @@ public class BattleAI : MonoBehaviour {
 			origin.position = position;
 			yield return null;
 		}
-		Debug.Log ("Done Moving!");
 		aiMoveSubroutine (origin);
 	}
 

@@ -73,6 +73,8 @@ public class BattleSetupManager : MonoBehaviour {
 
 			GameObject instance = Instantiate (armyManager.getMyArmy()[position], floor.position, Quaternion.identity) as GameObject;
 			instance.transform.SetParent (boardHolder);
+
+			GameObject.Find ("Unit" + (position + 1)).SetActive(false);
 		}
 		lastClicked = null;
 		overlay = false;
