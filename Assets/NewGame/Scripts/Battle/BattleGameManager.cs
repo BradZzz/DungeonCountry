@@ -91,6 +91,23 @@ public class BattleGameManager : MonoBehaviour {
 		List<GameObject> armies = new List<GameObject>();
 		armies.AddRange (armyScript.getMyArmy ());
 		boardSetup.populateUIPanel(armies);
+
+		populateGeneralPanel (playerGeneral, GameObject.Find ("PlayerGeneral"));
+		populateGeneralPanel (aiGeneral, GameObject.Find ("AIGeneral"));
+	}
+
+	public void populateGeneralPanel(GameObject general, GameObject panel){
+		GameObject img = panel.transform.Find("Image").gameObject;
+
+		Image image = img.GetComponent<Image> ();
+		image.sprite = general.GetComponent<SpriteRenderer> ().sprite;
+
+		BattleGeneralMeta gen = general.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
+
+		GameObject txt = panel.transform.Find("Text").gameObject;
+
+		Text t = txt.GetComponent<Text> ();
+		t.text = gen.name;
 	}
 
 	//Update is called every frame.
