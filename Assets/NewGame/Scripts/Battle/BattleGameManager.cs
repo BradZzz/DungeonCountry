@@ -106,6 +106,8 @@ public class BattleGameManager : MonoBehaviour {
 
 	public void endTurn(){
 		//playersTurn = !playersTurn;
+		hidePanel (playerPanel);
+		hidePanel (enemyPanel);
 		boardScript.activateUnits ();
 	}
 

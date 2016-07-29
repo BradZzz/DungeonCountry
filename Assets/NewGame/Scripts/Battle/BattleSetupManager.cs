@@ -6,6 +6,9 @@ using System;
 
 public class BattleSetupManager : MonoBehaviour {
 
+
+	public GameObject[] outerWallTiles;
+	public GameObject[] innerWallTiles;
 	public GameObject[] floorTiles;
 
 	private Transform boardHolder;
@@ -37,11 +40,18 @@ public class BattleSetupManager : MonoBehaviour {
 		//Instantiate Board and set boardHolder to its transform.
 		boardHolder = new GameObject ("Board").transform;
 
-		for(int x = 0; x < gameManager.getColumns(); x++)
+		for(int x = -1; x <= gameManager.getColumns(); x++)
 		{
-			for(int y = 0; y < gameManager.getRows(); y++)
+			for(int y = -1; y <= gameManager.getRows(); y++)
 			{
 				GameObject toInstantiate = floorTiles[UnityEngine.Random.Range (0,floorTiles.Length)];
+
+				if (y == -1 || x == -1 || y == gameManager.getRows() || x == gameManager.getColumns()) {
+					Debug.Log ("Got here!");
+					toInstantiate = outerWallTiles[UnityEngine.Random.Range (0,outerWallTiles.Length)];
+					Debug.Log ("Instantiating: " + toInstantiate.name);
+				}
+
 				GameObject instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
 				instance.transform.SetParent (boardHolder);
 			}
