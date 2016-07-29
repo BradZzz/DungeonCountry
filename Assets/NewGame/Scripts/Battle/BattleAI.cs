@@ -50,7 +50,11 @@ public class BattleAI : MonoBehaviour {
 		destinations = new List<Transform> ();
 
 		movingPosition = 0;
-		StartCoroutine (aiMove (aiUnits [movingPosition]));
+		if (aiUnits.Count > 0) {
+			StartCoroutine (aiMove (aiUnits [movingPosition]));
+		} else {
+			endTurnCallback ();
+		}
 	}
 
 	/*
@@ -65,10 +69,11 @@ public class BattleAI : MonoBehaviour {
 	public void iterateAIUnit(){
 		movingPosition++;
 		if (movingPosition < aiUnits.Count) {
-			while (!aiUnits [movingPosition].gameObject.activeInHierarchy) {
+			Debug.Log ("Moving Position Before: " + movingPosition);
+			while (movingPosition < aiUnits.Count && !aiUnits [movingPosition].gameObject.activeInHierarchy) {
 				movingPosition++;
 			}
-			Debug.Log ("Moving Position: " + movingPosition);
+			Debug.Log ("Moving Position After: " + movingPosition);
 			if (movingPosition < aiUnits.Count) {
 				StartCoroutine (aiMove (aiUnits [movingPosition]));
 			} else {
@@ -80,8 +85,7 @@ public class BattleAI : MonoBehaviour {
 	}
 
 	IEnumerator aiMove(Transform ai){
-		
-		yield return new WaitForSeconds (1);
+		yield return new WaitForSeconds (0.5f);
 
 		aiMoveSubroutine(ai);
 		iterateAIUnit ();
@@ -124,12 +128,6 @@ public class BattleAI : MonoBehaviour {
 				if (meta.getAttacks() > 0) {
 					aiMoveSubroutine (ai);
 				}
-
-				//StartCoroutine(smooth_move (ai, ai.position, 1f));
-				//yield return null;
-				//aiMoveSubroutine (ai);
-				//StartCoroutine(aiMove (ai));
-				//aiMove(ai);
 				meta.setTurn(false);
 			} else {
 				//End the turn here, since the enemy could attack the player, just ran out of attacks
@@ -146,19 +144,47 @@ public class BattleAI : MonoBehaviour {
 				//move ai and repeat function
 				//Get the closest enemy
 				Transform enemy = GetClosest (ai, playersUnits);
-				if (enemy != null) {
-					foreach (Transform tile in floor) {
-						//Find the list of tiles the robot can move to
-						if (Coroutines.checkRange (tile.position, ai.position, meta.movement) && !hasParent (tile) && !destinations.Contains (tile)) {
-							moveables.Add (tile);
-						}
-					}
-					Transform closest = GetClosest (enemy, moveables);
-					destinations.Add (closest);
-					meta.isMoving ();
-					StartCoroutine (smooth_move (ai, closest.position, 1f));
+				//There are not more player units left to fight. end game...
+				if (enemy == null) {
+					endTurnCallback ();
 				} else {
-					meta.setTurn(false);
+					Vector2 ePos = enemy.position;
+					if (enemy != null) {
+						foreach (Transform tile in floor) {
+							//Find the list of tiles the robot can move to
+							if (Coroutines.checkRange (tile.position, ai.position, meta.movement) && !hasParent (tile) && !destinations.Contains (tile)) {
+								//Check to make sure that enemy isn't on top of the current tile
+								moveables.Add (tile);
+							}
+						}
+						Transform closest = GetClosest (enemy, moveables);
+						if (meta.range > 1) {
+							List<Transform> enemyRadius = new List<Transform> ();
+							foreach (Transform tile in floor) {
+								//Find the list of tiles the robot can move to
+								if (Coroutines.checkRange (tile.position, enemy.position, meta.range) && !hasParent (tile) && !destinations.Contains (tile)) {
+									//Check to make sure that enemy isn't on top of the current tile
+									enemyRadius.Add (tile);
+								}
+							}
+							List<Transform> overlap = new List<Transform> ();
+							//So now we have the enemy radius. We need to find if the moveables and the enemyRadius overlap
+							foreach (Transform movePosition in enemyRadius) {
+								if (moveables.Contains (movePosition)) {
+									overlap.Add (movePosition);
+								}
+							}
+							//If they do, we want to take the closest overlap to the ai unit
+							if (overlap.Count > 0) {
+								closest = GetClosest (ai, overlap);
+							}
+						}
+						destinations.Add (closest);
+						meta.isMoving ();
+						StartCoroutine (smooth_move (ai, closest.position, 1f));
+					} else {
+						meta.setTurn (false);
+					} 
 				}
 			} else {
 				//The ai has no actions and no attacks. end turn

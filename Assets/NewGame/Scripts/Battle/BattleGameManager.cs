@@ -2,6 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System;
+
+/*
+ * TODO:
+ * Move board with drag
+ * Zoom in and out with keys
+ * Add a better check in each instance for enemy unit and player unit
+ * 
+ */ 
 
 public class BattleGameManager : MonoBehaviour {
 
@@ -16,7 +25,7 @@ public class BattleGameManager : MonoBehaviour {
 	private BattleBoardManager boardScript;
 	private BattleArmyManager armyScript;
 	private Transform lastHitObj;
-	private GameObject levelImage;
+	private GameObject levelImage, playerPanel, enemyPanel;
 	private Text levelText;
 
 	//private bool playersTurn;
@@ -42,6 +51,13 @@ public class BattleGameManager : MonoBehaviour {
 	{
 		levelImage = GameObject.Find("oImage");
 		levelText = GameObject.Find("oText").GetComponent<Text>();
+
+		playerPanel = GameObject.Find("PlayerPanel");
+		enemyPanel = GameObject.Find("EnemyPanel");
+
+		hidePanel (playerPanel);
+		hidePanel (enemyPanel);
+
 		levelImage.SetActive (false);
 		//Give the scene and the battle units to the board script
 		armyScript = new BattleArmyManager(battleUnits);
@@ -93,6 +109,14 @@ public class BattleGameManager : MonoBehaviour {
 		boardScript.activateUnits ();
 	}
 
+	public void panelClicked(GameObject unit, BattleGeneralMeta general){
+		int position = Int32.Parse (unit.transform.name.Replace ("Unit", "")) - 1;
+		GameObject instance = armyScript.getMyArmy () [position];
+
+		populatePanel (playerPanel, instance);
+		boardSetup.panelClicked (unit, general);
+	}
+
 	public void isSettingUp(RaycastHit2D [] hit){
 
 		Debug.Log ("isSettingUp");
@@ -115,6 +139,7 @@ public class BattleGameManager : MonoBehaviour {
 			Debug.Log ("Hit");
 			if (boardSetup.getOverlay()) {
 				Debug.Log ("Overlay");
+				hidePanel (playerPanel);
 				boardSetup.setUnit (hitValid);
 			}
 		}
@@ -145,10 +170,22 @@ public class BattleGameManager : MonoBehaviour {
 		if (hitValid != null) {
 
 			BattleMeta enemy = hitValid.transform.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
-
+			if (enemy != null) {
+				if (enemy.getPlayer()) {
+					populatePanel (playerPanel, hitValid.gameObject);
+					hidePanel (enemyPanel);
+				} else {
+					populatePanel (enemyPanel, hitValid.gameObject);
+				}
+			}
+				
 			if (boardScript.charMoving()) {
 				Debug.Log ("Hit2!");
 				boardScript.moveClick (hitValid.transform);
+				if (enemy == null) {
+					hidePanel (playerPanel);
+					hidePanel (enemyPanel);
+				}
 			} else {
 				Debug.Log ("Hit!");
 				boardScript.boardClicked (hitValid.transform);
@@ -156,7 +193,41 @@ public class BattleGameManager : MonoBehaviour {
 		}
 	}
 
+	public void hidePanel (GameObject panel) {
+		panel.SetActive (false);
+	}
+
+
+	public void populatePanel(GameObject panel, GameObject rawUnit){
+		panel.SetActive (true);
+
+		BattleMeta unit = rawUnit.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+
+		foreach (Transform child in panel.transform){
+			if (child.name == "TextLife"){
+				((child.gameObject.GetComponentsInChildren<Text> ()) [0]).text = "" + 1;
+			}
+			if (child.name == "TextAtk"){
+				Debug.Log (unit.attack);
+				((child.gameObject.GetComponentsInChildren<Text> ()) [0]).text = "" + unit.attack;
+			}
+			if (child.name == "TextHealth"){
+				((child.gameObject.GetComponentsInChildren<Text> ()) [0]).text = "" + unit.hp;
+			}
+			if (child.name == "TextMovement"){
+				((child.gameObject.GetComponentsInChildren<Text> ()) [0]).text = "" + unit.movement;
+			}
+			if (child.name == "TextRange"){
+				((child.gameObject.GetComponentsInChildren<Text> ()) [0]).text = "" + unit.range;
+			}
+		}
+	}
+
 	public void gameOver(string lvlText){
+		GameObject button = GameObject.Find ("Button");
+		if (button != null) {
+			button.SetActive (false);
+		}
 		boardScript.UnloadScene ();
 		levelText.text = lvlText;
 		levelImage.SetActive (true);

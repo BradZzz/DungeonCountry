@@ -79,8 +79,7 @@ public class BattleBoardManager : MonoBehaviour {
 		}
 	}
 
-	//This method is for units only
-	void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum, bool active)
+	void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum, bool active, bool playerArmy)
 	{
 		int objectCount = Random.Range (minimum, maximum+1);
 		for(int i = 0; i < objectCount; i++)
@@ -88,12 +87,13 @@ public class BattleBoardManager : MonoBehaviour {
 			Vector3 randomPosition = RandomPosition();
 			GameObject tileChoice = tileArray[Random.Range (0, tileArray.Length)];
 			GameObject instance = Instantiate (tileChoice, randomPosition, Quaternion.identity) as GameObject;
-			instance.transform.SetParent (boardHolder);
-			BattleMeta meta = instance.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+			BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+			meta.setPlayer (playerArmy);
 			meta.setTurn (active);
+			instance.transform.SetParent (boardHolder);
 		}
 	}
-
+		
 	public void boardClicked(Transform clickedObject){
 		Debug.Log ("parent: " + clickedObject.name + ": " + clickedObject.position.x + "-" + clickedObject.position.y);
 		//StartCoroutine (show_actions (clickedObject));
@@ -123,20 +123,21 @@ public class BattleBoardManager : MonoBehaviour {
 						if (Math.Abs(clickedObject.position.x - x) + Math.Abs(clickedObject.position.y - y) <= Mathf.Max(meta.movement, meta.range)) {
 							Vector2 pos = new Vector2 (x, y);
 							Transform child = dict[pos];
+							Debug.Log ("Meta turn: " + meta.getTurn ());
 							if (meta.movement >= meta.range) {
-								if (!hasParent(child) && checkRange(clickedObject.position, pos, meta.movement)) {
+								if (!hasParent(child) && checkRange(clickedObject.position, pos, meta.movement) && meta.getActions() > 0 && meta.getTurn()) {
 									SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
 									sprRend.material.shader = Shader.Find ("Custom/OverlayShaderBlue");
 									movePositions.Add(child); 
 								} else if ((x != clickedObject.position.x || y != clickedObject.position.y) && 
-									(checkRange(clickedObject.position, pos, meta.range))) {
+									(checkRange(clickedObject.position, pos, meta.range)) && meta.getAttacks() > 0 && meta.getTurn()) {
 									SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
 									sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
 									characterPositions.Add(child); 
 								}
 							} else {
 								if ((x != clickedObject.position.x || y != clickedObject.position.y) && 
-									(checkRange(clickedObject.position, pos, meta.range))) {
+									(checkRange(clickedObject.position, pos, meta.range)) && meta.getAttacks() > 0 && meta.getTurn()) {
 									SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
 									sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
 									if (hasParent (child)) {
@@ -145,7 +146,7 @@ public class BattleBoardManager : MonoBehaviour {
 										movePositions.Add(child); 
 									}
 								}
-								if (!hasParent(child) && checkRange(clickedObject.position, pos, meta.movement)) {
+								if (!hasParent(child) && checkRange(clickedObject.position, pos, meta.movement) && meta.getActions() > 0 && meta.getTurn()) {
 									Debug.Log ("Movement: " + meta.movement + " - " + Math.Abs(pos.x - x) + ":" + Math.Abs(pos.y - y));
 									SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
 									sprRend.material.shader = Shader.Find ("Custom/OverlayShaderBlue");
@@ -275,7 +276,7 @@ public class BattleBoardManager : MonoBehaviour {
 		//	LayoutObjectAtRandom (new GameObject[]{army}, 1, 1);
 		//}
 		foreach (GameObject army in armyManager.getTheirArmy()) {
-			LayoutObjectAtRandom (new GameObject[]{army}, 1, 1, false);
+			LayoutObjectAtRandom (new GameObject[]{army}, 1, 1, false, false);
 		}
 
 		foreach (Transform tile in boardHolder) {
@@ -296,13 +297,13 @@ public class BattleBoardManager : MonoBehaviour {
 		foreach(Transform unit in unitPositions){
 			BattleMeta meta = unit.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 			if (playersTurn) {
-				if (meta.affiliation.Equals ("Human")) {
+				if (meta.getPlayer()) {
 					meta.startTurn ();
 				} else {
 					meta.setTurn (false);
 				}
 			} else if (!playersTurn) {
-				if (meta.affiliation.Equals ("Human")) {
+				if (meta.getPlayer()) {
 					meta.setTurn (false);
 				} else {
 					meta.startTurn ();

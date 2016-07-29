@@ -12,6 +12,7 @@ using System.Runtime.CompilerServices;
 public class BattleMeta : MonoBehaviour {
 
 	//Game Meta
+	public int lvl;
 	public int movement;
 	public int range;
 	public int attack;
@@ -31,12 +32,14 @@ public class BattleMeta : MonoBehaviour {
 
 	//Game Sprite Modifiers
 	//Character's health
-	public Texture2D tex;
+	//public Texture2D tex;
 	//Character's ranged attack sprite
 	public GameObject projectile;
 
 	private Animator animator;
 	private SpriteRenderer spriteRenderer;
+	private Color healthColor;
+	private bool isPlayer;
 	//private GameObject thisProjectile;
 
 	void Awake()
@@ -90,6 +93,19 @@ public class BattleMeta : MonoBehaviour {
 		return actions.getActions ();
 	}
 
+	public bool getPlayer(){
+		return isPlayer;
+	}
+
+	public void setPlayer(bool player){
+		this.isPlayer = player;
+		if (getPlayer()) {
+			healthColor = Color.green;
+		} else {
+			healthColor = Color.red;
+		}
+	}
+
 	//Called when the player has verified moving checks (getActions)
 	public void isMoving(){
 		actions.takeAction (1);
@@ -97,7 +113,7 @@ public class BattleMeta : MonoBehaviour {
 	}
 
 	public void checkFatigue(){
-		if(!getTurn() && affiliation.Equals("Human")){
+		if(!getTurn() && getPlayer()){
 			SpriteRenderer sprRend = gameObject.GetComponent<SpriteRenderer> ();
 			applyShadeEnd (sprRend);
 		}
@@ -111,11 +127,44 @@ public class BattleMeta : MonoBehaviour {
 		return actions.getAttacks () > 0 && getTurn ();
 	}
 
+	private static Texture2D _staticRectTexture;
+	private static GUIStyle _staticRectStyle;
+
+	private static Texture2D _staticHealthTexture;
+	private static GUIStyle _staticHealthStyle;
+
 	private void OnGUI() {
 		Vector3 guiPosition = Camera.main.WorldToScreenPoint(transform.position);
 		guiPosition.y = Screen.height - guiPosition.y;
-		Rect rect = new Rect(guiPosition.x - tex.width/2, guiPosition.y - 3f * tex.height, tex.width * (float) currentHP/ (float) hp, tex.height);
-		GUI.DrawTexture(rect, tex);
+
+		//Black Box Base
+		Rect bRect = new Rect(guiPosition.x - 18, guiPosition.y - 38, 
+			30 * (float) hp/ (float) hp + 4, 16);
+
+		if( _staticRectTexture == null ) { _staticRectTexture = new Texture2D( 1, 1 ); }
+        if( _staticRectStyle == null ) { _staticRectStyle = new GUIStyle(); }
+ 
+		_staticRectTexture.SetPixel( 0, 0, Color.black );
+        _staticRectTexture.Apply();
+ 
+        _staticRectStyle.normal.background = _staticRectTexture;
+ 
+		GUI.Box( bRect, GUIContent.none, _staticRectStyle );
+        
+		//Health Overlay
+		Rect hRect = new Rect(guiPosition.x - 16, guiPosition.y - 35, 
+			30 * (float) currentHP/ (float) hp, 10);
+
+		if( _staticHealthTexture == null ){ _staticHealthTexture = new Texture2D( 1, 1 ); }
+		if( _staticHealthStyle == null ) { _staticHealthStyle = new GUIStyle(); }
+
+		_staticHealthTexture.SetPixel( 0, 0, healthColor );
+		_staticHealthTexture.Apply();
+
+		_staticHealthStyle.normal.background = _staticHealthTexture;
+
+		GUI.Box( hRect, GUIContent.none, _staticHealthStyle );
+		  
 	}
 
 	public int getCurrentHP(){
@@ -169,7 +218,7 @@ public class BattleMeta : MonoBehaviour {
 		SpriteRenderer sprRend = unit.gameObject.GetComponent<SpriteRenderer> ();
 		sprRend.material.shader = Shader.Find ("Custom/OverlayShaderHit");
 		yield return new WaitForSeconds(.5f);
-		if (actions.checkTurn () || !affiliation.Equals("Human")) {
+		if (actions.checkTurn () || !getPlayer()) {
 			sprRend.material.shader = Shader.Find ("Sprites/Default");
 		} else {
 			checkFatigue();

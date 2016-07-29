@@ -32,6 +32,8 @@ public class MainMenuStart : MonoBehaviour {
 			t.text = "End Turn";
 
 			game.getGameManager ().startGame ();
+
+			GameObject.Find ("Panel").gameObject.SetActive (false);
 		} else {
 			Debug.Log ("BattleBoard");
 			game.getGameManager ().endTurn ();

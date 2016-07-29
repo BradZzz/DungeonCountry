@@ -47,7 +47,7 @@ public class Panel : MonoBehaviour {
 
 				game = GameObject.Find ("BattleCamera").GetComponent<BattleLoader>();
 
-				board.panelClicked (child.gameObject, board.GetComponent<BattleGeneralMeta>());
+				game.getGameManager ().panelClicked (child.gameObject, board.GetComponent<BattleGeneralMeta>());
 				//GetComponent<BattleGeneralMeta>()
 				//game.getGameManager ().panelClicked (child.gameObject);
 			}
