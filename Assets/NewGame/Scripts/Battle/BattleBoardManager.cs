@@ -47,10 +47,10 @@ public class BattleBoardManager : MonoBehaviour {
 		unitPositions = new List<Transform> ();
 	}
 		
-	void InitialiseList ()
+	void InitialiseList (int tactics)
 	{
 		gridPositions.Clear ();
-		for(int x = gameManager.getColumns() - 3; x < gameManager.getColumns(); x++)
+		for(int x = gameManager.getColumns() - tactics; x < gameManager.getColumns(); x++)
 		{
 			for(int y = 0; y < gameManager.getRows(); y++)
 			{
@@ -262,7 +262,7 @@ public class BattleBoardManager : MonoBehaviour {
 		}
 	}
 		
-	public void setupScene (BattleArmyManager armyManager, Transform board, Dictionary<Vector2, Transform> dict, bool playersTurn)
+	public void setupScene (BattleGeneralMeta general, BattleArmyManager armyManager, Transform board, Dictionary<Vector2, Transform> dict, bool playersTurn)
 	{
 		this.armyManager = armyManager;
 		this.dict = dict;
@@ -270,7 +270,7 @@ public class BattleBoardManager : MonoBehaviour {
 
 		boardHolder = board;
 
-		InitialiseList ();
+		InitialiseList (general.tactics);
 
 		//foreach (GameObject army in armyManager.getMyArmy()) {
 		//	LayoutObjectAtRandom (new GameObject[]{army}, 1, 1);

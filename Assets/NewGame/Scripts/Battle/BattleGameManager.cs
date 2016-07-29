@@ -21,6 +21,9 @@ public class BattleGameManager : MonoBehaviour {
 	public int columns = 10;
 	public int rows = 10;
 
+	public GameObject playerGeneral;
+	public GameObject aiGeneral;
+
 	private BattleSetupManager boardSetup;
 	private BattleBoardManager boardScript;
 	private BattleArmyManager armyScript;
@@ -111,11 +114,13 @@ public class BattleGameManager : MonoBehaviour {
 		boardScript.activateUnits ();
 	}
 
-	public void panelClicked(GameObject unit, BattleGeneralMeta general){
+	public void panelClicked(GameObject unit){
 		int position = Int32.Parse (unit.transform.name.Replace ("Unit", "")) - 1;
 		GameObject instance = armyScript.getMyArmy () [position];
 
 		populatePanel (playerPanel, instance);
+
+		BattleGeneralMeta general = playerGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 		boardSetup.panelClicked (unit, general);
 	}
 
@@ -240,7 +245,10 @@ public class BattleGameManager : MonoBehaviour {
 	public void startGame(){
 		Debug.Log ("BattleGameManager startGame");
 		boardSetup.startGame ();
-		boardScript.setupScene (armyScript, boardSetup.getBoard(), boardSetup.getDict(), true);
+
+		BattleGeneralMeta general = aiGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
+
+		boardScript.setupScene (general, armyScript, boardSetup.getBoard(), boardSetup.getDict(), true);
 	}
 
 	public void returnToMenu()
