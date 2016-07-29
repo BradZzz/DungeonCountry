@@ -4,18 +4,23 @@ using UnityEngine.UI;
 
 public class MainMenuStart : MonoBehaviour {
 
+	GameObject button;
+
 	void Start(){
-		Text t = (GameObject.Find ("Button").GetComponentsInChildren<Text> ())[0];
-		t.text = "Confirm";
+		button = GameObject.Find ("Button");
+		Text t = (button.GetComponentsInChildren<Text> ())[0];
+		t.text = "Start";
 	}
 
 	public void onClick(){
+		Debug.Log ("Clicked!");
 		Application.LoadLevel ("BattleScene");
 	}
 
 	//This is the panel click for the foreground panel
 	//It behaves differently depending on if it was clicked n=1 and n=m times
 	public void onClickPanel(){
+		Debug.Log ("Clicked!");
 		BattleLoader game = GameObject.Find ("BattleCamera").GetComponent<BattleLoader>();
 		if (game.getGameManager ().getBoardSetup ().isSettingUp ()) {
 			Debug.Log ("BattleSetup");
@@ -28,7 +33,8 @@ public class MainMenuStart : MonoBehaviour {
 				}
 			}
 
-			Text t = (GameObject.Find ("Button").GetComponentsInChildren<Text> ()) [0];
+			GameObject button = GameObject.Find ("Button");
+			Text t = (button.GetComponentsInChildren<Text> ()) [0];
 			t.text = "End Turn";
 
 			game.getGameManager ().startGame ();
