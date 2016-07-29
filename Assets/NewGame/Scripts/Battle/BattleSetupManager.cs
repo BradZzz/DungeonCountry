@@ -26,10 +26,13 @@ public class BattleSetupManager : MonoBehaviour {
 	private BattleArmyManager armyManager;
 	private BattleGameManager gameManager;
 
+	private List <Vector3> gridPositions;
+
 	void Awake(){
 		lastClicked = null;
 		dict = new Dictionary<Vector2, Transform>();
 		placeable = new Dictionary<Vector2, Transform>();
+		gridPositions = new List <Vector3> ();
 		settingUp = true;
 		overlay = false;
 		lastClickedUnit = null;
@@ -62,11 +65,45 @@ public class BattleSetupManager : MonoBehaviour {
 		}
 	}
 
+	void InitialiseList (int margin)
+	{
+		gridPositions.Clear ();
+		for(int x = margin; x < gameManager.getColumns() - margin; x++)
+		{
+			for(int y = 0; y < gameManager.getRows(); y++)
+			{
+				gridPositions.Add (new Vector3(x, y, 0f));
+			}
+		}
+	}
+
+	Vector3 RandomPosition ()
+	{
+		int randomIndex = UnityEngine.Random.Range (0, gridPositions.Count);
+		Vector3 randomPosition = gridPositions[randomIndex];
+		gridPositions.RemoveAt (randomIndex);
+		return randomPosition;
+	}
+
+	void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum)
+	{
+		int objectCount = UnityEngine.Random.Range (minimum, maximum+1);
+		for(int i = 0; i < objectCount; i++)
+		{
+			Vector3 randomPosition = RandomPosition();
+			GameObject tileChoice = tileArray[UnityEngine.Random.Range (0, tileArray.Length)];
+			GameObject instance = Instantiate (tileChoice, randomPosition, Quaternion.identity) as GameObject;
+			instance.transform.SetParent (boardHolder);
+		}
+	}
+
 	public void SetupScene (BattleArmyManager armyManager, BattleGameManager gameManager)
 	{
 		this.armyManager = armyManager;
 		this.gameManager = gameManager;
 		BoardSetup ();
+		InitialiseList (4);
+		LayoutObjectAtRandom (innerWallTiles, 6, 12);
 	}
 
 	public bool setUnit(Transform floor){

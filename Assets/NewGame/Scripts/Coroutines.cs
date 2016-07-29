@@ -106,6 +106,20 @@ namespace AssemblyCSharp
 		public static bool checkRange(Vector2 pos, Vector2 sqr, int range){
 			return Math.Abs(pos.x - sqr.x) + Math.Abs(pos.y - sqr.y) <= range;
 		}
+
+		public static bool hasParent(Transform child){
+			foreach (GameObject children in GameObject.FindGameObjectsWithTag("Unit")) {
+				if (children.transform.position.x == child.position.x && children.transform.position.y == child.position.y) {
+					return true;
+				}
+			}
+			foreach (GameObject children in GameObject.FindGameObjectsWithTag("Obstacle")) {
+				if (children.transform.position.x == child.position.x && children.transform.position.y == child.position.y) {
+					return true;
+				}
+			}
+			return false;
+		}
 	}
 }
 

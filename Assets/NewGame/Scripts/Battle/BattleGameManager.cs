@@ -10,7 +10,8 @@ using System;
  * Zoom in and out with keys
  * Add a better check in each instance for enemy unit and player unit
  * 
- */ 
+ */
+using AssemblyCSharp; 
 
 public class BattleGameManager : MonoBehaviour {
 
@@ -152,7 +153,7 @@ public class BattleGameManager : MonoBehaviour {
 
 			BattleMeta enemy = shot.transform.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 
-			if (shot.transform.name.Contains("Floor") && !boardScript.hasParent(shot.transform)){
+			if (shot.transform.name.Contains("Floor") && !Coroutines.hasParent(shot.transform)){
 				hitValid = shot.transform;
 				Debug.Log ("Using: " + hitValid.gameObject.name);
 				break;

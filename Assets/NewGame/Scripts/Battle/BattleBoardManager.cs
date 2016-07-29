@@ -67,18 +67,6 @@ public class BattleBoardManager : MonoBehaviour {
 		return randomPosition;
 	}
 
-	void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum)
-	{
-		int objectCount = Random.Range (minimum, maximum+1);
-		for(int i = 0; i < objectCount; i++)
-		{
-			Vector3 randomPosition = RandomPosition();
-			GameObject tileChoice = tileArray[Random.Range (0, tileArray.Length)];
-			GameObject instance = Instantiate (tileChoice, randomPosition, Quaternion.identity) as GameObject;
-			instance.transform.SetParent (boardHolder);
-		}
-	}
-
 	void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum, bool active, bool playerArmy)
 	{
 		int objectCount = Random.Range (minimum, maximum+1);
@@ -100,15 +88,6 @@ public class BattleBoardManager : MonoBehaviour {
 		show_actions (clickedObject);
 	}
 
-	public bool hasParent(Transform child){
-		foreach (GameObject children in GameObject.FindGameObjectsWithTag("Unit")) {
-			if (children.transform.position.x == child.position.x && children.transform.position.y == child.position.y) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	public bool charMoving(){
 		return lastClicked != null;
 	}
@@ -125,7 +104,7 @@ public class BattleBoardManager : MonoBehaviour {
 							Transform child = dict[pos];
 							Debug.Log ("Meta turn: " + meta.getTurn ());
 							if (meta.movement >= meta.range) {
-								if (!hasParent(child) && checkRange(clickedObject.position, pos, meta.movement) && meta.getActions() > 0 && meta.getTurn()) {
+								if (!Coroutines.hasParent(child) && checkRange(clickedObject.position, pos, meta.movement) && meta.getActions() > 0 && meta.getTurn()) {
 									SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
 									sprRend.material.shader = Shader.Find ("Custom/OverlayShaderBlue");
 									movePositions.Add(child); 
@@ -140,13 +119,13 @@ public class BattleBoardManager : MonoBehaviour {
 									(checkRange(clickedObject.position, pos, meta.range)) && meta.getAttacks() > 0 && meta.getTurn()) {
 									SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
 									sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
-									if (hasParent (child)) {
+									if (Coroutines.hasParent (child)) {
 										characterPositions.Add (child); 
 									} else {
 										movePositions.Add(child); 
 									}
 								}
-								if (!hasParent(child) && checkRange(clickedObject.position, pos, meta.movement) && meta.getActions() > 0 && meta.getTurn()) {
+								if (!Coroutines.hasParent(child) && checkRange(clickedObject.position, pos, meta.movement) && meta.getActions() > 0 && meta.getTurn()) {
 									Debug.Log ("Movement: " + meta.movement + " - " + Math.Abs(pos.x - x) + ":" + Math.Abs(pos.y - y));
 									SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
 									sprRend.material.shader = Shader.Find ("Custom/OverlayShaderBlue");

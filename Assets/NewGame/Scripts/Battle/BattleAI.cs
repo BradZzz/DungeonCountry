@@ -152,7 +152,7 @@ public class BattleAI : MonoBehaviour {
 					if (enemy != null) {
 						foreach (Transform tile in floor) {
 							//Find the list of tiles the robot can move to
-							if (Coroutines.checkRange (tile.position, ai.position, meta.movement) && !hasParent (tile) && !destinations.Contains (tile)) {
+							if (Coroutines.checkRange (tile.position, ai.position, meta.movement) && !Coroutines.hasParent (tile) && !destinations.Contains (tile)) {
 								//Check to make sure that enemy isn't on top of the current tile
 								moveables.Add (tile);
 							}
@@ -162,7 +162,7 @@ public class BattleAI : MonoBehaviour {
 							List<Transform> enemyRadius = new List<Transform> ();
 							foreach (Transform tile in floor) {
 								//Find the list of tiles the robot can move to
-								if (Coroutines.checkRange (tile.position, enemy.position, meta.range) && !hasParent (tile) && !destinations.Contains (tile)) {
+								if (Coroutines.checkRange (tile.position, enemy.position, meta.range) && !Coroutines.hasParent (tile) && !destinations.Contains (tile)) {
 									//Check to make sure that enemy isn't on top of the current tile
 									enemyRadius.Add (tile);
 								}
@@ -204,15 +204,6 @@ public class BattleAI : MonoBehaviour {
 			actions = unitProp.getActions ();
 			activeUnits = activeUnits || unitProp.getTurn();
 		}
-	}
-
-	public bool hasParent(Transform child){
-		foreach (GameObject children in GameObject.FindGameObjectsWithTag("Unit")) {
-			if (children.transform.position.x == child.position.x && children.transform.position.y == child.position.y) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	IEnumerator smooth_move(Transform origin, Vector3 direction, float speed){
