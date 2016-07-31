@@ -91,8 +91,12 @@ public class AdventureBoardManager : MonoBehaviour {
 		Debug.Log ("Clicked: " + click.ToString());
 		if (lastClicked == null) {
 			foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
+				Debug.Log ("UnitPos: " + unit.transform.position.ToString());
 				if (inScene(unit.transform.position)) {
-
+					if  (unit.transform.position == click) {
+						Debug.Log ("Clicked: " + click.ToString());
+						lastClicked = unit.transform;
+					}
 				}
 			}
 		} else {
