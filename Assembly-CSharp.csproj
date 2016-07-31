@@ -53,6 +53,11 @@
      <Compile Include="Assets\Completed\Scripts\Player.cs" />
      <Compile Include="Assets\Completed\Scripts\SoundManager.cs" />
      <Compile Include="Assets\Completed\Scripts\Wall.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Adventure\AdventureBoardManager.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Adventure\AdventureGameManager.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Adventure\AdventureLoader.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Adventure\AdventureMeta.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Adventure\AdventureScenery.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleAI.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleAIUnit.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleActions.cs" />
@@ -67,8 +72,11 @@
      <Compile Include="Assets\NewGame\Scripts\Coroutines.cs" />
      <Compile Include="Assets\NewGame\Scripts\MainMenu\MainMenuStart.cs" />
      <Compile Include="Assets\NewGame\Scripts\UI\Panel.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Utils\Move.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\MovingObject.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Utils\PerlinGenerator.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\TextureScale.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Utils\Zoom.cs" />
      <Compile Include="Assets\Scripts\BoardManager.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />

@@ -7,6 +7,8 @@ public class BattleLoader : MonoBehaviour {
 
 	void Awake ()
 	{
+		Camera cam = GetComponent<Camera>();
+		cam.transparencySortMode = TransparencySortMode.Orthographic;
 		if (BattleGameManager.instance == null) {
 			Debug.Log ("Loading Game Manager");
 			battleGameManager = Instantiate (battleGameManager);

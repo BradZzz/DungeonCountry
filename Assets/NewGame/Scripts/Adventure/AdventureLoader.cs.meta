@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: cb08ebce620624d79a2fb3f5b3b38e5c
+timeCreated: 1469910010
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - battleGameManager: {fileID: 145094, guid: 77f2c327dc4ee415b9e0bb85d134cf40, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

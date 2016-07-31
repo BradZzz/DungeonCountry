@@ -93,6 +93,11 @@ public class BattleSetupManager : MonoBehaviour {
 			Vector3 randomPosition = RandomPosition();
 			GameObject tileChoice = tileArray[UnityEngine.Random.Range (0, tileArray.Length)];
 			GameObject instance = Instantiate (tileChoice, randomPosition, Quaternion.identity) as GameObject;
+			Debug.Log ("Name: " + instance.name);
+			/*if (instance.name.Contains("Rock(Crag)")) {
+				Debug.Log ("Found instance name");
+				instance.transform.position = new Vector3(instance.transform.position.x, instance.transform.position.y + .15f, instance.transform.position.z);
+			}*/
 			instance.transform.SetParent (boardHolder);
 		}
 	}
@@ -103,7 +108,7 @@ public class BattleSetupManager : MonoBehaviour {
 		this.gameManager = gameManager;
 		BoardSetup ();
 		InitialiseList (4);
-		LayoutObjectAtRandom (innerWallTiles, 6, 12);
+		LayoutObjectAtRandom (innerWallTiles, 12, 24);
 	}
 
 	public bool setUnit(Transform floor){

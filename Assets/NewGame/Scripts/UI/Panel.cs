@@ -42,8 +42,6 @@ public class Panel : MonoBehaviour {
 			if (child != null) {
 				selectedChild = child;
 
-				Debug.Log ("Clicked: " + child.name);
-
 				Debug.Log ("Name: " + GameObject.Find ("BattleCamera").name);
 				//Debug.Log ("Name: " + GameObject.Find ("Main Camera").name);
 

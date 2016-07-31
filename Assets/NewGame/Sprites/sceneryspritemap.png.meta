@@ -1,0 +1,1261 @@
+fileFormatVersion: 2
+guid: 5d8b3b09e254446c599a09e6088de584
+timeCreated: 1469833029
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: sceneryspritemap_0
+    21300002: sceneryspritemap_1
+    21300004: sceneryspritemap_2
+    21300006: sceneryspritemap_3
+    21300008: sceneryspritemap_4
+    21300010: sceneryspritemap_5
+    21300012: sceneryspritemap_6
+    21300014: sceneryspritemap_7
+    21300016: sceneryspritemap_8
+    21300018: sceneryspritemap_9
+    21300020: sceneryspritemap_10
+    21300022: sceneryspritemap_11
+    21300024: sceneryspritemap_12
+    21300026: sceneryspritemap_13
+    21300028: sceneryspritemap_14
+    21300030: sceneryspritemap_15
+    21300032: sceneryspritemap_16
+    21300034: sceneryspritemap_17
+    21300036: sceneryspritemap_18
+    21300038: sceneryspritemap_19
+    21300040: sceneryspritemap_20
+    21300042: sceneryspritemap_21
+    21300044: sceneryspritemap_22
+    21300046: sceneryspritemap_23
+    21300048: sceneryspritemap_24
+    21300050: sceneryspritemap_25
+    21300052: sceneryspritemap_26
+    21300054: sceneryspritemap_27
+    21300056: sceneryspritemap_28
+    21300058: sceneryspritemap_29
+    21300060: sceneryspritemap_30
+    21300062: sceneryspritemap_31
+    21300064: sceneryspritemap_32
+    21300066: sceneryspritemap_33
+    21300068: sceneryspritemap_34
+    21300070: sceneryspritemap_35
+    21300072: sceneryspritemap_36
+    21300074: sceneryspritemap_37
+    21300076: sceneryspritemap_38
+    21300078: sceneryspritemap_39
+    21300080: sceneryspritemap_40
+    21300082: sceneryspritemap_41
+    21300084: sceneryspritemap_42
+    21300086: sceneryspritemap_43
+    21300088: sceneryspritemap_44
+    21300090: sceneryspritemap_45
+    21300092: sceneryspritemap_46
+    21300094: sceneryspritemap_47
+    21300096: sceneryspritemap_48
+    21300098: sceneryspritemap_49
+    21300100: sceneryspritemap_50
+    21300102: sceneryspritemap_51
+    21300104: sceneryspritemap_52
+    21300106: sceneryspritemap_53
+    21300108: sceneryspritemap_54
+    21300110: sceneryspritemap_55
+    21300112: sceneryspritemap_56
+    21300114: sceneryspritemap_57
+    21300116: sceneryspritemap_58
+    21300118: sceneryspritemap_59
+    21300120: sceneryspritemap_60
+    21300122: sceneryspritemap_61
+    21300124: sceneryspritemap_62
+    21300126: sceneryspritemap_63
+    21300128: sceneryspritemap_64
+    21300130: sceneryspritemap_65
+    21300132: sceneryspritemap_66
+    21300134: sceneryspritemap_67
+    21300136: sceneryspritemap_68
+    21300138: sceneryspritemap_69
+    21300140: sceneryspritemap_70
+    21300142: sceneryspritemap_71
+    21300144: sceneryspritemap_72
+    21300146: sceneryspritemap_73
+    21300148: sceneryspritemap_74
+    21300150: sceneryspritemap_75
+    21300152: sceneryspritemap_76
+    21300154: sceneryspritemap_77
+    21300156: sceneryspritemap_78
+    21300158: sceneryspritemap_79
+    21300160: sceneryspritemap_80
+    21300162: sceneryspritemap_81
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 5
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: sceneryspritemap_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 417
+        width: 78
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 47.5}
+        - {x: -39, y: 24.5}
+        - {x: -39, y: -23.5}
+        - {x: -30, y: -47.5}
+        - {x: 33, y: -47.5}
+        - {x: 39, y: -43.5}
+        - {x: 39, y: 30.5}
+        - {x: 32, y: 47.5}
+    - name: sceneryspritemap_1
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 454
+        width: 54
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23, y: 20}
+        - {x: -27, y: 16}
+        - {x: -27, y: -20}
+        - {x: 19, y: -20}
+        - {x: 27, y: -7}
+        - {x: 27, y: 11}
+        - {x: 10, y: 20}
+    - name: sceneryspritemap_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 384
+        width: 62
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 15, y: -36.5}
+        - {x: 26, y: -24.5}
+        - {x: 31, y: -13.5}
+        - {x: 31, y: 35.5}
+        - {x: 20, y: 62.5}
+        - {x: -26, y: 62.5}
+        - {x: -31, y: 39.5}
+        - {x: -31, y: -19.5}
+        - {x: -25, y: -44.5}
+        - {x: -18, y: -62.5}
+        - {x: 15, y: -62.5}
+        - {x: 23, y: -59.5}
+        - {x: 23, y: -45.5}
+        - {x: 20, y: -40.5}
+    - name: sceneryspritemap_3
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 417
+        width: 60
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 13, y: -9}
+        - {x: 22, y: -6}
+        - {x: 28, y: -2}
+        - {x: 30, y: 2}
+        - {x: 30, y: 32}
+        - {x: 10, y: 44}
+        - {x: -19, y: 44}
+        - {x: -29, y: 23}
+        - {x: -29, y: -44}
+        - {x: 12, y: -44}
+        - {x: 30, y: -41}
+        - {x: 30, y: -18}
+        - {x: 21, y: -11}
+      - - {x: -27, y: 34}
+        - {x: -27, y: 37}
+        - {x: -30, y: 38}
+        - {x: -30, y: 33}
+    - name: sceneryspritemap_4
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 417
+        width: 59
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14.5, y: 41}
+        - {x: -29.5, y: 8}
+        - {x: -29.5, y: -38}
+        - {x: -27.5, y: -41}
+        - {x: 24.5, y: -41}
+        - {x: 29.5, y: -37}
+        - {x: 29.5, y: 27}
+        - {x: 16.5, y: 41}
+    - name: sceneryspritemap_5
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 417
+        width: 83
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21.5, y: 44.5}
+        - {x: -23.5, y: 44.5}
+        - {x: -41.5, y: 26.5}
+        - {x: -41.5, y: -40.5}
+        - {x: -40.5, y: -42.5}
+        - {x: -26.5, y: -44.5}
+        - {x: 41.5, y: -44.5}
+        - {x: 41.5, y: 23.5}
+        - {x: 35.5, y: 38.5}
+    - name: sceneryspritemap_6
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 385
+        width: 32
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 63}
+        - {x: -16, y: -63}
+        - {x: 16, y: -63}
+        - {x: 16, y: 63}
+    - name: sceneryspritemap_7
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 485
+        width: 27
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_8
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 448
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_9
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 417
+        width: 30
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 418
+        width: 32
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_11
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 391
+        width: 21
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_13
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 392
+        width: 25
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 385
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_15
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 389
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_16
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 391
+        width: 22
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_17
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 385
+        width: 95
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_18
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 385
+        width: 32
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_19
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 385
+        width: 31
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_20
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 390
+        width: 26
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 30
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_22
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 323
+        width: 55
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17.5, y: 27}
+        - {x: -27.5, y: 11}
+        - {x: -27.5, y: -18}
+        - {x: -16.5, y: -27}
+        - {x: 17.5, y: -27}
+        - {x: 27.5, y: -24}
+        - {x: 27.5, y: 23}
+        - {x: 26.5, y: 27}
+    - name: sceneryspritemap_23
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 320
+        width: 61
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.5, y: 26}
+        - {x: -30.5, y: -26}
+        - {x: 30.5, y: -26}
+        - {x: 30.5, y: 26}
+    - name: sceneryspritemap_24
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 320
+        width: 61
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.5, y: 32}
+        - {x: -30.5, y: -32}
+        - {x: 30.5, y: -32}
+        - {x: 30.5, y: 32}
+    - name: sceneryspritemap_25
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 320
+        width: 60
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29, y: 32}
+        - {x: -30, y: 31}
+        - {x: -30, y: -32}
+        - {x: 30, y: -32}
+        - {x: 30, y: 32}
+    - name: sceneryspritemap_26
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 225
+        width: 128
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 77.5}
+        - {x: -64, y: -77.5}
+        - {x: 48, y: -77.5}
+        - {x: 64, y: -71.5}
+        - {x: 64, y: 48.5}
+        - {x: 53, y: 77.5}
+    - name: sceneryspritemap_27
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 288
+        width: 78
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -39, y: 48}
+        - {x: -39, y: -27}
+        - {x: -35, y: -48}
+        - {x: 31, y: -48}
+        - {x: 39, y: -28}
+        - {x: 39, y: 48}
+    - name: sceneryspritemap_28
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 227
+        width: 61
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14.5, y: -16}
+        - {x: -2.5, y: 18}
+        - {x: -13.5, y: 32}
+        - {x: -23.5, y: 32}
+        - {x: -30.5, y: 10}
+        - {x: -30.5, y: -32}
+        - {x: 30.5, y: -32}
+        - {x: 30.5, y: -10}
+        - {x: 20.5, y: -10}
+    - name: sceneryspritemap_29
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 225
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 13, y: 40}
+        - {x: -15, y: 40}
+        - {x: -23, y: 36}
+        - {x: -32, y: 27}
+        - {x: -32, y: -20}
+        - {x: -29, y: -40}
+        - {x: 22, y: -40}
+        - {x: 32, y: -20}
+        - {x: 32, y: 24}
+        - {x: 28, y: 31}
+    - name: sceneryspritemap_30
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 224
+        width: 64
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26, y: 44}
+        - {x: -32, y: 31}
+        - {x: -32, y: -14}
+        - {x: -13, y: -44}
+        - {x: 25, y: -44}
+        - {x: 32, y: -28}
+        - {x: 32, y: 30}
+        - {x: 23, y: 44}
+    - name: sceneryspritemap_31
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 224
+        width: 73
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.5, y: 47.5}
+        - {x: -36.5, y: 44.5}
+        - {x: -36.5, y: -47.5}
+        - {x: 36.5, y: -47.5}
+        - {x: 36.5, y: 26.5}
+        - {x: 30.5, y: 47.5}
+    - name: sceneryspritemap_32
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 264
+        width: 19
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_33
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 230
+        width: 30
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_34
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 261
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_35
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 275
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_36
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 262
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_37
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 228
+        width: 25
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_38
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 243
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_39
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 234
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_40
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 227
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_41
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 196
+        width: 28
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_42
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 128
+        width: 77
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -38.5, y: 48}
+        - {x: -38.5, y: -33}
+        - {x: -29.5, y: -48}
+        - {x: 31.5, y: -48}
+        - {x: 38.5, y: -35}
+        - {x: 38.5, y: 45}
+        - {x: 35.5, y: 48}
+    - name: sceneryspritemap_43
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 197
+        width: 19
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_44
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 128
+        width: 62
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 48}
+        - {x: -31, y: 20}
+        - {x: -31, y: -48}
+        - {x: 27, y: -48}
+        - {x: 31, y: -41}
+        - {x: 31, y: 8}
+        - {x: 9, y: 48}
+    - name: sceneryspritemap_45
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 128
+        width: 64
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 46}
+        - {x: -32, y: 40}
+        - {x: -32, y: -22}
+        - {x: -27, y: -43}
+        - {x: -18, y: -46}
+        - {x: 30, y: -46}
+        - {x: 32, y: -28}
+        - {x: 32, y: 36}
+        - {x: 22, y: 46}
+    - name: sceneryspritemap_46
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 199
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_47
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 202
+        width: 23
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_48
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 194
+        width: 29
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_49
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 128
+        width: 78
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18, y: 48}
+        - {x: -39, y: 36}
+        - {x: -39, y: -25}
+        - {x: -31, y: -48}
+        - {x: 37, y: -48}
+        - {x: 39, y: -41}
+        - {x: 39, y: 45}
+        - {x: 36, y: 48}
+    - name: sceneryspritemap_50
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 194
+        width: 31
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_51
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 166
+        width: 27
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_52
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 160
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_53
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 131
+        width: 27
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_54
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 32
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 30}
+        - {x: -16, y: 26}
+        - {x: -16, y: -30}
+        - {x: 16, y: -30}
+        - {x: 16, y: 30}
+    - name: sceneryspritemap_55
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 162
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_56
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 132
+        width: 31
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_57
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 133
+        width: 25
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_58
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 132
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_59
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 133
+        width: 30
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_60
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 1
+        width: 121
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -57.5, y: 63.5}
+        - {x: -60.5, y: 49.5}
+        - {x: -60.5, y: -51.5}
+        - {x: -45.5, y: -63.5}
+        - {x: 38.5, y: -63.5}
+        - {x: 60.5, y: -52.5}
+        - {x: 60.5, y: 37.5}
+        - {x: 29.5, y: 63.5}
+    - name: sceneryspritemap_61
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 32
+        width: 77
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 28.5, y: 45.5}
+        - {x: 18.5, y: 47.5}
+        - {x: -31.5, y: 47.5}
+        - {x: -38.5, y: 42.5}
+        - {x: -38.5, y: -29.5}
+        - {x: -19.5, y: -25.5}
+        - {x: -14.5, y: -22.5}
+        - {x: -10.5, y: -21.5}
+        - {x: -28.5, y: -29.5}
+        - {x: -30.5, y: -47.5}
+        - {x: 29.5, y: -47.5}
+        - {x: 31.5, y: -42.5}
+        - {x: 38.5, y: -16.5}
+        - {x: 38.5, y: 22.5}
+    - name: sceneryspritemap_62
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 98
+        width: 30
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_63
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 70
+        width: 31
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_64
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 32
+        width: 82
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40, y: 40}
+        - {x: -41, y: 39}
+        - {x: -41, y: -15}
+        - {x: -32, y: -40}
+        - {x: 28, y: -40}
+        - {x: 41, y: -13}
+        - {x: 41, y: 36}
+        - {x: 29, y: 40}
+    - name: sceneryspritemap_65
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 32
+        width: 64
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32, y: 47.5}
+        - {x: -32, y: -22.5}
+        - {x: -22, y: -40.5}
+        - {x: -17, y: -47.5}
+        - {x: 27, y: -47.5}
+        - {x: 32, y: -41.5}
+        - {x: 32, y: 46.5}
+        - {x: 30, y: 47.5}
+    - name: sceneryspritemap_66
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 64
+        width: 32
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 31.5}
+        - {x: -16, y: 26.5}
+        - {x: -16, y: -31.5}
+        - {x: 14, y: -31.5}
+        - {x: 16, y: -27.5}
+        - {x: 16, y: 30.5}
+        - {x: 14, y: 31.5}
+    - name: sceneryspritemap_67
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_68
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 33
+        width: 33
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_69
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 34
+        width: 25
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_70
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 5
+        width: 57
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18.5, y: 20.5}
+        - {x: -28.5, y: 1.5}
+        - {x: -28.5, y: -20.5}
+        - {x: 28.5, y: -20.5}
+        - {x: 28.5, y: 5.5}
+        - {x: 20.5, y: 20.5}
+    - name: sceneryspritemap_71
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 1
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_72
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 3
+        width: 29
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_73
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 3
+        width: 30
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_74
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 1
+        width: 32
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_75
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 0
+        width: 61
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_76
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 7
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_77
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 15
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_78
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 2
+        width: 32
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_79
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 5
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_80
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 6
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sceneryspritemap_81
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 4
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
