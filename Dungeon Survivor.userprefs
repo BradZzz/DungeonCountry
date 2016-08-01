@@ -1,14 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/NewGame/Scripts/Battle/BattleMeta.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/NewGame/Scripts/Adventure/AdventureBoardManager.cs">
     <Files>
-      <File FileName="Assets/NewGame/Scripts/UI/Panel.cs" Line="24" Column="1" />
-      <File FileName="Assets/NewGame/Scripts/MainMenu/MainMenuStart.cs" Line="17" Column="62" />
-      <File FileName="Assets/NewGame/Scripts/Battle/BattleGameManager.cs" Line="162" Column="33" />
-      <File FileName="Assets/NewGame/Scripts/Battle/BattleActions.cs" Line="21" Column="2" />
-      <File FileName="Assets/NewGame/Scripts/Battle/BattleBoardManager.cs" Line="254" Column="19" />
-      <File FileName="Assets/NewGame/Scripts/Battle/BattleMeta.cs" Line="61" Column="35" />
-      <File FileName="Assets/NewGame/Scripts/Battle/BattleSetupManager.cs" Line="128" Column="1" />
+      <File FileName="Assets/NewGame/Scripts/Battle/BattleGameManager.cs" Line="97" Column="50" />
+      <File FileName="Assets/NewGame/Scripts/Adventure/AdventureGameManager.cs" Line="62" Column="3" />
+      <File FileName="Assets/NewGame/Scripts/Adventure/AdventureBoardManager.cs" Line="85" Column="7" />
+      <File FileName="Assets/NewGame/Scripts/Adventure/AdventureScenery.cs" Line="15" Column="33" />
+      <File FileName="Assets/NewGame/Scripts/Battle/BattleSetupManager.cs" Line="105" Column="57" />
+      <File FileName="Assets/NewGame/Scripts/Adventure/AdventureMeta.cs" Line="4" Column="45" />
+      <File FileName="Assets/NewGame/Scripts/Battle/BattleMeta.cs" Line="40" Column="2" />
+      <File FileName="Assets/NewGame/Scripts/Battle/BattleBoardManager.cs" Line="165" Column="26" />
+      <File FileName="Assets/Scripts/PinchZoom.cs" Line="55" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

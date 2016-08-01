@@ -7,6 +7,7 @@ public class AdventureBoardManager : MonoBehaviour {
 	public GameObject[] outerWallTiles;
 	public GameObject[] innerWallTiles;
 	public GameObject[] floorTiles;
+	public GameObject footsteps;
 
 	private Transform boardHolder;
 	private Transform lastClicked;
@@ -14,9 +15,11 @@ public class AdventureBoardManager : MonoBehaviour {
 	private List<Vector3> gridPositions;
 	protected Dictionary<Vector3, Transform> dict;
 	private Camera cam;
+	private Footsteps steps;
 
 	void Awake(){
 		cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+		steps = footsteps.GetComponent<Footsteps>();
 		gridPositions = new List <Vector3> ();
 		dict = new Dictionary<Vector3, Transform> ();
 	}
@@ -99,9 +102,27 @@ public class AdventureBoardManager : MonoBehaviour {
 					}
 				}
 			}
-		} else {
+		} else if (lastClicked != null && !steps.walking()) {
+			//generateMap(Vector3 startingPos, Vector3 destination, int rows, int columns, List<Vector3> obstacles)
+			List<Vector3> obstacles = new List<Vector3>();
+			foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
+				obstacles.Add (unit.transform.position);
+			}
+
+			List<Vector3> path = steps.generateMap (lastClicked.position, click, gameManager.getRows(), gameManager.getColumns(), obstacles);
+
+			steps.createSteps (boardHolder,path);
+
+			Debug.Log ("Returned: " + path.Count);
+
+			//steps.printList (path);
+
+			//moveAdventurer (click);
+			//lastClicked = null;
+		} else if (lastClicked != null && steps.walking()) {
 			moveAdventurer (click);
 			lastClicked = null;
+			steps.destroySteps();
 		}
 	}
 

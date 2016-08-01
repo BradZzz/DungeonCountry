@@ -69,9 +69,10 @@
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleLoader.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleMeta.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleSetupManager.cs" />
-     <Compile Include="Assets\NewGame\Scripts\Coroutines.cs" />
      <Compile Include="Assets\NewGame\Scripts\MainMenu\MainMenuStart.cs" />
      <Compile Include="Assets\NewGame\Scripts\UI\Panel.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Utils\Coroutines.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Utils\Footsteps.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\Move.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\MovingObject.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\PerlinGenerator.cs" />
