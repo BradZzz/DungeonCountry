@@ -62,7 +62,7 @@ namespace AssemblyCSharp
 			float startime = Time.time;
 			Vector3 start_pos = new Vector3(origin.position.x, origin.position.y, origin.position.z);
 			Vector3 end_pos = direction;
-			while (origin.position != end_pos) { 
+			while (origin.position != end_pos && ((Time.time - startime)*speed) < 1f) { 
 				float move = Mathf.Lerp (0,1, (Time.time - startime) * speed);
 
 				Vector3 position = origin.position;
@@ -107,18 +107,22 @@ namespace AssemblyCSharp
 			return Math.Abs(pos.x - sqr.x) + Math.Abs(pos.y - sqr.y) <= range;
 		}
 
-		public static bool hasParent(Transform child){
+		public static bool hasParentVector3(Vector3 child){
 			foreach (GameObject children in GameObject.FindGameObjectsWithTag("Unit")) {
-				if (children.transform.position.x == child.position.x && children.transform.position.y == child.position.y) {
+				if (children.transform.position.x == child.x && children.transform.position.y == child.y) {
 					return true;
 				}
 			}
 			foreach (GameObject children in GameObject.FindGameObjectsWithTag("Obstacle")) {
-				if (children.transform.position.x == child.position.x && children.transform.position.y == child.position.y) {
+				if (children.transform.position.x == child.x && children.transform.position.y == child.y) {
 					return true;
 				}
 			}
 			return false;
+		}
+
+		public static bool hasParent(Transform child){
+			return hasParentVector3(child.transform.position);
 		}
 
 		public static void ShuffleArray<T>(T[] arr) {

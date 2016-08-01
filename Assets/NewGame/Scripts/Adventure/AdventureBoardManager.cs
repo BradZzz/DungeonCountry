@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using AssemblyCSharp;
 
 public class AdventureBoardManager : MonoBehaviour {
 
 	public GameObject[] outerWallTiles;
 	public GameObject[] innerWallTiles;
+	public GameObject[] outerFloorTiles;
 	public GameObject[] floorTiles;
 	public GameObject footsteps;
 
@@ -35,8 +37,14 @@ public class AdventureBoardManager : MonoBehaviour {
 		{
 			for(int y = -1; y <= gameManager.getRows(); y++)
 			{
-				GameObject toInstantiate = floorTiles[UnityEngine.Random.Range (0,floorTiles.Length)];
 				bool outer = y == -1 || x == -1 || y == gameManager.getRows () || x == gameManager.getColumns ();
+				GameObject toInstantiate;
+				if (outer) {
+					toInstantiate = outerFloorTiles [UnityEngine.Random.Range (0, outerFloorTiles.Length)];
+				} else {
+					toInstantiate = floorTiles [UnityEngine.Random.Range (0, floorTiles.Length)];
+				}
+
 				GameObject instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
 				instance.transform.SetParent (boardHolder);
 
@@ -54,12 +62,13 @@ public class AdventureBoardManager : MonoBehaviour {
 		}
 	}
 
-	public void setupScene (AdventureGameManager gameManager, GameObject general)
+	public void setupScene (AdventureGameManager gameManager, GameObject playerGeneral, GameObject enemyGeneral)
 	{
 		this.gameManager = gameManager;
 
 		BoardSetup ();
-		placeGeneral (general);
+		placeGeneral (playerGeneral);
+		placeGeneral (enemyGeneral);
 	}
 
 	private void placeGeneral (GameObject general)
@@ -104,19 +113,23 @@ public class AdventureBoardManager : MonoBehaviour {
 					}
 				}
 			}
-		} else if (lastClicked != null && !click.Equals(lastClicked.position) && (!steps.walking() || click != lastClick)) {
-			steps.destroySteps();
-			List<Vector3> obstacles = new List<Vector3>();
-			foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
-				obstacles.Add (unit.transform.position);
+		} else if (lastClicked != null) { 
+			if (!Coroutines.hasParentVector3 (click)) {
+				if (!click.Equals (lastClicked.position) && (!steps.walking () || click != lastClick)) {
+					steps.destroySteps ();
+					List<Vector3> obstacles = new List<Vector3> ();
+					foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
+						obstacles.Add (unit.transform.position);
+					}
+					path = steps.generateMap (lastClicked.position, click, gameManager.getRows (), gameManager.getColumns (), obstacles);
+					steps.createSteps (lastClicked.position, boardHolder, path);
+					lastClick = click;
+				} else if (steps.walking () && click == lastClick) {
+					moveAdventurer (lastClicked, path);
+					lastClicked = null;
+					steps.destroySteps ();
+				}
 			}
-			path = steps.generateMap (lastClicked.position, click, gameManager.getRows(), gameManager.getColumns(), obstacles);
-			steps.createSteps (lastClicked.position, boardHolder,path);
-			lastClick = click;
-		} else if (lastClicked != null && steps.walking() && click == lastClick) {
-			moveAdventurer (lastClicked, path);
-			lastClicked = null;
-			steps.destroySteps();
 		}
 	}
 

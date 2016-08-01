@@ -19,7 +19,8 @@ public class AdventureGameManager : MonoBehaviour {
 
 	public int columns = 10;
 	public int rows = 10;
-	public GameObject general;
+	public GameObject playerGeneral;
+	public GameObject enemyGeneral;
 
 	private AdventureBoardManager boardSetup;
 	private int level;
@@ -39,7 +40,7 @@ public class AdventureGameManager : MonoBehaviour {
 	}
 
 	void Start(){
-		boardSetup.setupScene (instance, general);
+		boardSetup.setupScene (instance, playerGeneral, enemyGeneral);
 	}
 
 	public int getColumns() {
