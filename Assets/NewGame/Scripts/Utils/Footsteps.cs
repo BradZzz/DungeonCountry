@@ -29,7 +29,7 @@ public class Footsteps : MonoBehaviour {
 		for (int y = 0; y < rows; y++){
 			for (int x = 0; x < columns; x++){
 				Vector3 check = new Vector3 (x, y, 0);
-				if (startingPos == check || obs.Contains (check)) {
+				if ((startingPos == check || obs.Contains (check)) && !destination.Equals(check)) {
 					map [x,y] = 1;
 				} else {
 					map [x,y] = 0;

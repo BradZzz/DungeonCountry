@@ -114,7 +114,7 @@ public class AdventureBoardManager : MonoBehaviour {
 				}
 			}
 		} else if (lastClicked != null) { 
-			if (!Coroutines.hasParentVector3 (click)) {
+			//if (!Coroutines.hasParentVector3 (click)) {
 				if (!click.Equals (lastClicked.position) && (!steps.walking () || click != lastClick)) {
 					steps.destroySteps ();
 					List<Vector3> obstacles = new List<Vector3> ();
@@ -129,7 +129,7 @@ public class AdventureBoardManager : MonoBehaviour {
 					lastClicked = null;
 					steps.destroySteps ();
 				}
-			}
+			//}
 		}
 	}
 
@@ -139,7 +139,14 @@ public class AdventureBoardManager : MonoBehaviour {
 	}
 
 	public void moveAdventurer(Transform lastClicked, List<Vector3> path) {
+		//Check to make sure the last step isn't an enemy here
+		Vector3 edge  = path [path.Count - 1];
+		if (Coroutines.hasParentVector3 (edge)) {
+			path.Remove (edge);
+		}
+
 		StartCoroutine (step_path (lastClicked, path, 1f));
+		//If the last step is an enemy, we need to fight it here
 	}
 
 	IEnumerator step_path(Transform origin, List<Vector3> path, float speed)
