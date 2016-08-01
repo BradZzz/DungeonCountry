@@ -108,6 +108,7 @@
 'Assets/NewGame/Scripts/Utils/Move.cs'
 'Assets/NewGame/Scripts/Utils/MovingObject.cs'
 'Assets/NewGame/Scripts/Utils/PerlinGenerator.cs'
+'Assets/NewGame/Scripts/Utils/SharedPrefs.cs'
 'Assets/NewGame/Scripts/Utils/TextureScale.cs'
 'Assets/NewGame/Scripts/Utils/Zoom.cs'
 'Assets/Scripts/BoardManager.cs'

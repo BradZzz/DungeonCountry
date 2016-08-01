@@ -14,6 +14,9 @@ public class AdventureLoader : MonoBehaviour {
 			adventureGameManager = Instantiate (adventureGameManager);
 		} else {
 			Debug.Log ("Game Manager already instatiated");
+
+			AdventureGameManager manager = adventureGameManager.GetComponent( typeof(AdventureGameManager) ) as AdventureGameManager;
+			manager.startAgain();
 		}
 	}
 

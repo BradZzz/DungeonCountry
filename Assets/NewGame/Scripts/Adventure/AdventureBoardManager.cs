@@ -5,13 +5,15 @@ using AssemblyCSharp;
 
 public class AdventureBoardManager : MonoBehaviour {
 
+	public static AdventureBoardManager instance = null;
+
 	public GameObject[] outerWallTiles;
 	public GameObject[] innerWallTiles;
 	public GameObject[] outerFloorTiles;
 	public GameObject[] floorTiles;
 	public GameObject footsteps;
 
-	private Transform boardHolder;
+	private static Transform boardHolder;
 	private Transform lastClicked;
 	private Vector3 lastClick;
 	private AdventureGameManager gameManager;
@@ -22,16 +24,26 @@ public class AdventureBoardManager : MonoBehaviour {
 	private List<Vector3> path;
 
 	void Awake(){
+
+		if (instance == null){
+			instance = this;
+		} else if (instance != this) { 
+			Destroy(gameObject);   
+		} 
+		DontDestroyOnLoad(gameObject);
+	}
+
+	void Start(){
 		cam = GameObject.Find("Main Camera").GetComponent<Camera>();
 		steps = footsteps.GetComponent<Footsteps>();
 		gridPositions = new List <Vector3> ();
-		dict = new Dictionary<Vector3, Transform> ();
 	}
 		
 	private void BoardSetup ()
 	{
 		//Instantiate Board and set boardHolder to its transform.
 		boardHolder = new GameObject ("Board").transform;
+		DontDestroyOnLoad (boardHolder);
 
 		for(int x = -1; x <= gameManager.getColumns(); x++)
 		{
@@ -49,26 +61,48 @@ public class AdventureBoardManager : MonoBehaviour {
 				instance.transform.SetParent (boardHolder);
 
 				if (outer) {
-					Debug.Log ("Got here!");
+					//Debug.Log ("Got here!");
 					toInstantiate = outerWallTiles [UnityEngine.Random.Range (0, outerWallTiles.Length)];
 					instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
 					instance.transform.SetParent (boardHolder);
-				} else {
+				} /*else {
 					gridPositions.Add (new Vector3(x,y,0f));
 					Vector3 pos = new Vector3 (x, y, 0f);
 					dict[pos] = instance.transform;
-				}
+				}*/
+			}
+		}
+		formatObjects ();
+	}
+
+	private void formatObjects(){
+		dict = new Dictionary<Vector3, Transform> ();
+		foreach(Transform item in boardHolder) {
+			Vector3 pos = item.position;
+			if (item.name.Contains ("Floor") && pos.x > -1 && pos.y > -1 && pos.x < gameManager.getColumns () && pos.y < gameManager.getRows ()) {
+				gridPositions.Add (pos);
+				dict[pos] = item;
 			}
 		}
 	}
 
 	public void setupScene (AdventureGameManager gameManager, GameObject playerGeneral, GameObject enemyGeneral)
 	{
+
+		Start ();
+
 		this.gameManager = gameManager;
 
-		BoardSetup ();
-		placeGeneral (playerGeneral);
-		placeGeneral (enemyGeneral);
+		if (boardHolder != null) {
+			Debug.Log ("Refreshing board");
+			boardHolder.gameObject.SetActive (true);
+			formatObjects ();
+		} else {
+			Debug.Log ("Creating board");
+			BoardSetup ();
+			placeGeneral (playerGeneral);
+			placeGeneral (enemyGeneral);
+		}
 	}
 
 	private void placeGeneral (GameObject general)
@@ -134,25 +168,46 @@ public class AdventureBoardManager : MonoBehaviour {
 	}
 
 	public bool inScene(Vector3 targetPosition){
-		Vector3 screenPoint = cam.WorldToViewportPoint(targetPosition);
-		return screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+		//Vector3 screenPoint = cam.WorldToViewportPoint(targetPosition);
+		//return screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+
+		return true;
 	}
 
 	public void moveAdventurer(Transform lastClicked, List<Vector3> path) {
 		//Check to make sure the last step isn't an enemy here
+		int prevTotal = path.Count;
+
 		Vector3 edge  = path [path.Count - 1];
-		if (Coroutines.hasParentVector3 (edge)) {
+
+		GameObject enemy = Coroutines.findUnitParent (edge);
+
+		if (enemy != null) {
 			path.Remove (edge);
 		}
 
-		StartCoroutine (step_path (lastClicked, path, 1f));
+		if (prevTotal != path.Count) {
+			SharedPrefs.playerArmy = Instantiate(lastClicked.gameObject, new Vector3(), Quaternion.identity) as GameObject;
+			SharedPrefs.playerArmy.SetActive (false);
+			SharedPrefs.enemyArmy = Instantiate(enemy, new Vector3(), Quaternion.identity) as GameObject;
+			SharedPrefs.enemyArmy.SetActive (false);
+			Debug.Log("Player: " + SharedPrefs.playerArmy.name);
+			Debug.Log("Enemy: " + SharedPrefs.enemyArmy.name);
+		}
+
+		StartCoroutine (step_path (lastClicked, path, 1f, prevTotal != path.Count));
 		//If the last step is an enemy, we need to fight it here
 	}
 
-	IEnumerator step_path(Transform origin, List<Vector3> path, float speed)
+	IEnumerator step_path(Transform origin, List<Vector3> path, float speed, bool battle)
 	{
 		foreach(Vector3 step in path){
 			yield return StartCoroutine( smooth_move(origin, step, speed));
+		}
+		if (battle) {
+			gameManager.gameObject.SetActive (false);
+			boardHolder.gameObject.SetActive (false);
+			Application.LoadLevel ("BattleScene");
 		}
 	}
 

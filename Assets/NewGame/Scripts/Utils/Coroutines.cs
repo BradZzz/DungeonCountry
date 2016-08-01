@@ -125,6 +125,21 @@ namespace AssemblyCSharp
 			return hasParentVector3(child.transform.position);
 		}
 
+		public static GameObject findUnitParent(Vector3 child){
+			foreach (GameObject children in GameObject.FindGameObjectsWithTag("Unit")) {
+				if (children.transform.position.x == child.x && children.transform.position.y == child.y) {
+					return children;
+				}
+			}
+			//This is only for units, not for obstacles
+			/*foreach (GameObject children in GameObject.FindGameObjectsWithTag("Obstacle")) {
+				if (children.transform.position.x == child.x && children.transform.position.y == child.y) {
+					return children;
+				}
+			}*/
+			return null;
+		}
+
 		public static void ShuffleArray<T>(T[] arr) {
 			for (int i = arr.Length - 1; i > 0; i--) {
 				int r = UnityEngine.Random.Range(0, i);

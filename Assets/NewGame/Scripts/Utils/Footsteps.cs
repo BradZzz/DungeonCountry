@@ -42,11 +42,17 @@ public class Footsteps : MonoBehaviour {
 
 		//Debug.Log ("Looking: " + destination.ToString());
 
-		while(paths.Count > 0){
+		while(paths.Count > 0 && paths.Count < 500){
 			step (paths.Dequeue());
 			if (foundVal != null) {
 				break;
 			}
+		}
+
+		if (paths.Count > 490) {
+			Debug.Log ("Warning!!!");
+			Debug.Log ("start: " + startingPos.ToString());
+			Debug.Log ("end: " + destination.ToString());
 		}
 		foundVal.Remove (startingPos);
 		return foundVal;

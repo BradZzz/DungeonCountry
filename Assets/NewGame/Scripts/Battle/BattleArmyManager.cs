@@ -22,7 +22,7 @@ public class BattleArmyManager {
 		foreach (GameObject unit in armyTiles) {
 			BattleMeta meta = unit.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 			if (meta != null) {
-				if (meta.affiliation.Equals ("Human")) {
+				if (meta.getPlayer()) {
 					this.myArmy.Add (unit);
 				} else {
 					this.theirArmy.Add (unit);

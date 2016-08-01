@@ -14,7 +14,7 @@ public class MainMenuStart : MonoBehaviour {
 
 	public void onClick(){
 		Debug.Log ("Clicked!");
-		Application.LoadLevel ("BattleScene");
+		Application.LoadLevel ("AdventureScene");
 	}
 
 	//This is the panel click for the foreground panel

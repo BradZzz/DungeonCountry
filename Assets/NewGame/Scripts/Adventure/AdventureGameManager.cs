@@ -27,20 +27,25 @@ public class AdventureGameManager : MonoBehaviour {
 
 	void Awake()
 	{
+		Debug.Log ("AdventureGameManager Awake");
 		if (instance == null){
 			instance = this;
 		} else if (instance != this) { 
 			Destroy(gameObject);   
 		} 
 		DontDestroyOnLoad(gameObject);
-
+	}
+		
+	void Start(){
+		instance.gameObject.SetActive (true);
 		boardSetup = GetComponent<AdventureBoardManager>();
-
 		level = 1;
+		boardSetup.setupScene (instance, playerGeneral, enemyGeneral);
 	}
 
-	void Start(){
-		boardSetup.setupScene (instance, playerGeneral, enemyGeneral);
+	public void startAgain(){
+		Debug.Log ("Start Again");
+		Start();
 	}
 
 	public int getColumns() {
@@ -54,6 +59,7 @@ public class AdventureGameManager : MonoBehaviour {
 	void Update()
 	{
 		if ( Input.GetMouseButtonDown (0)){ 
+			Debug.Log ("Click");
 			Vector2 ray = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
 			RaycastHit2D [] hit = Physics2D.RaycastAll(ray,Vector2.zero,Mathf.Infinity,Physics2D.DefaultRaycastLayers);
 			if (hit.Length > 0) {

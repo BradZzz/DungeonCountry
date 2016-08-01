@@ -9,6 +9,10 @@ public class BattleGeneralMeta : MonoBehaviour {
 	public string description = "none";
 	public List<GameObject> army;
 
+	void Awake() {
+		DontDestroyOnLoad(this.gameObject);
+	}
+
 	public BattleGeneralMeta(BattleGeneralMeta general){
 		this.tactics = general.tactics;
 		this.army = general.army;

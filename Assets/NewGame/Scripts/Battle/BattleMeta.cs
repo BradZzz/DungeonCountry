@@ -228,9 +228,7 @@ public class BattleMeta : MonoBehaviour {
 	IEnumerator smooth_move(Transform origin, Transform end, float speed){
 		float startime = Time.time;
 		Vector3 start_pos = new Vector3(origin.position.x, origin.position.y, origin.position.z); //Starting position.
-		Vector3 end_pos = end.position; //Ending position.
-		// Debug.Log ("Start: " + start_pos.ToString ());
-		// Debug.Log ("End: " + end_pos.ToString ());
+		Vector3 end_pos = end.position;
 		while (origin.position != end_pos/* && ((Time.time - startime)*speed) < 1f*/) { 
 			float move = Mathf.Lerp (0,1, (Time.time - startime) * speed);
 			Vector3 position = origin.position;

@@ -17,13 +17,16 @@ public class BattleGameManager : MonoBehaviour {
 
 	public float levelStartDelay = 2f;
 	public static BattleGameManager instance = null;
-	public GameObject[] battleUnits;       
+	//public GameObject[] battleUnits;       
 
 	public int columns = 10;
 	public int rows = 10;
 
-	public GameObject playerGeneral;
-	public GameObject aiGeneral;
+	//public GameObject playerGeneral;
+	//public GameObject aiGeneral;
+
+	private GameObject playerGeneral;
+	private GameObject aiGeneral;
 
 	private BattleSetupManager boardSetup;
 	private BattleBoardManager boardScript;
@@ -48,6 +51,18 @@ public class BattleGameManager : MonoBehaviour {
 		boardSetup = GetComponent<BattleSetupManager>();
 		//generalScript = GetComponent<BattleGeneralMeta>();
 		InitGame();
+
+		Debug.Log ("Printing Prefs");
+		//SharedPrefs.printPrefs ();
+		Debug.Log("Player: " + SharedPrefs.playerArmy.name);
+		Debug.Log("Enemy: " + SharedPrefs.enemyArmy.name);
+		playerGeneral = SharedPrefs.playerArmy;
+		//Animator anim = playerGeneral.GetComponent<Animator> ();
+		//Destroy (playerGeneral.GetComponent<Animator> ());
+		//playerGeneral.SetActive (true);
+		aiGeneral = SharedPrefs.enemyArmy;
+		//Destroy (aiGeneral.GetComponent<Animator> ());
+		//aiGeneral.SetActive (true);
 	}
 
 	//Initializes the game for each level.
@@ -64,13 +79,9 @@ public class BattleGameManager : MonoBehaviour {
 
 		levelImage.SetActive (false);
 		//Give the scene and the battle units to the board script
-		armyScript = new BattleArmyManager(battleUnits);
-
-		boardSetup.SetupScene (armyScript, instance);
 		//boardScript.SetupScene(level, armyScript);
 		//Debug.Log ("Dict: " + boardScript.getDict().Count);
 	}
-
 
 	public BattleSetupManager getBoardSetup() {
 		return boardSetup;
@@ -89,6 +100,14 @@ public class BattleGameManager : MonoBehaviour {
 	}
 
 	void Start() {
+		BattleGeneralMeta playGen = playerGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
+		BattleGeneralMeta aiGen = aiGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
+
+		armyScript = new BattleArmyManager(playGen.army.ToArray(), aiGen.army.ToArray());
+
+		boardSetup.SetupScene (armyScript, instance);
+
+		//This puts the player's army into the ui panel
 		List<GameObject> armies = new List<GameObject>();
 		armies.AddRange (armyScript.getMyArmy ());
 		boardSetup.populateUIPanel(armies);
@@ -101,7 +120,7 @@ public class BattleGameManager : MonoBehaviour {
 		GameObject img = panel.transform.Find("Image").gameObject;
 
 		Image image = img.GetComponent<Image> ();
-		image.sprite = general.GetComponent<SpriteRenderer> ().sprite;
+		image.sprite = general.GetComponent<Image> ().sprite;
 
 		BattleGeneralMeta gen = general.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 
@@ -272,6 +291,6 @@ public class BattleGameManager : MonoBehaviour {
 	public void returnToMenu()
 	{
 		Destroy (gameObject);
-		Application.LoadLevel ("MainMenu");
+		Application.LoadLevel ("AdventureScene");
 	}
 }
