@@ -57,10 +57,6 @@ public class Footsteps : MonoBehaviour {
 	}
 
 	public void createSteps(Vector3 start, Transform board, List<Vector3> steps){
-
-		//The base is facing north
-		//look at the last step and return 
-
 		Vector3 rotation;
 		Vector3 last = start;
 

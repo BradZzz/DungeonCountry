@@ -17,6 +17,7 @@ public class AdventureBoardManager : MonoBehaviour {
 	protected Dictionary<Vector3, Transform> dict;
 	private Camera cam;
 	private Footsteps steps;
+	private List<Vector3> path;
 
 	void Awake(){
 		cam = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -105,17 +106,15 @@ public class AdventureBoardManager : MonoBehaviour {
 			}
 		} else if (lastClicked != null && !click.Equals(lastClicked.position) && (!steps.walking() || click != lastClick)) {
 			steps.destroySteps();
-			//generateMap(Vector3 startingPos, Vector3 destination, int rows, int columns, List<Vector3> obstacles)
 			List<Vector3> obstacles = new List<Vector3>();
 			foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
 				obstacles.Add (unit.transform.position);
 			}
-
-			List<Vector3> path = steps.generateMap (lastClicked.position, click, gameManager.getRows(), gameManager.getColumns(), obstacles);
+			path = steps.generateMap (lastClicked.position, click, gameManager.getRows(), gameManager.getColumns(), obstacles);
 			steps.createSteps (lastClicked.position, boardHolder,path);
 			lastClick = click;
 		} else if (lastClicked != null && steps.walking() && click == lastClick) {
-			moveAdventurer (click);
+			moveAdventurer (lastClicked, path);
 			lastClicked = null;
 			steps.destroySteps();
 		}
@@ -126,15 +125,22 @@ public class AdventureBoardManager : MonoBehaviour {
 		return screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
 	}
 
-	public void moveAdventurer(Vector3 click) {
-		StartCoroutine (smooth_move (lastClicked, click, 1f));
+	public void moveAdventurer(Transform lastClicked, List<Vector3> path) {
+		StartCoroutine (step_path (lastClicked, path, 1f));
+	}
+
+	IEnumerator step_path(Transform origin, List<Vector3> path, float speed)
+	{
+		foreach(Vector3 step in path){
+			yield return StartCoroutine( smooth_move(origin, step, speed));
+		}
 	}
 
 	IEnumerator smooth_move(Transform origin, Vector3 direction,float speed){
 		float startime = Time.time;
 		Vector3 start_pos = new Vector3(origin.position.x, origin.position.y, origin.position.z);
 		Vector3 end_pos = direction;
-		while (origin.position != end_pos) { 
+		while (origin.position != end_pos && ((Time.time - startime)*speed) < 1f) { 
 			float move = Mathf.Lerp (0,1, (Time.time - startime) * speed);
 
 			Vector3 position = origin.position;
@@ -162,5 +168,7 @@ public class AdventureBoardManager : MonoBehaviour {
 
 			yield return null;
 		}
+			
+		//yield return null;
 	}
 }
