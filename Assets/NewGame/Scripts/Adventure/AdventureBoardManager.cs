@@ -11,6 +11,7 @@ public class AdventureBoardManager : MonoBehaviour {
 
 	private Transform boardHolder;
 	private Transform lastClicked;
+	private Vector3 lastClick;
 	private AdventureGameManager gameManager;
 	private List<Vector3> gridPositions;
 	protected Dictionary<Vector3, Transform> dict;
@@ -102,7 +103,8 @@ public class AdventureBoardManager : MonoBehaviour {
 					}
 				}
 			}
-		} else if (lastClicked != null && !steps.walking()) {
+		} else if (lastClicked != null && !click.Equals(lastClicked.position) && (!steps.walking() || click != lastClick)) {
+			steps.destroySteps();
 			//generateMap(Vector3 startingPos, Vector3 destination, int rows, int columns, List<Vector3> obstacles)
 			List<Vector3> obstacles = new List<Vector3>();
 			foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
@@ -110,16 +112,9 @@ public class AdventureBoardManager : MonoBehaviour {
 			}
 
 			List<Vector3> path = steps.generateMap (lastClicked.position, click, gameManager.getRows(), gameManager.getColumns(), obstacles);
-
-			steps.createSteps (boardHolder,path);
-
-			Debug.Log ("Returned: " + path.Count);
-
-			//steps.printList (path);
-
-			//moveAdventurer (click);
-			//lastClicked = null;
-		} else if (lastClicked != null && steps.walking()) {
+			steps.createSteps (lastClicked.position, boardHolder,path);
+			lastClick = click;
+		} else if (lastClicked != null && steps.walking() && click == lastClick) {
 			moveAdventurer (click);
 			lastClicked = null;
 			steps.destroySteps();
