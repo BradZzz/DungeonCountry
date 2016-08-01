@@ -86,7 +86,7 @@ public class AdventureBoardManager : MonoBehaviour {
 		}
 	}
 
-	public void setupScene (AdventureGameManager gameManager, GameObject playerGeneral, GameObject enemyGeneral)
+	public void setupScene (AdventureGameManager gameManager, GameObject[] generals)
 	{
 
 		Start ();
@@ -100,8 +100,9 @@ public class AdventureBoardManager : MonoBehaviour {
 		} else {
 			Debug.Log ("Creating board");
 			BoardSetup ();
-			placeGeneral (playerGeneral);
-			placeGeneral (enemyGeneral);
+			foreach (GameObject general in generals) {
+				placeGeneral (general);
+			}
 		}
 	}
 
@@ -151,13 +152,18 @@ public class AdventureBoardManager : MonoBehaviour {
 			//if (!Coroutines.hasParentVector3 (click)) {
 				if (!click.Equals (lastClicked.position) && (!steps.walking () || click != lastClick)) {
 					steps.destroySteps ();
+
+					Debug.Log ("Moving: " + lastClicked.name);
+
 					List<Vector3> obstacles = new List<Vector3> ();
 					foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
 						obstacles.Add (unit.transform.position);
 					}
 					path = steps.generateMap (lastClicked.position, click, gameManager.getRows (), gameManager.getColumns (), obstacles);
-					steps.createSteps (lastClicked.position, boardHolder, path);
-					lastClick = click;
+					if (path != null) {
+						steps.createSteps (lastClicked.position, boardHolder, path);
+						lastClick = click;
+					}
 				} else if (steps.walking () && click == lastClick) {
 					moveAdventurer (lastClicked, path);
 					lastClicked = null;

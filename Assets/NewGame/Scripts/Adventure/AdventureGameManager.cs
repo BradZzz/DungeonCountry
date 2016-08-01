@@ -19,8 +19,9 @@ public class AdventureGameManager : MonoBehaviour {
 
 	public int columns = 10;
 	public int rows = 10;
-	public GameObject playerGeneral;
-	public GameObject enemyGeneral;
+	public GameObject[] generals;
+	//public GameObject playerGeneral;
+	//public GameObject enemyGeneral;
 
 	private AdventureBoardManager boardSetup;
 	private int level;
@@ -40,7 +41,7 @@ public class AdventureGameManager : MonoBehaviour {
 		instance.gameObject.SetActive (true);
 		boardSetup = GetComponent<AdventureBoardManager>();
 		level = 1;
-		boardSetup.setupScene (instance, playerGeneral, enemyGeneral);
+		boardSetup.setupScene (instance, generals);
 	}
 
 	public void startAgain(){

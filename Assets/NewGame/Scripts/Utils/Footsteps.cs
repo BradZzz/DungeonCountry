@@ -42,14 +42,14 @@ public class Footsteps : MonoBehaviour {
 
 		//Debug.Log ("Looking: " + destination.ToString());
 
-		while(paths.Count > 0 && paths.Count < 500){
+		while(paths.Count > 0 && paths.Count < 1000){
 			step (paths.Dequeue());
 			if (foundVal != null) {
 				break;
 			}
 		}
 
-		if (paths.Count > 490) {
+		if (paths.Count > 990) {
 			Debug.Log ("Warning!!!");
 			Debug.Log ("start: " + startingPos.ToString());
 			Debug.Log ("end: " + destination.ToString());
@@ -105,6 +105,7 @@ public class Footsteps : MonoBehaviour {
 			Destroy (tStep);
 		}
 		thisPath.Clear ();
+		foundVal = null;
 	}
 
 	public void printList(List<Vector3> path){

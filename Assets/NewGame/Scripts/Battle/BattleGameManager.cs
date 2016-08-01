@@ -128,6 +128,7 @@ public class BattleGameManager : MonoBehaviour {
 
 		Text t = txt.GetComponent<Text> ();
 		t.text = gen.name;
+		t.resizeTextForBestFit = true;
 	}
 
 	//Update is called every frame.

@@ -163,10 +163,14 @@ public class BattleSetupManager : MonoBehaviour {
 	}
 
 	public void populateUIPanel(List<GameObject> units){
-		for (int i = 1; i <= units.Count; i++) {
+		for (int i = 1; i < 7; i++) {
 			GameObject unit1 = GameObject.Find ("Unit"+i);
-			Image image = unit1.GetComponent<Image> ();
-			image.sprite = units[i-1].GetComponent<SpriteRenderer> ().sprite;
+			if (i <= units.Count) {
+				Image image = unit1.GetComponent<Image> ();
+				image.sprite = units [i - 1].GetComponent<SpriteRenderer> ().sprite;
+			} else {
+				unit1.SetActive (false);
+			}
 		}
 	}
 
