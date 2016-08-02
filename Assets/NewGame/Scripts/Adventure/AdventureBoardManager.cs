@@ -76,12 +76,41 @@ public class AdventureBoardManager : MonoBehaviour {
 	}
 
 	private void formatObjects(){
+
+		Vector3 playerPos = new Vector3(), enemyPos = new Vector3();
+		bool sharedPrefs = SharedPrefs.playerArmy != null && SharedPrefs.enemyArmy != null;
+
+		if (sharedPrefs) {
+			playerPos = SharedPrefs.playerArmy.transform.position;
+			Debug.Log ("Player: " + SharedPrefs.playerArmy.name + "Position: " + enemyPos.ToString ());
+			enemyPos = SharedPrefs.enemyArmy.transform.position;
+			Debug.Log ("Enemy: " + SharedPrefs.enemyArmy.name + "Position: " + enemyPos.ToString ());
+		} else {
+			Debug.Log("** Warning ** Shared prefs invalid");
+		}
+
 		dict = new Dictionary<Vector3, Transform> ();
 		foreach(Transform item in boardHolder) {
 			Vector3 pos = item.position;
 			if (item.name.Contains ("Floor") && pos.x > -1 && pos.y > -1 && pos.x < gameManager.getColumns () && pos.y < gameManager.getRows ()) {
 				gridPositions.Add (pos);
-				dict[pos] = item;
+				dict [pos] = item;
+			} 
+			if (sharedPrefs && item.tag.Equals ("Unit")) {
+				BattleGeneralMeta meta = null;
+				if (item.transform.position.Equals(playerPos)) {
+					//(item.transform.position.Equals(playerPos) || item.transform.position.Equals(enemyPos))
+					meta = SharedPrefs.playerArmy.gameObject.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
+				} else if (item.transform.position.Equals(enemyPos)) {
+					meta = SharedPrefs.enemyArmy.gameObject.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
+				}
+				Debug.Log ("Checking SharedPrefs: " + item.name + " Position: " + item.position);
+
+				if (meta != null && meta.getDefeated ()) {
+					item.gameObject.SetActive (false);
+				} else {
+					Debug.Log ("Meta is null");
+				}
 			}
 		}
 	}
@@ -152,13 +181,16 @@ public class AdventureBoardManager : MonoBehaviour {
 			//if (!Coroutines.hasParentVector3 (click)) {
 				if (!click.Equals (lastClicked.position) && (!steps.walking () || click != lastClick)) {
 					steps.destroySteps ();
-
 					Debug.Log ("Moving: " + lastClicked.name);
-
 					List<Vector3> obstacles = new List<Vector3> ();
 					foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
 						obstacles.Add (unit.transform.position);
 					}
+
+					foreach (Vector3 unit in obstacles) {
+						Debug.Log("Unit Position: " + unit);
+					}
+
 					path = steps.generateMap (lastClicked.position, click, gameManager.getRows (), gameManager.getColumns (), obstacles);
 					if (path != null) {
 						steps.createSteps (lastClicked.position, boardHolder, path);
@@ -189,16 +221,18 @@ public class AdventureBoardManager : MonoBehaviour {
 		GameObject enemy = Coroutines.findUnitParent (edge);
 
 		if (enemy != null) {
-			path.Remove (edge);
-		}
+			Debug.Log ("Enemy is not null!");
 
-		if (prevTotal != path.Count) {
-			SharedPrefs.playerArmy = Instantiate(lastClicked.gameObject, new Vector3(), Quaternion.identity) as GameObject;
+			path.Remove (edge);
+
+			SharedPrefs.playerArmy = Instantiate (lastClicked.gameObject, lastClicked.position, Quaternion.identity) as GameObject;
 			SharedPrefs.playerArmy.SetActive (false);
-			SharedPrefs.enemyArmy = Instantiate(enemy, new Vector3(), Quaternion.identity) as GameObject;
+			SharedPrefs.enemyArmy = Instantiate (enemy, enemy.transform.position, Quaternion.identity) as GameObject;
 			SharedPrefs.enemyArmy.SetActive (false);
-			Debug.Log("Player: " + SharedPrefs.playerArmy.name);
-			Debug.Log("Enemy: " + SharedPrefs.enemyArmy.name);
+			Debug.Log ("Player: " + SharedPrefs.playerArmy.name);
+			Debug.Log ("Enemy: " + SharedPrefs.enemyArmy.name);
+		} else {
+			Debug.Log ("Enemy is null!");
 		}
 
 		StartCoroutine (step_path (lastClicked, path, 1f, prevTotal != path.Count));
@@ -221,7 +255,7 @@ public class AdventureBoardManager : MonoBehaviour {
 		float startime = Time.time;
 		Vector3 start_pos = new Vector3(origin.position.x, origin.position.y, origin.position.z);
 		Vector3 end_pos = direction;
-		while (origin.position != end_pos && ((Time.time - startime)*speed) < 1f) { 
+		while (origin.position != end_pos) { 
 			float move = Mathf.Lerp (0,1, (Time.time - startime) * speed);
 
 			Vector3 position = origin.position;

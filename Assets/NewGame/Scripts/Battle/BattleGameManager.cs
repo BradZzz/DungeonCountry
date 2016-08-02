@@ -268,7 +268,16 @@ public class BattleGameManager : MonoBehaviour {
 		}
 	}
 
-	public void gameOver(string lvlText){
+	public void gameOver(bool won, string lvlText){
+
+		if (won) {
+			BattleGeneralMeta aiGen = aiGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
+			aiGen.setDefeated (true);
+		} else {
+			BattleGeneralMeta playGen = playerGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
+			playGen.setDefeated (true);
+		}
+
 		GameObject button = GameObject.Find ("Button");
 		if (button != null) {
 			button.SetActive (false);

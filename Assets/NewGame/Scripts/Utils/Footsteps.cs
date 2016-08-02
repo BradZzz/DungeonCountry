@@ -25,6 +25,8 @@ public class Footsteps : MonoBehaviour {
 		this.columns = columns;
 		this.rows = rows;
 
+		thisPath.Clear ();
+
 		map = new int[columns,rows];
 		for (int y = 0; y < rows; y++){
 			for (int x = 0; x < columns; x++){
@@ -54,7 +56,9 @@ public class Footsteps : MonoBehaviour {
 			Debug.Log ("start: " + startingPos.ToString());
 			Debug.Log ("end: " + destination.ToString());
 		}
-		foundVal.Remove (startingPos);
+		if (foundVal != null) {
+			foundVal.Remove (startingPos);
+		}
 		return foundVal;
 	}
 

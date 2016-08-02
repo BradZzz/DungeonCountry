@@ -127,6 +127,7 @@ namespace AssemblyCSharp
 
 		public static GameObject findUnitParent(Vector3 child){
 			foreach (GameObject children in GameObject.FindGameObjectsWithTag("Unit")) {
+				Debug.Log ("Unit: " + children.name + " Position: " + children.transform.position.ToString());
 				if (children.transform.position.x == child.x && children.transform.position.y == child.y) {
 					return children;
 				}
