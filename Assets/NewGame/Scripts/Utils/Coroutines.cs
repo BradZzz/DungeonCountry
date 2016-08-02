@@ -121,6 +121,10 @@ namespace AssemblyCSharp
 			return false;
 		}
 
+		public static bool V3Equal(Vector3 a, Vector3 b){
+			return Vector3.SqrMagnitude(a - b) < 0.0001;
+		}
+
 		public static bool hasParent(Transform child){
 			return hasParentVector3(child.transform.position);
 		}
@@ -128,16 +132,16 @@ namespace AssemblyCSharp
 		public static GameObject findUnitParent(Vector3 child){
 			foreach (GameObject children in GameObject.FindGameObjectsWithTag("Unit")) {
 				Debug.Log ("Unit: " + children.name + " Position: " + children.transform.position.ToString());
-				if (children.transform.position.x == child.x && children.transform.position.y == child.y) {
+				if (V3Equal(children.transform.position, child)) {
 					return children;
 				}
 			}
 			//This is only for units, not for obstacles
-			/*foreach (GameObject children in GameObject.FindGameObjectsWithTag("Obstacle")) {
-				if (children.transform.position.x == child.x && children.transform.position.y == child.y) {
+			foreach (GameObject children in GameObject.FindGameObjectsWithTag("Obstacle")) {
+				if (V3Equal(children.transform.position, child)) {
 					return children;
 				}
-			}*/
+			}
 			return null;
 		}
 
@@ -148,6 +152,15 @@ namespace AssemblyCSharp
 				arr[i] = arr[r];
 				arr[r] = tmp;
 			}
+		}
+
+		public static bool containsPoint(List<Vector3> obs, Vector3 point){
+			foreach (Vector3 item in obs) {
+				if (V3Equal(item, point)) {
+					return true;
+				}
+			}
+			return false;
 		}
 	}
 }

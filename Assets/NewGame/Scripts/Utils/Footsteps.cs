@@ -30,8 +30,8 @@ public class Footsteps : MonoBehaviour {
 		map = new int[columns,rows];
 		for (int y = 0; y < rows; y++){
 			for (int x = 0; x < columns; x++){
-				Vector3 check = new Vector3 (x, y, 0);
-				if ((startingPos == check || obs.Contains (check)) && !destination.Equals(check)) {
+				Vector3 check = new Vector3 ((float)x, (float)y, 0);
+				if ((Coroutines.V3Equal(startingPos, check) || Coroutines.containsPoint (obs, check)) && !Coroutines.V3Equal(destination,check)) {
 					map [x,y] = 1;
 				} else {
 					map [x,y] = 0;
@@ -154,10 +154,10 @@ public class Footsteps : MonoBehaviour {
 
 	private void deepCopyPush(Vector3 step, List<Vector3> path, Vector3 translation){
 		Vector3 nextStep = new Vector3 (step.x + translation.x, step.y + translation.y, 0);
-		if (map [(int)nextStep.x,(int)nextStep.y] == 0 && !path.Contains(nextStep)) {
+		if (map [(int)nextStep.x,(int)nextStep.y] == 0 && !Coroutines.containsPoint(path, nextStep)) {
 			List<Vector3> newPath = new List<Vector3> (path);
 			newPath.Add (nextStep);
-			if (nextStep.Equals (destination)) {
+			if (Coroutines.V3Equal(nextStep, destination)) {
 				foundVal = newPath;
 				paths.Clear ();
 			} else {

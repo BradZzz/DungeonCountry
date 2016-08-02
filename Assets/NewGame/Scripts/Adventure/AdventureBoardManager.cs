@@ -11,6 +11,7 @@ public class AdventureBoardManager : MonoBehaviour {
 	public GameObject[] innerWallTiles;
 	public GameObject[] outerFloorTiles;
 	public GameObject[] floorTiles;
+	public GameObject[] bloodTiles;
 	public GameObject footsteps;
 
 	private static Transform boardHolder;
@@ -85,8 +86,6 @@ public class AdventureBoardManager : MonoBehaviour {
 			Debug.Log ("Player: " + SharedPrefs.playerArmy.name + "Position: " + enemyPos.ToString ());
 			enemyPos = SharedPrefs.enemyArmy.transform.position;
 			Debug.Log ("Enemy: " + SharedPrefs.enemyArmy.name + "Position: " + enemyPos.ToString ());
-		} else {
-			Debug.Log("** Warning ** Shared prefs invalid");
 		}
 
 		dict = new Dictionary<Vector3, Transform> ();
@@ -98,16 +97,19 @@ public class AdventureBoardManager : MonoBehaviour {
 			} 
 			if (sharedPrefs && item.tag.Equals ("Unit")) {
 				BattleGeneralMeta meta = null;
-				if (item.transform.position.Equals(playerPos)) {
+				if (item.position.Equals(playerPos)) {
 					//(item.transform.position.Equals(playerPos) || item.transform.position.Equals(enemyPos))
 					meta = SharedPrefs.playerArmy.gameObject.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
-				} else if (item.transform.position.Equals(enemyPos)) {
+				} else if (item.position.Equals(enemyPos)) {
 					meta = SharedPrefs.enemyArmy.gameObject.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 				}
-				Debug.Log ("Checking SharedPrefs: " + item.name + " Position: " + item.position);
-
 				if (meta != null && meta.getDefeated ()) {
 					item.gameObject.SetActive (false);
+
+					//Add blood splatter where hero was killed
+					GameObject tileChoice = bloodTiles[UnityEngine.Random.Range (0, bloodTiles.Length)];
+					GameObject instance = Instantiate (tileChoice, item.position, Quaternion.identity) as GameObject;
+					instance.transform.SetParent (boardHolder);
 				} else {
 					Debug.Log ("Meta is null");
 				}
@@ -129,8 +131,26 @@ public class AdventureBoardManager : MonoBehaviour {
 		} else {
 			Debug.Log ("Creating board");
 			BoardSetup ();
+			placeTerrain ();
 			foreach (GameObject general in generals) {
 				placeGeneral (general);
+			}
+		}
+	}
+
+	private void placeTerrain () {
+		float[,] map = PerlinGenerator.calcNoise (new Vector2 (gameManager.getColumns (), gameManager.getRows ()));
+		Debug.Log (map.ToString ());
+
+		for (int y = 0; y < map.GetLength(1); y++) {
+			for (int x = 0; x < map.GetLength(0); x++) {
+				if (map[x,y] > 0.4) {
+					Vector3 pos = new Vector3 (x,y,0);
+					gridPositions.Remove (pos);
+					GameObject tileChoice = innerWallTiles[UnityEngine.Random.Range (0, innerWallTiles.Length)];
+					GameObject instance = Instantiate (tileChoice, pos, Quaternion.identity) as GameObject;
+					instance.transform.SetParent (boardHolder);
+				}
 			}
 		}
 	}
@@ -169,38 +189,42 @@ public class AdventureBoardManager : MonoBehaviour {
 		Debug.Log ("Clicked: " + click.ToString());
 		if (lastClicked == null) {
 			foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
-				Debug.Log ("UnitPos: " + unit.transform.position.ToString());
-				if (inScene(unit.transform.position)) {
-					if  (unit.transform.position == click) {
+				Debug.Log ("UnitPos: " + unit.transform.position.ToString() + 
+					" Equal clicked: " + Coroutines.V3Equal(unit.transform.position,click));
+				//if (inScene(unit.transform.position)) {
+				if  (Coroutines.V3Equal(unit.transform.position,click)) {
 						Debug.Log ("Clicked: " + click.ToString());
 						lastClicked = unit.transform;
 					}
-				}
+				//}
 			}
 		} else if (lastClicked != null) { 
 			//if (!Coroutines.hasParentVector3 (click)) {
-				if (!click.Equals (lastClicked.position) && (!steps.walking () || click != lastClick)) {
+			if (!Coroutines.V3Equal(click,lastClicked.position) && (!steps.walking () || !Coroutines.V3Equal(click,lastClick))) {
 					steps.destroySteps ();
 					Debug.Log ("Moving: " + lastClicked.name);
 					List<Vector3> obstacles = new List<Vector3> ();
 					foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
+						Debug.Log ("Placing Unit: " + unit.name + " Position: " + unit.transform.position);
 						obstacles.Add (unit.transform.position);
 					}
 
-					foreach (Vector3 unit in obstacles) {
-						Debug.Log("Unit Position: " + unit);
+					foreach (GameObject obs in GameObject.FindGameObjectsWithTag("Obstacle")) {
+						obstacles.Add (obs.transform.position);
 					}
 
 					path = steps.generateMap (lastClicked.position, click, gameManager.getRows (), gameManager.getColumns (), obstacles);
 					if (path != null) {
 						steps.createSteps (lastClicked.position, boardHolder, path);
 						lastClick = click;
+					} else {
+						lastClicked = null;
 					}
-				} else if (steps.walking () && click == lastClick) {
+			} else if (steps.walking () && Coroutines.V3Equal(click,lastClick)) {
 					moveAdventurer (lastClicked, path);
 					lastClicked = null;
 					steps.destroySteps ();
-				}
+			}
 			//}
 		}
 	}
@@ -218,6 +242,9 @@ public class AdventureBoardManager : MonoBehaviour {
 
 		Vector3 edge  = path [path.Count - 1];
 
+		Debug.Log ("Searching for: " + edge.ToString());
+
+		bool attacking = false;
 		GameObject enemy = Coroutines.findUnitParent (edge);
 
 		if (enemy != null) {
@@ -225,17 +252,20 @@ public class AdventureBoardManager : MonoBehaviour {
 
 			path.Remove (edge);
 
-			SharedPrefs.playerArmy = Instantiate (lastClicked.gameObject, lastClicked.position, Quaternion.identity) as GameObject;
-			SharedPrefs.playerArmy.SetActive (false);
-			SharedPrefs.enemyArmy = Instantiate (enemy, enemy.transform.position, Quaternion.identity) as GameObject;
-			SharedPrefs.enemyArmy.SetActive (false);
-			Debug.Log ("Player: " + SharedPrefs.playerArmy.name);
-			Debug.Log ("Enemy: " + SharedPrefs.enemyArmy.name);
+			if (enemy.tag.Equals ("Unit")) {
+				SharedPrefs.playerArmy = Instantiate (lastClicked.gameObject, lastClicked.position, Quaternion.identity) as GameObject;
+				SharedPrefs.playerArmy.SetActive (false);
+				SharedPrefs.enemyArmy = Instantiate (enemy, enemy.transform.position, Quaternion.identity) as GameObject;
+				SharedPrefs.enemyArmy.SetActive (false);
+				Debug.Log ("Player: " + SharedPrefs.playerArmy.name);
+				Debug.Log ("Enemy: " + SharedPrefs.enemyArmy.name);
+				attacking = true;
+			}
 		} else {
 			Debug.Log ("Enemy is null!");
 		}
 
-		StartCoroutine (step_path (lastClicked, path, 1f, prevTotal != path.Count));
+		StartCoroutine (step_path (lastClicked, path, 1f, attacking));
 		//If the last step is an enemy, we need to fight it here
 	}
 
@@ -255,7 +285,7 @@ public class AdventureBoardManager : MonoBehaviour {
 		float startime = Time.time;
 		Vector3 start_pos = new Vector3(origin.position.x, origin.position.y, origin.position.z);
 		Vector3 end_pos = direction;
-		while (origin.position != end_pos) { 
+		while (!Coroutines.V3Equal(origin.position, end_pos)) { 
 			float move = Mathf.Lerp (0,1, (Time.time - startime) * speed);
 
 			Vector3 position = origin.position;
