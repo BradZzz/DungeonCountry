@@ -15,6 +15,7 @@ public class Footsteps : MonoBehaviour {
 	private int columns, rows;
 	private int[,] map;
 	private List<GameObject> thisPath;
+	private int maxCount = 1500;
 
 	void Awake(){
 		thisPath = new List<GameObject> ();
@@ -44,14 +45,14 @@ public class Footsteps : MonoBehaviour {
 
 		//Debug.Log ("Looking: " + destination.ToString());
 
-		while(paths.Count > 0 && paths.Count < 1000){
+		while(paths.Count > 0 && paths.Count < maxCount){
 			step (paths.Dequeue());
 			if (foundVal != null) {
 				break;
 			}
 		}
 
-		if (paths.Count > 990) {
+		if (paths.Count > maxCount - 10) {
 			Debug.Log ("Warning!!!");
 			Debug.Log ("start: " + startingPos.ToString());
 			Debug.Log ("end: " + destination.ToString());

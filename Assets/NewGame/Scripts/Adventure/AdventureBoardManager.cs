@@ -11,6 +11,7 @@ public class AdventureBoardManager : MonoBehaviour {
 	public GameObject[] innerWallTiles;
 	public GameObject[] outerFloorTiles;
 	public GameObject[] floorTiles;
+	public GameObject[] roadTiles;
 	public GameObject[] bloodTiles;
 	public GameObject footsteps;
 
@@ -139,15 +140,27 @@ public class AdventureBoardManager : MonoBehaviour {
 	}
 
 	private void placeTerrain () {
-		float[,] map = PerlinGenerator.calcNoise (new Vector2 (gameManager.getColumns (), gameManager.getRows ()));
+		int[,] map = TerrainGenerator.generateTargetMap (new Vector2 (gameManager.getColumns (), gameManager.getRows ()), 3);
+
+
+		//float[,] map = PerlinGenerator.calcNoise (new Vector2 (gameManager.getColumns (), gameManager.getRows ()));
 		Debug.Log (map.ToString ());
 
 		for (int y = 0; y < map.GetLength(1); y++) {
 			for (int x = 0; x < map.GetLength(0); x++) {
-				if (map[x,y] > 0.4) {
+				//Wall
+				if (map[x,y] == 1) {
 					Vector3 pos = new Vector3 (x,y,0);
 					gridPositions.Remove (pos);
 					GameObject tileChoice = innerWallTiles[UnityEngine.Random.Range (0, innerWallTiles.Length)];
+					GameObject instance = Instantiate (tileChoice, pos, Quaternion.identity) as GameObject;
+					instance.transform.SetParent (boardHolder);
+				}
+				//Road
+				if (map[x,y] == 2) {
+					Vector3 pos = new Vector3 (x,y,0);
+					gridPositions.Remove (pos);
+					GameObject tileChoice = roadTiles[UnityEngine.Random.Range (0, roadTiles.Length)];
 					GameObject instance = Instantiate (tileChoice, pos, Quaternion.identity) as GameObject;
 					instance.transform.SetParent (boardHolder);
 				}

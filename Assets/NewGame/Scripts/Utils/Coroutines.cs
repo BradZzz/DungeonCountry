@@ -154,6 +154,7 @@ namespace AssemblyCSharp
 			}
 		}
 
+		//Vector3 equals and contains both suck ass. need to write them myself
 		public static bool containsPoint(List<Vector3> obs, Vector3 point){
 			foreach (Vector3 item in obs) {
 				if (V3Equal(item, point)) {
