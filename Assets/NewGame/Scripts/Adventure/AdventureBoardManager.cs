@@ -226,13 +226,18 @@ public class AdventureBoardManager : MonoBehaviour {
 						obstacles.Add (new Point3(obs.transform.position));
 					}
 
-					path = steps.generateMap (new Point3(lastClicked.position), new Point3(click), gameManager.getRows (), gameManager.getColumns (), obstacles);
+					//step_generate
+					//StartCoroutine (step_generate(new Point3(lastClicked.position), click, gameManager.getRows (), gameManager.getColumns (), obstacles));
+
+					StartCoroutine (steps.generateMap (new Point3(lastClicked.position), click, gameManager.getRows (), gameManager.getColumns (), obstacles, setPath));
+
+					/*path = steps.generateMap (new Point3(lastClicked.position), new Point3(click), gameManager.getRows (), gameManager.getColumns (), obstacles);
 					if (path != null) {
 						steps.createSteps (new Point3(lastClicked.position), boardHolder, path);
 						lastClick = click;
 					} else {
 						lastClicked = null;
-					}
+					}*/
 			} else if (steps.walking () && click.Equals(lastClick)) {
 					moveAdventurer (lastClicked, path);
 					lastClicked = null;
@@ -282,6 +287,35 @@ public class AdventureBoardManager : MonoBehaviour {
 		//If the last step is an enemy, we need to fight it here
 	}
 
+	public void setPath(List<Point3> path, Point3 destination){
+		this.path = path;
+		if (path != null) {
+			steps.createSteps (new Point3(lastClicked.position), boardHolder, path);
+			lastClick = destination;
+		} else {
+			lastClicked = null;
+		}
+	}
+
+	/*IEnumerator step_generate(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs)
+	{
+		CoroutineWithData cd = new CoroutineWithData(this, steps.generateMap (startingPos, destination, gameManager.getRows (), gameManager.getColumns (), obs) );
+		yield return cd.coroutine;
+		//path = cd.result;
+		Debug.Log("result is " + cd.result);  //  'success' or 'fail'
+
+
+		//yield return StartCoroutine( steps.generateMap (startingPos, destination, gameManager.getRows (), gameManager.getColumns (), obs));
+		//path = steps.getPath ();
+		if (path != null) {
+			steps.createSteps (new Point3(lastClicked.position), boardHolder, path);
+			lastClick = destination;
+		} else {
+			lastClicked = null;
+		}
+		yield return null;
+	}*/
+
 	IEnumerator step_path(Transform origin, List<Point3> path, float speed, bool battle)
 	{
 		foreach(Point3 step in path){
@@ -323,6 +357,10 @@ public class AdventureBoardManager : MonoBehaviour {
 			}
 
 			origin.position = position;
+
+			if (((Time.time - startime)*speed) > 1f) {
+				origin.position = end_pos;
+			}
 
 			yield return null;
 		}

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using AssemblyCSharp;
+using System;
 
 public class Footsteps : MonoBehaviour {
 
@@ -15,13 +16,13 @@ public class Footsteps : MonoBehaviour {
 	private int columns, rows;
 	private int[,] map;
 	private List<GameObject> thisPath;
-	private int maxCount = 1500;
+	private int maxCount = 3500;
 
 	void Awake(){
 		thisPath = new List<GameObject> ();
 	}
 
-	public List<Point3> generateMap(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs){
+	/*public List<Point3> generateMap(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs){
 		this.destination = destination;
 		this.columns = columns;
 		this.rows = rows;
@@ -61,6 +62,55 @@ public class Footsteps : MonoBehaviour {
 			foundVal.Remove (startingPos);
 		}
 		return foundVal;
+	}*/
+
+	public IEnumerator generateMap(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs, Action<List<Point3>, Point3> pathCallback){
+		this.destination = destination;
+		this.columns = columns;
+		this.rows = rows;
+
+		thisPath.Clear ();
+
+		map = new int[columns,rows];
+		for (int y = 0; y < rows; y++){
+			for (int x = 0; x < columns; x++){
+				Point3 check = new Point3 ((float)x, (float)y, 0);
+				if ((check.Equals(startingPos) || Coroutines.containsPoint (obs, check)) && !destination.Equals(check)) {
+					map [x,y] = 1;
+				} else {
+					map [x,y] = 0;
+				}
+			}
+		}
+		foundVal = null;
+		paths = new Queue<List<Point3>>();
+		paths.Enqueue (new List<Point3> (){ startingPos });
+
+		//Debug.Log ("Looking: " + destination.ToString());
+
+		while(paths.Count > 0 && paths.Count < maxCount){
+			step (paths.Dequeue());
+			if (foundVal != null) {
+				break;
+			}
+		}
+
+		if (paths.Count > maxCount - 10) {
+			Debug.Log ("Warning!!!");
+			Debug.Log ("start: " + startingPos.ToString());
+			Debug.Log ("end: " + destination.ToString());
+		}
+		if (foundVal != null) {
+			foundVal.Remove (startingPos);
+		}
+
+		pathCallback (foundVal, destination);
+
+		yield return foundVal;
+	}
+
+	public List<Point3> getPath(){
+		return foundVal;
 	}
 
 	public bool walking (){
@@ -82,7 +132,7 @@ public class Footsteps : MonoBehaviour {
 			last = tStep;
 
 			SpriteRenderer sprite = instance.GetComponent<SpriteRenderer> ();
-			Debug.Log ("Rotating: " + rotation.ToString());
+			//Debug.Log ("Rotating: " + rotation.ToString());
 			sprite.transform.Rotate (rotation.asVector3());
 			//sprite.transform.Rotate (new Point3(0, 0, 90));
 			thisPath.Add (instance);
@@ -168,8 +218,6 @@ public class Footsteps : MonoBehaviour {
 			} else {
 				paths.Enqueue (newPath);
 			}
-		} else {
-			Debug.Log ("Pos: " + nextStep.ToString() + " val: " + map [nextStep.x, nextStep.y] + " contains: " + contains);
 		}
 	}
 
