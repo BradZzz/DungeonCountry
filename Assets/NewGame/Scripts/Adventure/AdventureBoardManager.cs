@@ -229,7 +229,7 @@ public class AdventureBoardManager : MonoBehaviour {
 					//step_generate
 					//StartCoroutine (step_generate(new Point3(lastClicked.position), click, gameManager.getRows (), gameManager.getColumns (), obstacles));
 
-					StartCoroutine (steps.generateMap (new Point3(lastClicked.position), click, gameManager.getRows (), gameManager.getColumns (), obstacles, setPath));
+					StartCoroutine (steps.generateMapv2 (new Point3(lastClicked.position), click, gameManager.getRows (), gameManager.getColumns (), obstacles, setPath));
 
 					/*path = steps.generateMap (new Point3(lastClicked.position), new Point3(click), gameManager.getRows (), gameManager.getColumns (), obstacles);
 					if (path != null) {
