@@ -64,7 +64,7 @@ public class AdventureGameManager : MonoBehaviour {
 			Vector2 ray = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
 			RaycastHit2D [] hit = Physics2D.RaycastAll(ray,Vector2.zero,Mathf.Infinity,Physics2D.DefaultRaycastLayers);
 			if (hit.Length > 0) {
-				boardSetup.clicked (hit [0].transform.position);
+				boardSetup.clicked (new Point3(hit [0].transform.position));
 			}
 		}
 	}

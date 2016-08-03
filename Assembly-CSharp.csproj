@@ -76,6 +76,7 @@
      <Compile Include="Assets\NewGame\Scripts\Utils\Move.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\MovingObject.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\PerlinGenerator.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Utils\Point3.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\SharedPrefs.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\TerrainGenerator.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\TextureScale.cs" />

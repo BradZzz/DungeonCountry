@@ -17,13 +17,13 @@ public class AdventureBoardManager : MonoBehaviour {
 
 	private static Transform boardHolder;
 	private Transform lastClicked;
-	private Vector3 lastClick;
+	private Point3 lastClick;
 	private AdventureGameManager gameManager;
-	private List<Vector3> gridPositions;
-	protected Dictionary<Vector3, Transform> dict;
+	private List<Point3> gridPositions;
+	protected Dictionary<Point3, Transform> dict;
 	private Camera cam;
 	private Footsteps steps;
-	private List<Vector3> path;
+	private List<Point3> path;
 
 	void Awake(){
 
@@ -38,7 +38,7 @@ public class AdventureBoardManager : MonoBehaviour {
 	void Start(){
 		cam = GameObject.Find("Main Camera").GetComponent<Camera>();
 		steps = footsteps.GetComponent<Footsteps>();
-		gridPositions = new List <Vector3> ();
+		gridPositions = new List <Point3> ();
 	}
 		
 	private void BoardSetup ()
@@ -68,8 +68,8 @@ public class AdventureBoardManager : MonoBehaviour {
 					instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
 					instance.transform.SetParent (boardHolder);
 				} /*else {
-					gridPositions.Add (new Vector3(x,y,0f));
-					Vector3 pos = new Vector3 (x, y, 0f);
+					gridPositions.Add (new Point3(x,y,0f));
+					Point3 pos = new Point3 (x, y, 0f);
 					dict[pos] = instance.transform;
 				}*/
 			}
@@ -79,19 +79,19 @@ public class AdventureBoardManager : MonoBehaviour {
 
 	private void formatObjects(){
 
-		Vector3 playerPos = new Vector3(), enemyPos = new Vector3();
+		Point3 playerPos = new Point3(), enemyPos = new Point3();
 		bool sharedPrefs = SharedPrefs.playerArmy != null && SharedPrefs.enemyArmy != null;
 
 		if (sharedPrefs) {
-			playerPos = SharedPrefs.playerArmy.transform.position;
+			playerPos = new Point3(SharedPrefs.playerArmy.transform.position);
 			Debug.Log ("Player: " + SharedPrefs.playerArmy.name + "Position: " + enemyPos.ToString ());
-			enemyPos = SharedPrefs.enemyArmy.transform.position;
+			enemyPos = new Point3(SharedPrefs.enemyArmy.transform.position);
 			Debug.Log ("Enemy: " + SharedPrefs.enemyArmy.name + "Position: " + enemyPos.ToString ());
 		}
 
-		dict = new Dictionary<Vector3, Transform> ();
+		dict = new Dictionary<Point3, Transform> ();
 		foreach(Transform item in boardHolder) {
-			Vector3 pos = item.position;
+			Point3 pos = new Point3(item.position);
 			if (item.name.Contains ("Floor") && pos.x > -1 && pos.y > -1 && pos.x < gameManager.getColumns () && pos.y < gameManager.getRows ()) {
 				gridPositions.Add (pos);
 				dict [pos] = item;
@@ -150,18 +150,18 @@ public class AdventureBoardManager : MonoBehaviour {
 			for (int x = 0; x < map.GetLength(0); x++) {
 				//Wall
 				if (map[x,y] == 1) {
-					Vector3 pos = new Vector3 (x,y,0);
+					Point3 pos = new Point3 (x,y,0);
 					gridPositions.Remove (pos);
 					GameObject tileChoice = innerWallTiles[UnityEngine.Random.Range (0, innerWallTiles.Length)];
-					GameObject instance = Instantiate (tileChoice, pos, Quaternion.identity) as GameObject;
+					GameObject instance = Instantiate (tileChoice, pos.asVector3(), Quaternion.identity) as GameObject;
 					instance.transform.SetParent (boardHolder);
 				}
 				//Road
 				if (map[x,y] == 2) {
-					Vector3 pos = new Vector3 (x,y,0);
+					Point3 pos = new Point3 (x,y,0);
 					gridPositions.Remove (pos);
 					GameObject tileChoice = roadTiles[UnityEngine.Random.Range (0, roadTiles.Length)];
-					GameObject instance = Instantiate (tileChoice, pos, Quaternion.identity) as GameObject;
+					GameObject instance = Instantiate (tileChoice, pos.asVector3(), Quaternion.identity) as GameObject;
 					instance.transform.SetParent (boardHolder);
 				}
 			}
@@ -173,10 +173,10 @@ public class AdventureBoardManager : MonoBehaviour {
 		LayoutObjectAtRandom (new GameObject[]{general}, 1, 1);
 	}
 
-	Vector3 RandomPosition ()
+	Point3 RandomPosition ()
 	{
 		int randomIndex = UnityEngine.Random.Range (0, gridPositions.Count);
-		Vector3 randomPosition = gridPositions[randomIndex];
+		Point3 randomPosition = gridPositions[randomIndex];
 		gridPositions.RemoveAt (randomIndex);
 		return randomPosition;
 	}
@@ -186,54 +186,54 @@ public class AdventureBoardManager : MonoBehaviour {
 		int objectCount = UnityEngine.Random.Range (minimum, maximum+1);
 		for(int i = 0; i < objectCount; i++)
 		{
-			Vector3 randomPosition = RandomPosition();
+			Point3 randomPosition = RandomPosition();
 			GameObject tileChoice = tileArray[UnityEngine.Random.Range (0, tileArray.Length)];
-			GameObject instance = Instantiate (tileChoice, randomPosition, Quaternion.identity) as GameObject;
+			GameObject instance = Instantiate (tileChoice, randomPosition.asVector3(), Quaternion.identity) as GameObject;
 			Debug.Log ("Laying down, name: " + instance.name + " position: " + instance.transform.position);
 			/*if (instance.name.Contains("Rock(Crag)")) {
 				Debug.Log ("Found instance name");
-				instance.transform.position = new Vector3(instance.transform.position.x, instance.transform.position.y + .15f, instance.transform.position.z);
+				instance.transform.position = new Point3(instance.transform.position.x, instance.transform.position.y + .15f, instance.transform.position.z);
 			}*/
 			instance.transform.SetParent (boardHolder);
 		}
 	}
 
-	public void clicked(Vector3 click){
+	public void clicked(Point3 click){
 		Debug.Log ("Clicked: " + click.ToString());
+		Debug.Log("LastClicked: " + lastClicked);
 		if (lastClicked == null) {
+			Debug.Log ("New Click");
 			foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
-				Debug.Log ("UnitPos: " + unit.transform.position.ToString() + 
-					" Equal clicked: " + Coroutines.V3Equal(unit.transform.position,click));
-				//if (inScene(unit.transform.position)) {
-				if  (Coroutines.V3Equal(unit.transform.position,click)) {
-						Debug.Log ("Clicked: " + click.ToString());
-						lastClicked = unit.transform;
-					}
-				//}
+				Debug.Log ("Searching");
+				if  (click.Equals(unit.transform.position)) {
+					Debug.Log ("Clicked: " + click.ToString());
+					lastClicked = unit.transform;
+				}
 			}
 		} else if (lastClicked != null) { 
-			//if (!Coroutines.hasParentVector3 (click)) {
-			if (!Coroutines.V3Equal(click,lastClicked.position) && (!steps.walking () || !Coroutines.V3Equal(click,lastClick))) {
+			Debug.Log("LastClicked: " + lastClicked.name + " pos: " + lastClicked.position);
+			//if (!Coroutines.hasParentPoint3 (click)) {
+			if (!click.Equals(lastClicked.position) && (!steps.walking () || !click.Equals(lastClick))) {
 					steps.destroySteps ();
 					Debug.Log ("Moving: " + lastClicked.name);
-					List<Vector3> obstacles = new List<Vector3> ();
+					List<Point3> obstacles = new List<Point3> ();
 					foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
 						Debug.Log ("Placing Unit: " + unit.name + " Position: " + unit.transform.position);
-						obstacles.Add (unit.transform.position);
+						obstacles.Add (new Point3(unit.transform.position));
 					}
 
 					foreach (GameObject obs in GameObject.FindGameObjectsWithTag("Obstacle")) {
-						obstacles.Add (obs.transform.position);
+						obstacles.Add (new Point3(obs.transform.position));
 					}
 
-					path = steps.generateMap (lastClicked.position, click, gameManager.getRows (), gameManager.getColumns (), obstacles);
+					path = steps.generateMap (new Point3(lastClicked.position), new Point3(click), gameManager.getRows (), gameManager.getColumns (), obstacles);
 					if (path != null) {
-						steps.createSteps (lastClicked.position, boardHolder, path);
+						steps.createSteps (new Point3(lastClicked.position), boardHolder, path);
 						lastClick = click;
 					} else {
 						lastClicked = null;
 					}
-			} else if (steps.walking () && Coroutines.V3Equal(click,lastClick)) {
+			} else if (steps.walking () && click.Equals(lastClick)) {
 					moveAdventurer (lastClicked, path);
 					lastClicked = null;
 					steps.destroySteps ();
@@ -242,18 +242,18 @@ public class AdventureBoardManager : MonoBehaviour {
 		}
 	}
 
-	public bool inScene(Vector3 targetPosition){
-		//Vector3 screenPoint = cam.WorldToViewportPoint(targetPosition);
+	public bool inScene(Point3 targetPosition){
+		//Point3 screenPoint = cam.WorldToViewportPoint(targetPosition);
 		//return screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
 
 		return true;
 	}
 
-	public void moveAdventurer(Transform lastClicked, List<Vector3> path) {
+	public void moveAdventurer(Transform lastClicked, List<Point3> path) {
 		//Check to make sure the last step isn't an enemy here
 		int prevTotal = path.Count;
 
-		Vector3 edge  = path [path.Count - 1];
+		Point3 edge  = path [path.Count - 1];
 
 		Debug.Log ("Searching for: " + edge.ToString());
 
@@ -282,10 +282,10 @@ public class AdventureBoardManager : MonoBehaviour {
 		//If the last step is an enemy, we need to fight it here
 	}
 
-	IEnumerator step_path(Transform origin, List<Vector3> path, float speed, bool battle)
+	IEnumerator step_path(Transform origin, List<Point3> path, float speed, bool battle)
 	{
-		foreach(Vector3 step in path){
-			yield return StartCoroutine( smooth_move(origin, step, speed));
+		foreach(Point3 step in path){
+			yield return StartCoroutine( smooth_move(origin, step.asVector3(), speed));
 		}
 		if (battle) {
 			gameManager.gameObject.SetActive (false);
@@ -298,13 +298,13 @@ public class AdventureBoardManager : MonoBehaviour {
 		float startime = Time.time;
 		Vector3 start_pos = new Vector3(origin.position.x, origin.position.y, origin.position.z);
 		Vector3 end_pos = direction;
-		while (!Coroutines.V3Equal(origin.position, end_pos)) { 
+		while (!origin.position.Equals(end_pos)) { 
 			float move = Mathf.Lerp (0,1, (Time.time - startime) * speed);
 
 			Vector3 position = origin.position;
 
-			position.x += (end_pos.x - start_pos.x) * move;
-			position.y += (end_pos.y - start_pos.y) * move;
+			position.x += ((end_pos.x - start_pos.x) * move);
+			position.y += ((end_pos.y - start_pos.y) * move);
 
 			if (start_pos.x > end_pos.x && origin.position.x < end_pos.x) {
 				position.x = end_pos.x;

@@ -129,16 +129,16 @@ namespace AssemblyCSharp
 			return hasParentVector3(child.transform.position);
 		}
 
-		public static GameObject findUnitParent(Vector3 child){
+		public static GameObject findUnitParent(Point3 child){
 			foreach (GameObject children in GameObject.FindGameObjectsWithTag("Unit")) {
 				Debug.Log ("Unit: " + children.name + " Position: " + children.transform.position.ToString());
-				if (V3Equal(children.transform.position, child)) {
+				if (child.Equals(children.transform.position)) {
 					return children;
 				}
 			}
 			//This is only for units, not for obstacles
 			foreach (GameObject children in GameObject.FindGameObjectsWithTag("Obstacle")) {
-				if (V3Equal(children.transform.position, child)) {
+				if (child.Equals(children.transform.position)) {
 					return children;
 				}
 			}
@@ -158,6 +158,15 @@ namespace AssemblyCSharp
 		public static bool containsPoint(List<Vector3> obs, Vector3 point){
 			foreach (Vector3 item in obs) {
 				if (V3Equal(item, point)) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		public static bool containsPoint(List<Point3> obs, Point3 point){
+			foreach (Point3 item in obs) {
+				if (item.Equals(point)) {
 					return true;
 				}
 			}

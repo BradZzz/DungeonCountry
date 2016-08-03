@@ -8,10 +8,10 @@ public class Footsteps : MonoBehaviour {
 	public GameObject footprint;
 	public GameObject dfootprint;
 
-	private Queue<List<Vector3>> paths;
-	private List<Vector3> foundVal;
+	private Queue<List<Point3>> paths;
+	private List<Point3> foundVal;
 
-	private Vector3 destination;
+	private Point3 destination;
 	private int columns, rows;
 	private int[,] map;
 	private List<GameObject> thisPath;
@@ -21,7 +21,7 @@ public class Footsteps : MonoBehaviour {
 		thisPath = new List<GameObject> ();
 	}
 
-	public List<Vector3> generateMap(Vector3 startingPos, Vector3 destination, int rows, int columns, List<Vector3> obs){
+	public List<Point3> generateMap(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs){
 		this.destination = destination;
 		this.columns = columns;
 		this.rows = rows;
@@ -31,8 +31,8 @@ public class Footsteps : MonoBehaviour {
 		map = new int[columns,rows];
 		for (int y = 0; y < rows; y++){
 			for (int x = 0; x < columns; x++){
-				Vector3 check = new Vector3 ((float)x, (float)y, 0);
-				if ((Coroutines.V3Equal(startingPos, check) || Coroutines.containsPoint (obs, check)) && !Coroutines.V3Equal(destination,check)) {
+				Point3 check = new Point3 ((float)x, (float)y, 0);
+				if ((check.Equals(startingPos) || Coroutines.containsPoint (obs, check)) && !destination.Equals(check)) {
 					map [x,y] = 1;
 				} else {
 					map [x,y] = 0;
@@ -40,8 +40,8 @@ public class Footsteps : MonoBehaviour {
 			}
 		}
 		foundVal = null;
-		paths = new Queue<List<Vector3>>();
-		paths.Enqueue (new List<Vector3> (){ startingPos });
+		paths = new Queue<List<Point3>>();
+		paths.Enqueue (new List<Point3> (){ startingPos });
 
 		//Debug.Log ("Looking: " + destination.ToString());
 
@@ -67,34 +67,34 @@ public class Footsteps : MonoBehaviour {
 		return thisPath.Count > 0;
 	}
 
-	public void createSteps(Vector3 start, Transform board, List<Vector3> steps){
-		Vector3 rotation;
-		Vector3 last = start;
+	public void createSteps(Point3 start, Transform board, List<Point3> steps){
+		Point3 rotation;
+		Point3 last = start;
 
-		foreach (Vector3 tStep in steps){
+		foreach (Point3 tStep in steps){
 			GameObject stepObj = footprint;
 			if (steps[steps.Count - 1] == tStep) {
 				stepObj = dfootprint;
 			}
 
-			GameObject instance = Instantiate (stepObj, tStep, Quaternion.identity) as GameObject;
+			GameObject instance = Instantiate (stepObj, tStep.asVector3(), Quaternion.identity) as GameObject;
 			rotation = compareRotate (last, tStep);
 			last = tStep;
 
 			SpriteRenderer sprite = instance.GetComponent<SpriteRenderer> ();
 			Debug.Log ("Rotating: " + rotation.ToString());
-			sprite.transform.Rotate (rotation);
-			//sprite.transform.Rotate (new Vector3(0, 0, 90));
+			sprite.transform.Rotate (rotation.asVector3());
+			//sprite.transform.Rotate (new Point3(0, 0, 90));
 			thisPath.Add (instance);
 			instance.transform.SetParent (board);
 		}
 
 	}
 
-	private Vector3 compareRotate(Vector3 start, Vector3 end){
+	private Point3 compareRotate(Point3 start, Point3 end){
 		//Now we have to return the rotation;
-		Vector3 difference = new Vector3(start.x - end.x, start.y - end.y, 0);
-		Vector3 rotation = new Vector3(0, 0, 0);
+		Point3 difference = new Point3(start.x - end.x, start.y - end.y, 0);
+		Point3 rotation = new Point3(0, 0, 0);
 		if (difference.x > 0) {
 			rotation.z = 90;
 		} else if (difference.x < 0) {
@@ -113,15 +113,15 @@ public class Footsteps : MonoBehaviour {
 		foundVal = null;
 	}
 
-	public void printList(List<Vector3> path){
+	public void printList(List<Point3> path){
 		thisPath.Clear ();
-		foreach (Vector3 step in path) {
+		foreach (Point3 step in path) {
 			Debug.Log ("Step: " + step.ToString());
 		}
 	}
 
-	private void step(List<Vector3> step){
-		Vector3 edge = step[step.Count - 1];
+	private void step(List<Point3> step){
+		Point3 edge = step[step.Count - 1];
 		//Debug.Log ("Working on: " +  edge.ToString() + " : " + step.Count);
 
 		int[] directions = new int[]{ 1, 2, 3, 4 };
@@ -131,39 +131,45 @@ public class Footsteps : MonoBehaviour {
 			switch(way){
 				case 1:
 					if (edge.x - 1 >= 0) {
-						deepCopyPush (edge, step, new Vector3(-1,0,0));
+						deepCopyPush (edge, step, new Point3(-1,0,0));
 					}
 					break;
 				case 2:
 					if (edge.y - 1 >= 0) {
-						deepCopyPush (edge, step, new Vector3(0,-1,0));
+						deepCopyPush (edge, step, new Point3(0,-1,0));
 					}
 					break;
 				case 3:
 					if (edge.x + 1 < columns) {
-						deepCopyPush (edge, step, new Vector3(1,0,0));
+						deepCopyPush (edge, step, new Point3(1,0,0));
 					}
 					break;
 				case 4:
 					if (edge.y + 1 < rows) {
-						deepCopyPush (edge, step, new Vector3(0,1,0));
+						deepCopyPush (edge, step, new Point3(0,1,0));
 					}
 					break;
 			}
 		}
 	}
 
-	private void deepCopyPush(Vector3 step, List<Vector3> path, Vector3 translation){
-		Vector3 nextStep = new Vector3 (step.x + translation.x, step.y + translation.y, 0);
-		if (map [(int)nextStep.x,(int)nextStep.y] == 0 && !Coroutines.containsPoint(path, nextStep)) {
-			List<Vector3> newPath = new List<Vector3> (path);
+	private void deepCopyPush(Point3 step, List<Point3> path, Point3 translation){
+		Point3 nextStep = new Point3 (step.x + translation.x, step.y + translation.y, 0);
+
+		bool free = map [nextStep.x, nextStep.y] == 0;
+		bool contains = Coroutines.containsPoint (path, nextStep);
+
+		if (free && !contains) {
+			List<Point3> newPath = new List<Point3> (path);
 			newPath.Add (nextStep);
-			if (Coroutines.V3Equal(nextStep, destination)) {
+			if (nextStep.Equals(destination)) {
 				foundVal = newPath;
 				paths.Clear ();
 			} else {
 				paths.Enqueue (newPath);
 			}
+		} else {
+			Debug.Log ("Pos: " + nextStep.ToString() + " val: " + map [nextStep.x, nextStep.y] + " contains: " + contains);
 		}
 	}
 

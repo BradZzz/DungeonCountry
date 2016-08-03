@@ -135,33 +135,33 @@ public class TerrainGenerator {
 
 			Vector2 point;
 			if (box.y > -1) {
-				point = new Vector2 ((int)UnityEngine.Random.Range (box.x, box.width - 2), (int)box.y);
+				point = new Vector2 ((int)UnityEngine.Random.Range (box.x + 1, box.width - 2), (int)box.y);
 				while (containsPoint(excludeBox, point) && !containsSibling(map, point) && !(map [(int)point.x, (int)point.y] == 1)) {
-					point = new Vector2 ((int)UnityEngine.Random.Range (box.x, box.width - 2), (int)box.y);
+					point = new Vector2 ((int)UnityEngine.Random.Range (box.x + 1, box.width - 2), (int)box.y);
 				}
 				Debug.Log ("Removing: " + point.ToString());
 				map [(int)point.x, (int)point.y] = 2;
 			}
 			if (box.x > -1) {
-				point = new Vector2 ((int)box.x, (int)UnityEngine.Random.Range (box.y, box.height - 2));
+				point = new Vector2 ((int)box.x, (int)UnityEngine.Random.Range (box.y + 1, box.height - 2));
 				while (containsPoint(excludeBox, point) && !containsSibling(map, point) && !(map [(int)point.x, (int)point.y] == 1)) {
-					point = new Vector2 ((int)box.x, (int)UnityEngine.Random.Range (box.y, box.height - 2));
+					point = new Vector2 ((int)box.x, (int)UnityEngine.Random.Range (box.y + 1, box.height - 2));
 				}
 				Debug.Log ("Removing: " + point.ToString());
 				map [(int)point.x, (int)point.y] = 2;
 			}
 			if (box.height < height) {
-				point = new Vector2 ((int)UnityEngine.Random.Range (box.x, box.width - 2), (int)box.height);
+				point = new Vector2 ((int)UnityEngine.Random.Range (box.x + 1, box.width - 2), (int)box.height);
 				while (containsPoint(excludeBox, point) && !containsSibling(map, point) && !(map [(int)point.x, (int)point.y] == 1)) {
-					point = new Vector2 ((int)UnityEngine.Random.Range (box.x, box.width - 2), (int)box.height);
+					point = new Vector2 ((int)UnityEngine.Random.Range (box.x + 1, box.width - 2), (int)box.height);
 				}
 				Debug.Log ("Removing: " + point.ToString());
 				map [(int)point.x, (int)point.y] = 2;
 			}
 			if (box.width < width) {
-				point = new Vector2 ((int)box.width, (int)UnityEngine.Random.Range (box.y, box.height - 2));
+				point = new Vector2 ((int)box.width, (int)UnityEngine.Random.Range (box.y + 1, box.height - 2));
 				while (containsPoint(excludeBox, point) && !containsSibling(map, point) && !(map [(int)point.x, (int)point.y] == 1)) {
-					point = new Vector2 ((int)box.width, (int)UnityEngine.Random.Range (box.y, box.height - 2));
+					point = new Vector2 ((int)box.width, (int)UnityEngine.Random.Range (box.y + 1, box.height - 2));
 				}
 				Debug.Log ("Removing: " + point.ToString());
 				map [(int)point.x, (int)point.y] = 2;
