@@ -27,103 +27,13 @@ public class Footsteps : MonoBehaviour {
 		thisPath = new List<GameObject> ();
 	}
 
-	/*public List<Point3> generateMap(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs){
+	/*public List<Point3> generateMapv2(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs){
 		this.destination = destination;
 		this.columns = columns;
 		this.rows = rows;
-
 		thisPath.Clear ();
-
-		map = new int[columns,rows];
-		for (int y = 0; y < rows; y++){
-			for (int x = 0; x < columns; x++){
-				Point3 check = new Point3 ((float)x, (float)y, 0);
-				if ((check.Equals(startingPos) || Coroutines.containsPoint (obs, check)) && !destination.Equals(check)) {
-					map [x,y] = 1;
-				} else {
-					map [x,y] = 0;
-				}
-			}
-		}
-		foundVal = null;
-		paths = new Queue<List<Point3>>();
-		paths.Enqueue (new List<Point3> (){ startingPos });
-
-		//Debug.Log ("Looking: " + destination.ToString());
-
-		while(paths.Count > 0 && paths.Count < maxCount){
-			step (paths.Dequeue());
-			if (foundVal != null) {
-				break;
-			}
-		}
-
-		if (paths.Count > maxCount - 10) {
-			Debug.Log ("Warning!!!");
-			Debug.Log ("start: " + startingPos.ToString());
-			Debug.Log ("end: " + destination.ToString());
-		}
-		if (foundVal != null) {
-			foundVal.Remove (startingPos);
-		}
-		return foundVal;
-	}*/
-
-	public IEnumerator generateMap(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs, Action<List<Point3>, Point3> pathCallback){
-		this.destination = destination;
-		this.columns = columns;
-		this.rows = rows;
-
-		thisPath.Clear ();
-
-		map = new int[columns,rows];
-		for (int y = 0; y < rows; y++){
-			for (int x = 0; x < columns; x++){
-				Point3 check = new Point3 ((float)x, (float)y, 0);
-				if ((check.Equals(startingPos) || Coroutines.containsPoint (obs, check)) && !destination.Equals(check)) {
-					map [x,y] = 1;
-				} else {
-					map [x,y] = 0;
-				}
-			}
-		}
-		foundVal = null;
-		stepQueue = new Queue<Point3>();
-		stepQueue.Enqueue (startingPos);
-
-		//Debug.Log ("Looking: " + destination.ToString());
-
-		while(paths.Count > 0 && paths.Count < maxCount){
-			step (paths.Dequeue());
-			if (foundVal != null) {
-				break;
-			}
-		}
-
-		if (paths.Count > maxCount - 10) {
-			Debug.Log ("Warning!!!");
-			Debug.Log ("start: " + startingPos.ToString());
-			Debug.Log ("end: " + destination.ToString());
-		}
-		if (foundVal != null) {
-			foundVal.Remove (startingPos);
-		}
-
-		pathCallback (foundVal, destination);
-
-		yield return foundVal;
-	}
-
-	public IEnumerator generateMapv2(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs, Action<List<Point3>, Point3> pathCallback){
-		this.destination = destination;
-		this.columns = columns;
-		this.rows = rows;
-
-		thisPath.Clear ();
-
 		map = new int[columns,rows];
 		generatedMap = new int[columns,rows];
-
 		for (int y = 0; y < rows; y++){
 			for (int x = 0; x < columns; x++){
 				Point3 check = new Point3 ((float)x, (float)y, 0);
@@ -135,20 +45,13 @@ public class Footsteps : MonoBehaviour {
 				generatedMap [x, y] = 0;
 			}
 		}
-
 		foundVal = null;
-
 		nextQueue = new Queue<Point3>();
 		stepQueue = new Queue<Point3>();
 		stepQueue.Enqueue (startingPos);
-
 		generatedMap[startingPos.x,startingPos.y] = 1;
-
-		//Debug.Log ("Looking: " + destination.ToString());
-
 		int count = 2;
 		while (stepQueue.Count > 0 && foundVal == null){
-			//This is just the path count before the next enqueue, so should be fine
 			while (stepQueue.Count > 0) {
 				stepv2 (stepQueue.Dequeue(), count);
 				if (foundVal != null) {
@@ -159,22 +62,54 @@ public class Footsteps : MonoBehaviour {
 			nextQueue.Clear ();
 			count++;
 		}
+		if (foundVal != null) {
+			foundVal.Reverse ();
+			foundVal.Remove (startingPos);
+		}
+		return foundVal;
+	}*/
 
-
-		/*while(paths.Count > 0 && paths.Count < maxCount){
-			stepv2 (paths.Dequeue());
-			if (foundVal != null) {
-				break;
+	public IEnumerator generateMapv2(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs, Action<List<Point3>, Point3> pathCallback){
+		this.destination = destination;
+		this.columns = columns;
+		this.rows = rows;
+		thisPath.Clear ();
+		map = new int[columns,rows];
+		generatedMap = new int[columns,rows];
+		for (int y = 0; y < rows; y++){
+			for (int x = 0; x < columns; x++){
+				Point3 check = new Point3 ((float)x, (float)y, 0);
+				if ((check.Equals(startingPos) || Coroutines.containsPoint (obs, check)) && !destination.Equals(check)) {
+					map [x,y] = 1;
+				} else {
+					map [x,y] = 0;
+				}
+				generatedMap [x, y] = 0;
 			}
-		}*/
-
+		}
+		foundVal = null;
+		nextQueue = new Queue<Point3>();
+		stepQueue = new Queue<Point3>();
+		stepQueue.Enqueue (startingPos);
+		generatedMap[startingPos.x,startingPos.y] = 1;
+		int count = 2;
+		while (stepQueue.Count > 0 && foundVal == null){
+			while (stepQueue.Count > 0) {
+				stepv2 (stepQueue.Dequeue(), count);
+				if (foundVal != null) {
+					break;
+				}
+			}
+			stepQueue = new Queue<Point3>(nextQueue);
+			nextQueue.Clear ();
+			count++;
+		}
 		if (foundVal != null) {
 			foundVal.Reverse ();
 			foundVal.Remove (startingPos);
 		}
 
 		pathCallback (foundVal, destination);
-
 		yield return foundVal;
 	}
 
@@ -289,7 +224,6 @@ public class Footsteps : MonoBehaviour {
 					generatedMap [step.x - 1, step.y] = iteration;
 					nextQueue.Enqueue (nextStep);
 					checkDestination (nextStep, iteration);
-					//deepCopyPush (edge, step, new Point3(-1,0,0));
 				}
 				break;
 			case 2:
@@ -298,7 +232,6 @@ public class Footsteps : MonoBehaviour {
 					generatedMap [step.x, step.y - 1] = iteration;
 					nextQueue.Enqueue (nextStep);
 					checkDestination (nextStep, iteration);
-					//deepCopyPush (edge, step, new Point3(0,-1,0));
 				}
 				break;
 			case 3:
@@ -307,7 +240,6 @@ public class Footsteps : MonoBehaviour {
 					generatedMap [step.x + 1, step.y] = iteration;
 					nextQueue.Enqueue (nextStep);
 					checkDestination (nextStep, iteration);
-					//deepCopyPush (edge, step, new Point3(1,0,0));
 				}
 				break;
 			case 4:
@@ -316,7 +248,6 @@ public class Footsteps : MonoBehaviour {
 					generatedMap [step.x, step.y + 1] = iteration;
 					nextQueue.Enqueue (nextStep);
 					checkDestination (nextStep, iteration);
-					//deepCopyPush (edge, step, new Point3(0,1,0));
 				}
 				break;
 			}
