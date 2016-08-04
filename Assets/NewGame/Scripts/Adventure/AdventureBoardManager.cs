@@ -141,7 +141,7 @@ public class AdventureBoardManager : MonoBehaviour {
 
 	private void placeTerrain () {
 		int[,] map = TerrainGenerator.generateTargetMap (new Vector2 (gameManager.getColumns (), gameManager.getRows ()), 3);
-
+		//int[,] map = TerrainGenerator.generateBoxedMap (new Vector2 (gameManager.getColumns (), gameManager.getRows ()), 3);
 
 		//float[,] map = PerlinGenerator.calcNoise (new Vector2 (gameManager.getColumns (), gameManager.getRows ()));
 		Debug.Log (map.ToString ());

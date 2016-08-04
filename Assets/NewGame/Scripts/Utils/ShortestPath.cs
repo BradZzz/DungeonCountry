@@ -10,11 +10,18 @@ public class ShortestPath {
 	private int[,] map, generatedMap;
 	private List<Point3> foundVal;
 	private Queue<Point3> nextQueue, stepQueue;
+	private int skips;
 
 	public List<Point3> generateMapv2(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs){
+		return generateMapv2(startingPos, destination, rows, columns, obs, 0);
+	}
+
+	public List<Point3> generateMapv2(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs, int skips){
 		this.destination = destination;
 		this.columns = columns;
 		this.rows = rows;
+		this.skips = skips;
+
 		//thisPath.Clear ();
 		map = new int[columns,rows];
 		generatedMap = new int[columns,rows];
@@ -101,12 +108,13 @@ public class ShortestPath {
 
 	private void checkDestination(Point3 nextStep, int iteration){
 		if (nextStep.Equals(destination)) {
-
-			foundVal = new List<Point3> ();
-			foundVal.Add (nextStep);
-
-			while(iteration > 1){
-				foundVal.Add (retraceSteps (foundVal[foundVal.Count - 1], --iteration));
+			skips--;
+			if (skips <= 0){
+				foundVal = new List<Point3> ();
+				foundVal.Add (nextStep);
+				while(iteration > 1){
+					foundVal.Add (retraceSteps (foundVal[foundVal.Count - 1], --iteration));
+				}
 			}
 		}
 	}

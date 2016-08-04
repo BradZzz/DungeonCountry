@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using AssemblyCSharp;
 
 public class TerrainGenerator {
 
@@ -37,7 +38,7 @@ public class TerrainGenerator {
 			}
 		}
 
-		map = makeAccessable (map, boxes);
+		map = makeAccessable (map, boxes, dimensions);
 
 		return map;
 	}
@@ -102,32 +103,37 @@ public class TerrainGenerator {
 		return false;
 	}
 
-	public static int[,] makeAccessable(int[,] map, List<Rect> boxes){
+	public static int[,] makeAccessable(int[,] map, List<Rect> boxes, Vector2 dimensions){
 
 		int width = map.GetLength (0);
 		int height = map.GetLength (1);
 
 		Point3 newPath;
 
+		List<Point3> paths = new List<Point3> ();
 		foreach (Rect box in boxes) {
 			if (box.y > -1) {
-				newPath = new Point3 (UnityEngine.Random.Range (1, box.width - 2), box.y, 0);
+				newPath = new Point3 (UnityEngine.Random.Range (box.x + 1, box.width - 2), box.y, 0);
 				map [newPath.x, newPath.y] = 2;
+				paths.Add (newPath);
 			}
 			if (box.x > -1) {
-				newPath = new Point3 (box.x, UnityEngine.Random.Range (1, box.height - 2), 0);
+				newPath = new Point3 (box.x, UnityEngine.Random.Range (box.y + 1, box.height - 2), 0);
 				map [newPath.x, newPath.y] = 2;
+				paths.Add (newPath);
 			}
 			if (box.height < height) {
-				newPath = new Point3 (UnityEngine.Random.Range (1, box.width - 2), box.height, 0);
+				newPath = new Point3 (UnityEngine.Random.Range (box.x + 1, box.width - 2), box.height, 0);
 				map [newPath.x, newPath.y] = 2;
+				paths.Add (newPath);
 			}
 			if (box.width < width) {
-				newPath = new Point3 (box.width, UnityEngine.Random.Range (1, box.height - 2), 0);
+				newPath = new Point3 (box.width, UnityEngine.Random.Range (box.y + 1, box.height - 2), 0);
 				map [newPath.x, newPath.y] = 2;
+				paths.Add (newPath);
 			}
 		}
-		return map;
+		return createRoads (paths, map, dimensions);
 	}
 
 	public static int[,] makeAccessable(int[,] map, List<Rect> boxes, Rect excludeBox, Vector2 dimensions){
@@ -197,6 +203,13 @@ public class TerrainGenerator {
 				}
 			}
 		}
+		map = shuffleMap(nodes, map, dimensions, obs);
+		map = shuffleMap(nodes, map, dimensions, obs);
+		return map = shuffleMap(nodes, map, dimensions, obs);
+	}
+
+	private static int[,] shuffleMap(List<Point3> nodes, int[,] map, Vector2 dimensions, List<Point3> obs){
+		Coroutines.ShuffleArray(nodes);
 
 		ShortestPath sPath = new ShortestPath ();
 		List<Point3> thisMap;
@@ -209,6 +222,7 @@ public class TerrainGenerator {
 			if (thisMap != null) {
 				foreach (Point3 point in thisMap) {
 					map [point.x, point.y] = 2;
+					//obs.Add (new Point3(point.x,point.y,0));
 				}
 			}
 			start = end;

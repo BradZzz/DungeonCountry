@@ -106,7 +106,7 @@ public class Footsteps : MonoBehaviour {
 		}
 		if (foundVal != null) {
 			foundVal.Reverse ();
-			foundVal.Remove (startingPos);
+			foundVal.RemoveAt (0);
 		}
 
 		pathCallback (foundVal, destination);

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 namespace AssemblyCSharp
 {
 
-
 	public class Coroutines {
 		public Coroutine coroutine { get; private set; }
 		public object result;
@@ -115,6 +114,15 @@ namespace AssemblyCSharp
 				T tmp = arr[i];
 				arr[i] = arr[r];
 				arr[r] = tmp;
+			}
+		}
+
+		public static void ShuffleArray<T>(List<T> list) {
+			for (int i = list.Count - 1; i > 0; i--) {
+				int r = UnityEngine.Random.Range(0, i);
+				T tmp = list[i];
+				list[i] = list[r];
+				list[r] = tmp;
 			}
 		}
 
