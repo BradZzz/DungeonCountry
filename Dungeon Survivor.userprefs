@@ -1,11 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/NewGame/Scripts/Adventure/AdventureBoardManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/NewGame/Scripts/Utils/Footsteps.cs">
     <Files>
-      <File FileName="Assets/NewGame/Scripts/Adventure/AdventureBoardManager.cs" Line="232" Column="6" />
-      <File FileName="Assets/NewGame/Scripts/Utils/Footsteps.cs" Line="149" Column="17" />
+      <File FileName="Assets/NewGame/Scripts/Adventure/AdventureBoardManager.cs" Line="144" Column="5" />
+      <File FileName="Assets/NewGame/Scripts/Utils/TerrainGenerator.cs" Line="118" Column="25" />
+      <File FileName="Assets/NewGame/Scripts/Utils/ShortestPath.cs" Line="70" Column="3" />
+      <File FileName="Assets/NewGame/Scripts/Utils/Footsteps.cs" Line="109" Column="26" />
       <File FileName="Assets/NewGame/Scripts/Utils/CoRoutineWithData.cs" Line="2" Column="26" />
-      <File FileName="Assets/NewGame/Scripts/Utils/Coroutines.cs" Line="75" Column="6" />
+      <File FileName="Assets/NewGame/Scripts/Utils/Coroutines.cs" Line="120" Column="34" />
+      <File FileName="Assets/NewGame/Scripts/Utils/Point3.cs" Line="60" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

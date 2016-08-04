@@ -13,6 +13,7 @@ public class AdventureBoardManager : MonoBehaviour {
 	public GameObject[] floorTiles;
 	public GameObject[] roadTiles;
 	public GameObject[] bloodTiles;
+	public GameObject[] castleTiles;
 	public GameObject footsteps;
 
 	private static Transform boardHolder;
@@ -155,6 +156,7 @@ public class AdventureBoardManager : MonoBehaviour {
 					GameObject tileChoice = innerWallTiles[UnityEngine.Random.Range (0, innerWallTiles.Length)];
 					GameObject instance = Instantiate (tileChoice, pos.asVector3(), Quaternion.identity) as GameObject;
 					instance.transform.SetParent (boardHolder);
+					gridPositions.Remove (pos);
 				}
 				//Road
 				if (map[x,y] == 2) {
@@ -163,6 +165,20 @@ public class AdventureBoardManager : MonoBehaviour {
 					GameObject tileChoice = roadTiles[UnityEngine.Random.Range (0, roadTiles.Length)];
 					GameObject instance = Instantiate (tileChoice, pos.asVector3(), Quaternion.identity) as GameObject;
 					instance.transform.SetParent (boardHolder);
+				}
+
+				//Castle
+				if (map[x,y] == 11 || map[x,y] == 12) {
+					Point3 pos = new Point3 (x,y,0);
+					gridPositions.Remove (pos);
+					if (map[x,y] == 11) {
+						Vector3 vect = pos.asVector3 ();
+						vect.x -= .5f;
+						vect.y -= .5f;
+						GameObject tileChoice = castleTiles[UnityEngine.Random.Range (0, castleTiles.Length)];
+						GameObject instance = Instantiate (tileChoice, vect, Quaternion.identity) as GameObject;
+						instance.transform.SetParent (boardHolder);
+					}
 				}
 			}
 		}

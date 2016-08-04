@@ -38,7 +38,7 @@ public class TerrainGenerator {
 			}
 		}
 
-		map = makeAccessable (map, boxes, dimensions);
+		map = makeAccessable (map, boxes);
 
 		return map;
 	}
@@ -76,7 +76,8 @@ public class TerrainGenerator {
 			}
 		}
 
-		map = makeAccessable (map, boxes, excludeBox, dimensions);
+		map = makeAccessable (map, boxes, excludeBox);
+		map = addCastles (map, 4);
 
 		return map;
 	}
@@ -103,7 +104,7 @@ public class TerrainGenerator {
 		return false;
 	}
 
-	public static int[,] makeAccessable(int[,] map, List<Rect> boxes, Vector2 dimensions){
+	public static int[,] makeAccessable(int[,] map, List<Rect> boxes){
 
 		int width = map.GetLength (0);
 		int height = map.GetLength (1);
@@ -133,10 +134,10 @@ public class TerrainGenerator {
 				paths.Add (newPath);
 			}
 		}
-		return createRoads (paths, map, dimensions);
+		return createRoads (paths, map);
 	}
 
-	public static int[,] makeAccessable(int[,] map, List<Rect> boxes, Rect excludeBox, Vector2 dimensions){
+	public static int[,] makeAccessable(int[,] map, List<Rect> boxes, Rect excludeBox){
 
 		int width = map.GetLength (0);
 		int height = map.GetLength (1);
@@ -188,27 +189,34 @@ public class TerrainGenerator {
 			}
 		}
 
-		return createRoads (paths, map, dimensions);
+		return createRoads (paths, map);
 		//return map;
 	}
 
 	//generateMapv2(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs)
-	private static int[,] createRoads(List<Point3> nodes, int[,] map, Vector2 dimensions){
+	private static int[,] createRoads(List<Point3> nodes, int[,] map){
+
+		int width = map.GetLength (0);
+		int height = map.GetLength (1);
 
 		List<Point3> obs = new List<Point3> ();
-		for (int y = 0; y < dimensions.y; y++){
-			for (int x = 0; x < dimensions.x; x++){
+		for (int y = 0; y < height; y++){
+			for (int x = 0; x < width; x++){
 				if (map [x,y] == 1) {
 					obs.Add (new Point3(x,y,0));
 				}
 			}
 		}
-		map = shuffleMap(nodes, map, dimensions, obs);
-		map = shuffleMap(nodes, map, dimensions, obs);
-		return map = shuffleMap(nodes, map, dimensions, obs);
+		map = shuffleMap(nodes, map, obs);
+		map = shuffleMap(nodes, map, obs);
+		return map = shuffleMap(nodes, map, obs);
 	}
 
-	private static int[,] shuffleMap(List<Point3> nodes, int[,] map, Vector2 dimensions, List<Point3> obs){
+	private static int[,] shuffleMap(List<Point3> nodes, int[,] map, List<Point3> obs){
+
+		int width = map.GetLength (0);
+		int height = map.GetLength (1);
+
 		Coroutines.ShuffleArray(nodes);
 
 		ShortestPath sPath = new ShortestPath ();
@@ -218,7 +226,7 @@ public class TerrainGenerator {
 		start = nodes [0];
 		for (int i = 1; i < nodes.Count; i++) {
 			end = nodes [i];
-			thisMap = sPath.generateMapv2 (start, end, (int) dimensions.y, (int) dimensions.x, obs);
+			thisMap = sPath.generateMapv2 (start, end, height, width, obs);
 			if (thisMap != null) {
 				foreach (Point3 point in thisMap) {
 					map [point.x, point.y] = 2;
@@ -231,7 +239,7 @@ public class TerrainGenerator {
 		start = nodes[nodes.Count - 1];
 		end = nodes [0];
 
-		thisMap = sPath.generateMapv2 (start, end, (int) dimensions.y, (int) dimensions.x, obs);
+		thisMap = sPath.generateMapv2 (start, end, height, width, obs);
 		if (thisMap != null) {
 			foreach (Point3 point in thisMap) {
 				map [point.x, point.y] = 2;
@@ -241,7 +249,46 @@ public class TerrainGenerator {
 		return map;
 	}
 
-	public static bool containsSibling(int[,] map, Vector3 point){
+	private static bool checkPlot(int[,] map, Point3 plot){
+		return map [plot.x, plot.y] == 2 && map [plot.x + 1, plot.y] == 2 && map [plot.x, plot.y + 1] == 0 && map [plot.x, plot.y + 2] == 0 && map [plot.x + 1, plot.y + 1] == 0 && map [plot.x + 1, plot.y + 2] == 0;
+	}
+
+	private static int[,] addCastles(int[,] map, int castles){
+
+		int width = map.GetLength (0);
+		int height = map.GetLength (1);
+
+		List<Point3> roads = new List<Point3> ();
+		//Castles cant be on the top square
+		for (int y = 2; y < height && castles > 0; y++){
+			for (int x = 0; x < width - 2 && castles > 0; x++){
+				if (map [x, y] == 2){
+					roads.Add (new Point3 (x, y, 0));
+				}
+			}
+		}
+
+		Coroutines.ShuffleArray(roads);
+
+		foreach (Point3 road in roads) {
+			if (checkPlot (map, road)){
+				//This is the castle base
+				map [road.x, road.y + 1] = 12;
+				//These are the tiles that the castle is also covering
+				map [road.x, road.y + 2] = 12;
+				map [road.x + 1, road.y + 1] = 12;
+				map [road.x + 1, road.y + 2] = 11;
+				castles--;
+				if (castles <= 0) {
+					break;
+				}
+			}
+		}
+
+		return map;
+	}
+
+	private static bool containsSibling(int[,] map, Vector3 point){
 		//Has to have exactly two siblings
 		//Walls taken out of intersections are worthless
 		int count = 0;

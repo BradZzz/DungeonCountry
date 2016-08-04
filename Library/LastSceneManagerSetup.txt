@@ -2,3 +2,6 @@ sceneSetups:
 - path: Assets/NewGame/Scenes/AdventureScene.unity
   isLoaded: 1
   isActive: 1
+- path: Assets/NewGame/Scenes/MainMenu.unity
+  isLoaded: 0
+  isActive: 0
