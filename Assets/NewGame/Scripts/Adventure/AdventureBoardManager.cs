@@ -14,6 +14,8 @@ public class AdventureBoardManager : MonoBehaviour {
 	public GameObject[] roadTiles;
 	public GameObject[] bloodTiles;
 	public GameObject[] castleTiles;
+	public GameObject[] foundationTiles;
+	public GameObject[] cliffTiles;
 	public GameObject footsteps;
 
 	private static Transform boardHolder;
@@ -141,7 +143,8 @@ public class AdventureBoardManager : MonoBehaviour {
 	}
 
 	private void placeTerrain () {
-		int[,] map = TerrainGenerator.generateTargetMap (new Vector2 (gameManager.getColumns (), gameManager.getRows ()), 3);
+		int[,] map = TerrainGeneratorV2.generateMap (new Point3 (gameManager.getColumns (), gameManager.getRows (), 0));
+		//.generateTargetMap (new Vector2 (gameManager.getColumns (), gameManager.getRows ()), 3);
 		//int[,] map = TerrainGenerator.generateBoxedMap (new Vector2 (gameManager.getColumns (), gameManager.getRows ()), 3);
 
 		//float[,] map = PerlinGenerator.calcNoise (new Vector2 (gameManager.getColumns (), gameManager.getRows ()));
@@ -171,12 +174,17 @@ public class AdventureBoardManager : MonoBehaviour {
 				if (map[x,y] == 11 || map[x,y] == 12) {
 					Point3 pos = new Point3 (x,y,0);
 					gridPositions.Remove (pos);
+
+					GameObject tileChoice = foundationTiles[UnityEngine.Random.Range (0, foundationTiles.Length)];
+					GameObject instance = Instantiate (tileChoice, pos.asVector3(), Quaternion.identity) as GameObject;
+					instance.transform.SetParent (boardHolder);
+
 					if (map[x,y] == 11) {
 						Vector3 vect = pos.asVector3 ();
 						vect.x -= .5f;
 						vect.y -= .5f;
-						GameObject tileChoice = castleTiles[UnityEngine.Random.Range (0, castleTiles.Length)];
-						GameObject instance = Instantiate (tileChoice, vect, Quaternion.identity) as GameObject;
+						tileChoice = castleTiles[UnityEngine.Random.Range (0, castleTiles.Length)];
+						instance = Instantiate (tileChoice, vect, Quaternion.identity) as GameObject;
 						instance.transform.SetParent (boardHolder);
 					}
 				}

@@ -81,6 +81,8 @@
      <Compile Include="Assets\NewGame\Scripts\Utils\SharedPrefs.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\ShortestPath.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\TerrainGenerator.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Utils\TerrainGeneratorV2.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Utils\TerrainTiles.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\TextureScale.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\Zoom.cs" />
      <Compile Include="Assets\Scripts\BoardManager.cs" />
