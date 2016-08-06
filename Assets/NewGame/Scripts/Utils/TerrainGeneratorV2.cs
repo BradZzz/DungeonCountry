@@ -94,14 +94,26 @@ public class TerrainGeneratorV2 : MonoBehaviour {
 
 	private static List<int[,]> trimTiles(List<int[,]> allTiles, int[,] map, Point3 position){
 
+		int width = map.GetLength (0);
+		int height = map.GetLength (1);
+
 		List<int[,]> returnTiles = new List<int[,]> ();
-		openConnect mapConnect;
+		openConnect mapConnectLeft;
+		openConnect mapConnectTop;
 		if (position.x != 0) {
 			int[,] sliced = sliceArray (map, new Point3 (position.x - 5, position.y, 0), new Point3 (5, 5, 0));
-			mapConnect = new openConnect (sliced, true);
-			mapConnect.printMap ();
+			mapConnectLeft = new openConnect (sliced, true);
+			mapConnectLeft.printMap ();
 		} else {
-			mapConnect = new openConnect ();
+			mapConnectLeft = new openConnect ();
+		}
+
+		if (position.y + 5 <= height) {
+			int[,] sliced = sliceArray (map, new Point3 (position.x, position.y + 5, 0), new Point3 (5, 5, 0));
+			mapConnectTop = new openConnect (sliced, true);
+			mapConnectTop.printMap ();
+		} else {
+			mapConnectTop = new openConnect ();
 		}
 
 		//For now, let's just look to the left
@@ -115,7 +127,8 @@ public class TerrainGeneratorV2 : MonoBehaviour {
 				openConnect tileConnect = new openConnect (tile, false);
 				tileConnect.printMap ();
 
-				if ((mapConnect.right && tileConnect.left) || (!mapConnect.right && !tileConnect.left)) {
+				if (((mapConnectLeft.right && tileConnect.left) || (!mapConnectLeft.right && !tileConnect.left)) &&
+					((mapConnectTop.down && tileConnect.up) || (!mapConnectTop.down && !tileConnect.up))) {
 					returnTiles.Add (tile);
 				}
 			}
