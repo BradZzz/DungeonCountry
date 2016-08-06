@@ -90,8 +90,8 @@ public class TerrainTiles {
 
 	public static List<int[,]> returnTiles(){
 		List<int[,]> tiles = new List<int[,]> ();
-		//tiles.Add (TerrainTiles.straightRoad);
-		//tiles.Add (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.straightRoad));
+		tiles.Add (TerrainTiles.straightRoad);
+		tiles.Add (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.straightRoad));
 		tiles.Add (TerrainTiles.curvyRoad);
 		tiles.Add (TerrainTiles.curvyRoad2);
 		//tiles.Add (Coroutines.RotateMatrixCounterClockwise (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.curvyRoad4)));

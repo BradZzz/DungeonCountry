@@ -100,6 +100,7 @@ public class TerrainGeneratorV2 : MonoBehaviour {
 		List<int[,]> returnTiles = new List<int[,]> ();
 		openConnect mapConnectLeft;
 		openConnect mapConnectTop;
+
 		if (position.x != 0) {
 			int[,] sliced = sliceArray (map, new Point3 (position.x - 5, position.y, 0), new Point3 (5, 5, 0));
 			mapConnectLeft = new openConnect (sliced, true);
@@ -118,7 +119,7 @@ public class TerrainGeneratorV2 : MonoBehaviour {
 
 		//For now, let's just look to the left
 		foreach (int[,] tile in allTiles) {
-			if (position.x == 0) {
+			if (position.x == 0 && position.y + 5 >= height) {
 				returnTiles.Add (tile);
 			} else {
 				//These are the connecting parts on the tile
