@@ -100,11 +100,11 @@ public class TerrainTiles {
 		//tiles.Add (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.curvyRoad));
 		//tiles.Add (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.curvyRoad));
 		//tiles.Add (Coroutines.RotateMatrixCounterClockwise (Coroutines.RotateMatrixCounterClockwise (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.curvyRoad))));
-		//tiles.Add (TerrainTiles.tRoad);
-		//tiles.Add (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.tRoad));
-		//tiles.Add (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.tRoad));
-		//tiles.Add (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.tRoad));
-		//tiles.Add (TerrainTiles.intersectionRoad);
+		tiles.Add (TerrainTiles.tRoad);
+		tiles.Add (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.tRoad));
+		tiles.Add (Coroutines.RotateMatrixCounterClockwise (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.tRoad)));
+		tiles.Add (Coroutines.RotateMatrixCounterClockwise (Coroutines.RotateMatrixCounterClockwise (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.tRoad))));
+		tiles.Add (TerrainTiles.intersectionRoad);
 		//tiles.Add (TerrainTiles.cityRoad);
 		//tiles.Add (TerrainTiles.cityRoadAlt);
 		return tiles;
