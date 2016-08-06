@@ -108,7 +108,7 @@ public class TerrainGeneratorV2 : MonoBehaviour {
 			mapConnectLeft = new openConnect ();
 		}
 
-		if (position.y + 5 <= height) {
+		if (position.y + 5 < height) {
 			int[,] sliced = sliceArray (map, new Point3 (position.x, position.y + 5, 0), new Point3 (5, 5, 0));
 			mapConnectTop = new openConnect (sliced, true);
 			mapConnectTop.printMap ();
