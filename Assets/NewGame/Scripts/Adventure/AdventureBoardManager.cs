@@ -16,6 +16,7 @@ public class AdventureBoardManager : MonoBehaviour {
 	public GameObject[] castleTiles;
 	public GameObject[] foundationTiles;
 	public GameObject[] cliffTiles;
+	public GameObject[] waterTiles;
 	public GameObject footsteps;
 
 	private static Transform boardHolder;
@@ -135,27 +136,95 @@ public class AdventureBoardManager : MonoBehaviour {
 		} else {
 			Debug.Log ("Creating board");
 			BoardSetup ();
-			placeTerrain ();
+			constructRiverMap(TerrainGeneratorV2.generateMap (new Point3 (gameManager.getColumns (), gameManager.getRows (), 0)));
 			foreach (GameObject general in generals) {
 				placeGeneral (general);
 			}
 		}
 	}
 
-	private void placeTerrain () {
-		int[,] map = TerrainGeneratorV2.generateMap (new Point3 (gameManager.getColumns (), gameManager.getRows (), 0));
-		//.generateTargetMap (new Vector2 (gameManager.getColumns (), gameManager.getRows ()), 3);
-		//int[,] map = TerrainGenerator.generateBoxedMap (new Vector2 (gameManager.getColumns (), gameManager.getRows ()), 3);
+	private void constructRiverMap(int[,] map){
+		//Find empty at top
+		//Find empty at bottom
+		//Remove every other road
 
-		//float[,] map = PerlinGenerator.calcNoise (new Vector2 (gameManager.getColumns (), gameManager.getRows ()));
-		Debug.Log (map.ToString ());
+		int width = map.GetLength (0);
+		int height = map.GetLength (1);
+
+		List<Point3> bottom = new List<Point3> ();
+		List<Point3> tops = new List<Point3> ();
+		List<Point3> obstacles = new List<Point3> ();
+
+		Point3 currentPos = new Point3(-1,0,0);
+
+		for (int x = 1; x < width -1; x++) {
+			if (map[x - 1,0] == 0 && map[x,0] == 0 && map[x + 1,0] == 0) {
+				currentPos = new Point3(x,0,0);
+				bottom.Add (currentPos);
+			}
+			if (map[x - 1,height - 1] == 0 && map[x,height - 1] == 0 && map[x + 1,height - 1] == 0) {
+				currentPos = new Point3(x,height - 1,0);
+				tops.Add (currentPos);
+			}
+		}
+
+		Debug.Log ("Bottom: " + bottom.Count);
+		Debug.Log ("Tops: " + tops.Count);
+
+		Coroutines.ShuffleArray (bottom);
+		Coroutines.ShuffleArray (tops);
+
+		bool switchy = false;
+
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				if ((map[x,y] != 0 && map[x,y] != 2) || (x == 0 || y == 0 || x == width - 1 || y == height - 1)) {
+					obstacles.Add (new Point3 (x, y, 0));
+				} else if (map[x,y] == 2) {
+					if (!solid (map, new Point3 (x, y, 0))) {
+						switchy = !switchy;
+						if (switchy) {
+							obstacles.Add (new Point3 (x, y, 0));
+						}
+					} else {
+						obstacles.Add (new Point3 (x, y, 0));
+					}
+				}
+			}
+		}
+
+		if (bottom.Count == 0 || tops.Count == 0) {
+			deployTerrainSprites (new List<Point3> (), map);
+		} else {
+			StartCoroutine (steps.generateMapv2 (bottom[0], tops[0], height, width, obstacles, map, deployTerrainSprites));
+		}
+	}
+
+	private bool solid (int[,] map, Point3 position){
+		if (position.awayFromEdge(map) && position.crowded(map, 0, 3)){
+			return true;
+		}
+		return false;
+	}
+
+	private void deployTerrainSprites (List<Point3> path, int[,] map){
+
+		foreach(Point3 water in path){
+			if (map [water.x, water.y] == 0) {
+				map [water.x, water.y] = 3;
+			}
+		}
 
 		for (int y = 0; y < map.GetLength(1); y++) {
 			for (int x = 0; x < map.GetLength(0); x++) {
+				Point3 pos = new Point3 (x,y,0);
+
+				if (map[x,y] != 0) {
+					gridPositions.Remove (pos);
+				}
+
 				//Wall
 				if (map[x,y] == 1) {
-					Point3 pos = new Point3 (x,y,0);
-					gridPositions.Remove (pos);
 					GameObject tileChoice = innerWallTiles[UnityEngine.Random.Range (0, innerWallTiles.Length)];
 					GameObject instance = Instantiate (tileChoice, pos.asVector3(), Quaternion.identity) as GameObject;
 					instance.transform.SetParent (boardHolder);
@@ -163,18 +232,19 @@ public class AdventureBoardManager : MonoBehaviour {
 				}
 				//Road
 				if (map[x,y] == 2) {
-					Point3 pos = new Point3 (x,y,0);
-					gridPositions.Remove (pos);
 					GameObject tileChoice = roadTiles[UnityEngine.Random.Range (0, roadTiles.Length)];
+					GameObject instance = Instantiate (tileChoice, pos.asVector3(), Quaternion.identity) as GameObject;
+					instance.transform.SetParent (boardHolder);
+				}
+				//water
+				if (map[x,y] == 3) {
+					GameObject tileChoice = waterTiles[UnityEngine.Random.Range (0, waterTiles.Length)];
 					GameObject instance = Instantiate (tileChoice, pos.asVector3(), Quaternion.identity) as GameObject;
 					instance.transform.SetParent (boardHolder);
 				}
 
 				//Castle
 				if (map[x,y] == 11 || map[x,y] == 12) {
-					Point3 pos = new Point3 (x,y,0);
-					gridPositions.Remove (pos);
-
 					GameObject tileChoice = foundationTiles[UnityEngine.Random.Range (0, foundationTiles.Length)];
 					GameObject instance = Instantiate (tileChoice, pos.asVector3(), Quaternion.identity) as GameObject;
 					instance.transform.SetParent (boardHolder);

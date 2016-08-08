@@ -27,49 +27,19 @@ public class Footsteps : MonoBehaviour {
 		thisPath = new List<GameObject> ();
 	}
 
-	/*public List<Point3> generateMapv2(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs){
-		this.destination = destination;
-		this.columns = columns;
-		this.rows = rows;
-		thisPath.Clear ();
-		map = new int[columns,rows];
-		generatedMap = new int[columns,rows];
-		for (int y = 0; y < rows; y++){
-			for (int x = 0; x < columns; x++){
-				Point3 check = new Point3 ((float)x, (float)y, 0);
-				if ((check.Equals(startingPos) || Coroutines.containsPoint (obs, check)) && !destination.Equals(check)) {
-					map [x,y] = 1;
-				} else {
-					map [x,y] = 0;
-				}
-				generatedMap [x, y] = 0;
-			}
-		}
-		foundVal = null;
-		nextQueue = new Queue<Point3>();
-		stepQueue = new Queue<Point3>();
-		stepQueue.Enqueue (startingPos);
-		generatedMap[startingPos.x,startingPos.y] = 1;
-		int count = 2;
-		while (stepQueue.Count > 0 && foundVal == null){
-			while (stepQueue.Count > 0) {
-				stepv2 (stepQueue.Dequeue(), count);
-				if (foundVal != null) {
-					break;
-				}
-			}
-			stepQueue = new Queue<Point3>(nextQueue);
-			nextQueue.Clear ();
-			count++;
-		}
-		if (foundVal != null) {
-			foundVal.Reverse ();
-			foundVal.Remove (startingPos);
-		}
-		return foundVal;
-	}*/
+	public IEnumerator generateMapv2(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs, int[,] map, Action<List<Point3>, int[,]> pathCallback){
+		foundVal = baseAlgorithm (startingPos, destination, rows, columns, obs, false);
+		pathCallback (foundVal, map);
+		yield return foundVal;
+	}
 
 	public IEnumerator generateMapv2(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs, Action<List<Point3>, Point3> pathCallback){
+		foundVal = baseAlgorithm (startingPos, destination, rows, columns, obs, true);
+		pathCallback (foundVal, destination);
+		yield return foundVal;
+	}
+
+	private List<Point3> baseAlgorithm(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs, bool deleteFirst){
 		this.destination = destination;
 		this.columns = columns;
 		this.rows = rows;
@@ -104,13 +74,12 @@ public class Footsteps : MonoBehaviour {
 			nextQueue.Clear ();
 			count++;
 		}
-		if (foundVal != null) {
+		if (deleteFirst && foundVal != null) {
 			foundVal.Reverse ();
 			foundVal.RemoveAt (0);
 		}
 
-		pathCallback (foundVal, destination);
-		yield return foundVal;
+		return foundVal;
 	}
 
 	public List<Point3> getPath(){

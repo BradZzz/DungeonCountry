@@ -14,31 +14,126 @@ public class TerrainGeneratorV2 : MonoBehaviour {
 
 	public static int[,] generateMap (Point3 dimensions) {
 
-		int baseDimension = 5;
-
 		int[,] map = new int[dimensions.x, dimensions.y];
 
 		tiles = TerrainTiles.returnTiles();
 		positions = new List<Point3> ();
 
 		//Initialize all the positions to
-		for (int y = 0; y < dimensions.y - 4; y += baseDimension) {
-			for (int x = 0; x < dimensions.x - 4; x += baseDimension) {
+		for (int y = 0; y < dimensions.y - 4; y += TerrainTiles.terrainSizeSmall) {
+			for (int x = 0; x < dimensions.x - 4; x += TerrainTiles.terrainSizeSmall) {
 				map [x, y] = 0;
 			}
 		}
 
-		for (int y = dimensions.y - baseDimension; y >= 0; y -= baseDimension) {
-			for (int x = 0; x < dimensions.x; x += baseDimension) {
+		for (int y = dimensions.y - TerrainTiles.terrainSizeSmall; y >= 0; y -= TerrainTiles.terrainSizeSmall) {
+			for (int x = 0; x < dimensions.x; x += TerrainTiles.terrainSizeSmall) {
 				Point3 pos = new Point3 (x, y, 0);
-				if (!somethingThere(map, baseDimension, baseDimension, pos)) {
+				if (!somethingThere(map, TerrainTiles.terrainSizeSmall, TerrainTiles.terrainSizeSmall, pos)) {
 					int[,] selectedTile = selectTile(map, new Point3(x, y, 0));
 					applyTile (map, selectedTile, pos);
 				}
 			}
 		}
+			
+		/*List<Point3> rivers = buildRivers (map);
+		foreach (Point3 river in rivers) {
+			if (map [river.x, river.y] == 0) {
+				map [river.x, river.y] = 3;
+			}
+		}*/
 
 		return map;
+	}
+
+	private static List<Point3> buildRivers(int[,] map){
+		//Pick random point on edge of map:
+		//if that point isn't a 0, repick
+		//else, pick second point on edge of map
+		int width = map.GetLength (0);
+		int height = map.GetLength (1);
+
+		List<Point3> steps = new List<Point3> ();
+
+		Point3 currentPos = new Point3(-1,0,0);
+
+		for (int x = 1; x < width -1; x++) {
+			if (map[x - 1,0] == 0 && map[x,0] == 0 && map[x + 1,0] == 0) {
+				currentPos = new Point3(x,0,0);
+				//map [x, 0] = 3;
+				steps.Add (currentPos);
+				break;
+			}
+		}
+
+		if (currentPos.x != -1) {
+			while (currentPos.y+1 < height) {
+				List<Point3> rivers = checkClear (map, currentPos);
+				Coroutines.ShuffleArray (rivers);
+				if (rivers.Count > 0) {
+					currentPos = rivers [0];
+					//if (map [rivers [0].x, rivers [0].y] == 0) {
+					//	map [rivers [0].x, rivers [0].y] = 3;
+					//}
+					steps.Add (currentPos);
+				} else {
+					break;
+				}
+			}
+		}
+
+		return steps;
+	}
+
+	private static List<Point3> checkClear(int[,] map, Point3 current){
+		int width = map.GetLength (0);
+		int height = map.GetLength (1);
+
+		//check left, right, and up
+		List<Point3> directions = new List<Point3>();
+
+		//Left
+		if (current.x-2 > -1 && current.y - 1 > -1 && current.y+1 < height) {
+			Point3 leftishLeft = new Point3 (current.x - 1, current.y - 1, 0);
+			Point3 leftishCenter = new Point3 (current.x - 1, current.y, 0);
+			Point3 leftishRight = new Point3 (current.x - 1, current.y + 1, 0);
+
+			bool leftRiver = map [leftishLeft.x, leftishLeft.y] == 3 || map [leftishCenter.x, leftishCenter.y] == 3 || map [leftishRight.x, leftishRight.y] == 3;
+
+			int total = map [leftishLeft.x, leftishLeft.y] + map [leftishCenter.x, leftishCenter.y] + map [leftishRight.x, leftishRight.y];
+			if (!leftRiver && (total == 6 || total == 0)) {
+				directions.Add(leftishCenter);
+			}
+		}
+
+		//Right
+		if (current.x+2 < width && current.y - 1 > -1 && current.y+1 < height) {
+			Point3 rightishLeft = new Point3 (current.x + 1, current.y - 1, 0);
+			Point3 rightishCenter = new Point3 (current.x + 1, current.y, 0);
+			Point3 rightishRight = new Point3 (current.x + 1, current.y + 1, 0);
+
+			bool rightRiver = map [rightishLeft.x, rightishLeft.y] == 3 || map [rightishCenter.x, rightishCenter.y] == 3 || map [rightishRight.x, rightishRight.y] == 3;
+
+			int total = map [rightishLeft.x, rightishLeft.y] + map [rightishCenter.x, rightishCenter.y] + map [rightishRight.x, rightishRight.y];
+			if (!rightRiver && (total == 6 || total == 0)) {
+				directions.Add(rightishCenter);
+			}
+		}
+
+		//up
+		if (current.y+1 < height) {
+			Point3 upishLeft = new Point3 (current.x - 1, current.y + 1, 0);
+			Point3 upishCenter = new Point3 (current.x, current.y + 1, 0);
+			Point3 upishRight = new Point3 (current.x + 1, current.y + 1, 0);
+
+			bool upRiver = map [upishLeft.x, upishLeft.y] == 3 || map [upishCenter.x, upishCenter.y] == 3 || map [upishRight.x, upishRight.y] == 3;
+
+			int total = map [upishLeft.x, upishLeft.y] + map [upishCenter.x, upishCenter.y] + map [upishRight.x, upishRight.y];
+			if (!upRiver && (total == 6 || total == 0)) {
+				directions.Add(upishCenter);
+			}
+		}
+		return directions;
 	}
 
 	private static bool somethingThere(int[,] map, int width, int height, Point3 position){
@@ -99,27 +194,38 @@ public class TerrainGeneratorV2 : MonoBehaviour {
 
 		List<int[,]> returnTiles = new List<int[,]> ();
 		openConnect mapConnectLeft;
+		openConnect mapConnectRight;
 		openConnect mapConnectTop;
 
 		if (position.x != 0) {
-			int[,] sliced = sliceArray (map, new Point3 (position.x - 5, position.y, 0), new Point3 (5, 5, 0));
+			int[,] sliced = sliceArray (map, new Point3 (position.x - TerrainTiles.terrainSizeSmall, position.y, 0), new Point3 (TerrainTiles.terrainSizeSmall, TerrainTiles.terrainSizeSmall, 0));
 			mapConnectLeft = new openConnect (sliced, true);
 			mapConnectLeft.printMap ();
 		} else {
 			mapConnectLeft = new openConnect ();
 		}
 
-		if (position.y + 5 < height) {
-			int[,] sliced = sliceArray (map, new Point3 (position.x, position.y + 5, 0), new Point3 (5, 5, 0));
+		if (position.y + TerrainTiles.terrainSizeSmall < height) {
+			int[,] sliced = sliceArray (map, new Point3 (position.x, position.y + TerrainTiles.terrainSizeSmall, 0), new Point3 (TerrainTiles.terrainSizeSmall, TerrainTiles.terrainSizeSmall, 0));
 			mapConnectTop = new openConnect (sliced, true);
 			mapConnectTop.printMap ();
 		} else {
 			mapConnectTop = new openConnect ();
 		}
+			
+		Point3 rightish = new Point3 (position.x + TerrainTiles.terrainSizeSmall, position.y, 0);
+
+		if (position.x + TerrainTiles.terrainSizeSmall < width && somethingThere (map, TerrainTiles.terrainSizeSmall, TerrainTiles.terrainSizeSmall, rightish)) {
+			int[,] sliced = sliceArray (map, rightish, new Point3 (TerrainTiles.terrainSizeSmall, TerrainTiles.terrainSizeSmall, 0));
+			mapConnectRight = new openConnect (sliced, true);
+			mapConnectRight.printMap ();
+		} else {
+			mapConnectRight = new openConnect ();
+		}
 
 		//For now, let's just look to the left
 		foreach (int[,] tile in allTiles) {
-			if (position.x == 0 && position.y + 5 >= height) {
+			if (position.x == 0 && position.y + TerrainTiles.terrainSizeSmall >= height) {
 				returnTiles.Add (tile);
 			} else {
 				//These are the connecting parts on the tile
@@ -129,7 +235,8 @@ public class TerrainGeneratorV2 : MonoBehaviour {
 				tileConnect.printMap ();
 
 				if (((mapConnectLeft.right && tileConnect.left) || (!mapConnectLeft.right && !tileConnect.left)) &&
-					((mapConnectTop.down && tileConnect.up) || (!mapConnectTop.down && !tileConnect.up))) {
+					((mapConnectTop.down && tileConnect.up) || (!mapConnectTop.down && !tileConnect.up)) /*&& 
+					((mapConnectRight.left && tileConnect.right) || (!mapConnectRight.left && !tileConnect.right))*/) {
 					returnTiles.Add (tile);
 				}
 			}

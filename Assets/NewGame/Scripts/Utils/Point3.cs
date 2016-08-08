@@ -58,4 +58,22 @@ public class Point3 {
 	public string ToString(){
 		return "(" + x + "," + y + "," + z + ")";
 	}
+
+	public bool awayFromEdge(int[,] map){
+		return x > 0 && y > 0 && x < map.GetLength (0) - 1 && y < map.GetLength (1) - 1;
+	}
+
+	public bool crowded(int[,] map, int dismiss, int error){
+		int width = map.GetLength (0);
+		int height = map.GetLength (1);
+
+		for (int y = this.y - 1; y < this.y + 2; y++) {
+			for (int x = this.x - 1; x < this.x + 2; x++) {
+				if (map[x,y] != dismiss) {
+					error--;
+				}
+			}
+		}
+		return error > 0;
+	}
 }
