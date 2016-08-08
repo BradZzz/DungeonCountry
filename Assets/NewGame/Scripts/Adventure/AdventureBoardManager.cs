@@ -17,7 +17,9 @@ public class AdventureBoardManager : MonoBehaviour {
 	public GameObject[] foundationTiles;
 	public GameObject[] cliffTiles;
 	public GameObject[] waterTiles;
+	public GameObject[] bridgeTiles;
 	public GameObject footsteps;
+	private int waters = 4;
 
 	private static Transform boardHolder;
 	private Transform lastClicked;
@@ -196,7 +198,7 @@ public class AdventureBoardManager : MonoBehaviour {
 		if (bottom.Count == 0 || tops.Count == 0) {
 			deployTerrainSprites (new List<Point3> (), map);
 		} else {
-			StartCoroutine (steps.generateMapv2 (bottom[0], tops[0], height, width, obstacles, map, deployTerrainSprites));
+			StartCoroutine (steps.generateMapv2 (bottom[0], tops[0], height, width, obstacles, map, waterMap));
 		}
 	}
 
@@ -207,13 +209,23 @@ public class AdventureBoardManager : MonoBehaviour {
 		return false;
 	}
 
-	private void deployTerrainSprites (List<Point3> path, int[,] map){
-
-		foreach(Point3 water in path){
-			if (map [water.x, water.y] == 0) {
-				map [water.x, water.y] = 3;
+	private void waterMap(List<Point3> path, int[,] map){
+		if (path != null) {
+			foreach (Point3 water in path) {
+				if (map [water.x, water.y] == 0) {
+					map [water.x, water.y] = 3;
+				}
 			}
 		}
+		if (waters > 0) {
+			waters--;
+			constructRiverMap (map);
+		} else {
+			deployTerrainSprites(path, map);
+		}
+	}
+
+	private void deployTerrainSprites (List<Point3> path, int[,] map){
 
 		for (int y = 0; y < map.GetLength(1); y++) {
 			for (int x = 0; x < map.GetLength(0); x++) {
@@ -232,8 +244,22 @@ public class AdventureBoardManager : MonoBehaviour {
 				}
 				//Road
 				if (map[x,y] == 2) {
-					GameObject tileChoice = roadTiles[UnityEngine.Random.Range (0, roadTiles.Length)];
-					GameObject instance = Instantiate (tileChoice, pos.asVector3(), Quaternion.identity) as GameObject;
+					GameObject tileChoice;
+					bool sibVer = siblings (map, new Point3 (pos), 3, true);
+					bool sibHor = siblings (map, new Point3 (pos), 3, false);
+
+					if (sibVer || sibHor) {
+						tileChoice = bridgeTiles [UnityEngine.Random.Range (0, bridgeTiles.Length)];
+					} else {
+						tileChoice = roadTiles [UnityEngine.Random.Range (0, roadTiles.Length)];
+					}
+					GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
+					if (sibHor) {
+						SpriteRenderer sprite = instance.GetComponent<SpriteRenderer> ();
+						sprite.transform.Rotate (new Vector3(0,0,90));
+						//sprite.flipX = true;
+						//sprite.flipY = true;
+					}
 					instance.transform.SetParent (boardHolder);
 				}
 				//water
@@ -262,6 +288,25 @@ public class AdventureBoardManager : MonoBehaviour {
 		}
 	}
 
+	public bool siblings(int[,] map, Point3 pos, int search, bool vertical){
+		int width = map.GetLength (0);
+		int height = map.GetLength (1);
+
+		//vertical
+		if (vertical) {
+			if (pos.y > 0 && pos.y < height - 1 && map[pos.x, pos.y -1] == search && map[pos.x, pos.y + 1] == search) {
+				return true;
+			}
+			return false;
+			//else horizontal
+		} else {
+			if (pos.x > 0 && pos.x < width - 1 && map[pos.x - 1, pos.y] == search && map[pos.x + 1, pos.y] == search) {
+				return true;
+			}
+			return false;
+		}
+	}
+
 	private void placeGeneral (GameObject general)
 	{
 		LayoutObjectAtRandom (new GameObject[]{general}, 1, 1);
@@ -284,10 +329,6 @@ public class AdventureBoardManager : MonoBehaviour {
 			GameObject tileChoice = tileArray[UnityEngine.Random.Range (0, tileArray.Length)];
 			GameObject instance = Instantiate (tileChoice, randomPosition.asVector3(), Quaternion.identity) as GameObject;
 			Debug.Log ("Laying down, name: " + instance.name + " position: " + instance.transform.position);
-			/*if (instance.name.Contains("Rock(Crag)")) {
-				Debug.Log ("Found instance name");
-				instance.transform.position = new Point3(instance.transform.position.x, instance.transform.position.y + .15f, instance.transform.position.z);
-			}*/
 			instance.transform.SetParent (boardHolder);
 		}
 	}
@@ -306,7 +347,6 @@ public class AdventureBoardManager : MonoBehaviour {
 			}
 		} else if (lastClicked != null) { 
 			Debug.Log("LastClicked: " + lastClicked.name + " pos: " + lastClicked.position);
-			//if (!Coroutines.hasParentPoint3 (click)) {
 			if (!click.Equals(lastClicked.position) && (!steps.walking () || !click.Equals(lastClick))) {
 					steps.destroySteps ();
 					Debug.Log ("Moving: " + lastClicked.name);
@@ -319,25 +359,12 @@ public class AdventureBoardManager : MonoBehaviour {
 					foreach (GameObject obs in GameObject.FindGameObjectsWithTag("Obstacle")) {
 						obstacles.Add (new Point3(obs.transform.position));
 					}
-
-					//step_generate
-					//StartCoroutine (step_generate(new Point3(lastClicked.position), click, gameManager.getRows (), gameManager.getColumns (), obstacles));
-
 					StartCoroutine (steps.generateMapv2 (new Point3(lastClicked.position), click, gameManager.getRows (), gameManager.getColumns (), obstacles, setPath));
-
-					/*path = steps.generateMap (new Point3(lastClicked.position), new Point3(click), gameManager.getRows (), gameManager.getColumns (), obstacles);
-					if (path != null) {
-						steps.createSteps (new Point3(lastClicked.position), boardHolder, path);
-						lastClick = click;
-					} else {
-						lastClicked = null;
-					}*/
 			} else if (steps.walking () && click.Equals(lastClick)) {
 					moveAdventurer (lastClicked, path);
 					lastClicked = null;
 					steps.destroySteps ();
 			}
-			//}
 		}
 	}
 
@@ -390,25 +417,6 @@ public class AdventureBoardManager : MonoBehaviour {
 			lastClicked = null;
 		}
 	}
-
-	/*IEnumerator step_generate(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs)
-	{
-		CoroutineWithData cd = new CoroutineWithData(this, steps.generateMap (startingPos, destination, gameManager.getRows (), gameManager.getColumns (), obs) );
-		yield return cd.coroutine;
-		//path = cd.result;
-		Debug.Log("result is " + cd.result);  //  'success' or 'fail'
-
-
-		//yield return StartCoroutine( steps.generateMap (startingPos, destination, gameManager.getRows (), gameManager.getColumns (), obs));
-		//path = steps.getPath ();
-		if (path != null) {
-			steps.createSteps (new Point3(lastClicked.position), boardHolder, path);
-			lastClick = destination;
-		} else {
-			lastClicked = null;
-		}
-		yield return null;
-	}*/
 
 	IEnumerator step_path(Transform origin, List<Point3> path, float speed, bool battle)
 	{
