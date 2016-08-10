@@ -4,8 +4,11 @@ using System.Collections;
 public class TileNinePatch : MonoBehaviour {
 	public GameObject topLeft;
 	public GameObject topCenter;
+	public GameObject topRight;
 
+	public GameObject centerLeft;
 	public GameObject center;
+	public GameObject centerRight;
 
 	public GameObject bottomLeft;
 	public GameObject bottomCenter;
@@ -38,22 +41,13 @@ public class TileNinePatch : MonoBehaviour {
 			case 2:
 				return topCenter;
 			case 3:
-				tile = topLeft;
-				sprite = tile.GetComponent<SpriteRenderer> ();
-				sprite.transform.Rotate (new Vector3 (0, 0, 90));
-				return tile;
+				return topRight;
 			case 4:
-				tile = topCenter;
-				sprite = tile.GetComponent<SpriteRenderer> ();
-				sprite.transform.Rotate (new Vector3 (0, 0, 270));
-				return tile;
+				return centerLeft;
 			case 5:
 				return center;
 			case 6:
-				tile = topCenter;
-				sprite = tile.GetComponent<SpriteRenderer> ();
-				sprite.transform.Rotate (new Vector3 (0, 0, 90));
-				return tile;
+				return centerRight;
 			case 7:
 				return bottomLeft;
 			case 8:
@@ -67,7 +61,7 @@ public class TileNinePatch : MonoBehaviour {
 			case 12:
 				return sideWalls;
 			default:
-				return sideWalls;
+				return center;
 		}
 	}
 

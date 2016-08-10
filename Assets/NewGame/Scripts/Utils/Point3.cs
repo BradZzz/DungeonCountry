@@ -104,22 +104,22 @@ public class Point3 {
 		bool down = downI == -1 || downI == 1;
 
 		//topleft
-		if (right && down) {
-			return 1;
+		if (right && down && !left && !up) {
+			return 7;
 		}
 
 		//topcenter
-		if (left && right && down) {
-			return 2;
+		if (left && right && down && !up) {
+			return 8;
 		}
 
 		//topright
-		if (right && down) {
-			return 3;
+		if (!right && down && left && !up) {
+			return 9;
 		}
 
 		//midleft
-		if (right && up && down) {
+		if (right && up && down && !left) {
 			return 4;
 		}
 
@@ -129,23 +129,23 @@ public class Point3 {
 		}
 
 		//midright
-		if (left && up && down) {
+		if (left && up && down && !right) {
 			return 6;
 		}
 
 		//bottomleft
-		if (right && up) {
-			return 7;
+		if (right && up && !left && !down) {
+			return 1;
 		}
 
 		//bottomcenter
-		if (left && right && up) {
-			return 8;
+		if (left && right && up && !down) {
+			return 2;
 		}
 
 		//bottomright
-		if (left && up) {
-			return 9;
+		if (left && up && !right && !down) {
+			return 3;
 		}
 		return 5;
 	}
