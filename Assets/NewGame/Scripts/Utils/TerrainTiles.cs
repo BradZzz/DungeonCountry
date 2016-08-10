@@ -82,10 +82,34 @@ public class TerrainTiles {
 		{ 0, 0, 3, 0, 0 } 
 	};*/
 
+	public static int[,] cliffRoad = { 
+		{ 20, 20, 20, 20, 20 }, 
+		{ 20, 20, 20, 20, 20 }, 
+		{  2,  2,  2,  2,  2 }, 
+		{ 20, 20, 20, 20, 20 }, 
+		{ 20, 20, 20, 20, 20 } 
+	};
+
+	public static int[,] cliffTee = { 
+		{ 20, 20,  2, 20, 20 }, 
+		{ 20, 20,  2, 20, 20 }, 
+		{  2,  2,  2,  2,  2 }, 
+		{ 20, 20, 20, 20, 20 }, 
+		{ 20, 20, 20, 20, 20 } 
+	};
+
+	public static int[,] cliffPlus = { 
+		{ 20, 20,  2, 20, 20 }, 
+		{ 20, 20,  2, 20, 20 }, 
+		{  2,  2,  2,  2,  2 }, 
+		{ 20, 20,  2, 20, 20 }, 
+		{ 20, 20,  2, 20, 20 } 
+	};
+
 	public static int[,] smallCityRoad = { 
 		{ 0, 2, 2, 2, 2 }, 
 		{ 0, 2,12,11, 2 }, 
-		{ 0, 2,12,12, 2 }, 
+		{ 0, 2,10,10, 2 }, 
 		{ 0, 2, 2, 2, 2 }, 
 		{ 0, 0, 2, 0, 0 } 
 	};
@@ -93,7 +117,7 @@ public class TerrainTiles {
 	public static int[,] smallCityRoadAlt = { 
 		{ 2, 2, 2, 2, 0 }, 
 		{ 2, 12,11,2, 0 }, 
-		{ 2, 12,12,2, 0 }, 
+		{ 2, 10,10,2, 0 }, 
 		{ 2, 2, 2, 2, 0 }, 
 		{ 0, 0, 2, 0, 0 } 
 	};
@@ -132,6 +156,13 @@ public class TerrainTiles {
 		tiles.Add (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.curvyRoad));
 		tiles.Add (Coroutines.RotateMatrixCounterClockwise (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.curvyRoad)));
 		tiles.Add (Coroutines.RotateMatrixCounterClockwise (Coroutines.RotateMatrixCounterClockwise (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.curvyRoad))));
+		tiles.Add (TerrainTiles.cliffRoad);
+		tiles.Add (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.cliffRoad));
+		tiles.Add (TerrainTiles.cliffPlus);
+		tiles.Add (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.cliffPlus));
+		tiles.Add (Coroutines.RotateMatrixCounterClockwise (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.cliffPlus)));
+		tiles.Add (Coroutines.RotateMatrixCounterClockwise (Coroutines.RotateMatrixCounterClockwise (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.cliffPlus))));
+		tiles.Add (TerrainTiles.cliffPlus);
 		tiles.Add (TerrainTiles.tRoad);
 		tiles.Add (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.tRoad));
 		tiles.Add (Coroutines.RotateMatrixCounterClockwise (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.tRoad)));

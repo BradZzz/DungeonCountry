@@ -14,6 +14,7 @@ public class AdventureBoardManager : MonoBehaviour {
 	public GameObject[] roadTiles;
 	public GameObject[] bloodTiles;
 	public GameObject[] castleTiles;
+	public GameObject[] entranceTiles;
 	public GameObject[] foundationTiles;
 	public GameObject[] cliffTiles;
 	public GameObject[] waterTiles;
@@ -21,15 +22,19 @@ public class AdventureBoardManager : MonoBehaviour {
 	public GameObject footsteps;
 	private int waters = 4;
 
+	public GameObject cliffNinePatch;
+
 	private static Transform boardHolder;
 	private Transform lastClicked;
 	private Point3 lastClick;
 	private AdventureGameManager gameManager;
-	private List<Point3> gridPositions;
+	private List<Point3> openPositions;
+	private List<Point3> roadPositions;
 	protected Dictionary<Point3, Transform> dict;
 	private Camera cam;
 	private Footsteps steps;
 	private List<Point3> path;
+	private TileNinePatch cliffPatch;
 
 	void Awake(){
 
@@ -44,7 +49,9 @@ public class AdventureBoardManager : MonoBehaviour {
 	void Start(){
 		cam = GameObject.Find("Main Camera").GetComponent<Camera>();
 		steps = footsteps.GetComponent<Footsteps>();
-		gridPositions = new List <Point3> ();
+		openPositions = new List <Point3> ();
+		roadPositions = new List <Point3> ();
+		cliffPatch = cliffNinePatch.GetComponent<TileNinePatch> ();
 	}
 		
 	private void BoardSetup ()
@@ -99,17 +106,26 @@ public class AdventureBoardManager : MonoBehaviour {
 		foreach(Transform item in boardHolder) {
 			Point3 pos = new Point3(item.position);
 			if (item.name.Contains ("Floor") && pos.x > -1 && pos.y > -1 && pos.x < gameManager.getColumns () && pos.y < gameManager.getRows ()) {
-				gridPositions.Add (pos);
+				//gridPositions.Add (pos);
 				dict [pos] = item;
 			} 
 			if (sharedPrefs && item.tag.Equals ("Unit")) {
 				BattleGeneralMeta meta = null;
-				if (item.position.Equals(playerPos)) {
+				if (pos.Equals(playerPos)) {
 					//(item.transform.position.Equals(playerPos) || item.transform.position.Equals(enemyPos))
 					meta = SharedPrefs.playerArmy.gameObject.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
-				} else if (item.position.Equals(enemyPos)) {
+				} else if (pos.Equals(enemyPos)) {
 					meta = SharedPrefs.enemyArmy.gameObject.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 				}
+				if (meta == null) {
+					Debug.Log ("Meta is null");
+					Debug.Log ("playerPosition: " + playerPos.ToString());
+					Debug.Log ("enemyPosition: " + enemyPos.ToString());
+					Debug.Log ("thisPosition: " + pos.ToString());
+				} else {
+					Debug.Log ("Name: " + meta.name + " Defeated: " + meta.getDefeated());
+				}
+
 				if (meta != null && meta.getDefeated ()) {
 					item.gameObject.SetActive (false);
 
@@ -117,9 +133,7 @@ public class AdventureBoardManager : MonoBehaviour {
 					GameObject tileChoice = bloodTiles[UnityEngine.Random.Range (0, bloodTiles.Length)];
 					GameObject instance = Instantiate (tileChoice, item.position, Quaternion.identity) as GameObject;
 					instance.transform.SetParent (boardHolder);
-				} else {
-					Debug.Log ("Meta is null");
-				}
+				} 
 			}
 		}
 	}
@@ -203,7 +217,7 @@ public class AdventureBoardManager : MonoBehaviour {
 	}
 
 	private bool solid (int[,] map, Point3 position){
-		if (position.awayFromEdge(map) && position.crowded(map, 0, 3)){
+		if (position.awayFromEdge(map) && position.crowded(map, 0, 2)){
 			return true;
 		}
 		return false;
@@ -231,18 +245,18 @@ public class AdventureBoardManager : MonoBehaviour {
 			for (int x = 0; x < map.GetLength(0); x++) {
 				Point3 pos = new Point3 (x,y,0);
 
-				if (map[x,y] != 0) {
-					gridPositions.Remove (pos);
+				if (map[x,y] == 0) {
+					openPositions.Add (pos);
 				}
 
-				//Wall
+				//Wall = 1
+				//Could be hedges or rocks
 				if (map[x,y] == 1) {
 					GameObject tileChoice = innerWallTiles[UnityEngine.Random.Range (0, innerWallTiles.Length)];
 					GameObject instance = Instantiate (tileChoice, pos.asVector3(), Quaternion.identity) as GameObject;
 					instance.transform.SetParent (boardHolder);
-					gridPositions.Remove (pos);
 				}
-				//Road
+				//Road = 2
 				if (map[x,y] == 2) {
 					GameObject tileChoice;
 					bool sibVer = siblings (map, new Point3 (pos), 3, true);
@@ -257,12 +271,12 @@ public class AdventureBoardManager : MonoBehaviour {
 					if (sibHor) {
 						SpriteRenderer sprite = instance.GetComponent<SpriteRenderer> ();
 						sprite.transform.Rotate (new Vector3(0,0,90));
-						//sprite.flipX = true;
-						//sprite.flipY = true;
 					}
 					instance.transform.SetParent (boardHolder);
+					roadPositions.Add (pos);
 				}
-				//water
+
+				//water = 3
 				if (map[x,y] == 3) {
 					GameObject tileChoice = waterTiles[UnityEngine.Random.Range (0, waterTiles.Length)];
 					GameObject instance = Instantiate (tileChoice, pos.asVector3(), Quaternion.identity) as GameObject;
@@ -270,19 +284,40 @@ public class AdventureBoardManager : MonoBehaviour {
 				}
 
 				//Castle
-				if (map[x,y] == 11 || map[x,y] == 12) {
-					GameObject tileChoice = foundationTiles[UnityEngine.Random.Range (0, foundationTiles.Length)];
-					GameObject instance = Instantiate (tileChoice, pos.asVector3(), Quaternion.identity) as GameObject;
-					instance.transform.SetParent (boardHolder);
-
-					if (map[x,y] == 11) {
-						Vector3 vect = pos.asVector3 ();
-						vect.x -= .5f;
-						vect.y -= .5f;
-						tileChoice = castleTiles[UnityEngine.Random.Range (0, castleTiles.Length)];
-						instance = Instantiate (tileChoice, vect, Quaternion.identity) as GameObject;
+				//10 = entrance
+				//11 = sprite placement/foundation
+				//12 = foundation
+				if (map[x,y] == 10 || map[x,y] == 11 || map[x,y] == 12) {
+					if (map [x, y] == 10) {
+						GameObject tileChoice = entranceTiles [UnityEngine.Random.Range (0, entranceTiles.Length)];
+						GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
 						instance.transform.SetParent (boardHolder);
+					} else {
+						GameObject tileChoice = foundationTiles [UnityEngine.Random.Range (0, foundationTiles.Length)];
+						GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
+						instance.transform.SetParent (boardHolder);
+
+						if (map [x, y] == 11) {
+							Vector3 vect = pos.asVector3 ();
+							vect.x -= .5f;
+							vect.y -= .5f;
+							tileChoice = castleTiles [UnityEngine.Random.Range (0, castleTiles.Length)];
+							instance = Instantiate (tileChoice, vect, Quaternion.identity) as GameObject;
+							instance.transform.SetParent (boardHolder);
+						}
 					}
+				}
+
+				//cliffs = 2x
+				//More coherent walls
+				if (map[x,y] == 20) {
+					//GameObject tileChoice = cliffTiles[UnityEngine.Random.Range (0, cliffTiles.Length)];
+					int pathPos = pos.returnPatchLocation(map,20);
+					Debug.Log ("PathPos: " + pathPos);
+					Debug.Log ("Patch: " + cliffPatch.returnPatch(pathPos).name);
+
+					GameObject instance = Instantiate (cliffPatch.returnPatch(pathPos), pos.asVector3(), Quaternion.identity) as GameObject;
+					instance.transform.SetParent (boardHolder);
 				}
 			}
 		}
@@ -309,23 +344,30 @@ public class AdventureBoardManager : MonoBehaviour {
 
 	private void placeGeneral (GameObject general)
 	{
-		LayoutObjectAtRandom (new GameObject[]{general}, 1, 1);
+		LayoutObjectAtRandom (new GameObject[]{general}, 1, 1, true);
 	}
 
-	Point3 RandomPosition ()
+	Point3 RandomPosition (bool onRoad)
 	{
-		int randomIndex = UnityEngine.Random.Range (0, gridPositions.Count);
-		Point3 randomPosition = gridPositions[randomIndex];
-		gridPositions.RemoveAt (randomIndex);
+		Point3 randomPosition;
+		if (onRoad) {
+			int randomIndex = UnityEngine.Random.Range (0, roadPositions.Count);
+			randomPosition = roadPositions [randomIndex];
+			roadPositions.RemoveAt (randomIndex);
+		} else {
+			int randomIndex = UnityEngine.Random.Range (0, openPositions.Count);
+			randomPosition = openPositions [randomIndex];
+			openPositions.RemoveAt (randomIndex);
+		}
 		return randomPosition;
 	}
 
-	void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum)
+	void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum, bool onRoad)
 	{
 		int objectCount = UnityEngine.Random.Range (minimum, maximum+1);
 		for(int i = 0; i < objectCount; i++)
 		{
-			Point3 randomPosition = RandomPosition();
+			Point3 randomPosition = RandomPosition(onRoad);
 			GameObject tileChoice = tileArray[UnityEngine.Random.Range (0, tileArray.Length)];
 			GameObject instance = Instantiate (tileChoice, randomPosition.asVector3(), Quaternion.identity) as GameObject;
 			Debug.Log ("Laying down, name: " + instance.name + " position: " + instance.transform.position);
@@ -460,7 +502,7 @@ public class AdventureBoardManager : MonoBehaviour {
 
 			origin.position = position;
 
-			if (((Time.time - startime)*speed) > 1f) {
+			if (((Time.time - startime)*speed) >= .95f) {
 				origin.position = end_pos;
 			}
 

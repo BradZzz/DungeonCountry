@@ -84,6 +84,7 @@
      <Compile Include="Assets\NewGame\Scripts\Utils\TerrainGeneratorV2.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\TerrainTiles.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\TextureScale.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Utils\TileNinePatch.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\Zoom.cs" />
      <Compile Include="Assets\Scripts\BoardManager.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
