@@ -88,7 +88,7 @@ public class Point3 {
 						directions[xx,yy] = 1;
 					}
 				} catch (Exception e) {
-					directions[xx,yy] = -1;
+					//directions[xx,yy] = -1;
 				}
 			}
 		}
@@ -147,6 +147,6 @@ public class Point3 {
 		if (left && up && !right && !down) {
 			return 3;
 		}
-		return 5;
+		return -1;
 	}
 }

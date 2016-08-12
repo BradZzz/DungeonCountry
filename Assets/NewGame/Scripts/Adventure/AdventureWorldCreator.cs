@@ -121,26 +121,6 @@ public class AdventureWorldCreator : MonoBehaviour {
 					} else {
 						obstacles.Add (new Point3 (x, y, 0));
 					}
-				} else if (map[x,y] == 0) {
-					Point3 pos = new Point3 (x, y, 0);
-					//generateMapv2Serial
-					int grassPatch = pos.returnPatchLocation(map, 0);
-
-					int materialPatch = pos.returnPatchLocation(map, 20);
-					if ((materialPatch == 3 || materialPatch == 1)) {
-						//Resource
-						if (UnityEngine.Random.Range (0, 150) > odds) {
-							map [pos.x, pos.y] = 40;
-						}
-					}
-					int dwellingPatch = pos.returnPatchLocation(map, 2);
-					if ((dwellingPatch == 7 || dwellingPatch == 9) /*&& (grassPatch > 3)*/) {
-						//Dwelling
-						if (UnityEngine.Random.Range (0, 80) > odds) {
-							map [pos.x, pos.y] = 30;
-							map [pos.x, pos.y-1] = 31;
-						}
-					}
 				}
 			}
 		}
@@ -269,18 +249,55 @@ public class AdventureWorldCreator : MonoBehaviour {
 				//cliffs = 2x
 				//More coherent walls
 				if (map[x,y] == 20) {
-					//GameObject tileChoice = cliffTiles[UnityEngine.Random.Range (0, cliffTiles.Length)];
 					int pathPos = pos.returnPatchLocation(map,20);
-					//Debug.Log ("PathPos: " + pathPos);
-					//Debug.Log ("Patch: " + cliffPatch.returnPatch(pathPos).name);
-
 					GameObject instance = Instantiate (cliffPatch.returnPatch(pathPos), pos.asVector3(), Quaternion.identity) as GameObject;
 					instance.transform.SetParent (board);
 				}
+					
+			}
+		}
+		renderSecond(map);
+	}
 
+	private void renderSecond(int[,] map){
+		for (int z = 0; z < 3; z++) {
+			for (int y = 0; y < map.GetLength (1); y++) {
+				for (int x = 0; x < map.GetLength (0); x++) {
+					if (map[x,y] == 0) {
+						Point3 pos = new Point3 (x, y, 0);
+						//generateMapv2Serial
+						int grassPatch = pos.returnPatchLocation(map, 0);
+
+						int materialPatch = pos.returnPatchLocation(map, 20);
+						if ((materialPatch == 3 || materialPatch == 1)) {
+							//Resource
+							if (UnityEngine.Random.Range (0, 150) > odds) {
+								map [pos.x, pos.y] = 40;
+							}
+						}
+						int dwellingPatch = pos.returnPatchLocation(map, 2);
+						try{
+							if ((dwellingPatch == 9 || dwellingPatch == 8 || dwellingPatch == 7) 
+								&& map [pos.x, pos.y-1] == 0) {
+								//Dwelling
+								if (UnityEngine.Random.Range (0, 60) > odds) {
+									map [pos.x, pos.y] = 30;
+									map [pos.x, pos.y-1] = 31;
+								}
+							}
+						} catch(Exception e){
+
+						}
+					}
+				}
+			}
+		}
+
+		for (int y = 0; y < map.GetLength (1); y++) {
+			for (int x = 0; x < map.GetLength (0); x++) {
+				Point3 pos = new Point3 (x, y, 0);
 				//dwellings = 3x
-				if (map[x,y] == 30 || map[x,y] == 31) {
-
+				if (map [x, y] == 30 || map [x, y] == 31) {
 					if (map [x, y] == 30) {
 						GameObject tileChoice = foundationTiles [UnityEngine.Random.Range (0, foundationTiles.Length)];
 						GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
@@ -296,7 +313,7 @@ public class AdventureWorldCreator : MonoBehaviour {
 				}
 
 				//resources = 4x
-				if (map[x,y] == 40) {
+				if (map [x, y] == 40) {
 					GameObject tileChoice = resourceTiles [UnityEngine.Random.Range (0, resourceTiles.Length)];
 					GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
 					instance.transform.SetParent (board);
@@ -305,5 +322,4 @@ public class AdventureWorldCreator : MonoBehaviour {
 		}
 		callback (openPositions, roadPositions);
 	}
-
 }
