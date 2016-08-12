@@ -7,8 +7,9 @@ public class AdventureLoader : MonoBehaviour {
 
 	void Awake ()
 	{
-		Camera cam = GetComponent<Camera>();
-		cam.transparencySortMode = TransparencySortMode.Orthographic;
+		//Camera cam = GetComponent<Camera>();
+		//cam.transparencySortMode = TransparencySortMode.Orthographic;
+
 		if (AdventureGameManager.instance == null) {
 			Debug.Log ("Loading Game Manager");
 			adventureGameManager = Instantiate (adventureGameManager);

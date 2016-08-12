@@ -242,7 +242,7 @@ public class TerrainGeneratorV2 : MonoBehaviour {
 			}
 		}
 
-		Debug.Log ("Something");
+		//Debug.Log ("Something");
 
 		return returnTiles;
 	}
@@ -358,9 +358,9 @@ public class TerrainGeneratorV2 : MonoBehaviour {
 				for (int x = 0; x < width; x ++) {
 					row += x;
 				}
-				Debug.Log (row);
+				//Debug.Log (row);
 			}
-			Debug.Log ("Directions: l=> " + left + " r=> " + right + " up=> " + up + " down=> " + down);
+			//Debug.Log ("Directions: l=> " + left + " r=> " + right + " up=> " + up + " down=> " + down);
 		}
 	}
 }

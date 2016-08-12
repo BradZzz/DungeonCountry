@@ -58,6 +58,7 @@
      <Compile Include="Assets\NewGame\Scripts\Adventure\AdventureLoader.cs" />
      <Compile Include="Assets\NewGame\Scripts\Adventure\AdventureMeta.cs" />
      <Compile Include="Assets\NewGame\Scripts\Adventure\AdventureScenery.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Adventure\AdventureWorldCreator.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleAI.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleAIUnit.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleActions.cs" />
@@ -73,6 +74,7 @@
      <Compile Include="Assets\NewGame\Scripts\UI\Panel.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\CoRoutineWithData.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\Coroutines.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Utils\DynamicSorting.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\Footsteps.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\Move.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\MovingObject.cs" />

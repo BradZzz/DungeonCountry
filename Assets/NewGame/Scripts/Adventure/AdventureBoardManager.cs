@@ -6,6 +6,7 @@ using AssemblyCSharp;
 public class AdventureBoardManager : MonoBehaviour {
 
 	public static AdventureBoardManager instance = null;
+	private static GameObject board;
 
 	public GameObject[] outerWallTiles;
 	public GameObject[] innerWallTiles;
@@ -19,13 +20,18 @@ public class AdventureBoardManager : MonoBehaviour {
 	public GameObject[] cliffTiles;
 	public GameObject[] waterTiles;
 	public GameObject[] bridgeTiles;
+	public GameObject[] dwellingTiles;
+	public GameObject[] resourceTiles;
 	public GameObject footsteps;
 	private int waters = 4;
 
+	public GameObject worldCreator;
+	private AdventureWorldCreator creator;
+
 	public GameObject cliffNinePatch;
 
-	private static Transform boardHolder;
 	private Transform lastClicked;
+	private Transform boardHolder;
 	private Point3 lastClick;
 	private AdventureGameManager gameManager;
 	private List<Point3> openPositions;
@@ -35,6 +41,8 @@ public class AdventureBoardManager : MonoBehaviour {
 	private Footsteps steps;
 	private List<Point3> path;
 	private TileNinePatch cliffPatch;
+
+	private GameObject[] generals;
 
 	void Awake(){
 
@@ -49,45 +57,16 @@ public class AdventureBoardManager : MonoBehaviour {
 	void Start(){
 		cam = GameObject.Find("Main Camera").GetComponent<Camera>();
 		steps = footsteps.GetComponent<Footsteps>();
+		creator = worldCreator.GetComponent<AdventureWorldCreator>();
 		openPositions = new List <Point3> ();
 		roadPositions = new List <Point3> ();
 		cliffPatch = cliffNinePatch.GetComponent<TileNinePatch> ();
-	}
-		
-	private void BoardSetup ()
-	{
-		//Instantiate Board and set boardHolder to its transform.
-		boardHolder = new GameObject ("Board").transform;
-		DontDestroyOnLoad (boardHolder);
-
-		for(int x = -1; x <= gameManager.getColumns(); x++)
-		{
-			for(int y = -1; y <= gameManager.getRows(); y++)
-			{
-				bool outer = y == -1 || x == -1 || y == gameManager.getRows () || x == gameManager.getColumns ();
-				GameObject toInstantiate;
-				if (outer) {
-					toInstantiate = outerFloorTiles [UnityEngine.Random.Range (0, outerFloorTiles.Length)];
-				} else {
-					toInstantiate = floorTiles [UnityEngine.Random.Range (0, floorTiles.Length)];
-				}
-
-				GameObject instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
-				instance.transform.SetParent (boardHolder);
-
-				if (outer) {
-					//Debug.Log ("Got here!");
-					toInstantiate = outerWallTiles [UnityEngine.Random.Range (0, outerWallTiles.Length)];
-					instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
-					instance.transform.SetParent (boardHolder);
-				} /*else {
-					gridPositions.Add (new Point3(x,y,0f));
-					Point3 pos = new Point3 (x, y, 0f);
-					dict[pos] = instance.transform;
-				}*/
-			}
-		}
-		formatObjects ();
+		if (board == null){
+			board = new GameObject ("Board");
+		} else if (instance != this) { 
+			Destroy(gameObject);   
+		} 
+		DontDestroyOnLoad(board);
 	}
 
 	private void formatObjects(){
@@ -102,14 +81,10 @@ public class AdventureBoardManager : MonoBehaviour {
 			Debug.Log ("Enemy: " + SharedPrefs.enemyArmy.name + "Position: " + enemyPos.ToString ());
 		}
 
-		dict = new Dictionary<Point3, Transform> ();
-		foreach(Transform item in boardHolder) {
-			Point3 pos = new Point3(item.position);
-			if (item.name.Contains ("Floor") && pos.x > -1 && pos.y > -1 && pos.x < gameManager.getColumns () && pos.y < gameManager.getRows ()) {
-				//gridPositions.Add (pos);
-				dict [pos] = item;
-			} 
-			if (sharedPrefs && item.tag.Equals ("Unit")) {
+		if (sharedPrefs) {
+			foreach(GameObject unity in GameObject.FindGameObjectsWithTag("Unit")){
+				Transform unit = unity.transform;
+				Point3 pos = new Point3(unit.position);
 				BattleGeneralMeta meta = null;
 				if (pos.Equals(playerPos)) {
 					//(item.transform.position.Equals(playerPos) || item.transform.position.Equals(enemyPos))
@@ -127,11 +102,11 @@ public class AdventureBoardManager : MonoBehaviour {
 				}
 
 				if (meta != null && meta.getDefeated ()) {
-					item.gameObject.SetActive (false);
+					unit.gameObject.SetActive (false);
 
 					//Add blood splatter where hero was killed
 					GameObject tileChoice = bloodTiles[UnityEngine.Random.Range (0, bloodTiles.Length)];
-					GameObject instance = Instantiate (tileChoice, item.position, Quaternion.identity) as GameObject;
+					GameObject instance = Instantiate (tileChoice, unit.position, Quaternion.identity) as GameObject;
 					instance.transform.SetParent (boardHolder);
 				} 
 			}
@@ -144,202 +119,37 @@ public class AdventureBoardManager : MonoBehaviour {
 		Start ();
 
 		this.gameManager = gameManager;
+		this.generals = generals;
 
-		if (boardHolder != null) {
+		//worldCreator.SetActive(true);
+		//GameObject board = GameObject.Find("Board");
+
+		boardHolder = board.transform;
+		//Debug.Log ("Children: " + boardHolder.childCount);
+
+		if (boardHolder.childCount > 0) {
 			Debug.Log ("Refreshing board");
+			boardHolder = board.transform;
 			boardHolder.gameObject.SetActive (true);
 			formatObjects ();
 		} else {
 			Debug.Log ("Creating board");
-			BoardSetup ();
-			constructRiverMap(TerrainGeneratorV2.generateMap (new Point3 (gameManager.getColumns (), gameManager.getRows (), 0)));
-			foreach (GameObject general in generals) {
-				placeGeneral (general);
-			}
+			creator.createWorld(boardHolder, gameManager.getColumns (), gameManager.getRows (), boardCreated);
 		}
 	}
 
-	private void constructRiverMap(int[,] map){
-		//Find empty at top
-		//Find empty at bottom
-		//Remove every other road
+	public void boardCreated(List<Point3> roadPositions, List<Point3> openPositions) {
+		GameObject board = GameObject.Find("Board");
+		//DontDestroyOnLoad (board);
+		this.boardHolder = board.transform;
+		this.roadPositions = roadPositions;
+		this.openPositions = openPositions;
 
-		int width = map.GetLength (0);
-		int height = map.GetLength (1);
-
-		List<Point3> bottom = new List<Point3> ();
-		List<Point3> tops = new List<Point3> ();
-		List<Point3> obstacles = new List<Point3> ();
-
-		Point3 currentPos = new Point3(-1,0,0);
-
-		for (int x = 1; x < width -1; x++) {
-			if (map[x - 1,0] == 0 && map[x,0] == 0 && map[x + 1,0] == 0) {
-				currentPos = new Point3(x,0,0);
-				bottom.Add (currentPos);
-			}
-			if (map[x - 1,height - 1] == 0 && map[x,height - 1] == 0 && map[x + 1,height - 1] == 0) {
-				currentPos = new Point3(x,height - 1,0);
-				tops.Add (currentPos);
-			}
+		foreach (GameObject general in generals) {
+			placeGeneral (general);
 		}
 
-		Debug.Log ("Bottom: " + bottom.Count);
-		Debug.Log ("Tops: " + tops.Count);
-
-		Coroutines.ShuffleArray (bottom);
-		Coroutines.ShuffleArray (tops);
-
-		bool switchy = false;
-
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) {
-				if ((map[x,y] != 0 && map[x,y] != 2) || (x == 0 || y == 0 || x == width - 1 || y == height - 1)) {
-					obstacles.Add (new Point3 (x, y, 0));
-				} else if (map[x,y] == 2) {
-					if (!solid (map, new Point3 (x, y, 0))) {
-						switchy = !switchy;
-						if (switchy) {
-							obstacles.Add (new Point3 (x, y, 0));
-						}
-					} else {
-						obstacles.Add (new Point3 (x, y, 0));
-					}
-				}
-			}
-		}
-
-		if (bottom.Count == 0 || tops.Count == 0) {
-			deployTerrainSprites (new List<Point3> (), map);
-		} else {
-			StartCoroutine (steps.generateMapv2 (bottom[0], tops[0], height, width, obstacles, map, waterMap));
-		}
-	}
-
-	private bool solid (int[,] map, Point3 position){
-		if (position.awayFromEdge(map) && position.crowded(map, 0, 2)){
-			return true;
-		}
-		return false;
-	}
-
-	private void waterMap(List<Point3> path, int[,] map){
-		if (path != null) {
-			foreach (Point3 water in path) {
-				if (map [water.x, water.y] == 0) {
-					map [water.x, water.y] = 3;
-				}
-			}
-		}
-		if (waters > 0) {
-			waters--;
-			constructRiverMap (map);
-		} else {
-			deployTerrainSprites(path, map);
-		}
-	}
-
-	private void deployTerrainSprites (List<Point3> path, int[,] map){
-
-		for (int y = 0; y < map.GetLength(1); y++) {
-			for (int x = 0; x < map.GetLength(0); x++) {
-				Point3 pos = new Point3 (x,y,0);
-
-				if (map[x,y] == 0) {
-					openPositions.Add (pos);
-				}
-
-				//Wall = 1
-				//Could be hedges or rocks
-				if (map[x,y] == 1) {
-					GameObject tileChoice = innerWallTiles[UnityEngine.Random.Range (0, innerWallTiles.Length)];
-					GameObject instance = Instantiate (tileChoice, pos.asVector3(), Quaternion.identity) as GameObject;
-					instance.transform.SetParent (boardHolder);
-				}
-				//Road = 2
-				if (map[x,y] == 2) {
-					GameObject tileChoice;
-					bool sibVer = siblings (map, new Point3 (pos), 3, true);
-					bool sibHor = siblings (map, new Point3 (pos), 3, false);
-
-					if (sibVer || sibHor) {
-						tileChoice = bridgeTiles [UnityEngine.Random.Range (0, bridgeTiles.Length)];
-					} else {
-						tileChoice = roadTiles [UnityEngine.Random.Range (0, roadTiles.Length)];
-					}
-					GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
-					if (sibHor) {
-						SpriteRenderer sprite = instance.GetComponent<SpriteRenderer> ();
-						sprite.transform.Rotate (new Vector3(0,0,90));
-					}
-					instance.transform.SetParent (boardHolder);
-					roadPositions.Add (pos);
-				}
-
-				//water = 3
-				if (map[x,y] == 3) {
-					GameObject tileChoice = waterTiles[UnityEngine.Random.Range (0, waterTiles.Length)];
-					GameObject instance = Instantiate (tileChoice, pos.asVector3(), Quaternion.identity) as GameObject;
-					instance.transform.SetParent (boardHolder);
-				}
-
-				//Castle
-				//10 = entrance
-				//11 = sprite placement/foundation
-				//12 = foundation
-				if (map[x,y] == 10 || map[x,y] == 11 || map[x,y] == 12) {
-					if (map [x, y] == 10) {
-						GameObject tileChoice = entranceTiles [UnityEngine.Random.Range (0, entranceTiles.Length)];
-						GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
-						instance.transform.SetParent (boardHolder);
-					} else {
-						GameObject tileChoice = foundationTiles [UnityEngine.Random.Range (0, foundationTiles.Length)];
-						GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
-						instance.transform.SetParent (boardHolder);
-
-						if (map [x, y] == 11) {
-							Vector3 vect = pos.asVector3 ();
-							vect.x -= .5f;
-							vect.y -= .5f;
-							tileChoice = castleTiles [UnityEngine.Random.Range (0, castleTiles.Length)];
-							instance = Instantiate (tileChoice, vect, Quaternion.identity) as GameObject;
-							instance.transform.SetParent (boardHolder);
-						}
-					}
-				}
-
-				//cliffs = 2x
-				//More coherent walls
-				if (map[x,y] == 20) {
-					//GameObject tileChoice = cliffTiles[UnityEngine.Random.Range (0, cliffTiles.Length)];
-					int pathPos = pos.returnPatchLocation(map,20);
-					Debug.Log ("PathPos: " + pathPos);
-					Debug.Log ("Patch: " + cliffPatch.returnPatch(pathPos).name);
-
-					GameObject instance = Instantiate (cliffPatch.returnPatch(pathPos), pos.asVector3(), Quaternion.identity) as GameObject;
-					instance.transform.SetParent (boardHolder);
-				}
-			}
-		}
-	}
-
-	public bool siblings(int[,] map, Point3 pos, int search, bool vertical){
-		int width = map.GetLength (0);
-		int height = map.GetLength (1);
-
-		//vertical
-		if (vertical) {
-			if (pos.y > 0 && pos.y < height - 1 && map[pos.x, pos.y -1] == search && map[pos.x, pos.y + 1] == search) {
-				return true;
-			}
-			return false;
-			//else horizontal
-		} else {
-			if (pos.x > 0 && pos.x < width - 1 && map[pos.x - 1, pos.y] == search && map[pos.x + 1, pos.y] == search) {
-				return true;
-			}
-			return false;
-		}
+		formatObjects ();
 	}
 
 	private void placeGeneral (GameObject general)
@@ -390,22 +200,22 @@ public class AdventureBoardManager : MonoBehaviour {
 		} else if (lastClicked != null) { 
 			Debug.Log("LastClicked: " + lastClicked.name + " pos: " + lastClicked.position);
 			if (!click.Equals(lastClicked.position) && (!steps.walking () || !click.Equals(lastClick))) {
-					steps.destroySteps ();
-					Debug.Log ("Moving: " + lastClicked.name);
-					List<Point3> obstacles = new List<Point3> ();
-					foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
-						Debug.Log ("Placing Unit: " + unit.name + " Position: " + unit.transform.position);
-						obstacles.Add (new Point3(unit.transform.position));
-					}
+				steps.destroySteps ();
+				Debug.Log ("Moving: " + lastClicked.name);
+				List<Point3> obstacles = new List<Point3> ();
+				foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
+					Debug.Log ("Placing Unit: " + unit.name + " Position: " + unit.transform.position);
+					obstacles.Add (new Point3(unit.transform.position));
+				}
 
-					foreach (GameObject obs in GameObject.FindGameObjectsWithTag("Obstacle")) {
-						obstacles.Add (new Point3(obs.transform.position));
-					}
-					StartCoroutine (steps.generateMapv2 (new Point3(lastClicked.position), click, gameManager.getRows (), gameManager.getColumns (), obstacles, setPath));
+				foreach (GameObject obs in GameObject.FindGameObjectsWithTag("Obstacle")) {
+					obstacles.Add (new Point3(obs.transform.position));
+				}
+				StartCoroutine (steps.generateMapv2 (new Point3(lastClicked.position), click, gameManager.getRows (), gameManager.getColumns (), obstacles, setPath));
 			} else if (steps.walking () && click.Equals(lastClick)) {
-					moveAdventurer (lastClicked, path);
-					lastClicked = null;
-					steps.destroySteps ();
+				moveAdventurer (lastClicked, path);
+				lastClicked = null;
+				steps.destroySteps ();
 			}
 		}
 	}
@@ -502,7 +312,7 @@ public class AdventureBoardManager : MonoBehaviour {
 
 			origin.position = position;
 
-			if (((Time.time - startime)*speed) >= .95f) {
+			if (((Time.time - startime)*speed) >= .75f) {
 				origin.position = end_pos;
 			}
 

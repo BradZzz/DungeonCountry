@@ -27,6 +27,10 @@ public class Footsteps : MonoBehaviour {
 		thisPath = new List<GameObject> ();
 	}
 
+	public List<Point3> generateMapv2Serial(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs, int[,] map){
+		return  baseAlgorithm (startingPos, destination, rows, columns, obs, false);
+	}
+
 	public IEnumerator generateMapv2(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs, int[,] map, Action<List<Point3>, int[,]> pathCallback){
 		foundVal = baseAlgorithm (startingPos, destination, rows, columns, obs, false);
 		pathCallback (foundVal, map);
