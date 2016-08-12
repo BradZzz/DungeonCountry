@@ -124,18 +124,21 @@ public class AdventureWorldCreator : MonoBehaviour {
 				} else if (map[x,y] == 0) {
 					Point3 pos = new Point3 (x, y, 0);
 					//generateMapv2Serial
+					int grassPatch = pos.returnPatchLocation(map, 0);
+
 					int materialPatch = pos.returnPatchLocation(map, 20);
-					if (materialPatch == 3 || materialPatch == 1) {
+					if ((materialPatch == 3 || materialPatch == 1)) {
 						//Resource
 						if (UnityEngine.Random.Range (0, 150) > odds) {
 							map [pos.x, pos.y] = 40;
 						}
 					}
 					int dwellingPatch = pos.returnPatchLocation(map, 2);
-					if (dwellingPatch == 7 || dwellingPatch == 9) {
+					if ((dwellingPatch == 7 || dwellingPatch == 9) /*&& (grassPatch > 3)*/) {
 						//Dwelling
 						if (UnityEngine.Random.Range (0, 80) > odds) {
 							map [pos.x, pos.y] = 30;
+							map [pos.x, pos.y-1] = 31;
 						}
 					}
 				}
@@ -276,15 +279,23 @@ public class AdventureWorldCreator : MonoBehaviour {
 				}
 
 				//dwellings = 3x
-				//More coherent walls
-				if (map[x,y] == 30) {
-					GameObject tileChoice = dwellingTiles [UnityEngine.Random.Range (0, dwellingTiles.Length)];
-					GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
-					instance.transform.SetParent (board);
+				if (map[x,y] == 30 || map[x,y] == 31) {
+
+					if (map [x, y] == 30) {
+						GameObject tileChoice = foundationTiles [UnityEngine.Random.Range (0, foundationTiles.Length)];
+						GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
+						instance.transform.SetParent (board);
+						tileChoice = dwellingTiles [UnityEngine.Random.Range (0, dwellingTiles.Length)];
+						instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
+						instance.transform.SetParent (board);
+					} else if (map [x, y] == 31) {
+						GameObject tileChoice = entranceTiles [UnityEngine.Random.Range (0, entranceTiles.Length)];
+						GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
+						instance.transform.SetParent (board);
+					}
 				}
 
 				//resources = 4x
-				//More coherent walls
 				if (map[x,y] == 40) {
 					GameObject tileChoice = resourceTiles [UnityEngine.Random.Range (0, resourceTiles.Length)];
 					GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
