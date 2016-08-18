@@ -22,6 +22,19 @@ namespace AssemblyCSharp
 			}
 		}
 
+		public static Component CopyComponent(Component original, GameObject destination)
+		{
+			System.Type type = original.GetType();
+			Component copy = destination.AddComponent(type);
+			// Copied fields can be restricted with BindingFlags
+			System.Reflection.FieldInfo[] fields = type.GetFields(); 
+			foreach (System.Reflection.FieldInfo field in fields)
+			{
+				field.SetValue(copy, field.GetValue(original));
+			}
+			return copy;
+		}
+
 		//This moves a character from one position to the next
 		public static IEnumerator smooth_move(Transform origin, Vector3 direction,float speed){
 			float startime = Time.time;
@@ -160,6 +173,15 @@ namespace AssemblyCSharp
 				newRow++;
 			}
 			return newMatrix;
+		}
+
+		public static void toggleVisibilityTransform(Transform parent, bool shown)
+		{
+			foreach (Transform child in parent) {
+				child.GetComponent<SpriteRenderer> ().enabled = shown;
+				//child.GetComponent<BoxCollider2D> ().enabled = shown;
+				//child.GetComponent<Collider2D> ().enabled = shown;
+			}
 		}
 	}
 }

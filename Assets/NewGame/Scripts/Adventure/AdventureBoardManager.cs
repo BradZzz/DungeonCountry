@@ -72,41 +72,45 @@ public class AdventureBoardManager : MonoBehaviour {
 	private void formatObjects(){
 
 		Point3 playerPos = new Point3(), enemyPos = new Point3();
-		bool sharedPrefs = SharedPrefs.playerArmy != null && SharedPrefs.enemyArmy != null;
+		GameObject player = null, enemy = null;
 
-		if (sharedPrefs) {
-			playerPos = new Point3(SharedPrefs.playerArmy.transform.position);
-			Debug.Log ("Player: " + SharedPrefs.playerArmy.name + "Position: " + enemyPos.ToString ());
-			enemyPos = new Point3(SharedPrefs.enemyArmy.transform.position);
-			Debug.Log ("Enemy: " + SharedPrefs.enemyArmy.name + "Position: " + enemyPos.ToString ());
+		if (SharedPrefs.getPlayerName() != "") {
+			player = GameObject.Find (SharedPrefs.getPlayerName());
 		}
+
+		if (SharedPrefs.getEnemyName() != "") {
+			enemy = GameObject.Find (SharedPrefs.getEnemyName());
+		}
+
+		bool sharedPrefs = enemy != null || player != null;
 
 		if (sharedPrefs) {
 			foreach(GameObject unity in GameObject.FindGameObjectsWithTag("Unit")){
-				Transform unit = unity.transform;
-				Point3 pos = new Point3(unit.position);
+				//Transform unit = unity.transform;
+				//Point3 pos = new Point3(unit.position);
 				BattleGeneralMeta meta = null;
-				if (pos.Equals(playerPos)) {
+
+				if (player != null && unity.name.Equals(player.name)) {
 					//(item.transform.position.Equals(playerPos) || item.transform.position.Equals(enemyPos))
-					meta = SharedPrefs.playerArmy.gameObject.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
-				} else if (pos.Equals(enemyPos)) {
-					meta = SharedPrefs.enemyArmy.gameObject.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
+					meta = player.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
+				} 
+
+				if (enemy != null && unity.name.Equals(enemy.name)) {
+					meta = enemy.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 				}
+
 				if (meta == null) {
 					Debug.Log ("Meta is null");
-					Debug.Log ("playerPosition: " + playerPos.ToString());
-					Debug.Log ("enemyPosition: " + enemyPos.ToString());
-					Debug.Log ("thisPosition: " + pos.ToString());
 				} else {
 					Debug.Log ("Name: " + meta.name + " Defeated: " + meta.getDefeated());
 				}
 
 				if (meta != null && meta.getDefeated ()) {
-					unit.gameObject.SetActive (false);
+					unity.SetActive (false);
 
 					//Add blood splatter where hero was killed
 					GameObject tileChoice = bloodTiles[UnityEngine.Random.Range (0, bloodTiles.Length)];
-					GameObject instance = Instantiate (tileChoice, unit.position, Quaternion.identity) as GameObject;
+					GameObject instance = Instantiate (tileChoice, unity.transform.position, Quaternion.identity) as GameObject;
 					instance.transform.SetParent (boardHolder);
 				} 
 			}
@@ -130,7 +134,11 @@ public class AdventureBoardManager : MonoBehaviour {
 		if (boardHolder.childCount > 0) {
 			Debug.Log ("Refreshing board");
 			boardHolder = board.transform;
+			//boardHolder.GetComponent<MeshRenderer>().enabled = true;
+
 			boardHolder.gameObject.SetActive (true);
+			Coroutines.toggleVisibilityTransform(boardHolder,true);
+
 			formatObjects ();
 		} else {
 			Debug.Log ("Creating board");
@@ -244,12 +252,16 @@ public class AdventureBoardManager : MonoBehaviour {
 			path.Remove (edge);
 
 			if (enemy.tag.Equals ("Unit")) {
-				SharedPrefs.playerArmy = Instantiate (lastClicked.gameObject, lastClicked.position, Quaternion.identity) as GameObject;
-				SharedPrefs.playerArmy.SetActive (false);
-				SharedPrefs.enemyArmy = Instantiate (enemy, enemy.transform.position, Quaternion.identity) as GameObject;
-				SharedPrefs.enemyArmy.SetActive (false);
-				Debug.Log ("Player: " + SharedPrefs.playerArmy.name);
-				Debug.Log ("Enemy: " + SharedPrefs.enemyArmy.name);
+				//SharedPrefs.playerArmy = Instantiate (lastClicked.gameObject, lastClicked.position, Quaternion.identity) as GameObject;
+				//SharedPrefs.playerArmy.SetActive (false);
+
+				SharedPrefs.setPlayerName (lastClicked.gameObject.name);
+				SharedPrefs.setEnemyName (enemy.name);
+
+				//SharedPrefs.enemyArmy = Instantiate (enemy, enemy.transform.position, Quaternion.identity) as GameObject;
+				//SharedPrefs.enemyArmy.SetActive (false);
+				Debug.Log ("Player: " + SharedPrefs.getPlayerName());
+				Debug.Log ("Enemy: " + SharedPrefs.getEnemyName());
 				attacking = true;
 			}
 		} else {
@@ -276,8 +288,10 @@ public class AdventureBoardManager : MonoBehaviour {
 			yield return StartCoroutine( smooth_move(origin, step.asVector3(), speed));
 		}
 		if (battle) {
+			//Hide the board. We'll remove from the heirarchy once the meta has been loaded in the next scene
+			Coroutines.toggleVisibilityTransform(boardHolder,false);
+			//Remove the gameManager click listeners
 			gameManager.gameObject.SetActive (false);
-			boardHolder.gameObject.SetActive (false);
 			Application.LoadLevel ("BattleScene");
 		}
 	}

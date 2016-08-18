@@ -18,6 +18,7 @@ public class AdventureWorldCreator : MonoBehaviour {
 	public GameObject[] waterTiles;
 	public GameObject[] bridgeTiles;
 	public GameObject[] dwellingTiles;
+	public GameObject[] towerTiles;
 	public GameObject[] resourceTiles;
 	public GameObject footsteps;
 
@@ -99,10 +100,7 @@ public class AdventureWorldCreator : MonoBehaviour {
 				tops.Add (currentPos);
 			}
 		}
-
-		//Debug.Log ("Bottom: " + bottom.Count);
-		//Debug.Log ("Tops: " + tops.Count);
-
+			
 		Coroutines.ShuffleArray (bottom);
 		Coroutines.ShuffleArray (tops);
 
@@ -165,7 +163,6 @@ public class AdventureWorldCreator : MonoBehaviour {
 			foreach (Point3 water in path) {
 				if (map [water.x, water.y] == 0) {
 					map [water.x, water.y] = 3;
-
 				}
 			}
 		}
@@ -283,6 +280,9 @@ public class AdventureWorldCreator : MonoBehaviour {
 								if (UnityEngine.Random.Range (0, 60) > odds) {
 									map [pos.x, pos.y] = 30;
 									map [pos.x, pos.y-1] = 31;
+								} else if (UnityEngine.Random.Range (0, 60) > odds) {
+									map [pos.x, pos.y] = 32;
+									map [pos.x, pos.y-1] = 33;
 								}
 							}
 						} catch(Exception e){
@@ -296,7 +296,7 @@ public class AdventureWorldCreator : MonoBehaviour {
 		for (int y = 0; y < map.GetLength (1); y++) {
 			for (int x = 0; x < map.GetLength (0); x++) {
 				Point3 pos = new Point3 (x, y, 0);
-				//dwellings = 3x
+				//dwellings = 30, 31
 				if (map [x, y] == 30 || map [x, y] == 31) {
 					if (map [x, y] == 30) {
 						GameObject tileChoice = foundationTiles [UnityEngine.Random.Range (0, foundationTiles.Length)];
@@ -306,9 +306,50 @@ public class AdventureWorldCreator : MonoBehaviour {
 						instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
 						instance.transform.SetParent (board);
 					} else if (map [x, y] == 31) {
+						GameObject dwelling = dwellingTiles [UnityEngine.Random.Range (0, dwellingTiles.Length)];
 						GameObject tileChoice = entranceTiles [UnityEngine.Random.Range (0, entranceTiles.Length)];
 						GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
 						instance.transform.SetParent (board);
+
+						Debug.Log ("Selected dwelling: " + dwelling.name);
+						DwellingSceneMeta sMeta = dwelling.GetComponent<DwellingSceneMeta> ();
+						GameObject meta = sMeta.dMeta.gameObject;
+						SpriteRenderer sRenderer = meta.GetComponent<SpriteRenderer> ();
+						EntranceMeta eMeta = instance.gameObject.GetComponent<EntranceMeta> ();
+						eMeta.addComponent (meta.GetComponent<SpriteRenderer> ());
+						eMeta.addComponent (meta.GetComponent<DwellingMeta> ());
+						eMeta.image = meta.GetComponent<SpriteRenderer> ().sprite;
+					}
+				}
+
+				//towers = 32, 33
+				if (map [x, y] == 32 || map [x, y] == 33) {
+					if (map [x, y] == 32) {
+						GameObject tileChoice = foundationTiles [UnityEngine.Random.Range (0, foundationTiles.Length)];
+						GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
+						instance.transform.SetParent (board);
+						tileChoice = towerTiles [UnityEngine.Random.Range (0, towerTiles.Length)];
+						instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
+						instance.transform.SetParent (board);
+					} else if (map [x, y] == 33) {
+						GameObject tower = towerTiles [UnityEngine.Random.Range (0, towerTiles.Length)];
+						GameObject tileChoice = entranceTiles [UnityEngine.Random.Range (0, entranceTiles.Length)];
+						GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
+						instance.transform.SetParent (board);
+
+						Debug.Log ("Selected tower: " + tower.name);
+						DwellingSceneMeta sMeta = tower.GetComponent<DwellingSceneMeta> ();
+						GameObject meta = sMeta.dMeta.gameObject;
+						EntranceMeta eMeta = instance.gameObject.GetComponent<EntranceMeta> ();
+						eMeta.addComponent (meta.GetComponent<SpriteRenderer> ());
+						eMeta.addComponent (meta.GetComponent<DwellingMeta> ());
+						eMeta.image = meta.GetComponent<SpriteRenderer> ().sprite;
+
+						if (eMeta.GetComponent<SpriteRenderer> ().sprite != null) {
+							Debug.Log ("Something in sprite");
+						} else{
+							Debug.Log ("Nothing in sprite");
+						}
 					}
 				}
 

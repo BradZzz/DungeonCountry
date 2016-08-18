@@ -54,13 +54,19 @@ public class BattleGameManager : MonoBehaviour {
 
 		Debug.Log ("Printing Prefs");
 		//SharedPrefs.printPrefs ();
-		Debug.Log("Player: " + SharedPrefs.playerArmy.name);
-		Debug.Log("Enemy: " + SharedPrefs.enemyArmy.name);
-		playerGeneral = SharedPrefs.playerArmy;
+		//Debug.Log("Player: " + SharedPrefs.playerArmy.name);
+		//Debug.Log("Enemy: " + SharedPrefs.enemyArmy.name);
+		//Debug.Log("Player Name: " + SharedPrefs.getPlayerName());
+		//Debug.Log("Enemy Name: " + SharedPrefs.getEnemyName());
+
+
+		//playerGeneral = GameObject.Find(SharedPrefs.getPlayerName());
+		//playerGeneral = SharedPrefs.playerArmy;
 		//Animator anim = playerGeneral.GetComponent<Animator> ();
 		//Destroy (playerGeneral.GetComponent<Animator> ());
 		//playerGeneral.SetActive (true);
-		aiGeneral = SharedPrefs.enemyArmy;
+		//aiGeneral = GameObject.Find(SharedPrefs.getEnemyName());
+		//aiGeneral = SharedPrefs.enemyArmy;
 		//Destroy (aiGeneral.GetComponent<Animator> ());
 		//aiGeneral.SetActive (true);
 	}
@@ -100,6 +106,25 @@ public class BattleGameManager : MonoBehaviour {
 	}
 
 	void Start() {
+		Debug.Log ("Start");
+		Debug.Log("Player Name: " + SharedPrefs.getPlayerName());
+		Debug.Log("Enemy Name: " + SharedPrefs.getEnemyName());
+
+		foreach (GameObject unity in GameObject.FindGameObjectsWithTag("Unit")) {
+			Debug.Log("Unit Name: " + unity.name);
+		}
+
+		playerGeneral = GameObject.Find(SharedPrefs.getPlayerName());
+		aiGeneral = GameObject.Find(SharedPrefs.getEnemyName());
+
+		if (playerGeneral != null) {
+			Debug.Log("General Name: " + playerGeneral.name);
+		}
+
+		if (aiGeneral != null) {
+			Debug.Log("General Name: " + aiGeneral.name);
+		}
+
 		BattleGeneralMeta playGen = playerGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 		BattleGeneralMeta aiGen = aiGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 
@@ -114,6 +139,9 @@ public class BattleGameManager : MonoBehaviour {
 
 		populateGeneralPanel (playerGeneral, GameObject.Find ("PlayerGeneral"));
 		populateGeneralPanel (aiGeneral, GameObject.Find ("AIGeneral"));
+
+		GameObject board = GameObject.Find("Board");
+		board.SetActive (false);
 	}
 
 	public void populateGeneralPanel(GameObject general, GameObject panel){
