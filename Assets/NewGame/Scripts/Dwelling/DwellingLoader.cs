@@ -18,13 +18,17 @@ public class DwellingLoader : MonoBehaviour {
 		GameObject canvas = GameObject.Find ("Canvas"); 
 
 		//Put the image into the image section
-		Transform image = canvas.transform.Find("Image");
+		Transform imageP = canvas.transform.Find("ImagePanel");
+
+		//Transform dataP = imageP.transform.Find ("ImagePanel");
 
 		if (dImage != null) {
 			Debug.Log ("Something in image");
-			if (image != null) {
+			if (imageP != null) {
 				Debug.Log ("Something in image canvas");
-				image.gameObject.GetComponent<Image> ().sprite = dImage;
+				imageP.gameObject.GetComponent<Image> ().sprite = dImage;
+				Transform imagey = imageP.transform.Find("Image");
+				imagey.gameObject.GetComponent<Image> ().sprite = dImage;
 			}
 		} else {
 			Debug.Log ("Nothing in entrance spriterenderer");
@@ -33,7 +37,7 @@ public class DwellingLoader : MonoBehaviour {
 		if (dMeta != null) {
 			Debug.Log ("Something in meta");
 			Transform dataP = canvas.transform.Find ("DataPanel");
-			Transform cityP = canvas.transform.Find ("City Description");
+			Transform cityP = imageP.transform.Find ("City Description");
 
 			//Find Header
 			Transform hGO = dataP.gameObject.transform.Find ("Header");
