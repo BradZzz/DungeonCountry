@@ -11,9 +11,37 @@ public class BattleGeneralMeta : MonoBehaviour {
 	public List<GameObject> army;
 	public List<int> entranceUsed;
 
-	private Dictionary<string, resource> resources;
+	private Attributes attribs;
+	private Dictionary<string, int> resources;
 
-	public class resource{
+	public class Attributes
+	{
+		private int tactics, attack, defense, intelligence, luck;
+		public Attributes(){
+			tactics = 2;
+			attack = 1;
+			defense = 1;
+			intelligence = 1;
+			luck = 1;
+		}
+		public int getTactics(){
+			return tactics;
+		}
+		public int getAttack(){
+			return attack;
+		}
+		public int getDefense(){
+			return defense;
+		}
+		public int getIntelligence(){
+			return intelligence;
+		}
+		public int getLuck(){
+			return luck;
+		}
+	}
+
+	/*public class resource{
 		private int quantity;
 		private string name;
 		public resource(string name, int quantity){
@@ -31,7 +59,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 				return true;
 			}
 		}
-	}
+	}*/
 
 	private bool defeated;
 
@@ -42,11 +70,30 @@ public class BattleGeneralMeta : MonoBehaviour {
 	}
 
 	void Start(){
-		resources = new Dictionary<string, resource> ();
-		resources.Add ("gold", new resource ("gold", 2000));
+		resources = new Dictionary<string, int> ();
+		resources.Add ("gold", 0);
+		resources.Add ("ore", 0);
+
+		attribs = new Attributes ();
 	}
 
-	public resource getResource(string name){
+	public Attributes getAttributes(){
+		return attribs;
+	}
+
+	public int addResource(string name, int quantity){
+		return resources[name] += quantity;
+	}
+
+	public bool useResource(string name, int quantity){
+		if (resources[name] >= quantity) {
+			resources [name] -= quantity;
+			return true;
+		}
+		return false;
+	}
+
+	public int getResource(string name){
 		return resources[name];
 	}
 
@@ -67,15 +114,14 @@ public class BattleGeneralMeta : MonoBehaviour {
 	private void OnTriggerEnter2D (Collider2D other)
 	{
 		//Check if the tag of the trigger collided with is Exit.
-		if(other.tag == "Entrance" && !entranceUsed.Contains(other.GetInstanceID()))
-		{
+		if (other.tag == "Entrance" && !entranceUsed.Contains (other.GetInstanceID ())) {
 			Debug.Log ("Entrance!");
 			//SharedPrefs.playerArmy = Instantiate (this.gameObject, this.gameObject.transform.position, Quaternion.identity) as GameObject;
 			//SharedPrefs.playerArmy.SetActive (false);
 
-			SharedPrefs.setPlayerName(gameObject.name);
-			GameObject board = GameObject.Find("Board");
-			Coroutines.toggleVisibilityTransform(board.transform,false);
+			SharedPrefs.setPlayerName (gameObject.name);
+			GameObject board = GameObject.Find ("Board");
+			Coroutines.toggleVisibilityTransform (board.transform, false);
 
 			EntranceMeta eMeta = other.gameObject.GetComponent<EntranceMeta> ();
 			if (eMeta != null) {
@@ -96,8 +142,20 @@ public class BattleGeneralMeta : MonoBehaviour {
 			DwellingPrefs.setPlayerName (gameObject.name);
 
 			Application.LoadLevel ("DwellingScene");
-			entranceUsed.Add (other.GetInstanceID());
+			entranceUsed.Add (other.GetInstanceID ());
 			//other.gameObject.SetActive (false);
+		} else if (other.tag == "Resource") {
+			ResourceMeta rMeta = other.gameObject.GetComponent<ResourceMeta> ();
+			if (rMeta != null) {
+				Debug.Log ("Resource Found: " + rMeta.getName ());
+				Debug.Log ("Resource value: " + rMeta.getValue ());
+				addResource (rMeta.getName (), rMeta.getValue ());
+				other.gameObject.SetActive (false);
+			} else {
+				Debug.Log ("Resource Not Found!");
+			}
+		} else {
+			Debug.Log ("Found: " + other.tag);
 		}
 	}
 }

@@ -9,7 +9,7 @@ public class DwellingMenu : MonoBehaviour {
 			Debug.Log("Unit Name: " + unity.name);
 			BattleGeneralMeta meta = unity.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 			if (meta != null) {
-				Debug.Log("Unit Gold: " + meta.getResource("gold").getQuantity());
+				Debug.Log("Unit Gold: " + meta.getResource("gold"));
 			}
 		}
 		Debug.Log("Player Name: " + SharedPrefs.getPlayerName());
@@ -17,10 +17,10 @@ public class DwellingMenu : MonoBehaviour {
 		GameObject player = GameObject.Find (SharedPrefs.getPlayerName());
 		if (player != null) {
 			BattleGeneralMeta meta = player.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
-			if (meta.getResource("gold").spendResource(2000)) {
-				Debug.Log ("Player Gold Now: " + meta.getResource("gold").getQuantity());
+			if (meta.useResource("gold", 2000)) {
+				Debug.Log ("Player Gold Now: " + meta.getResource("gold"));
 			} else {
-				Debug.Log ("Cant afford, player Gold Now: " + meta.getResource("gold").getQuantity());
+				Debug.Log ("Cant afford, player Gold Now: " + meta.getResource("gold"));
 			}
 		}
 		Application.LoadLevel ("AdventureScene");

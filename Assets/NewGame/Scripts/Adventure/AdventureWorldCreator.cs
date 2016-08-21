@@ -180,10 +180,6 @@ public class AdventureWorldCreator : MonoBehaviour {
 			for (int x = 0; x < map.GetLength(0); x++) {
 				Point3 pos = new Point3 (x,y,0);
 
-				if (map[x,y] == 0) {
-					openPositions.Add (pos);
-				}
-
 				//Wall = 1
 				//Could be hedges or rocks
 				if (map[x,y] == 1) {
@@ -224,9 +220,36 @@ public class AdventureWorldCreator : MonoBehaviour {
 				//12 = foundation
 				if (map[x,y] == 10 || map[x,y] == 11 || map[x,y] == 12) {
 					if (map [x, y] == 10) {
-						GameObject tileChoice = entranceTiles [UnityEngine.Random.Range (0, entranceTiles.Length)];
-						GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
-						instance.transform.SetParent (board);
+						GameObject castleChoice = castleTiles [UnityEngine.Random.Range (0, castleTiles.Length)];
+						//GameObject castleInstance = Instantiate (castleChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
+						//castleInstance.transform.SetParent (board);
+
+						GameObject entranceChoice = entranceTiles [UnityEngine.Random.Range (0, entranceTiles.Length)];
+						GameObject entranceInstance = Instantiate (entranceChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
+						entranceInstance.transform.SetParent (board);
+
+						DwellingSceneMeta sMeta = castleChoice.GetComponent<DwellingSceneMeta> ();
+						GameObject meta = sMeta.dMeta.gameObject;
+						EntranceMeta eMeta = entranceInstance.gameObject.GetComponent<EntranceMeta> ();
+						eMeta.addComponent (meta.GetComponent<DwellingMeta> ());
+						eMeta.image = meta.GetComponent<SpriteRenderer> ().sprite; 
+
+						/*
+						 * 
+						 *GameObject entranceChoice = entranceTiles [UnityEngine.Random.Range (0, entranceTiles.Length)];
+						GameObject entranceInstance = Instantiate (entranceChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
+						entranceInstance.transform.SetParent (board);
+
+						GameObject dwellingChoice = dwellingTiles [UnityEngine.Random.Range (0, dwellingTiles.Length)];
+						GameObject dwellingInstance = Instantiate (dwellingChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
+						dwellingInstance.transform.SetParent (board);
+
+						DwellingSceneMeta sMeta = dwellingChoice.GetComponent<DwellingSceneMeta> ();
+						GameObject meta = sMeta.dMeta.gameObject;
+						EntranceMeta eMeta = entranceInstance.gameObject.GetComponent<EntranceMeta> ();
+						eMeta.addComponent (meta.GetComponent<DwellingMeta> ());
+						eMeta.image = meta.GetComponent<SpriteRenderer> ().sprite; 
+						*/
 					} else {
 						GameObject tileChoice = foundationTiles [UnityEngine.Random.Range (0, foundationTiles.Length)];
 						GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
@@ -262,6 +285,7 @@ public class AdventureWorldCreator : MonoBehaviour {
 				for (int x = 0; x < map.GetLength (0); x++) {
 					if (map[x,y] == 0) {
 						Point3 pos = new Point3 (x, y, 0);
+
 						//generateMapv2Serial
 						int grassPatch = pos.returnPatchLocation(map, 0);
 
@@ -274,13 +298,13 @@ public class AdventureWorldCreator : MonoBehaviour {
 						}
 						int dwellingPatch = pos.returnPatchLocation(map, 2);
 						try{
-							if ((dwellingPatch == 9 || dwellingPatch == 8 || dwellingPatch == 7) 
-								&& map [pos.x, pos.y-1] == 0) {
+							if (dwellingPatch == 9 || dwellingPatch == 8 || dwellingPatch == 7) {
 								//Dwelling
 								if (UnityEngine.Random.Range (0, 60) > odds) {
 									map [pos.x, pos.y] = 30;
-									map [pos.x, pos.y-1] = 31;
-								} else if (UnityEngine.Random.Range (0, 60) > odds) {
+									//map [pos.x, pos.y-1] = 31;
+								//Tower
+								} else if (map [pos.x, pos.y-1] == 0 && UnityEngine.Random.Range (0, 60) > odds) {
 									map [pos.x, pos.y] = 32;
 									map [pos.x, pos.y-1] = 33;
 								}
@@ -296,27 +320,26 @@ public class AdventureWorldCreator : MonoBehaviour {
 		for (int y = 0; y < map.GetLength (1); y++) {
 			for (int x = 0; x < map.GetLength (0); x++) {
 				Point3 pos = new Point3 (x, y, 0);
+				if (map[x,y] == 0) {
+					openPositions.Add (pos);
+				}
 				//dwellings = 30, 31
 				if (map [x, y] == 30 || map [x, y] == 31) {
 					if (map [x, y] == 30) {
-						GameObject tileChoice = foundationTiles [UnityEngine.Random.Range (0, foundationTiles.Length)];
+						/*GameObject tileChoice = foundationTiles [UnityEngine.Random.Range (0, foundationTiles.Length)];
 						GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
-						instance.transform.SetParent (board);
-						tileChoice = dwellingTiles [UnityEngine.Random.Range (0, dwellingTiles.Length)];
-						instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
-						instance.transform.SetParent (board);
-					} else if (map [x, y] == 31) {
-						GameObject dwelling = dwellingTiles [UnityEngine.Random.Range (0, dwellingTiles.Length)];
-						GameObject tileChoice = entranceTiles [UnityEngine.Random.Range (0, entranceTiles.Length)];
-						GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
-						instance.transform.SetParent (board);
+						instance.transform.SetParent (board);*/
+						GameObject entranceChoice = entranceTiles [UnityEngine.Random.Range (0, entranceTiles.Length)];
+						GameObject entranceInstance = Instantiate (entranceChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
+						entranceInstance.transform.SetParent (board);
 
-						Debug.Log ("Selected dwelling: " + dwelling.name);
-						DwellingSceneMeta sMeta = dwelling.GetComponent<DwellingSceneMeta> ();
+						GameObject dwellingChoice = dwellingTiles [UnityEngine.Random.Range (0, dwellingTiles.Length)];
+						GameObject dwellingInstance = Instantiate (dwellingChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
+						dwellingInstance.transform.SetParent (board);
+
+						DwellingSceneMeta sMeta = dwellingChoice.GetComponent<DwellingSceneMeta> ();
 						GameObject meta = sMeta.dMeta.gameObject;
-						SpriteRenderer sRenderer = meta.GetComponent<SpriteRenderer> ();
-						EntranceMeta eMeta = instance.gameObject.GetComponent<EntranceMeta> ();
-						eMeta.addComponent (meta.GetComponent<SpriteRenderer> ());
+						EntranceMeta eMeta = entranceInstance.gameObject.GetComponent<EntranceMeta> ();
 						eMeta.addComponent (meta.GetComponent<DwellingMeta> ());
 						eMeta.image = meta.GetComponent<SpriteRenderer> ().sprite;
 					}

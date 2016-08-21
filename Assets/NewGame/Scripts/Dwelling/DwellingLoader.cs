@@ -26,7 +26,7 @@ public class DwellingLoader : MonoBehaviour {
 			Debug.Log ("Something in image");
 			if (imageP != null) {
 				Debug.Log ("Something in image canvas");
-				imageP.gameObject.GetComponent<Image> ().sprite = dImage;
+				//imageP.gameObject.GetComponent<Image> ().sprite = dImage;
 				Transform imagey = imageP.transform.Find("Image");
 				imagey.gameObject.GetComponent<Image> ().sprite = dImage;
 			}
