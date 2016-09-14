@@ -14,9 +14,9 @@ A game based off the classic Heroes of Might and Magic franchise. Development cu
 
 ### Screens
 
-<img src="./screens/Screen01.png" width="400"/>
-<img src="./screens/Screen02.png" width="400"/>
-<img src="./screens/Screen03.png" width="400"/>
+<img src="./Screens/Screen01.png" width="400"/>
+<img src="./Screens/Screen02.png" width="400"/>
+<img src="./Screens/Screen03.png" width="400"/>
 
 #### license
 
