@@ -219,6 +219,11 @@ public class AdventureBoardManager : MonoBehaviour {
 				foreach (GameObject obs in GameObject.FindGameObjectsWithTag("Obstacle")) {
 					obstacles.Add (new Point3(obs.transform.position));
 				}
+
+				foreach (GameObject obs in GameObject.FindGameObjectsWithTag("Entrance")) {
+					obstacles.Add (new Point3(obs.transform.position));
+				}
+
 				StartCoroutine (steps.generateMapv2 (new Point3(lastClicked.position), click, gameManager.getRows (), gameManager.getColumns (), obstacles, setPath));
 			} else if (steps.walking () && click.Equals(lastClick)) {
 				moveAdventurer (lastClicked, path);

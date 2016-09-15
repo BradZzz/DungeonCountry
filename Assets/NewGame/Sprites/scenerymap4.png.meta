@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 325e824c3853943c0b8d329cda0ab82c
-timeCreated: 1469933310
+timeCreated: 1471900095
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -6548,7 +6548,7 @@ TextureImporter:
     - name: scenerymap4_357
       rect:
         serializedVersion: 2
-        x: 160
+        x: 159
         y: 640
         width: 32
         height: 32

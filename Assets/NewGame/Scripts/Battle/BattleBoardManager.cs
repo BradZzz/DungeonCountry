@@ -255,9 +255,9 @@ public class BattleBoardManager : MonoBehaviour {
 		//	LayoutObjectAtRandom (new GameObject[]{army}, 1, 1);
 		//}
 
-		//foreach (GameObject army in armyManager.getTheirArmy()) {
-		LayoutObjectAtRandom (new GameObject[]{armyManager.getTheirArmy()[0]}, 1, 1, false, false);
-		//}
+		foreach (GameObject army in armyManager.getTheirArmy()) {
+			LayoutObjectAtRandom (new GameObject[]{army}, 1, 1, false, false);
+		}
 
 		foreach (Transform tile in boardHolder) {
 			if (tile.tag.Contains ("Unit")) {
