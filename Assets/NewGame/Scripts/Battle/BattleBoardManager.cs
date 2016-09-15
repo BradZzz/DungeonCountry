@@ -35,6 +35,8 @@ public class BattleBoardManager : MonoBehaviour {
 	protected Dictionary<Vector2, Transform> dict;
 	private BattleArmyManager armyManager;
 	private BattleGameManager gameManager;
+	public GameObject footsteps;
+	private Footsteps steps;
 
 	private bool playersTurn;
 
@@ -46,7 +48,11 @@ public class BattleBoardManager : MonoBehaviour {
 		gameManager = GetComponent<BattleGameManager>();
 		unitPositions = new List<Transform> ();
 	}
-		
+
+	void Start(){
+		steps = footsteps.GetComponent<Footsteps>();
+	}
+
 	void InitialiseList (int tactics)
 	{
 		gridPositions.Clear ();
@@ -85,54 +91,74 @@ public class BattleBoardManager : MonoBehaviour {
 	public void boardClicked(Transform clickedObject){
 		Debug.Log ("parent: " + clickedObject.name + ": " + clickedObject.position.x + "-" + clickedObject.position.y);
 		//StartCoroutine (show_actions (clickedObject));
-		show_actions (clickedObject);
+		//show_actions (clickedObject);
+		generateWalkRadius(clickedObject);
 	}
 
 	public bool charMoving(){
 		return lastClicked != null;
 	}
 
-	public void show_actions(Transform clickedObject){
-		if (!clickedObject.name.Contains("Floor") && lastClicked == null) {
-			BattleMeta meta = clickedObject.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
-			if (meta != null){
+	public void generateWalkRadius(Transform clickedObject){
+		/*
+		  StartCoroutine (steps.generateMapv2 (new Point3(lastClicked.position), click, gameManager.getRows (), gameManager.getColumns (), obstacles, setPath));
+		 */
+		if (!clickedObject.name.Contains ("Floor") && lastClicked == null) {
+			BattleMeta meta = clickedObject.gameObject.GetComponent (typeof(BattleMeta)) as BattleMeta;
+			if (meta != null) {
 				lastClicked = clickedObject;
-				for(int x = 0; x < gameManager.getColumns(); x++) {
-					for (int y = 0; y < gameManager.getRows(); y++) {
-						if (Math.Abs(clickedObject.position.x - x) + Math.Abs(clickedObject.position.y - y) <= Mathf.Max(meta.movement, meta.range)) {
-							Vector2 pos = new Vector2 (x, y);
-							Transform child = dict[pos];
-							Debug.Log ("Meta turn: " + meta.getTurn ());
-							if (meta.movement >= meta.range) {
-								if (!Coroutines.hasParent(child) && checkRange(clickedObject.position, pos, meta.movement) && meta.getActions() > 0 && meta.getTurn()) {
-									SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
-									sprRend.material.shader = Shader.Find ("Custom/OverlayShaderBlue");
-									movePositions.Add(child); 
-								} else if ((x != clickedObject.position.x || y != clickedObject.position.y) && 
-									(checkRange(clickedObject.position, pos, meta.range)) && meta.getAttacks() > 0 && meta.getTurn()) {
-									SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
-									sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
-									characterPositions.Add(child); 
-								}
-							} else {
-								if ((x != clickedObject.position.x || y != clickedObject.position.y) && 
-									(checkRange(clickedObject.position, pos, meta.range)) && meta.getAttacks() > 0 && meta.getTurn()) {
-									SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
-									sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
-									if (Coroutines.hasParent (child)) {
-										characterPositions.Add (child); 
-									} else {
-										movePositions.Add(child); 
-									}
-								}
-								if (!Coroutines.hasParent(child) && checkRange(clickedObject.position, pos, meta.movement) && meta.getActions() > 0 && meta.getTurn()) {
-									Debug.Log ("Movement: " + meta.movement + " - " + Math.Abs(pos.x - x) + ":" + Math.Abs(pos.y - y));
-									SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
-									sprRend.material.shader = Shader.Find ("Custom/OverlayShaderBlue");
-									movePositions.Add(child); 
-								}
-							}
-						}
+				if (meta.getActions() > 0 && meta.getTurn()) {
+					StartCoroutine (steps.generateOverflowMapv1 (new Point3 (lastClicked.position), meta.movement, 
+						gameManager.getRows (), gameManager.getColumns (), getObstacles(), show_actions));
+				} else if (meta.getAttacks() > 0 && meta.getTurn()) {
+					show_actions (new List<Point3>());
+				}
+			}
+		}
+	}
+
+	public List<Point3> getObstacles(){
+		List<Point3> obstacles = new List<Point3> ();
+		for (int x = 0; x < gameManager.getColumns (); x++) {
+			for (int y = 0; y < gameManager.getRows (); y++) {
+				Vector2 pos = new Vector2 (x, y);
+				Transform child = dict [pos];
+				if (Coroutines.hasParent (child)) {
+					obstacles.Add (new Point3 (pos));
+				}
+			}
+		}
+		return obstacles;
+	}
+
+	public void show_actions(List<Point3> range){
+		
+		//All the move positions are coming in through the range function now
+		foreach (Point3 position in range) {
+			Vector2 pos = new Vector2 (position.x, position.y);
+			Transform child = dict[pos];
+			SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
+			sprRend.material.shader = Shader.Find ("Custom/OverlayShaderBlue");
+			movePositions.Add(child); 
+			Debug.Log ("Child: " + child.ToString());
+		}
+
+		BattleMeta meta = lastClicked.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+		for(int x = 0; x < gameManager.getColumns(); x++) {
+			for (int y = 0; y < gameManager.getRows(); y++) {
+				Vector2 pos = new Vector2 (x, y);
+				Transform child = dict[pos];
+				if ((x != lastClicked.position.x || y != lastClicked.position.y) && 
+					(checkRange(lastClicked.position, pos, meta.range)) && meta.getAttacks() > 0 && meta.getTurn()) {
+					bool hasParent = Coroutines.hasParent (child);
+					//If the attack radius isn't in the walking radius or there is an enemy in the walking radius
+					if (!Coroutines.containsPoint(movePositions,new Point3(child.position)) || hasParent) {
+						SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
+						sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
+						//if (hasParent) {
+							characterPositions.Add (child); 
+						//}
+
 					}
 				}
 			}

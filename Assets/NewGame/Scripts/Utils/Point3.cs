@@ -25,6 +25,12 @@ public class Point3 {
 	}
 
 	//So fucking stupid I have to write this class... Do your job C#
+	public Point3 (Vector2 point) {
+		this.x = (int) Math.Round(point.x);
+		this.y = (int) Math.Round(point.y);
+		this.z = 0;
+	}
+
 	public Point3 (Vector3 point) {
 		this.x = (int) Math.Round(point.x);
 		this.y = (int) Math.Round(point.y);

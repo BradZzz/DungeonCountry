@@ -43,6 +43,12 @@ public class Footsteps : MonoBehaviour {
 		yield return foundVal;
 	}
 
+	public IEnumerator generateOverflowMapv1(Point3 startingPos, int move, int rows, int columns, List<Point3> obs, Action<List<Point3>> pathCallback){
+		foundVal = overflowAlgorithm (startingPos, move, rows, columns, obs);
+		pathCallback (foundVal);
+		yield return foundVal;
+	}
+
 	private List<Point3> baseAlgorithm(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs, bool deleteFirst){
 		this.destination = destination;
 		this.columns = columns;
@@ -82,6 +88,64 @@ public class Footsteps : MonoBehaviour {
 			foundVal.Reverse ();
 			foundVal.RemoveAt (0);
 		}
+
+		return foundVal;
+	}
+
+	private List<Point3> overflowAlgorithm(Point3 startingPos, int move, int rows, int columns, List<Point3> obs){
+		this.destination = null;
+		this.columns = columns;
+		this.rows = rows;
+		thisPath.Clear ();
+		map = new int[columns,rows];
+		generatedMap = new int[columns,rows];
+		for (int y = 0; y < rows; y++){
+			for (int x = 0; x < columns; x++){
+				Point3 check = new Point3 ((float)x, (float)y, 0);
+				if ((check.Equals(startingPos) || Coroutines.containsPoint (obs, check))) {
+					map [x,y] = 1;
+				} else {
+					map [x,y] = 0;
+				}
+				generatedMap [x, y] = 0;
+			}
+		}
+		foundVal = new List<Point3>();
+		nextQueue = new Queue<Point3>();
+		stepQueue = new Queue<Point3>();
+		stepQueue.Enqueue (startingPos);
+		generatedMap[startingPos.x,startingPos.y] = 1;
+		int count = 2;
+		while (stepQueue.Count > 0){
+			while (stepQueue.Count > 0) {
+				stepv2 (stepQueue.Dequeue(), count);
+				/*if (foundVal != null) {
+					break;
+				}*/
+			}
+			stepQueue = new Queue<Point3>(nextQueue);
+			nextQueue.Clear ();
+			count++;
+
+			//need to compile the unique list of points into a new list here
+			Debug.Log ("<----Filtering---->");
+			foreach (Point3 point in stepQueue.ToArray()) {
+				if (!foundVal.Contains(point)) {
+					Debug.Log ("Adding: " + point.ToString());
+					foundVal.Add (point);
+				}
+			}
+			Debug.Log ("<----Done Filtering---->");
+
+			if (count > move + 1) {
+				break;
+			}
+		}
+
+		/*if (deleteFirst && foundVal != null) {
+			foundVal.Reverse ();
+			foundVal.RemoveAt (0);
+		}*/
 
 		return foundVal;
 	}
