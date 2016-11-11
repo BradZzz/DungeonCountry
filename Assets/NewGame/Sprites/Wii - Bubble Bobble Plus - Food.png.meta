@@ -1,0 +1,2392 @@
+fileFormatVersion: 2
+guid: f47e956273f69460b8d2015b54a67909
+timeCreated: 1471904289
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Wii - Bubble Bobble Plus - Food_0
+    21300002: Wii - Bubble Bobble Plus - Food_1
+    21300004: Wii - Bubble Bobble Plus - Food_2
+    21300006: Wii - Bubble Bobble Plus - Food_3
+    21300008: Wii - Bubble Bobble Plus - Food_4
+    21300010: Wii - Bubble Bobble Plus - Food_5
+    21300012: Wii - Bubble Bobble Plus - Food_6
+    21300014: Wii - Bubble Bobble Plus - Food_7
+    21300016: Wii - Bubble Bobble Plus - Food_8
+    21300018: Wii - Bubble Bobble Plus - Food_9
+    21300020: Wii - Bubble Bobble Plus - Food_10
+    21300022: Wii - Bubble Bobble Plus - Food_11
+    21300024: Wii - Bubble Bobble Plus - Food_12
+    21300026: Wii - Bubble Bobble Plus - Food_13
+    21300028: Wii - Bubble Bobble Plus - Food_14
+    21300030: Wii - Bubble Bobble Plus - Food_15
+    21300032: Wii - Bubble Bobble Plus - Food_16
+    21300034: Wii - Bubble Bobble Plus - Food_17
+    21300036: Wii - Bubble Bobble Plus - Food_18
+    21300038: Wii - Bubble Bobble Plus - Food_19
+    21300040: Wii - Bubble Bobble Plus - Food_20
+    21300042: Wii - Bubble Bobble Plus - Food_21
+    21300044: Wii - Bubble Bobble Plus - Food_22
+    21300046: Wii - Bubble Bobble Plus - Food_23
+    21300048: Wii - Bubble Bobble Plus - Food_24
+    21300050: Wii - Bubble Bobble Plus - Food_25
+    21300052: Wii - Bubble Bobble Plus - Food_26
+    21300054: Wii - Bubble Bobble Plus - Food_27
+    21300056: Wii - Bubble Bobble Plus - Food_28
+    21300058: Wii - Bubble Bobble Plus - Food_29
+    21300060: Wii - Bubble Bobble Plus - Food_30
+    21300062: Wii - Bubble Bobble Plus - Food_31
+    21300064: Wii - Bubble Bobble Plus - Food_32
+    21300066: Wii - Bubble Bobble Plus - Food_33
+    21300068: Wii - Bubble Bobble Plus - Food_34
+    21300070: Wii - Bubble Bobble Plus - Food_35
+    21300072: Wii - Bubble Bobble Plus - Food_36
+    21300074: Wii - Bubble Bobble Plus - Food_37
+    21300076: Wii - Bubble Bobble Plus - Food_38
+    21300078: Wii - Bubble Bobble Plus - Food_39
+    21300080: Wii - Bubble Bobble Plus - Food_40
+    21300082: Wii - Bubble Bobble Plus - Food_41
+    21300084: Wii - Bubble Bobble Plus - Food_42
+    21300086: Wii - Bubble Bobble Plus - Food_43
+    21300088: Wii - Bubble Bobble Plus - Food_44
+    21300090: Wii - Bubble Bobble Plus - Food_45
+    21300092: Wii - Bubble Bobble Plus - Food_46
+    21300094: Wii - Bubble Bobble Plus - Food_47
+    21300096: Wii - Bubble Bobble Plus - Food_48
+    21300098: Wii - Bubble Bobble Plus - Food_49
+    21300100: Wii - Bubble Bobble Plus - Food_50
+    21300102: Wii - Bubble Bobble Plus - Food_51
+    21300104: Wii - Bubble Bobble Plus - Food_52
+    21300106: Wii - Bubble Bobble Plus - Food_53
+    21300108: Wii - Bubble Bobble Plus - Food_54
+    21300110: Wii - Bubble Bobble Plus - Food_55
+    21300112: Wii - Bubble Bobble Plus - Food_56
+    21300114: Wii - Bubble Bobble Plus - Food_57
+    21300116: Wii - Bubble Bobble Plus - Food_58
+    21300118: Wii - Bubble Bobble Plus - Food_59
+    21300120: Wii - Bubble Bobble Plus - Food_60
+    21300122: Wii - Bubble Bobble Plus - Food_61
+    21300124: Wii - Bubble Bobble Plus - Food_62
+    21300126: Wii - Bubble Bobble Plus - Food_63
+    21300128: Wii - Bubble Bobble Plus - Food_64
+    21300130: Wii - Bubble Bobble Plus - Food_65
+    21300132: Wii - Bubble Bobble Plus - Food_66
+    21300134: Wii - Bubble Bobble Plus - Food_67
+    21300136: Wii - Bubble Bobble Plus - Food_68
+    21300138: Wii - Bubble Bobble Plus - Food_69
+    21300140: Wii - Bubble Bobble Plus - Food_70
+    21300142: Wii - Bubble Bobble Plus - Food_71
+    21300144: Wii - Bubble Bobble Plus - Food_72
+    21300146: Wii - Bubble Bobble Plus - Food_73
+    21300148: Wii - Bubble Bobble Plus - Food_74
+    21300150: Wii - Bubble Bobble Plus - Food_75
+    21300152: Wii - Bubble Bobble Plus - Food_76
+    21300154: Wii - Bubble Bobble Plus - Food_77
+    21300156: Wii - Bubble Bobble Plus - Food_78
+    21300158: Wii - Bubble Bobble Plus - Food_79
+    21300160: Wii - Bubble Bobble Plus - Food_80
+    21300162: Wii - Bubble Bobble Plus - Food_81
+    21300164: Wii - Bubble Bobble Plus - Food_82
+    21300166: Wii - Bubble Bobble Plus - Food_83
+    21300168: Wii - Bubble Bobble Plus - Food_84
+    21300170: Wii - Bubble Bobble Plus - Food_85
+    21300172: Wii - Bubble Bobble Plus - Food_86
+    21300174: Wii - Bubble Bobble Plus - Food_87
+    21300176: Wii - Bubble Bobble Plus - Food_88
+    21300178: Wii - Bubble Bobble Plus - Food_89
+    21300180: Wii - Bubble Bobble Plus - Food_90
+    21300182: Wii - Bubble Bobble Plus - Food_91
+    21300184: Wii - Bubble Bobble Plus - Food_92
+    21300186: Wii - Bubble Bobble Plus - Food_93
+    21300188: Wii - Bubble Bobble Plus - Food_94
+    21300190: Wii - Bubble Bobble Plus - Food_95
+    21300192: Wii - Bubble Bobble Plus - Food_96
+    21300194: Wii - Bubble Bobble Plus - Food_97
+    21300196: Wii - Bubble Bobble Plus - Food_105
+    21300198: Wii - Bubble Bobble Plus - Food_107
+    21300200: Wii - Bubble Bobble Plus - Food_109
+    21300202: Wii - Bubble Bobble Plus - Food_111
+    21300204: Wii - Bubble Bobble Plus - Food_113
+    21300206: Wii - Bubble Bobble Plus - Food_115
+    21300208: Wii - Bubble Bobble Plus - Food_117
+    21300210: Wii - Bubble Bobble Plus - Food_135
+    21300212: Wii - Bubble Bobble Plus - Food_137
+    21300214: Wii - Bubble Bobble Plus - Food_139
+    21300216: Wii - Bubble Bobble Plus - Food_141
+    21300218: Wii - Bubble Bobble Plus - Food_143
+    21300220: Wii - Bubble Bobble Plus - Food_145
+    21300222: Wii - Bubble Bobble Plus - Food_147
+    21300224: Wii - Bubble Bobble Plus - Food_164
+    21300226: Wii - Bubble Bobble Plus - Food_166
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 5
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Wii - Bubble Bobble Plus - Food_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 467
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13.5, y: 14.5}
+        - {x: -14.5, y: 10.5}
+        - {x: -14.5, y: -5.5}
+        - {x: -4.5, y: -16.5}
+        - {x: 5.5, y: -16.5}
+        - {x: 16.5, y: -10.5}
+        - {x: 16.5, y: 12.5}
+        - {x: 14.5, y: 14.5}
+    - name: Wii - Bubble Bobble Plus - Food_1
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 467
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13.5, y: 16.5}
+        - {x: -16.5, y: 15.5}
+        - {x: -16.5, y: -7.5}
+        - {x: -7.5, y: -16.5}
+        - {x: 15.5, y: -16.5}
+        - {x: 16.5, y: -14.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_2
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 467
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13.5, y: 16.5}
+        - {x: -16.5, y: 8.5}
+        - {x: -16.5, y: -16.5}
+        - {x: 16.5, y: -16.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_3
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 467
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 13.5, y: 16.5}
+        - {x: -0.5, y: 16.5}
+        - {x: -16.5, y: 11.5}
+        - {x: -16.5, y: -7.5}
+        - {x: -5.5, y: -16.5}
+        - {x: 15.5, y: -16.5}
+        - {x: 16.5, y: -14.5}
+        - {x: 16.5, y: 4.5}
+        - {x: 15.5, y: 12.5}
+    - name: Wii - Bubble Bobble Plus - Food_4
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 467
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0.5, y: 16.5}
+        - {x: -13.5, y: 11.5}
+        - {x: -15.5, y: 1.5}
+        - {x: -16.5, y: -0.5}
+        - {x: -16.5, y: -16.5}
+        - {x: 16.5, y: -16.5}
+        - {x: 16.5, y: 11.5}
+        - {x: 11.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_5
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 467
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7.5, y: 13.5}
+        - {x: -16.5, y: 7.5}
+        - {x: -16.5, y: -4.5}
+        - {x: -6.5, y: -16.5}
+        - {x: 10.5, y: -16.5}
+        - {x: 16.5, y: -11.5}
+        - {x: 16.5, y: 9.5}
+        - {x: 9.5, y: 13.5}
+    - name: Wii - Bubble Bobble Plus - Food_6
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 467
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.5, y: 9.5}
+        - {x: -16.5, y: 5.5}
+        - {x: -16.5, y: -8.5}
+        - {x: -8.5, y: -16.5}
+        - {x: 13.5, y: -16.5}
+        - {x: 16.5, y: -15.5}
+        - {x: 16.5, y: 7.5}
+        - {x: 9.5, y: 9.5}
+    - name: Wii - Bubble Bobble Plus - Food_7
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 467
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5.5, y: 15.5}
+        - {x: -16.5, y: 7.5}
+        - {x: -16.5, y: -13.5}
+        - {x: -13.5, y: -16.5}
+        - {x: 5.5, y: -16.5}
+        - {x: 16.5, y: -13.5}
+        - {x: 16.5, y: 13.5}
+        - {x: 10.5, y: 15.5}
+    - name: Wii - Bubble Bobble Plus - Food_8
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 467
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: 12.5}
+        - {x: -16.5, y: -3.5}
+        - {x: -15.5, y: -8.5}
+        - {x: -5.5, y: -16.5}
+        - {x: 10.5, y: -16.5}
+        - {x: 16.5, y: -15.5}
+        - {x: 16.5, y: 5.5}
+        - {x: 10.5, y: 12.5}
+    - name: Wii - Bubble Bobble Plus - Food_9
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 467
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11.5, y: 16.5}
+        - {x: -11.5, y: 16.5}
+        - {x: -16.5, y: 4.5}
+        - {x: -16.5, y: -12.5}
+        - {x: -11.5, y: -16.5}
+        - {x: 14.5, y: -16.5}
+        - {x: 16.5, y: -15.5}
+        - {x: 16.5, y: 14.5}
+    - name: Wii - Bubble Bobble Plus - Food_10
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 467
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.5, y: 14.5}
+        - {x: -13.5, y: 13.5}
+        - {x: -16.5, y: 5.5}
+        - {x: -16.5, y: 1.5}
+        - {x: -15.5, y: -1.5}
+        - {x: -0.5, y: -16.5}
+        - {x: 5.5, y: -16.5}
+        - {x: 16.5, y: -1.5}
+        - {x: 16.5, y: 10.5}
+        - {x: 13.5, y: 14.5}
+    - name: Wii - Bubble Bobble Plus - Food_11
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 467
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.5, y: 14.5}
+        - {x: -16.5, y: 8.5}
+        - {x: -16.5, y: -1.5}
+        - {x: -6.5, y: -16.5}
+        - {x: 2.5, y: -16.5}
+        - {x: 16.5, y: -3.5}
+        - {x: 16.5, y: 5.5}
+        - {x: 9.5, y: 14.5}
+    - name: Wii - Bubble Bobble Plus - Food_12
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 467
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.5, y: 14.5}
+        - {x: -16.5, y: 6.5}
+        - {x: -16.5, y: 0.5}
+        - {x: -11.5, y: -8.5}
+        - {x: -0.5, y: -16.5}
+        - {x: 1.5, y: -16.5}
+        - {x: 16.5, y: -5.5}
+        - {x: 16.5, y: 7.5}
+        - {x: 12.5, y: 14.5}
+    - name: Wii - Bubble Bobble Plus - Food_13
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 467
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.5, y: 14.5}
+        - {x: -16.5, y: 8.5}
+        - {x: -16.5, y: -0.5}
+        - {x: -5.5, y: -16.5}
+        - {x: 2.5, y: -16.5}
+        - {x: 16.5, y: -1.5}
+        - {x: 16.5, y: 7.5}
+        - {x: 10.5, y: 14.5}
+    - name: Wii - Bubble Bobble Plus - Food_14
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 467
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.5, y: 14.5}
+        - {x: -16.5, y: 8.5}
+        - {x: -16.5, y: -1.5}
+        - {x: -6.5, y: -16.5}
+        - {x: 2.5, y: -16.5}
+        - {x: 16.5, y: -3.5}
+        - {x: 16.5, y: 5.5}
+        - {x: 9.5, y: 14.5}
+    - name: Wii - Bubble Bobble Plus - Food_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 434
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9.5, y: 16.5}
+        - {x: -14.5, y: 14.5}
+        - {x: -14.5, y: -12.5}
+        - {x: -6.5, y: -14.5}
+        - {x: 13.5, y: -14.5}
+        - {x: 16.5, y: -10.5}
+        - {x: 16.5, y: 13.5}
+        - {x: 14.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_16
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 434
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -4.5, y: 16.5}
+        - {x: -5.5, y: 14.5}
+        - {x: -16.5, y: 8.5}
+        - {x: -16.5, y: -12.5}
+        - {x: -7.5, y: -14.5}
+        - {x: 16.5, y: -14.5}
+        - {x: 16.5, y: 10.5}
+        - {x: 11.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_17
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 434
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13.5, y: 16.5}
+        - {x: -16.5, y: 9.5}
+        - {x: -16.5, y: -15.5}
+        - {x: -15.5, y: -16.5}
+        - {x: 16.5, y: -16.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_18
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 434
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5.5, y: 16.5}
+        - {x: -16.5, y: 1.5}
+        - {x: -16.5, y: -13.5}
+        - {x: -10.5, y: -15.5}
+        - {x: 5.5, y: -15.5}
+        - {x: 16.5, y: -5.5}
+        - {x: 16.5, y: 16.5}
+      - - {x: -16.5, y: 6.5}
+        - {x: -13.5, y: 7.5}
+        - {x: -13.5, y: 11.5}
+        - {x: -15.5, y: 13.5}
+        - {x: -16.5, y: 13.5}
+    - name: Wii - Bubble Bobble Plus - Food_19
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 434
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13.5, y: 16.5}
+        - {x: -14.5, y: 13.5}
+        - {x: -14.5, y: -12.5}
+        - {x: -11.5, y: -16.5}
+        - {x: 9.5, y: -16.5}
+        - {x: 16.5, y: -8.5}
+        - {x: 16.5, y: 13.5}
+        - {x: 12.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_20
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 434
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11.5, y: 16.5}
+        - {x: -15.5, y: 10.5}
+        - {x: -16.5, y: 6.5}
+        - {x: -16.5, y: -5.5}
+        - {x: -13.5, y: -4.5}
+        - {x: -8.5, y: -12.5}
+        - {x: -5.5, y: -16.5}
+        - {x: 11.5, y: -16.5}
+        - {x: 16.5, y: -15.5}
+        - {x: 16.5, y: 6.5}
+        - {x: 11.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_21
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 434
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13.5, y: 16.5}
+        - {x: -14.5, y: 12.5}
+        - {x: -14.5, y: -12.5}
+        - {x: -9.5, y: -16.5}
+        - {x: 7.5, y: -16.5}
+        - {x: 16.5, y: -11.5}
+        - {x: 16.5, y: 11.5}
+        - {x: 10.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_22
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 434
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13.5, y: 16.5}
+        - {x: -14.5, y: 10.5}
+        - {x: -14.5, y: -9.5}
+        - {x: -9.5, y: -16.5}
+        - {x: 15.5, y: -16.5}
+        - {x: 16.5, y: -15.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_23
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 434
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1.5, y: 16.5}
+        - {x: -16.5, y: 6.5}
+        - {x: -16.5, y: -7.5}
+        - {x: -7.5, y: -15.5}
+        - {x: -3.5, y: -16.5}
+        - {x: 6.5, y: -16.5}
+        - {x: 16.5, y: -2.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_24
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 434
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9.5, y: 16.5}
+        - {x: -15.5, y: 13.5}
+        - {x: -15.5, y: -9.5}
+        - {x: -13.5, y: -15.5}
+        - {x: -11.5, y: -16.5}
+        - {x: 11.5, y: -16.5}
+        - {x: 16.5, y: -15.5}
+        - {x: 16.5, y: 12.5}
+        - {x: 12.5, y: 16.5}
+      - - {x: -16.5, y: 4.5}
+        - {x: -13.5, y: 5.5}
+        - {x: -13.5, y: 10.5}
+        - {x: -15.5, y: 12.5}
+        - {x: -16.5, y: 12.5}
+    - name: Wii - Bubble Bobble Plus - Food_25
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 434
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.5, y: 16.5}
+        - {x: -16.5, y: 12.5}
+        - {x: -16.5, y: -12.5}
+        - {x: -15.5, y: -15.5}
+        - {x: -6.5, y: -16.5}
+        - {x: 16.5, y: -16.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_26
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 434
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13.5, y: 16.5}
+        - {x: -16.5, y: 6.5}
+        - {x: -16.5, y: -16.5}
+        - {x: 10.5, y: -16.5}
+        - {x: 16.5, y: -15.5}
+        - {x: 16.5, y: 6.5}
+        - {x: 10.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_27
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 434
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11.5, y: 16.5}
+        - {x: -16.5, y: 13.5}
+        - {x: -16.5, y: -15.5}
+        - {x: -14.5, y: -16.5}
+        - {x: 16.5, y: -16.5}
+        - {x: 16.5, y: 15.5}
+        - {x: 15.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_28
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 434
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7.5, y: 16.5}
+        - {x: -11.5, y: 12.5}
+        - {x: -16.5, y: 2.5}
+        - {x: -16.5, y: -16.5}
+        - {x: 14.5, y: -16.5}
+        - {x: 16.5, y: -14.5}
+        - {x: 16.5, y: 3.5}
+        - {x: 13.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_29
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 434
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12.5, y: 16.5}
+        - {x: -16.5, y: 9.5}
+        - {x: -16.5, y: -11.5}
+        - {x: -13.5, y: -16.5}
+        - {x: 6.5, y: -16.5}
+        - {x: 12.5, y: -14.5}
+        - {x: 13.5, y: -13.5}
+        - {x: 13.5, y: 9.5}
+        - {x: 10.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 401
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9.5, y: -15.5}
+        - {x: 9.5, y: -16.5}
+        - {x: 16.5, y: -16.5}
+        - {x: 16.5, y: -13.5}
+        - {x: 11.5, y: -13.5}
+      - - {x: -10.5, y: 16.5}
+        - {x: -14.5, y: 7.5}
+        - {x: -14.5, y: -10.5}
+        - {x: -10.5, y: -14.5}
+        - {x: 12.5, y: -14.5}
+        - {x: 16.5, y: -13.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_31
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 401
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: 16.5}
+        - {x: -16.5, y: 6.5}
+        - {x: -16.5, y: -9.5}
+        - {x: -10.5, y: -16.5}
+        - {x: 13.5, y: -16.5}
+        - {x: 16.5, y: -11.5}
+        - {x: 16.5, y: 12.5}
+        - {x: 11.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_32
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 401
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -4.5, y: 16.5}
+        - {x: -16.5, y: 3.5}
+        - {x: -16.5, y: -12.5}
+        - {x: -9.5, y: -16.5}
+        - {x: 3.5, y: -16.5}
+        - {x: 16.5, y: -11.5}
+        - {x: 16.5, y: 10.5}
+        - {x: 12.5, y: 16.5}
+      - - {x: -16.5, y: 3.5}
+        - {x: -13.5, y: 4.5}
+        - {x: -13.5, y: 7.5}
+        - {x: -15.5, y: 9.5}
+        - {x: -16.5, y: 9.5}
+    - name: Wii - Bubble Bobble Plus - Food_33
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 401
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 16.5, y: 16.5}
+        - {x: -8.5, y: 16.5}
+        - {x: -14.5, y: 10.5}
+        - {x: -16.5, y: 3.5}
+        - {x: -16.5, y: -8.5}
+        - {x: -13.5, y: -7.5}
+        - {x: -7.5, y: -16.5}
+        - {x: 16.5, y: -16.5}
+    - name: Wii - Bubble Bobble Plus - Food_34
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 401
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9.5, y: 16.5}
+        - {x: -16.5, y: 14.5}
+        - {x: -16.5, y: -14.5}
+        - {x: 16.5, y: -14.5}
+        - {x: 16.5, y: 15.5}
+        - {x: 15.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_35
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 401
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11.5, y: 16.5}
+        - {x: -16.5, y: 12.5}
+        - {x: -16.5, y: 0.5}
+        - {x: -13.5, y: 1.5}
+        - {x: -16.5, y: -3.5}
+        - {x: -16.5, y: -8.5}
+        - {x: -12.5, y: -16.5}
+        - {x: 16.5, y: -16.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_36
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 401
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: 16.5}
+        - {x: -16.5, y: -14.5}
+        - {x: 16.5, y: -14.5}
+        - {x: 16.5, y: 13.5}
+        - {x: 12.5, y: 16.5}
+      - - {x: -16.5, y: -8.5}
+        - {x: -13.5, y: -7.5}
+        - {x: -13.5, y: -0.5}
+        - {x: -15.5, y: 1.5}
+        - {x: -16.5, y: 1.5}
+    - name: Wii - Bubble Bobble Plus - Food_37
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 401
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: 16.5}
+        - {x: -16.5, y: -6.5}
+        - {x: -13.5, y: -16.5}
+        - {x: 9.5, y: -16.5}
+        - {x: 16.5, y: -13.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_38
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 401
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: 16.5}
+        - {x: -16.5, y: -14.5}
+        - {x: 16.5, y: -14.5}
+        - {x: 16.5, y: 16.5}
+      - - {x: -16.5, y: -8.5}
+        - {x: -13.5, y: -7.5}
+        - {x: -13.5, y: -0.5}
+        - {x: -15.5, y: 1.5}
+        - {x: -16.5, y: 1.5}
+    - name: Wii - Bubble Bobble Plus - Food_39
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 401
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: 16.5}
+        - {x: -16.5, y: -10.5}
+        - {x: -15.5, y: -14.5}
+        - {x: 16.5, y: -14.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_40
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 401
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2.5, y: 16.5}
+        - {x: -15.5, y: 1.5}
+        - {x: -16.5, y: 0.5}
+        - {x: -16.5, y: -11.5}
+        - {x: -8.5, y: -14.5}
+        - {x: 13.5, y: -14.5}
+        - {x: 16.5, y: -11.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_41
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 401
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14.5, y: 16.5}
+        - {x: -16.5, y: 15.5}
+        - {x: -16.5, y: -2.5}
+        - {x: -15.5, y: -9.5}
+        - {x: -10.5, y: -14.5}
+        - {x: 3.5, y: -14.5}
+        - {x: 12.5, y: -9.5}
+        - {x: 14.5, y: 5.5}
+        - {x: 14.5, y: 13.5}
+        - {x: 11.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_42
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 401
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12.5, y: -16.5}
+        - {x: 11.5, y: -13.5}
+        - {x: 7.5, y: -13.5}
+        - {x: 6.5, y: -16.5}
+      - - {x: -9.5, y: 16.5}
+        - {x: -11.5, y: 14.5}
+        - {x: -16.5, y: 6.5}
+        - {x: -16.5, y: -5.5}
+        - {x: -6.5, y: -14.5}
+        - {x: 10.5, y: -14.5}
+        - {x: 16.5, y: -4.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_43
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 401
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14.5, y: 16.5}
+        - {x: -16.5, y: 15.5}
+        - {x: -16.5, y: 3.5}
+        - {x: -10.5, y: -10.5}
+        - {x: -1.5, y: -16.5}
+        - {x: 10.5, y: -16.5}
+        - {x: 14.5, y: -3.5}
+        - {x: 14.5, y: 13.5}
+        - {x: 13.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_44
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 403
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -16, y: 11}
+        - {x: -16, y: -8}
+        - {x: -9, y: -16}
+        - {x: 6, y: -16}
+        - {x: 8, y: -7}
+        - {x: 8, y: 13}
+        - {x: 3, y: 16}
+    - name: Wii - Bubble Bobble Plus - Food_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 368
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8.5, y: -16.5}
+        - {x: 7.5, y: -13.5}
+        - {x: 1.5, y: -13.5}
+        - {x: 0.5, y: -16.5}
+      - - {x: -4.5, y: 16.5}
+        - {x: -14.5, y: 9.5}
+        - {x: -14.5, y: -13.5}
+        - {x: -12.5, y: -14.5}
+        - {x: 4.5, y: -14.5}
+        - {x: 10.5, y: -10.5}
+        - {x: 16.5, y: 0.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_46
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 368
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14.5, y: 16.5}
+        - {x: -14.5, y: -0.5}
+        - {x: -12.5, y: -14.5}
+        - {x: 16.5, y: -14.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_47
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 369
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 16}
+        - {x: -10, y: 16}
+        - {x: -14, y: 15}
+        - {x: -14, y: -11}
+        - {x: -6, y: -15}
+        - {x: 5, y: -15}
+        - {x: 10, y: -6}
+        - {x: 10, y: 12}
+    - name: Wii - Bubble Bobble Plus - Food_48
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 369
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -15, y: 14}
+        - {x: -15, y: -14}
+        - {x: -13, y: -15}
+        - {x: 16, y: -15}
+        - {x: 16, y: 16}
+    - name: Wii - Bubble Bobble Plus - Food_49
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 368
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -4.5, y: 16.5}
+        - {x: -16.5, y: 11.5}
+        - {x: -16.5, y: -9.5}
+        - {x: -4.5, y: -16.5}
+        - {x: 16.5, y: -16.5}
+        - {x: 16.5, y: 16.5}
+      - - {x: -13.5, y: -12.5}
+        - {x: -13.5, y: -9.5}
+        - {x: -16.5, y: -8.5}
+        - {x: -16.5, y: -13.5}
+      - - {x: -13.5, y: 10.5}
+        - {x: -13.5, y: 13.5}
+        - {x: -16.5, y: 14.5}
+        - {x: -16.5, y: 9.5}
+    - name: Wii - Bubble Bobble Plus - Food_50
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 369
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 6, y: 16}
+        - {x: -10, y: 16}
+        - {x: -15, y: 14}
+        - {x: -15, y: -7}
+        - {x: -6, y: -15}
+        - {x: -1, y: -15}
+        - {x: 9, y: -6}
+        - {x: 9, y: 12}
+    - name: Wii - Bubble Bobble Plus - Food_51
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 368
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+    - name: Wii - Bubble Bobble Plus - Food_52
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 368
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14, y: 10}
+        - {x: 9, y: 16}
+        - {x: -14, y: 16}
+        - {x: -15, y: 15}
+        - {x: -15, y: -12}
+        - {x: -10, y: -16}
+        - {x: 3, y: -16}
+        - {x: 8, y: -12}
+        - {x: 11, y: -8}
+        - {x: 14, y: -2}
+    - name: Wii - Bubble Bobble Plus - Food_53
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 368
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: 16.5}
+        - {x: -14.5, y: 6.5}
+        - {x: -14.5, y: -11.5}
+        - {x: -4.5, y: -16.5}
+        - {x: 15.5, y: -16.5}
+        - {x: 16.5, y: -15.5}
+        - {x: 16.5, y: 12.5}
+        - {x: 15.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_54
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 368
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6.5, y: -16.5}
+        - {x: -7.5, y: -13.5}
+        - {x: -13.5, y: -13.5}
+        - {x: -14.5, y: -16.5}
+      - - {x: -16.5, y: 16.5}
+        - {x: -16.5, y: -6.5}
+        - {x: -11.5, y: -16.5}
+        - {x: 9.5, y: -16.5}
+        - {x: 16.5, y: -5.5}
+        - {x: 16.5, y: 13.5}
+        - {x: 11.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_55
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 368
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7.5, y: -16.5}
+        - {x: -8.5, y: -13.5}
+        - {x: -14.5, y: -13.5}
+        - {x: -15.5, y: -16.5}
+      - - {x: 1.5, y: 16.5}
+        - {x: -4.5, y: 15.5}
+        - {x: -16.5, y: 7.5}
+        - {x: -16.5, y: -9.5}
+        - {x: -6.5, y: -16.5}
+        - {x: 6.5, y: -16.5}
+        - {x: 16.5, y: 0.5}
+        - {x: 16.5, y: 14.5}
+        - {x: 15.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_56
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 368
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7.5, y: -16.5}
+        - {x: -8.5, y: -13.5}
+        - {x: -14.5, y: -13.5}
+        - {x: -15.5, y: -16.5}
+      - - {x: -6.5, y: 16.5}
+        - {x: -13.5, y: 13.5}
+        - {x: -16.5, y: 5.5}
+        - {x: -16.5, y: -6.5}
+        - {x: -4.5, y: -16.5}
+        - {x: 10.5, y: -16.5}
+        - {x: 16.5, y: -3.5}
+        - {x: 16.5, y: 15.5}
+        - {x: 13.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_57
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 368
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: 16.5}
+        - {x: -16.5, y: -16.5}
+        - {x: 9.5, y: -16.5}
+        - {x: 14.5, y: -3.5}
+        - {x: 14.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_58
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 368
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12.5, y: 16.5}
+        - {x: -4.5, y: 16.5}
+        - {x: -13.5, y: 3.5}
+        - {x: -16.5, y: -3.5}
+        - {x: -16.5, y: -14.5}
+        - {x: -14.5, y: -16.5}
+        - {x: 4.5, y: -16.5}
+        - {x: 16.5, y: -2.5}
+        - {x: 16.5, y: 13.5}
+    - name: Wii - Bubble Bobble Plus - Food_59
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 368
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.5, y: 16.5}
+        - {x: -12.5, y: 15.5}
+        - {x: -16.5, y: 8.5}
+        - {x: -16.5, y: -3.5}
+        - {x: -15.5, y: -12.5}
+        - {x: -11.5, y: -14.5}
+        - {x: 16.5, y: -14.5}
+        - {x: 16.5, y: 11.5}
+        - {x: 10.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 335
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 16.5, y: -16.5}
+        - {x: 15.5, y: -13.5}
+        - {x: 5.5, y: -13.5}
+        - {x: 4.5, y: -16.5}
+      - - {x: 9.5, y: 16.5}
+        - {x: -3.5, y: 16.5}
+        - {x: -14.5, y: 6.5}
+        - {x: -14.5, y: -14.5}
+        - {x: 6.5, y: -14.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 16.5, y: -10.5}
+        - {x: 16.5, y: 9.5}
+    - name: Wii - Bubble Bobble Plus - Food_61
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 335
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5.5, y: 16.5}
+        - {x: -14.5, y: 13.5}
+        - {x: -14.5, y: -6.5}
+        - {x: -8.5, y: -12.5}
+        - {x: -3.5, y: -14.5}
+        - {x: 10.5, y: -14.5}
+        - {x: 16.5, y: -12.5}
+        - {x: 16.5, y: 14.5}
+        - {x: 14.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_62
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 335
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10.5, y: 16.5}
+        - {x: -15.5, y: 14.5}
+        - {x: -16.5, y: 11.5}
+        - {x: -16.5, y: -8.5}
+        - {x: -9.5, y: -15.5}
+        - {x: -5.5, y: -16.5}
+        - {x: 11.5, y: -16.5}
+        - {x: 16.5, y: -13.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_63
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 335
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9.5, y: 16.5}
+        - {x: -16.5, y: 11.5}
+        - {x: -16.5, y: -9.5}
+        - {x: -5.5, y: -16.5}
+        - {x: 16.5, y: -16.5}
+        - {x: 16.5, y: 13.5}
+        - {x: 13.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_64
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 335
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1.5, y: 16.5}
+        - {x: -8.5, y: 5.5}
+        - {x: -9.5, y: 2.5}
+        - {x: -14.5, y: -8.5}
+        - {x: -14.5, y: -11.5}
+        - {x: -13.5, y: -14.5}
+        - {x: -6.5, y: -14.5}
+        - {x: 2.5, y: -11.5}
+        - {x: 16.5, y: 5.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_65
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 335
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11.5, y: 16.5}
+        - {x: -14.5, y: 12.5}
+        - {x: -14.5, y: -12.5}
+        - {x: -7.5, y: -16.5}
+        - {x: 13.5, y: -16.5}
+        - {x: 14.5, y: -15.5}
+        - {x: 14.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_66
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 335
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14.5, y: 16.5}
+        - {x: -14.5, y: -5.5}
+        - {x: -7.5, y: -14.5}
+        - {x: -2.5, y: -14.5}
+        - {x: 0.5, y: -13.5}
+        - {x: 5.5, y: -5.5}
+        - {x: 5.5, y: 12.5}
+        - {x: 4.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_67
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 335
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 4.5, y: 16.5}
+        - {x: -11.5, y: 16.5}
+        - {x: -14.5, y: 8.5}
+        - {x: -14.5, y: -8.5}
+        - {x: -10.5, y: -14.5}
+        - {x: 1.5, y: -14.5}
+        - {x: 3.5, y: -13.5}
+        - {x: 6.5, y: -8.5}
+        - {x: 6.5, y: 8.5}
+    - name: Wii - Bubble Bobble Plus - Food_68
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 335
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12.5, y: 16.5}
+        - {x: -14.5, y: 16.5}
+        - {x: -14.5, y: -7.5}
+        - {x: -1.5, y: -16.5}
+        - {x: 16.5, y: -16.5}
+        - {x: 16.5, y: 12.5}
+    - name: Wii - Bubble Bobble Plus - Food_69
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 335
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12.5, y: 16.5}
+        - {x: -15.5, y: 16.5}
+        - {x: -15.5, y: -6.5}
+        - {x: -7.5, y: -16.5}
+        - {x: 8.5, y: -16.5}
+        - {x: 16.5, y: -8.5}
+        - {x: 16.5, y: 8.5}
+        - {x: 14.5, y: 13.5}
+    - name: Wii - Bubble Bobble Plus - Food_70
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 335
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11.5, y: 16.5}
+        - {x: -16.5, y: 16.5}
+        - {x: -16.5, y: -9.5}
+        - {x: -4.5, y: -14.5}
+        - {x: 13.5, y: -14.5}
+        - {x: 16.5, y: -9.5}
+        - {x: 16.5, y: 7.5}
+        - {x: 14.5, y: 14.5}
+    - name: Wii - Bubble Bobble Plus - Food_71
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 335
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: 16.5}
+        - {x: -16.5, y: 3.5}
+        - {x: -11.5, y: -15.5}
+        - {x: -9.5, y: -16.5}
+        - {x: 15.5, y: -16.5}
+        - {x: 16.5, y: -10.5}
+        - {x: 16.5, y: 13.5}
+        - {x: 13.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_72
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 335
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 15.5, y: -16.5}
+        - {x: 14.5, y: -13.5}
+        - {x: 8.5, y: -13.5}
+        - {x: 7.5, y: -16.5}
+      - - {x: 14.5, y: 16.5}
+        - {x: -12.5, y: 16.5}
+        - {x: -16.5, y: 13.5}
+        - {x: -16.5, y: -11.5}
+        - {x: -9.5, y: -14.5}
+        - {x: 6.5, y: -14.5}
+        - {x: 11.5, y: -9.5}
+        - {x: 16.5, y: -0.5}
+        - {x: 16.5, y: 10.5}
+    - name: Wii - Bubble Bobble Plus - Food_73
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 335
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9.5, y: -16.5}
+        - {x: 8.5, y: -13.5}
+        - {x: 1.5, y: -13.5}
+        - {x: 0.5, y: -16.5}
+      - - {x: -13.5, y: 16.5}
+        - {x: -16.5, y: 15.5}
+        - {x: -16.5, y: -14.5}
+        - {x: -4.5, y: -14.5}
+        - {x: 4.5, y: -10.5}
+        - {x: 7.5, y: -1.5}
+        - {x: 7.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_74
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 335
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.5, y: 12.5}
+        - {x: -16.5, y: 10.5}
+        - {x: -16.5, y: -10.5}
+        - {x: -6.5, y: -16.5}
+        - {x: 9.5, y: -16.5}
+        - {x: 16.5, y: -10.5}
+        - {x: 16.5, y: 12.5}
+    - name: Wii - Bubble Bobble Plus - Food_75
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 302
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10.5, y: 16.5}
+        - {x: -14.5, y: 9.5}
+        - {x: -14.5, y: -11.5}
+        - {x: -9.5, y: -15.5}
+        - {x: -6.5, y: -16.5}
+        - {x: 10.5, y: -16.5}
+        - {x: 16.5, y: -10.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_76
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 302
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14.5, y: 16.5}
+        - {x: -14.5, y: -8.5}
+        - {x: -0.5, y: -16.5}
+        - {x: 14.5, y: -16.5}
+        - {x: 16.5, y: -11.5}
+        - {x: 16.5, y: 9.5}
+        - {x: 6.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_77
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 302
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12.5, y: 16.5}
+        - {x: -16.5, y: 13.5}
+        - {x: -16.5, y: -14.5}
+        - {x: -11.5, y: -16.5}
+        - {x: 16.5, y: -16.5}
+        - {x: 16.5, y: 13.5}
+        - {x: 11.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_78
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 302
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: 16.5}
+        - {x: -9.5, y: 14.5}
+        - {x: -14.5, y: 10.5}
+        - {x: -14.5, y: -6.5}
+        - {x: -11.5, y: -16.5}
+        - {x: 8.5, y: -16.5}
+        - {x: 16.5, y: -9.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_79
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 302
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.5, y: 16.5}
+        - {x: -16.5, y: 8.5}
+        - {x: -16.5, y: -8.5}
+        - {x: -7.5, y: -16.5}
+        - {x: 9.5, y: -16.5}
+        - {x: 16.5, y: -7.5}
+        - {x: 16.5, y: 16.5}
+      - - {x: -13.5, y: 12.5}
+        - {x: -13.5, y: 16.5}
+        - {x: -16.5, y: 16.5}
+        - {x: -16.5, y: 11.5}
+    - name: Wii - Bubble Bobble Plus - Food_80
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 302
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: 16.5}
+        - {x: -16.5, y: 2.5}
+        - {x: -15.5, y: -4.5}
+        - {x: -8.5, y: -14.5}
+        - {x: 11.5, y: -14.5}
+        - {x: 16.5, y: -10.5}
+        - {x: 16.5, y: 15.5}
+        - {x: 14.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_81
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 302
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7.5, y: 16.5}
+        - {x: -16.5, y: 13.5}
+        - {x: -16.5, y: -13.5}
+        - {x: -14.5, y: -14.5}
+        - {x: 16.5, y: -14.5}
+        - {x: 16.5, y: 11.5}
+        - {x: 9.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_82
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 302
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.5, y: 16.5}
+        - {x: -16.5, y: 12.5}
+        - {x: -16.5, y: -10.5}
+        - {x: -5.5, y: -14.5}
+        - {x: 16.5, y: -14.5}
+        - {x: 16.5, y: 12.5}
+        - {x: 15.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_83
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 302
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2.5, y: 16.5}
+        - {x: -16.5, y: 7.5}
+        - {x: -16.5, y: -7.5}
+        - {x: -13.5, y: -14.5}
+        - {x: -0.5, y: -14.5}
+        - {x: 5.5, y: -13.5}
+        - {x: 16.5, y: -2.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_84
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 302
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: 16.5}
+        - {x: -16.5, y: -5.5}
+        - {x: -0.5, y: -14.5}
+        - {x: 14.5, y: -14.5}
+        - {x: 16.5, y: -6.5}
+        - {x: 16.5, y: 14.5}
+        - {x: 13.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_85
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 302
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0.5, y: 16.5}
+        - {x: -13.5, y: 4.5}
+        - {x: -16.5, y: -6.5}
+        - {x: -16.5, y: -13.5}
+        - {x: -15.5, y: -14.5}
+        - {x: -2.5, y: -14.5}
+        - {x: 16.5, y: 4.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_86
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 302
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -4.5, y: 16.5}
+        - {x: -8.5, y: 13.5}
+        - {x: -16.5, y: 2.5}
+        - {x: -16.5, y: -14.5}
+        - {x: 5.5, y: -14.5}
+        - {x: 16.5, y: -2.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_87
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 302
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1.5, y: 16.5}
+        - {x: -16.5, y: 7.5}
+        - {x: -16.5, y: -13.5}
+        - {x: -13.5, y: -14.5}
+        - {x: 8.5, y: -14.5}
+        - {x: 16.5, y: -4.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_88
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 302
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5.5, y: 16.5}
+        - {x: -16.5, y: 8.5}
+        - {x: -16.5, y: -14.5}
+        - {x: 7.5, y: -14.5}
+        - {x: 14.5, y: -13.5}
+        - {x: 16.5, y: -4.5}
+        - {x: 16.5, y: 13.5}
+        - {x: 12.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_89
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 302
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -4.5, y: 16.5}
+        - {x: -16.5, y: 7.5}
+        - {x: -16.5, y: -14.5}
+        - {x: 7.5, y: -14.5}
+        - {x: 16.5, y: -5.5}
+        - {x: 16.5, y: 14.5}
+        - {x: 15.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_90
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 269
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14.5, y: -12.5}
+        - {x: -12.5, y: -14.5}
+        - {x: 11.5, y: -14.5}
+        - {x: 16.5, y: -12.5}
+        - {x: 16.5, y: 12.5}
+        - {x: 14.5, y: 16.5}
+        - {x: -9.5, y: 16.5}
+        - {x: -14.5, y: 7.5}
+    - name: Wii - Bubble Bobble Plus - Food_91
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 269
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.5, y: 16.5}
+        - {x: -14.5, y: 2.5}
+        - {x: -14.5, y: -14.5}
+        - {x: 3.5, y: -14.5}
+        - {x: 13.5, y: -5.5}
+        - {x: 16.5, y: -2.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_92
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 269
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3.5, y: 16.5}
+        - {x: -13.5, y: 11.5}
+        - {x: -14.5, y: 5.5}
+        - {x: -14.5, y: -14.5}
+        - {x: 8.5, y: -14.5}
+        - {x: 16.5, y: -10.5}
+        - {x: 16.5, y: 16.5}
+      - - {x: -16.5, y: 3.5}
+        - {x: -13.5, y: 4.5}
+        - {x: -13.5, y: 10.5}
+        - {x: -15.5, y: 12.5}
+        - {x: -16.5, y: 12.5}
+    - name: Wii - Bubble Bobble Plus - Food_93
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 269
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: 16.5}
+        - {x: -16.5, y: 2.5}
+        - {x: -14.5, y: -9.5}
+        - {x: -8.5, y: -14.5}
+        - {x: 12.5, y: -14.5}
+        - {x: 16.5, y: -8.5}
+        - {x: 16.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_94
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 269
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.5, y: 16.5}
+        - {x: -14.5, y: 9.5}
+        - {x: -14.5, y: -9.5}
+        - {x: -12.5, y: -14.5}
+        - {x: 6.5, y: -14.5}
+        - {x: 15.5, y: -4.5}
+        - {x: 15.5, y: 11.5}
+        - {x: 12.5, y: 16.5}
+    - name: Wii - Bubble Bobble Plus - Food_95
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 269
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: 13.5}
+        - {x: -14.5, y: 6.5}
+        - {x: -14.5, y: -10.5}
+        - {x: -10.5, y: -14.5}
+        - {x: 0.5, y: -14.5}
+        - {x: 16.5, y: -12.5}
+        - {x: 16.5, y: 11.5}
+        - {x: 13.5, y: 13.5}
+    - name: Wii - Bubble Bobble Plus - Food_96
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 269
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2.5, y: 13.5}
+        - {x: -7.5, y: 10.5}
+        - {x: -16.5, y: 8.5}
+        - {x: -16.5, y: -6.5}
+        - {x: -15.5, y: -11.5}
+        - {x: -10.5, y: -14.5}
+        - {x: 5.5, y: -14.5}
+        - {x: 16.5, y: -10.5}
+        - {x: 16.5, y: 13.5}
+    - name: Wii - Bubble Bobble Plus - Food_97
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 269
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 15.5, y: 13.5}
+        - {x: 5.5, y: 13.5}
+        - {x: -16.5, y: 6.5}
+        - {x: -16.5, y: -10.5}
+        - {x: -12.5, y: -14.5}
+        - {x: 11.5, y: -14.5}
+        - {x: 16.5, y: -11.5}
+        - {x: 16.5, y: 12.5}
+    - name: Wii - Bubble Bobble Plus - Food_105
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 177
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30, y: 29}
+        - {x: -33, y: 18}
+        - {x: -33, y: -19}
+        - {x: -18, y: -29}
+        - {x: 13, y: -29}
+        - {x: 28, y: -27}
+        - {x: 32, y: -17}
+        - {x: 32, y: 17}
+        - {x: 8, y: 29}
+    - name: Wii - Bubble Bobble Plus - Food_107
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 177
+        width: 63
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23.5, y: 33}
+        - {x: -27.5, y: 33}
+        - {x: -31.5, y: 19}
+        - {x: -31.5, y: -24}
+        - {x: -14.5, y: -31}
+        - {x: 26.5, y: -31}
+        - {x: 30.5, y: -18}
+        - {x: 30.5, y: 22}
+    - name: Wii - Bubble Bobble Plus - Food_109
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 177
+        width: 65
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31.5, y: 22}
+        - {x: -32.5, y: 19}
+        - {x: -32.5, y: -21}
+        - {x: -28.5, y: -28}
+        - {x: 32.5, y: -28}
+        - {x: 32.5, y: 14}
+        - {x: 16.5, y: 22}
+    - name: Wii - Bubble Bobble Plus - Food_111
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 181
+        width: 70
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 16, y: 33}
+        - {x: -19, y: 33}
+        - {x: -28, y: 4}
+        - {x: -28, y: -32}
+        - {x: 7, y: -32}
+        - {x: 34, y: -26}
+        - {x: 34, y: 10}
+        - {x: 26, y: 21}
+    - name: Wii - Bubble Bobble Plus - Food_113
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 177
+        width: 70
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17, y: 25}
+        - {x: -31, y: 17}
+        - {x: -31, y: -26}
+        - {x: -25, y: -27}
+        - {x: 34, y: -27}
+        - {x: 35, y: -25}
+        - {x: 35, y: 14}
+        - {x: 30, y: 25}
+    - name: Wii - Bubble Bobble Plus - Food_115
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 177
+        width: 68
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 25}
+        - {x: -32, y: 24}
+        - {x: -34, y: 21}
+        - {x: -34, y: -17}
+        - {x: -21, y: -27}
+        - {x: 24, y: -27}
+        - {x: 31, y: -26}
+        - {x: 31, y: 25}
+    - name: Wii - Bubble Bobble Plus - Food_117
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 177
+        width: 64
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: 27}
+        - {x: -30, y: 27}
+        - {x: -32, y: 23}
+        - {x: -32, y: -21}
+        - {x: -31, y: -22}
+        - {x: -11, y: -27}
+        - {x: 20, y: -27}
+        - {x: 32, y: -20}
+        - {x: 32, y: 0}
+        - {x: 29, y: 18}
+    - name: Wii - Bubble Bobble Plus - Food_135
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 105
+        width: 66
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32, y: 22.5}
+        - {x: -32, y: -24.5}
+        - {x: -19, y: -31.5}
+        - {x: 26, y: -31.5}
+        - {x: 33, y: -23.5}
+        - {x: 33, y: 32.5}
+        - {x: -4, y: 32.5}
+        - {x: -29, y: 28.5}
+    - name: Wii - Bubble Bobble Plus - Food_137
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 105
+        width: 66
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 32.5}
+        - {x: -31, y: 28.5}
+        - {x: -33, y: 24.5}
+        - {x: -33, y: -27.5}
+        - {x: 27, y: -27.5}
+        - {x: 32, y: -17.5}
+        - {x: 32, y: 28.5}
+        - {x: 24, y: 32.5}
+    - name: Wii - Bubble Bobble Plus - Food_139
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 105
+        width: 63
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7.5, y: 32.5}
+        - {x: -27.5, y: 32.5}
+        - {x: -31.5, y: 16.5}
+        - {x: -31.5, y: -26.5}
+        - {x: -15.5, y: -29.5}
+        - {x: 5.5, y: -29.5}
+        - {x: 19.5, y: -22.5}
+        - {x: 30.5, y: 6.5}
+        - {x: 30.5, y: 23.5}
+    - name: Wii - Bubble Bobble Plus - Food_141
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 105
+        width: 69
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29.5, y: 32.5}
+        - {x: -29.5, y: -29.5}
+        - {x: -26.5, y: -31.5}
+        - {x: 20.5, y: -31.5}
+        - {x: 21.5, y: -30.5}
+        - {x: 30.5, y: 0.5}
+        - {x: 30.5, y: 32.5}
+    - name: Wii - Bubble Bobble Plus - Food_143
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 105
+        width: 66
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17, y: 27.5}
+        - {x: -25, y: 19.5}
+        - {x: -32, y: 10.5}
+        - {x: -33, y: 6.5}
+        - {x: -33, y: 1.5}
+        - {x: -1, y: -30.5}
+        - {x: 4, y: -30.5}
+        - {x: 33, y: 1.5}
+        - {x: 33, y: 8.5}
+        - {x: 18, y: 27.5}
+    - name: Wii - Bubble Bobble Plus - Food_145
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 104
+        width: 64
+        height: 65
+      alignment: 9
+      pivot: {x: 0.51048726, y: 0.50000024}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32.671173, y: -0.50001526}
+        - {x: -7.671173, y: -30.500015}
+        - {x: 3.328827, y: -30.500015}
+        - {x: 31.328827, y: -4.5000153}
+        - {x: 31.328827, y: 13.499985}
+        - {x: 23.328827, y: 27.499985}
+        - {x: -16.671173, y: 27.499985}
+        - {x: -24.671173, y: 26.499985}
+        - {x: -32.671173, y: 10.499985}
+    - name: Wii - Bubble Bobble Plus - Food_147
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 104
+        width: 63
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24.5, y: 27}
+        - {x: -31.5, y: 13}
+        - {x: -31.5, y: -9}
+        - {x: -5.5, y: -32}
+        - {x: 2.5, y: -32}
+        - {x: 14.5, y: -25}
+        - {x: 31.5, y: 0}
+        - {x: 31.5, y: 12}
+        - {x: 16.5, y: 27}
+    - name: Wii - Bubble Bobble Plus - Food_164
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 40
+        width: 67
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17.5, y: 27.5}
+        - {x: -25.5, y: 19.5}
+        - {x: -33.5, y: 9.5}
+        - {x: -33.5, y: -3.5}
+        - {x: -4.5, y: -30.5}
+        - {x: 6.5, y: -30.5}
+        - {x: 31.5, y: -0.5}
+        - {x: 31.5, y: 6.5}
+        - {x: 17.5, y: 27.5}
+    - name: Wii - Bubble Bobble Plus - Food_166
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 40
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21.5, y: 28}
+        - {x: -16.5, y: 28}
+        - {x: -24.5, y: 27}
+        - {x: -32.5, y: 11}
+        - {x: -32.5, y: 1}
+        - {x: -3.5, y: -30}
+        - {x: 1.5, y: -30}
+        - {x: 32.5, y: 1}
+        - {x: 32.5, y: 7}
+        - {x: 29.5, y: 16}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

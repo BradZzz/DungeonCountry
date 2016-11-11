@@ -40,27 +40,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 			return luck;
 		}
 	}
-
-	/*public class resource{
-		private int quantity;
-		private string name;
-		public resource(string name, int quantity){
-			this.name = name;
-			this.quantity = quantity;
-		}
-		public string getName(){ return this.name; }
-		public int getQuantity(){ return this.quantity; }
-		public void setResource(int value){ this.quantity = value; }
-		public bool spendResource(int value){
-			if (value > quantity) {
-				return false;
-			} else {
-				quantity -= value;
-				return true;
-			}
-		}
-	}*/
-
+		
 	private bool defeated;
 
 	void Awake() {

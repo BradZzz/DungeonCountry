@@ -68,6 +68,9 @@
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleGameManager.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleLoader.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleSetupManager.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Castle\CastleLoader.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Castle\CastleMeta.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Castle\CastlePrefs.cs" />
      <Compile Include="Assets\NewGame\Scripts\Dwelling\DwellingLoader.cs" />
      <Compile Include="Assets\NewGame\Scripts\Dwelling\DwellingMenu.cs" />
      <Compile Include="Assets\NewGame\Scripts\Dwelling\DwellingPrefs.cs" />

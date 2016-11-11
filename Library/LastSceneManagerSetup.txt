@@ -8,3 +8,9 @@ sceneSetups:
 - path: Assets/NewGame/Scenes/DwellingScene.unity
   isLoaded: 0
   isActive: 0
+- path: Assets/NewGame/Scenes/CastleScene.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/NewGame/Scenes/BattleScene.unity
+  isLoaded: 0
+  isActive: 0

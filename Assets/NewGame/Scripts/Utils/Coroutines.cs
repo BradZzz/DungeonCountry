@@ -158,6 +158,15 @@ namespace AssemblyCSharp
 			return false;
 		}
 
+		public static bool containsPoint(List<Transform> obs, Point3 point){
+			foreach (Transform item in obs) {
+				if (new Point3(item.position).Equals(point)) {
+					return true;
+				}
+			}
+			return false;
+		}
+
 		public static int[,] RotateMatrixCounterClockwise(int[,] oldMatrix)
 		{
 			int[,] newMatrix = new int[oldMatrix.GetLength(1), oldMatrix.GetLength(0)];
