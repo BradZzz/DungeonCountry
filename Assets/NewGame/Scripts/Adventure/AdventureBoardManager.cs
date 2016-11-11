@@ -273,7 +273,7 @@ public class AdventureBoardManager : MonoBehaviour {
 			Debug.Log ("Enemy is null!");
 		}
 
-		StartCoroutine (step_path (lastClicked, path, 1f, attacking));
+		StartCoroutine (step_path (lastClicked, path, .5f, attacking));
 		//If the last step is an enemy, we need to fight it here
 	}
 
@@ -287,9 +287,26 @@ public class AdventureBoardManager : MonoBehaviour {
 		}
 	}
 
+	//This takes each individual path and smooths them out
+	public List<Point3> compilePath(List<Point3> path){
+		List<Point3> smoothed = new List<Point3> ();
+		Point3 lastStep = null;
+		bool changeX = false;
+		foreach (Point3 step in path) {
+			bool lastX = changeX;
+			if (lastStep == null) { lastStep = step; }
+			if (lastStep.x != step.x) { changeX = true; }
+			if (lastStep.y != step.y) { changeX = false; }
+			if (lastX != changeX) { smoothed.Add (lastStep); } 
+			lastStep = step;
+		}
+		smoothed.Add (path[path.Count - 1]);
+		return smoothed;
+	}
+
 	IEnumerator step_path(Transform origin, List<Point3> path, float speed, bool battle)
 	{
-		foreach(Point3 step in path){
+		foreach(Point3 step in /*compilePath(*/path/*)*/){
 			yield return StartCoroutine( smooth_move(origin, step.asVector3(), speed));
 		}
 		if (battle) {
@@ -306,38 +323,30 @@ public class AdventureBoardManager : MonoBehaviour {
 		Vector3 start_pos = new Vector3(origin.position.x, origin.position.y, origin.position.z);
 		Vector3 end_pos = direction;
 		while (!origin.position.Equals(end_pos)) { 
-			float move = Mathf.Lerp (0,1, (Time.time - startime) * speed);
+			
+			//float move = Mathf.Lerp (0,1, (Time.time - startime) * speed);
+			float move = .25f;
 
 			Vector3 position = origin.position;
 
 			position.x += ((end_pos.x - start_pos.x) * move);
 			position.y += ((end_pos.y - start_pos.y) * move);
 
-			if (start_pos.x > end_pos.x && origin.position.x < end_pos.x) {
+			if ((start_pos.x > end_pos.x && origin.position.x < end_pos.x) || (start_pos.x < end_pos.x && origin.position.x > end_pos.x)) {
 				position.x = end_pos.x;
 			}
-
-			if (start_pos.x < end_pos.x && origin.position.x > end_pos.x) {
-				position.x = end_pos.x;
-			}
-
-			if (start_pos.y > end_pos.y && origin.position.y < end_pos.y) {
-				position.y = end_pos.y;
-			}
-
-			if (start_pos.y < end_pos.y && origin.position.y > end_pos.y) {
+			if ((start_pos.y > end_pos.y && origin.position.y < end_pos.y)||(start_pos.y < end_pos.y && origin.position.y > end_pos.y)) {
 				position.y = end_pos.y;
 			}
 
 			origin.position = position;
 
-			if (((Time.time - startime)*speed) >= .75f) {
+			if (((Time.time - startime) * speed) >= .75f) {
 				origin.position = end_pos;
 			}
 
 			yield return null;
 		}
-			
-		//yield return null;
 	}
+
 }

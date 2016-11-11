@@ -323,7 +323,7 @@ public class BattleBoardManager : MonoBehaviour {
 			Debug.Log ("AI turn start");
 
 			BattleAI ai = gameObject.AddComponent<BattleAI> ();
-			ai.init (boardHolder, aiUnits);
+			ai.init (getBoard(), aiUnits, gameManager.getColumns (), gameManager.getRows ());
 			//BattleAI ai = new BattleAI (boardHolder, aiUnits);
 			ai.moveUnits (activateUnits);
 			//activateUnits (true);

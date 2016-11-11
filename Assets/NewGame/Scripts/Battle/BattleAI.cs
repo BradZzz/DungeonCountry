@@ -14,16 +14,21 @@ public class BattleAI : MonoBehaviour {
 	private static List<Transform> playersUnits; 
 	private List<Transform> floor; 
 
-	private static List<Transform> destinations; 
+	private static List<Point3> destinations; 
 	private int movingPosition;
+	private int width, height;
+	private Astar astar;
 
-	public void init(Transform boardHolder, List<Transform> aiUnits){
+	public void init(Transform boardHolder, List<Transform> aiUnits, int width, int height){
 
 		this.boardHolder = boardHolder;
 		//These are all the objects the ai can interact with
 		allUnits = new List<Transform>();
 		//These are the units that we need to move
 		this.aiUnits = aiUnits;
+		this.height = height;
+		this.width = width;
+		astar = new Astar ();
 		//These are the player units the ai will be attacking
 		playersUnits = new List<Transform>();
 		//These are the player units the ai will be attacking
@@ -47,7 +52,7 @@ public class BattleAI : MonoBehaviour {
 
 	public void moveUnits(EndTurnCallback callback){
 		endTurnCallback = callback;
-		destinations = new List<Transform> ();
+		destinations = new List<Point3> ();
 
 		movingPosition = 0;
 		if (aiUnits.Count > 0) {
@@ -96,7 +101,7 @@ public class BattleAI : MonoBehaviour {
 	private void aiMoveSubroutine(Transform ai){
 
 		//The places where we can move
-		List <Transform> moveables = new List<Transform> ();
+		//List <Transform> moveables = new List<Transform> ();
 		//The places where we can move
 		List <Transform> attackables = new List<Transform> ();
 		//The ai unit properties
@@ -143,6 +148,7 @@ public class BattleAI : MonoBehaviour {
 				Debug.Log ("Moving");
 				//move ai and repeat function
 				//Get the closest enemy
+
 				Transform enemy = GetClosest (ai, playersUnits);
 				//There are not more player units left to fight. end game...
 				if (enemy == null) {
@@ -150,38 +156,26 @@ public class BattleAI : MonoBehaviour {
 				} else {
 					Vector2 ePos = enemy.position;
 					if (enemy != null) {
+
+						List <Point3> moveables = new List<Point3> ();
+
+						//here we need to feed the possible tiles into the ai's choices
 						foreach (Transform tile in floor) {
 							//Find the list of tiles the robot can move to
-							if (Coroutines.checkRange (tile.position, ai.position, meta.movement) && !Coroutines.hasParent (tile) && !destinations.Contains (tile)) {
+							if (Coroutines.checkRange (tile.position, ai.position, meta.movement) 
+								&& (Coroutines.hasParent (tile) || destinations.Contains (new Point3(tile.position)))) {
 								//Check to make sure that enemy isn't on top of the current tile
-								moveables.Add (tile);
+								//This is where the movables need to be set
+								moveables.Add (new Point3(tile.position));
 							}
 						}
-						Transform closest = GetClosest (enemy, moveables);
-						if (meta.range > 1) {
-							List<Transform> enemyRadius = new List<Transform> ();
-							foreach (Transform tile in floor) {
-								//Find the list of tiles the robot can move to
-								if (Coroutines.checkRange (tile.position, enemy.position, meta.range) && !Coroutines.hasParent (tile) && !destinations.Contains (tile)) {
-									//Check to make sure that enemy isn't on top of the current tile
-									enemyRadius.Add (tile);
-								}
-							}
-							List<Transform> overlap = new List<Transform> ();
-							//So now we have the enemy radius. We need to find if the moveables and the enemyRadius overlap
-							foreach (Transform movePosition in enemyRadius) {
-								if (moveables.Contains (movePosition)) {
-									overlap.Add (movePosition);
-								}
-							}
-							//If they do, we want to take the closest overlap to the ai unit
-							if (overlap.Count > 0) {
-								closest = GetClosest (ai, overlap);
-							}
-						}
-						destinations.Add (closest);
-						meta.isMoving ();
-						StartCoroutine (smooth_move (ai, closest.position, 1f));
+
+						//astar.generateOverflowMapv1 (ai, meta, enemy, meta.movement, height, width, moveables, moveCallback);
+
+						//StartCoroutine (steps.baseAlgorithm (new Point3(lastClicked.position), click, gameManager.getRows (), gameManager.getColumns (), obstacles, setPath));
+
+						List<Point3> pathMap = astar.overflowAlgorithm (new Point3 (ai.position), meta.movement, height, width, moveables);
+						moveCallback(pathMap, meta, enemy, ai);
 					} else {
 						meta.setTurn (false);
 					} 
@@ -193,6 +187,48 @@ public class BattleAI : MonoBehaviour {
 		}
 		checkEndTurn ();
 	}
+
+	public void  moveCallback(List<Point3> moveables, BattleMeta meta, Transform enemy, Transform ai){
+		Point3 closest = GetClosest (enemy, moveables);
+		//closest = GetClosest (ai, overlap);
+		/*if (meta.range > 1) {
+			List<Point3> overlap = new List<Point3> ();
+			foreach (Point3 move in moveables) {
+				//if (!destinations.Contains (move)) {
+					overlap.Add (move);
+				//}
+			}
+			if (overlap.Count > 0) {
+				closest = GetClosest (ai, overlap);
+			}
+		}*/
+
+		//astar.baseAlgorithm (new Point3 (ai.position), closest, height, width, obstacles, true);
+
+
+		destinations.Add (closest);
+		meta.isMoving ();
+		if (ai != null) {
+			StartCoroutine (smooth_move (ai, closest.asVector3 (), 1f));
+		}
+
+		//foreach(Point3 step in path){
+		//	yield return StartCoroutine( smooth_move(origin, step.asVector3(), speed));
+		//}
+	}
+
+	/*public List<Point3> getObstacles(){
+		List<Point3> obstacles = new List<Point3> ();
+		foreach (Transform tile in floor) {
+			//Find the list of tiles the robot can move to
+			if (!Coroutines.hasParent (tile) 
+				&& !destinations.Contains (tile)) {
+				//Check to make sure that enemy isn't on top of the current tile
+				obstacles.Add (tile);
+			}
+		}
+		return obstacles;
+	}*/
 
 	private void checkEndTurn(){
 		bool activeUnits = false;
@@ -211,7 +247,8 @@ public class BattleAI : MonoBehaviour {
 		Vector3 start_pos = new Vector3(origin.position.x, origin.position.y, origin.position.z);
 		Vector3 end_pos = direction;
 		while (origin.position != end_pos) { 
-			float move = Mathf.Lerp (0,1, (Time.time - startime) * speed);
+			//float move = Mathf.Lerp (0,1, (Time.time - startime) * speed);
+			float move = .25f;
 
 			Vector3 position = origin.position;
 
@@ -235,10 +272,46 @@ public class BattleAI : MonoBehaviour {
 			}
 
 			origin.position = position;
+
+			if (((Time.time - startime) * speed) >= .75f) {
+				origin.position = end_pos;
+			}
+
 			yield return null;
 		}
 		aiMoveSubroutine (origin);
 	}
+
+	/*IEnumerator smooth_move(Transform origin, Vector3 direction,float speed){
+		float startime = Time.time;
+		Vector3 start_pos = new Vector3(origin.position.x, origin.position.y, origin.position.z);
+		Vector3 end_pos = direction;
+		while (!origin.position.Equals(end_pos)) { 
+
+			//float move = Mathf.Lerp (0,1, (Time.time - startime) * speed);
+			float move = .25f;
+
+			Vector3 position = origin.position;
+
+			position.x += ((end_pos.x - start_pos.x) * move);
+			position.y += ((end_pos.y - start_pos.y) * move);
+
+			if ((start_pos.x > end_pos.x && origin.position.x < end_pos.x) || (start_pos.x < end_pos.x && origin.position.x > end_pos.x)) {
+				position.x = end_pos.x;
+			}
+			if ((start_pos.y > end_pos.y && origin.position.y < end_pos.y)||(start_pos.y < end_pos.y && origin.position.y > end_pos.y)) {
+				position.y = end_pos.y;
+			}
+
+			origin.position = position;
+
+			if (((Time.time - startime) * speed) >= .75f) {
+				origin.position = end_pos;
+			}
+
+			yield return null;
+		}
+	}*/
 
 	//This function returns the closest unit to the player
 	Transform GetClosest(Transform ai,List<Transform> enemies)
@@ -256,6 +329,26 @@ public class BattleAI : MonoBehaviour {
 					minDist = dist;
 				}
 			}
+		}
+		return tMin;
+	}
+
+	//This function returns the closest unit to the player
+	Point3 GetClosest(Transform ai,List<Point3> enemies)
+	{
+		Point3 tMin = null;
+		float minDist = Mathf.Infinity;
+		Vector3 currentPos = ai.position;
+		foreach (Point3 t in enemies)
+		{
+			//if (t.gameObject.activeInHierarchy) {
+			float dist = Vector3.Distance(t.asVector3(), currentPos);
+			if (dist < minDist)
+			{
+				tMin = t;
+				minDist = dist;
+			}
+			//}
 		}
 		return tMin;
 	}

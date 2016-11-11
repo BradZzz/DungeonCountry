@@ -83,6 +83,7 @@
      <Compile Include="Assets\NewGame\Scripts\Objects\EntranceMeta.cs" />
      <Compile Include="Assets\NewGame\Scripts\Objects\ResourceMeta.cs" />
      <Compile Include="Assets\NewGame\Scripts\UI\Panel.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Utils\Astar.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\CoRoutineWithData.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\Coroutines.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\DynamicSorting.cs" />
