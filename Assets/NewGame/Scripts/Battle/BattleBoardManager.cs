@@ -213,7 +213,7 @@ public class BattleBoardManager : MonoBehaviour {
 				meta.isAttacking(enemy);
 
 				if (enemy != null) {
-					enemy.isAttacked (meta.attack);
+					enemy.isAttacked (meta.getCharStrength());
 				}
 			}
 			checkConditions ();

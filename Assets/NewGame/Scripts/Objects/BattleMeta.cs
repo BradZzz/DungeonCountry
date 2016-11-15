@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using AssemblyCSharp;
 
 /***
 *	TODO: Make sure that units can only be placed on the orange parts of the board on setup
@@ -24,6 +25,7 @@ public class BattleMeta : MonoBehaviour {
 	//What team are they on
 	public string affiliation;
 
+	private int lives = 2;
 	private bool canMove;
 	private bool canAttack;
 	private BattleActions actions;
@@ -58,6 +60,14 @@ public class BattleMeta : MonoBehaviour {
 		actions.startTurn ();
 		SpriteRenderer sprRend = gameObject.GetComponent<SpriteRenderer> ();
 		sprRend.material.shader = Shader.Find ("Sprites/Default");
+	}
+
+	public int getLives(){
+		return lives;
+	}
+
+	public void addLives(int lives){
+		this.lives += lives;
 	}
 
 	public bool getTurn(){
@@ -95,6 +105,10 @@ public class BattleMeta : MonoBehaviour {
 
 	public bool getPlayer(){
 		return isPlayer;
+	}
+
+	public int getCharStrength(){
+		return attack * getLives ();
 	}
 
 	public void setPlayer(bool player){
@@ -164,7 +178,6 @@ public class BattleMeta : MonoBehaviour {
 		_staticHealthStyle.normal.background = _staticHealthTexture;
 
 		GUI.Box( hRect, GUIContent.none, _staticHealthStyle );
-		  
 	}
 
 	public int getCurrentHP(){
@@ -177,9 +190,15 @@ public class BattleMeta : MonoBehaviour {
 
 		currentHP -= attack;
 		if (currentHP <= 0) {
-			gameObject.SetActive(false);
-			//The unit isnt active anymore
-			return false;
+			while (currentHP <= 0) {
+				addLives (-1);
+				currentHP += hp;
+			}
+			if (getLives() < 1){
+				gameObject.SetActive(false);
+				//The unit isnt active anymore
+				return false;
+			}
 		}
 		//The unit is still active
 		return true;
@@ -229,7 +248,7 @@ public class BattleMeta : MonoBehaviour {
 		float startime = Time.time;
 		Vector3 start_pos = new Vector3(origin.position.x, origin.position.y, origin.position.z); //Starting position.
 		Vector3 end_pos = end.position;
-		while (origin.position != end_pos/* && ((Time.time - startime)*speed) < 1f*/) { 
+		while (origin.position != end_pos) { 
 			float move = Mathf.Lerp (0,1, (Time.time - startime) * speed);
 			Vector3 position = origin.position;
 			position.x += (end_pos.x - start_pos.x) * move;

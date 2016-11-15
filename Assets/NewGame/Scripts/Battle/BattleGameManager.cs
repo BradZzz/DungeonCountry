@@ -278,7 +278,7 @@ public class BattleGameManager : MonoBehaviour {
 
 		foreach (Transform child in panel.transform){
 			if (child.name == "TextLife"){
-				((child.gameObject.GetComponentsInChildren<Text> ()) [0]).text = "" + 1;
+				((child.gameObject.GetComponentsInChildren<Text> ()) [0]).text = "" + unit.getLives();
 			}
 			if (child.name == "TextAtk"){
 				Debug.Log (unit.attack);

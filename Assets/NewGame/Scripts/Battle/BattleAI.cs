@@ -127,7 +127,7 @@ public class BattleAI : MonoBehaviour {
 				}
 				//if (meta.getTurn()) {
 				meta.isAttacking (weakest);
-				weakest.isAttacked (meta.attack);
+				weakest.isAttacked (meta.getCharStrength());
 				//}
 
 				if (meta.getAttacks() > 0) {

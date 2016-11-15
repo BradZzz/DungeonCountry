@@ -307,7 +307,7 @@ public class AdventureBoardManager : MonoBehaviour {
 	IEnumerator step_path(Transform origin, List<Point3> path, float speed, bool battle)
 	{
 		foreach(Point3 step in /*compilePath(*/path/*)*/){
-			yield return StartCoroutine( smooth_move(origin, step.asVector3(), speed));
+			yield return StartCoroutine( Coroutines.smooth_move(origin, step.asVector3(), speed));
 		}
 		if (battle) {
 			//Hide the board. We'll remove from the heirarchy once the meta has been loaded in the next scene
@@ -318,7 +318,7 @@ public class AdventureBoardManager : MonoBehaviour {
 		}
 	}
 
-	IEnumerator smooth_move(Transform origin, Vector3 direction,float speed){
+	/*IEnumerator smooth_move(Transform origin, Vector3 direction,float speed){
 		float startime = Time.time;
 		Vector3 start_pos = new Vector3(origin.position.x, origin.position.y, origin.position.z);
 		Vector3 end_pos = direction;
@@ -347,6 +347,6 @@ public class AdventureBoardManager : MonoBehaviour {
 
 			yield return null;
 		}
-	}
+	}*/
 
 }
