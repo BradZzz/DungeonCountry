@@ -20,26 +20,34 @@ public class CastlePrefs : MonoBehaviour {
 		}
 	}
 
-	void Start()
-	{
-		cHolder = new castleHolder ();
-	}
-
-	public void setCastleInfo(BattleGeneralMeta bMeta, CastleMeta cMeta){
+	public static void setCastleInfo(BattleGeneralResources bMeta, CastleMeta cMeta){
+		if (cHolder == null) {
+			cHolder = new castleHolder ();
+		}
 		cHolder.bMeta = bMeta;
 		cHolder.cMeta = cMeta;
 	}
 
-	public static BattleGeneralMeta getGeneralMeta(){
+	public static BattleGeneralResources getGeneralMeta(){
+		if (cHolder == null) {
+			return (new castleHolder ()).bMeta;
+		}
 		return cHolder.bMeta;
 	}
 
 	public static CastleMeta getCastleMeta(){
+		if (cHolder == null) {
+			return (new castleHolder ()).cMeta;
+		}
 		return cHolder.cMeta;
 	}
 
 	public class castleHolder{
-		public BattleGeneralMeta bMeta = null;
-		public CastleMeta cMeta = null;
+		public BattleGeneralResources bMeta;
+		public CastleMeta cMeta;
+		public castleHolder() {
+			bMeta = null;
+			cMeta = null;
+		}
 	}
 }

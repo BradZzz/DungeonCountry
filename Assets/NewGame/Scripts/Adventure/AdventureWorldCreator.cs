@@ -218,48 +218,34 @@ public class AdventureWorldCreator : MonoBehaviour {
 				//10 = entrance
 				//11 = sprite placement/foundation
 				//12 = foundation
-				if (map[x,y] == 10 || map[x,y] == 11 || map[x,y] == 12) {
-					if (map [x, y] == 10) {
-						GameObject castleChoice = castleTiles [UnityEngine.Random.Range (0, castleTiles.Length)];
-						//GameObject castleInstance = Instantiate (castleChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
-						//castleInstance.transform.SetParent (board);
-
+				if (map[x,y] >= 10 && map[x,y] < 20) {
+				//if (map[x,y] == 10 || map[x,y] == 11 || map[x,y] == 12) {
+					if (map [x, y] > 15) {
+						
+						//GameObject castleChoice = castleTiles [UnityEngine.Random.Range (0, castleTiles.Length)];
+						GameObject castleChoice = castleTiles [map[x,y] - 16];
 						GameObject entranceChoice = entranceTiles [UnityEngine.Random.Range (0, entranceTiles.Length)];
+
 						GameObject entranceInstance = Instantiate (entranceChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
 						entranceInstance.transform.SetParent (board);
 
-						DwellingSceneMeta sMeta = castleChoice.GetComponent<DwellingSceneMeta> ();
-						GameObject meta = sMeta.dMeta.gameObject;
+						CastleSceneMeta sMeta = castleChoice.GetComponent<CastleSceneMeta> ();
+						GameObject meta = sMeta.cMeta.gameObject;
 						EntranceMeta eMeta = entranceInstance.gameObject.GetComponent<EntranceMeta> ();
-						eMeta.addComponent (meta.GetComponent<DwellingMeta> ());
+						eMeta.addComponent (meta.GetComponent<CastleMeta> ());
 						eMeta.image = meta.GetComponent<SpriteRenderer> ().sprite; 
 
-						/*
-						 * 
-						 *GameObject entranceChoice = entranceTiles [UnityEngine.Random.Range (0, entranceTiles.Length)];
-						GameObject entranceInstance = Instantiate (entranceChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
-						entranceInstance.transform.SetParent (board);
-
-						GameObject dwellingChoice = dwellingTiles [UnityEngine.Random.Range (0, dwellingTiles.Length)];
-						GameObject dwellingInstance = Instantiate (dwellingChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
-						dwellingInstance.transform.SetParent (board);
-
-						DwellingSceneMeta sMeta = dwellingChoice.GetComponent<DwellingSceneMeta> ();
-						GameObject meta = sMeta.dMeta.gameObject;
-						EntranceMeta eMeta = entranceInstance.gameObject.GetComponent<EntranceMeta> ();
-						eMeta.addComponent (meta.GetComponent<DwellingMeta> ());
-						eMeta.image = meta.GetComponent<SpriteRenderer> ().sprite; 
-						*/
 					} else {
 						GameObject tileChoice = foundationTiles [UnityEngine.Random.Range (0, foundationTiles.Length)];
 						GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
 						instance.transform.SetParent (board);
 
-						if (map [x, y] == 11) {
+						if (map [x, y] > 10) {
 							Vector3 vect = pos.asVector3 ();
 							vect.x -= .5f;
 							vect.y -= .5f;
-							tileChoice = castleTiles [UnityEngine.Random.Range (0, castleTiles.Length)];
+							tileChoice = castleTiles [map [x, y] - 11];
+							//tileChoice = castleTiles [UnityEngine.Random.Range (0, castleTiles.Length)];
 							instance = Instantiate (tileChoice, vect, Quaternion.identity) as GameObject;
 							instance.transform.SetParent (board);
 						}
@@ -287,15 +273,15 @@ public class AdventureWorldCreator : MonoBehaviour {
 						Point3 pos = new Point3 (x, y, 0);
 
 						//generateMapv2Serial
-						int grassPatch = pos.returnPatchLocation(map, 0);
+						//int grassPatch = pos.returnPatchLocation(map, 0);
 
-						int materialPatch = pos.returnPatchLocation(map, 20);
-						if ((materialPatch == 3 || materialPatch == 1)) {
+						/*int materialPatch = pos.returnPatchLocation(map, 20);
+						if ((materialPatch == 3 || materialPatch == 1 || materialPatch == grassPatch)) {
 							//Resource
-							if (UnityEngine.Random.Range (0, 150) > odds) {
+							//if (UnityEngine.Random.Range (0, 150) > odds / 4) {
 								map [pos.x, pos.y] = 40;
-							}
-						}
+							//}
+						}*/
 						int dwellingPatch = pos.returnPatchLocation(map, 2);
 						try{
 							if (dwellingPatch == 9 || dwellingPatch == 8 || dwellingPatch == 7) {
@@ -307,6 +293,10 @@ public class AdventureWorldCreator : MonoBehaviour {
 								} else if (map [pos.x, pos.y-1] == 0 && UnityEngine.Random.Range (0, 60) > odds) {
 									map [pos.x, pos.y] = 32;
 									map [pos.x, pos.y-1] = 33;
+								}
+							} else {
+								if (UnityEngine.Random.Range (0, 60) > odds) {
+									map [pos.x, pos.y] = 40;
 								}
 							}
 						} catch(Exception e){

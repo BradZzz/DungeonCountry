@@ -18,12 +18,21 @@ public class BattleMeta : MonoBehaviour {
 	public int range;
 	public int attack;
 	public int hp;
+	public int ability;
 
 	public string name;
 	public string description;
 
 	//What team are they on
 	public string affiliation;
+	//public GameObject resourceCost;
+
+	public int costGold;
+	public int costOre;
+	public int costWood;
+	public int costSapphire;
+	public int costCrystal;
+	public int costRuby;
 
 	private int lives = 2;
 	private bool canMove;
@@ -32,10 +41,6 @@ public class BattleMeta : MonoBehaviour {
 
 	private int currentHP;
 
-	//Game Sprite Modifiers
-	//Character's health
-	//public Texture2D tex;
-	//Character's ranged attack sprite
 	public GameObject projectile;
 
 	private Animator animator;

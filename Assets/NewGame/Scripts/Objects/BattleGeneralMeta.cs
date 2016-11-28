@@ -11,10 +11,12 @@ public class BattleGeneralMeta : MonoBehaviour {
 	public List<GameObject> army;
 	public List<int> entranceUsed;
 
-	private Attributes attribs;
-	private Dictionary<string, int> resources;
+	private BattleGeneralResources resources;
 
-	public class Attributes
+	//private Attributes attribs;
+	//private Dictionary<string, int> resources;
+
+	/*public class Attributes
 	{
 		private int tactics, attack, defense, intelligence, luck;
 		public Attributes(){
@@ -39,7 +41,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 		public int getLuck(){
 			return luck;
 		}
-	}
+	}*/
 		
 	private bool defeated;
 
@@ -50,31 +52,32 @@ public class BattleGeneralMeta : MonoBehaviour {
 	}
 
 	void Start(){
-		resources = new Dictionary<string, int> ();
-		resources.Add ("gold", 0);
-		resources.Add ("ore", 0);
+		//resources = new Dictionary<string, int> ();
+		//resources.Add ("gold", 0);
+		//resources.Add ("ore", 0);
+		//attribs = new Attributes ();
 
-		attribs = new Attributes ();
+		resources = new BattleGeneralResources (this.GetInstanceID (), army);
 	}
 
-	public Attributes getAttributes(){
-		return attribs;
+	public BattleGeneralResources getResources(){
+		return resources;
+	}
+
+	public void setResources(BattleGeneralResources resources){
+		this.resources = resources;
 	}
 
 	public int addResource(string name, int quantity){
-		return resources[name] += quantity;
+		return resources.setResources (name, quantity);
 	}
 
 	public bool useResource(string name, int quantity){
-		if (resources[name] >= quantity) {
-			resources [name] -= quantity;
-			return true;
-		}
-		return false;
+		return resources.useResource (name, quantity);
 	}
 
 	public int getResource(string name){
-		return resources[name];
+		return resources.getResource(name);
 	}
 
 	public BattleGeneralMeta(BattleGeneralMeta general){
@@ -109,20 +112,27 @@ public class BattleGeneralMeta : MonoBehaviour {
 
 				GameObject info = eMeta.entranceInfo;
 				DwellingMeta dwell = info.GetComponent<DwellingMeta> ();
-				DwellingPrefs.setDwellingInfo (eMeta.image, dwell);
 				if (dwell != null) {
+					DwellingPrefs.setDwellingInfo (eMeta.image, dwell);
 					Debug.Log ("Dwelling name: " + dwell.name);
-					Debug.Log ("Dwelling name: " + dwell.description);
+					Debug.Log ("Dwelling description: " + dwell.description);
+					DwellingPrefs.setPlayerName (gameObject.name);
+					Application.LoadLevel ("DwellingScene");
+					entranceUsed.Add (other.GetInstanceID ());
 				}
+
+				CastleMeta castle = info.GetComponent<CastleMeta> ();
+				if (castle != null) {
+					Debug.Log ("Castle name: " + castle.name);
+					CastlePrefs.setCastleInfo (resources, castle);
+					//Debug.Log ("Castle affiliation: " + castle.castleAffiliation);
+					//DwellingPrefs.setPlayerName (gameObject.name);
+					Application.LoadLevel ("CastleScene");
+				} 
 				//return eMeta.GetComponent<DwellingMeta> ();
 			} else {
 				Debug.Log ("No Dwelling");
 			}
-				
-			DwellingPrefs.setPlayerName (gameObject.name);
-
-			Application.LoadLevel ("DwellingScene");
-			entranceUsed.Add (other.GetInstanceID ());
 			//other.gameObject.SetActive (false);
 		} else if (other.tag == "Resource") {
 			ResourceMeta rMeta = other.gameObject.GetComponent<ResourceMeta> ();

@@ -108,16 +108,48 @@ public class TerrainTiles {
 
 	public static int[,] smallCityRoad = { 
 		{ 0, 2, 2, 2, 2 }, 
-		{ 0, 2,12,11, 2 }, 
-		{ 0, 2,10,10, 2 }, 
+		{ 0, 2,10,11, 2 }, 
+		{ 0, 2,16,16, 2 }, 
 		{ 0, 2, 2, 2, 2 }, 
 		{ 0, 0, 2, 0, 0 } 
 	};
 
 	public static int[,] smallCityRoadAlt = { 
 		{ 2, 2, 2, 2, 0 }, 
-		{ 2, 12,11,2, 0 }, 
-		{ 2, 10,10,2, 0 }, 
+		{ 2, 10,11,2, 0 }, 
+		{ 2, 16,16,2, 0 }, 
+		{ 2, 2, 2, 2, 0 }, 
+		{ 0, 0, 2, 0, 0 } 
+	};
+
+	public static int[,] smallCityRoad2 = { 
+		{ 0, 2, 2, 2, 2 }, 
+		{ 0, 2,10,12, 2 }, 
+		{ 0, 2,17,17, 2 }, 
+		{ 0, 2, 2, 2, 2 }, 
+		{ 0, 0, 2, 0, 0 } 
+	};
+
+	public static int[,] smallCityRoadAlt2 = { 
+		{ 2, 2, 2, 2, 0 }, 
+		{ 2, 10,12,2, 0 }, 
+		{ 2, 17,17,2, 0 }, 
+		{ 2, 2, 2, 2, 0 }, 
+		{ 0, 0, 2, 0, 0 } 
+	};
+
+	public static int[,] smallCityRoad3 = { 
+		{ 0, 2, 2, 2, 2 }, 
+		{ 0, 2,10,13, 2 }, 
+		{ 0, 2,18,18, 2 }, 
+		{ 0, 2, 2, 2, 2 }, 
+		{ 0, 0, 2, 0, 0 } 
+	};
+
+	public static int[,] smallCityRoadAlt3 = { 
+		{ 2, 2, 2, 2, 0 }, 
+		{ 2, 10,13,2, 0 }, 
+		{ 2, 18,18,2, 0 }, 
 		{ 2, 2, 2, 2, 0 }, 
 		{ 0, 0, 2, 0, 0 } 
 	};
@@ -170,6 +202,10 @@ public class TerrainTiles {
 		tiles.Add (TerrainTiles.intersectionRoad);
 		tiles.Add (TerrainTiles.smallCityRoad);
 		tiles.Add (TerrainTiles.smallCityRoadAlt);
+		tiles.Add (TerrainTiles.smallCityRoad2);
+		tiles.Add (TerrainTiles.smallCityRoadAlt2);
+		tiles.Add (TerrainTiles.smallCityRoad3);
+		tiles.Add (TerrainTiles.smallCityRoadAlt3);
 
 		//tiles.Add (TerrainTiles.riverStraight);
 		//tiles.Add (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.riverStraight));

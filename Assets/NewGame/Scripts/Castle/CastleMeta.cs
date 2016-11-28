@@ -5,6 +5,6 @@ public class CastleMeta : MonoBehaviour {
 
 	public Sprite castleImage;
 	public string castleName;
-	public string castleAffiliation;
+	public AffiliationMeta affiliation;
 
 }
