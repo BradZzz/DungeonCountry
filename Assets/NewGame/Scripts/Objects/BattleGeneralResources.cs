@@ -36,6 +36,15 @@ public class BattleGeneralResources : MonoBehaviour {
 		this.army = army;
 	}
 
+	public void addUnit(string name, int amount){
+		foreach (GameObject arm in army) {
+			BattleMeta armMeta = arm.GetComponent<BattleMeta> ();
+			if (name == armMeta.name) {
+				armMeta.addLives (amount);
+			}
+		}
+	}
+
 	public class Attributes
 	{
 		private int tactics, attack, defense, intelligence, luck;
@@ -69,6 +78,24 @@ public class BattleGeneralResources : MonoBehaviour {
 
 	public int getResource(string name){
 		return resources[name];
+	}
+
+	public bool canPurchaseUnit(Dictionary<string, int> cost, string name){
+		
+		foreach(KeyValuePair<string, int> entry in cost)
+		{
+			if (resources[entry.Key] < entry.Value) {
+				return false;
+			}
+		}
+
+		foreach(KeyValuePair<string, int> entry in cost)
+		{
+			resources [entry.Key] -= entry.Value;
+		}
+
+		addUnit (name, 1);
+		return true;
 	}
 
 	public bool useResource(string name, int quantity){

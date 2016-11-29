@@ -3,8 +3,8 @@ using System.Collections;
 
 public class CastlePrefs : MonoBehaviour {
 
+	public static bool dirty = false;
 	public static CastlePrefs Instance;
-
 	public static castleHolder cHolder;
 
 	void Awake ()   

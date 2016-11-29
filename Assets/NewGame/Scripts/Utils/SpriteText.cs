@@ -15,13 +15,8 @@ public class SpriteText : MonoBehaviour {
 		var spriteTransform = parent.transform;
 		var text = GetComponent<TextMesh>();
 		var pos = spriteTransform.position;
-		text.text = string.Format("{0}", parentMeta.getLives());
+		text.text = parentMeta.getLives().ToString();
 	}
-
-	// Use this for initialization
-	//void Start () {
-	//	refresh ();
-	//}
 
 	void Update () {
 		refresh ();

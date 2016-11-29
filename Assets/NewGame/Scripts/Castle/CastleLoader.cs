@@ -6,21 +6,30 @@ public class CastleLoader : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		init (CastlePrefs.getGeneralMeta (), CastlePrefs.getCastleMeta ());
+		init (CastlePrefs.getGeneralMeta (), CastlePrefs.getCastleMeta (), true);
+	}
+
+	void Update(){
+		if (CastlePrefs.dirty) {
+			CastlePrefs.dirty = false;
+			init (CastlePrefs.getGeneralMeta (), CastlePrefs.getCastleMeta (), false);
+		}
 	}
 	
 	// Update is called once per frame
-	void init (BattleGeneralResources gMeta, CastleMeta dMeta) {
+	void init (BattleGeneralResources gMeta, CastleMeta dMeta, bool reset) {
 		//Pull the canvas from the hierarchy
 		GameObject canvas = GameObject.Find ("Canvas"); 
 		Transform imageP = canvas.transform.Find ("ImagePanel"); 
 		Transform unitP = imageP.transform.Find ("UnitPanel"); 
 
 		Transform marketP = imageP.transform.Find ("UnitPanelMarket"); 
-		marketP.gameObject.SetActive (false);
-
 		Transform marketPPurchase = imageP.transform.Find ("UnitPanelPurchase"); 
-		marketPPurchase.gameObject.SetActive (false);
+
+		if (reset) {
+			marketP.gameObject.SetActive (false);
+			marketPPurchase.gameObject.SetActive (false);
+		}
 
 		Transform resourceP = imageP.transform.Find ("ResourcePanel"); 
 

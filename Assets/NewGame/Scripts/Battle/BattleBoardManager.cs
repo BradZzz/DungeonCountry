@@ -81,9 +81,14 @@ public class BattleBoardManager : MonoBehaviour {
 			Vector3 randomPosition = RandomPosition();
 			GameObject tileChoice = tileArray[Random.Range (0, tileArray.Length)];
 			GameObject instance = Instantiate (tileChoice, randomPosition, Quaternion.identity) as GameObject;
+
+			BattleMeta metaU = tileChoice.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 			BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+
 			meta.setPlayer (playerArmy);
 			meta.setTurn (active);
+			meta.setLives (metaU.getLives());
+
 			instance.transform.SetParent (boardHolder);
 		}
 	}

@@ -34,7 +34,7 @@ public class BattleMeta : MonoBehaviour {
 	public int costCrystal;
 	public int costRuby;
 
-	private int lives = 2;
+	private int lives;
 	private bool canMove;
 	private bool canAttack;
 	private BattleActions actions;
@@ -53,6 +53,7 @@ public class BattleMeta : MonoBehaviour {
 	{
 		Debug.Log ("OnAwake");
 		currentHP = hp;
+		lives = 1;
 		animator = GetComponent<Animator>();
 		spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 		actions = new BattleActions (1,1,true);
@@ -69,6 +70,10 @@ public class BattleMeta : MonoBehaviour {
 
 	public int getLives(){
 		return lives;
+	}
+
+	public void setLives(int lives){
+		this.lives = lives;
 	}
 
 	public void addLives(int lives){

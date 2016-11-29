@@ -124,8 +124,12 @@ public class BattleSetupManager : MonoBehaviour {
 			int position = Int32.Parse (lastClickedUnit.transform.name.Replace ("Unit", "")) - 1;
 
 			GameObject instance = Instantiate (armyManager.getMyArmy()[position], floor.position, Quaternion.identity) as GameObject;
+
+			BattleMeta unitMeta = armyManager.getMyArmy () [position].GetComponent<BattleMeta> ();
 			BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 			meta.setPlayer (true);
+			meta.setLives (unitMeta.getLives());
+
 			instance.transform.SetParent (boardHolder);
 
 			GameObject.Find ("Unit" + (position + 1)).SetActive(false);

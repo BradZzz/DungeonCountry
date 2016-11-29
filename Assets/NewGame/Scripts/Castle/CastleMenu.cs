@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class CastleMenu : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class CastleMenu : MonoBehaviour {
 	private GameObject unitPPurchase = null;
 	private CastleMeta dMeta = null;
 	private BattleGeneralResources gMeta = null;
+	GameObject purchaseUnit = null;
 
 	private void initVars(){
 		if (imageP ==  null){
@@ -41,7 +43,31 @@ public class CastleMenu : MonoBehaviour {
 
 	public void onPurchaseBuy(){
 		initVars ();
-		unitPPurchase.SetActive(false);
+		if (purchaseUnit != null) {
+			BattleMeta pUnitMeta = purchaseUnit.GetComponent<BattleMeta> ();
+			foreach (GameObject unit in gMeta.getarmy()) {
+				BattleMeta unitMeta = unit.GetComponent<BattleMeta> ();
+
+				if (unitMeta.name.Equals(pUnitMeta.name)) {
+					
+					Dictionary<string, int> resources = new Dictionary<string, int> ();
+					resources.Add ("gold", unitMeta.costGold);
+					resources.Add ("ore", unitMeta.costOre);
+					resources.Add ("wood", unitMeta.costWood);
+					resources.Add ("ruby", unitMeta.costRuby);
+					resources.Add ("crystal", unitMeta.costCrystal);
+					resources.Add ("sapphire", unitMeta.costSapphire);
+
+					if (gMeta.canPurchaseUnit (resources, pUnitMeta.name)) {
+						Debug.Log ("Purchased!");
+						CastlePrefs.dirty = true;
+						//unitPPurchase.SetActive(false);
+					} else {
+						Debug.Log ("Not Purchased!");
+					}
+				}
+			}
+		}
 	}
 
 	public void onPurchaseCancel(){
@@ -64,7 +90,6 @@ public class CastleMenu : MonoBehaviour {
 	}
 
 	private void loadPurchase(int unitLvl){
-		GameObject purchaseUnit = null;
 		foreach (GameObject unit in dMeta.affiliation.units) {
 			Debug.Log ("Unit: " + unit.name);
 			if (unitLvl == unit.GetComponent<BattleMeta> ().lvl) {

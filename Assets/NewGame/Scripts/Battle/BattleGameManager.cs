@@ -53,22 +53,6 @@ public class BattleGameManager : MonoBehaviour {
 		InitGame();
 
 		Debug.Log ("Printing Prefs");
-		//SharedPrefs.printPrefs ();
-		//Debug.Log("Player: " + SharedPrefs.playerArmy.name);
-		//Debug.Log("Enemy: " + SharedPrefs.enemyArmy.name);
-		//Debug.Log("Player Name: " + SharedPrefs.getPlayerName());
-		//Debug.Log("Enemy Name: " + SharedPrefs.getEnemyName());
-
-
-		//playerGeneral = GameObject.Find(SharedPrefs.getPlayerName());
-		//playerGeneral = SharedPrefs.playerArmy;
-		//Animator anim = playerGeneral.GetComponent<Animator> ();
-		//Destroy (playerGeneral.GetComponent<Animator> ());
-		//playerGeneral.SetActive (true);
-		//aiGeneral = GameObject.Find(SharedPrefs.getEnemyName());
-		//aiGeneral = SharedPrefs.enemyArmy;
-		//Destroy (aiGeneral.GetComponent<Animator> ());
-		//aiGeneral.SetActive (true);
 	}
 
 	//Initializes the game for each level.
@@ -84,9 +68,6 @@ public class BattleGameManager : MonoBehaviour {
 		hidePanel (enemyPanel);
 
 		levelImage.SetActive (false);
-		//Give the scene and the battle units to the board script
-		//boardScript.SetupScene(level, armyScript);
-		//Debug.Log ("Dict: " + boardScript.getDict().Count);
 	}
 
 	public BattleSetupManager getBoardSetup() {
@@ -129,6 +110,8 @@ public class BattleGameManager : MonoBehaviour {
 		BattleGeneralMeta aiGen = aiGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 
 		armyScript = new BattleArmyManager(playGen.army.ToArray(), aiGen.army.ToArray());
+
+		// Here is where we need to update the army lives before 
 
 		boardSetup.SetupScene (armyScript, instance);
 
