@@ -125,10 +125,14 @@ public class BattleSetupManager : MonoBehaviour {
 
 			GameObject instance = Instantiate (armyManager.getMyArmy()[position], floor.position, Quaternion.identity) as GameObject;
 
+			instance.SetActive (true);
+
 			BattleMeta unitMeta = armyManager.getMyArmy () [position].GetComponent<BattleMeta> ();
 			BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+
 			meta.setPlayer (true);
 			meta.setLives (unitMeta.getLives());
+			meta.setGUI (true);
 
 			instance.transform.SetParent (boardHolder);
 
@@ -167,13 +171,15 @@ public class BattleSetupManager : MonoBehaviour {
 	}
 
 	public void populateUIPanel(List<GameObject> units){
+		GameObject oCanvas = GameObject.Find ("oCanvas");
+		Transform panel = oCanvas.transform.Find ("Panel");
 		for (int i = 1; i < 7; i++) {
-			GameObject unit1 = GameObject.Find ("Unit"+i);
+			Transform panelUnit = panel.transform.Find ("Unit"+i);
 			if (i <= units.Count) {
-				Image image = unit1.GetComponent<Image> ();
+				Image image = panelUnit.gameObject.GetComponent<Image> ();
 				image.sprite = units [i - 1].GetComponent<SpriteRenderer> ().sprite;
 			} else {
-				unit1.SetActive (false);
+				panelUnit.gameObject.SetActive (false);
 			}
 		}
 	}

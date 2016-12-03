@@ -109,15 +109,14 @@ public class BattleGameManager : MonoBehaviour {
 		BattleGeneralMeta playGen = playerGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 		BattleGeneralMeta aiGen = aiGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 
-		armyScript = new BattleArmyManager(playGen.army.ToArray(), aiGen.army.ToArray());
-
-		// Here is where we need to update the army lives before 
+		armyScript = new BattleArmyManager(playGen.getResources().getarmy().ToArray(), aiGen.getResources().getarmy().ToArray());
 
 		boardSetup.SetupScene (armyScript, instance);
 
 		//This puts the player's army into the ui panel
 		List<GameObject> armies = new List<GameObject>();
 		armies.AddRange (armyScript.getMyArmy ());
+
 		boardSetup.populateUIPanel(armies);
 
 		populateGeneralPanel (playerGeneral, GameObject.Find ("PlayerGeneral"));

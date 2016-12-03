@@ -33,21 +33,18 @@ public class BattleMeta : MonoBehaviour {
 	public int costSapphire;
 	public int costCrystal;
 	public int costRuby;
+	public GameObject projectile;
 
 	private int lives;
 	private bool canMove;
 	private bool canAttack;
 	private BattleActions actions;
-
 	private int currentHP;
-
-	public GameObject projectile;
-
 	private Animator animator;
 	private SpriteRenderer spriteRenderer;
 	private Color healthColor;
 	private bool isPlayer;
-	//private GameObject thisProjectile;
+	private bool is_gui = true;
 
 	void Awake()
 	{
@@ -66,6 +63,10 @@ public class BattleMeta : MonoBehaviour {
 		actions.startTurn ();
 		SpriteRenderer sprRend = gameObject.GetComponent<SpriteRenderer> ();
 		sprRend.material.shader = Shader.Find ("Sprites/Default");
+	}
+
+	public void setGUI(bool set){
+		is_gui = set;
 	}
 
 	public int getLives(){
@@ -158,36 +159,46 @@ public class BattleMeta : MonoBehaviour {
 	private static GUIStyle _staticHealthStyle;
 
 	private void OnGUI() {
-		Vector3 guiPosition = Camera.main.WorldToScreenPoint(transform.position);
-		guiPosition.y = Screen.height - guiPosition.y;
+		if (is_gui) {
+			Vector3 guiPosition = Camera.main.WorldToScreenPoint (transform.position);
+			guiPosition.y = Screen.height - guiPosition.y;
 
-		//Black Box Base
-		Rect bRect = new Rect(guiPosition.x - 18, guiPosition.y - 38, 
-			30 * (float) hp/ (float) hp + 4, 16);
+			//Black Box Base
+			Rect bRect = new Rect (guiPosition.x - 18, guiPosition.y - 38, 
+				            30 * (float)hp / (float)hp + 4, 16);
 
-		if( _staticRectTexture == null ) { _staticRectTexture = new Texture2D( 1, 1 ); }
-        if( _staticRectStyle == null ) { _staticRectStyle = new GUIStyle(); }
+			if (_staticRectTexture == null) {
+				_staticRectTexture = new Texture2D (1, 1);
+			}
+			if (_staticRectStyle == null) {
+				_staticRectStyle = new GUIStyle ();
+			}
  
-		_staticRectTexture.SetPixel( 0, 0, Color.black );
-        _staticRectTexture.Apply();
+			_staticRectTexture.SetPixel (0, 0, Color.black);
+			_staticRectTexture.Apply ();
  
-        _staticRectStyle.normal.background = _staticRectTexture;
+			_staticRectStyle.normal.background = _staticRectTexture;
  
-		GUI.Box( bRect, GUIContent.none, _staticRectStyle );
+			GUI.Box (bRect, GUIContent.none, _staticRectStyle);
         
-		//Health Overlay
-		Rect hRect = new Rect(guiPosition.x - 16, guiPosition.y - 35, 
-			30 * (float) currentHP/ (float) hp, 10);
+			//Health Overlay
+			Rect hRect = new Rect (guiPosition.x - 16, guiPosition.y - 35, 
+				            30 * (float)currentHP / (float)hp, 10);
 
-		if( _staticHealthTexture == null ){ _staticHealthTexture = new Texture2D( 1, 1 ); }
-		if( _staticHealthStyle == null ) { _staticHealthStyle = new GUIStyle(); }
+			if (_staticHealthTexture == null) {
+				_staticHealthTexture = new Texture2D (1, 1);
+			}
+			if (_staticHealthStyle == null) {
+				_staticHealthStyle = new GUIStyle ();
+			}
 
-		_staticHealthTexture.SetPixel( 0, 0, healthColor );
-		_staticHealthTexture.Apply();
+			_staticHealthTexture.SetPixel (0, 0, healthColor);
+			_staticHealthTexture.Apply ();
 
-		_staticHealthStyle.normal.background = _staticHealthTexture;
+			_staticHealthStyle.normal.background = _staticHealthTexture;
 
-		GUI.Box( hRect, GUIContent.none, _staticHealthStyle );
+			GUI.Box (hRect, GUIContent.none, _staticHealthStyle);
+		}
 	}
 
 	public int getCurrentHP(){

@@ -48,9 +48,10 @@ public class BattleArmyManager {
 	}
 
 	public bool iLost(Transform board){
-		foreach (GameObject unit in myArmy) {
-			foreach (Transform child in board) {
-				if (child.name.Contains(unit.name) && child.gameObject.activeInHierarchy) {
+		foreach (Transform child in board) {
+			BattleMeta bMeta = child.gameObject.GetComponent<BattleMeta> ();
+			if (bMeta != null && bMeta.getPlayer()) {
+				if (bMeta.getLives () > 0) {
 					return false;
 				}
 			}
@@ -59,9 +60,10 @@ public class BattleArmyManager {
 	}
 
 	public bool theyLost(Transform board){
-		foreach (GameObject unit in theirArmy) {
-			foreach (Transform child in board) {
-				if (child.name.Contains(unit.name) && child.gameObject.activeInHierarchy) {
+		foreach (Transform child in board) {
+			BattleMeta bMeta = child.gameObject.GetComponent<BattleMeta> ();
+			if (bMeta != null && !bMeta.getPlayer()) {
+				if (bMeta.getLives () > 0) {
 					return false;
 				}
 			}

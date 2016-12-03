@@ -69,43 +69,20 @@ public class AdventureBoardManager : MonoBehaviour {
 		DontDestroyOnLoad(board);
 	}
 
-	private void formatObjects(){
+	private void formatObjects(bool init){
 
-		Point3 playerPos = new Point3(), enemyPos = new Point3();
-		GameObject player = null, enemy = null;
+		//Point3 playerPos = new Point3(), enemyPos = new Point3();
 
-		if (SharedPrefs.getPlayerName() != "") {
-			player = GameObject.Find (SharedPrefs.getPlayerName());
-		}
+		//bool sharedPrefs = enemy != null || player != null;
 
-		if (SharedPrefs.getEnemyName() != "") {
-			enemy = GameObject.Find (SharedPrefs.getEnemyName());
-		}
+		//if (sharedPrefs || init) {
+		foreach(GameObject unity in GameObject.FindGameObjectsWithTag("Unit")){
+			//Transform unit = unity.transform;
+			//Point3 pos = new Point3(unit.position);
+			BattleGeneralMeta meta = unity.GetComponent<BattleGeneralMeta> ();
 
-		bool sharedPrefs = enemy != null || player != null;
-
-		if (sharedPrefs) {
-			foreach(GameObject unity in GameObject.FindGameObjectsWithTag("Unit")){
-				//Transform unit = unity.transform;
-				//Point3 pos = new Point3(unit.position);
-				BattleGeneralMeta meta = null;
-
-				if (player != null && unity.name.Equals(player.name)) {
-					//(item.transform.position.Equals(playerPos) || item.transform.position.Equals(enemyPos))
-					meta = player.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
-				} 
-
-				if (enemy != null && unity.name.Equals(enemy.name)) {
-					meta = enemy.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
-				}
-
-				if (meta == null) {
-					Debug.Log ("Meta is null");
-				} else {
-					Debug.Log ("Name: " + meta.name + " Defeated: " + meta.getDefeated());
-				}
-
-				if (meta != null && meta.getDefeated ()) {
+			if (meta != null) {
+				if (meta.getDefeated ()) {
 					unity.SetActive (false);
 
 					//Add blood splatter where hero was killed
@@ -113,33 +90,46 @@ public class AdventureBoardManager : MonoBehaviour {
 					GameObject instance = Instantiate (tileChoice, unity.transform.position, Quaternion.identity) as GameObject;
 					instance.transform.SetParent (boardHolder);
 				} 
+				if (init) {
+					//BattleGeneralResources res = meta.getResources ();
+					//if (res != null){
+						List<GameObject> newUnits = new List<GameObject> ();
+						foreach (GameObject unit in meta.army) {
+							BattleMeta gmeta = unit.GetComponent<BattleMeta> ();
+							if (gmeta.lvl < 3) {
+								if (gmeta.lvl == 1) {
+									gmeta.setLives (Random.Range (15, 25));
+								} else {
+									gmeta.setLives (Random.Range (5, 10));
+								}
+								newUnits.Add (unit);
+							}
+						}
+						meta.army = newUnits;
+					//}
+				}
 			}
+			if (meta == null) {
+				Debug.Log ("Meta is null");
+			} else {
+				Debug.Log ("Name: " + meta.name + " Defeated: " + meta.getDefeated());
+			}
+
 		}
 	}
 
 	public void setupScene (AdventureGameManager gameManager, GameObject[] generals)
 	{
-
 		Start ();
-
 		this.gameManager = gameManager;
 		this.generals = generals;
-
-		//worldCreator.SetActive(true);
-		//GameObject board = GameObject.Find("Board");
-
 		boardHolder = board.transform;
-		//Debug.Log ("Children: " + boardHolder.childCount);
-
 		if (boardHolder.childCount > 0) {
 			Debug.Log ("Refreshing board");
 			boardHolder = board.transform;
-			//boardHolder.GetComponent<MeshRenderer>().enabled = true;
-
 			boardHolder.gameObject.SetActive (true);
 			Coroutines.toggleVisibilityTransform(boardHolder,true);
-
-			formatObjects ();
+			formatObjects (false);
 		} else {
 			Debug.Log ("Creating board");
 			creator.createWorld(boardHolder, gameManager.getColumns (), gameManager.getRows (), boardCreated);
@@ -148,7 +138,6 @@ public class AdventureBoardManager : MonoBehaviour {
 
 	public void boardCreated(List<Point3> roadPositions, List<Point3> openPositions) {
 		GameObject board = GameObject.Find("Board");
-		//DontDestroyOnLoad (board);
 		this.boardHolder = board.transform;
 		this.roadPositions = roadPositions;
 		this.openPositions = openPositions;
@@ -157,7 +146,7 @@ public class AdventureBoardManager : MonoBehaviour {
 			placeGeneral (general);
 		}
 
-		formatObjects ();
+		formatObjects (true);
 	}
 
 	private void placeGeneral (GameObject general)
@@ -317,36 +306,4 @@ public class AdventureBoardManager : MonoBehaviour {
 			Application.LoadLevel ("BattleScene");
 		}
 	}
-
-	/*IEnumerator smooth_move(Transform origin, Vector3 direction,float speed){
-		float startime = Time.time;
-		Vector3 start_pos = new Vector3(origin.position.x, origin.position.y, origin.position.z);
-		Vector3 end_pos = direction;
-		while (!origin.position.Equals(end_pos)) { 
-			
-			//float move = Mathf.Lerp (0,1, (Time.time - startime) * speed);
-			float move = .25f;
-
-			Vector3 position = origin.position;
-
-			position.x += ((end_pos.x - start_pos.x) * move);
-			position.y += ((end_pos.y - start_pos.y) * move);
-
-			if ((start_pos.x > end_pos.x && origin.position.x < end_pos.x) || (start_pos.x < end_pos.x && origin.position.x > end_pos.x)) {
-				position.x = end_pos.x;
-			}
-			if ((start_pos.y > end_pos.y && origin.position.y < end_pos.y)||(start_pos.y < end_pos.y && origin.position.y > end_pos.y)) {
-				position.y = end_pos.y;
-			}
-
-			origin.position = position;
-
-			if (((Time.time - startime) * speed) >= .75f) {
-				origin.position = end_pos;
-			}
-
-			yield return null;
-		}
-	}*/
-
 }

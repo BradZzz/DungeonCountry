@@ -12,36 +12,6 @@ public class BattleGeneralMeta : MonoBehaviour {
 	public List<int> entranceUsed;
 
 	private BattleGeneralResources resources;
-
-	//private Attributes attribs;
-	//private Dictionary<string, int> resources;
-
-	/*public class Attributes
-	{
-		private int tactics, attack, defense, intelligence, luck;
-		public Attributes(){
-			tactics = 2;
-			attack = 1;
-			defense = 1;
-			intelligence = 1;
-			luck = 1;
-		}
-		public int getTactics(){
-			return tactics;
-		}
-		public int getAttack(){
-			return attack;
-		}
-		public int getDefense(){
-			return defense;
-		}
-		public int getIntelligence(){
-			return intelligence;
-		}
-		public int getLuck(){
-			return luck;
-		}
-	}*/
 		
 	private bool defeated;
 
@@ -49,14 +19,10 @@ public class BattleGeneralMeta : MonoBehaviour {
 		DontDestroyOnLoad(this.gameObject);
 		defeated = false;
 		entranceUsed = new List<int> ();
+		//resources = new BattleGeneralResources (this.GetInstanceID (), army);
 	}
 
 	void Start(){
-		//resources = new Dictionary<string, int> ();
-		//resources.Add ("gold", 0);
-		//resources.Add ("ore", 0);
-		//attribs = new Attributes ();
-
 		resources = new BattleGeneralResources (this.GetInstanceID (), army);
 	}
 
@@ -124,7 +90,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 				CastleMeta castle = info.GetComponent<CastleMeta> ();
 				if (castle != null) {
 					Debug.Log ("Castle name: " + castle.name);
-					CastlePrefs.setCastleInfo (resources, castle);
+					CastlePrefs.setCastleInfo (resources, castle, this.gameObject.GetInstanceID());
 					//Debug.Log ("Castle affiliation: " + castle.castleAffiliation);
 					//DwellingPrefs.setPlayerName (gameObject.name);
 					Application.LoadLevel ("CastleScene");
