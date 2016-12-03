@@ -37,6 +37,7 @@ public class BattleBoardManager : MonoBehaviour {
 	private BattleGameManager gameManager;
 	public GameObject footsteps;
 	private Footsteps steps;
+	Transform playerImage, enemyImage;
 
 	private bool playersTurn;
 
@@ -51,6 +52,13 @@ public class BattleBoardManager : MonoBehaviour {
 
 	void Start(){
 		steps = footsteps.GetComponent<Footsteps>();
+
+		GameObject playerPanel = GameObject.Find ("PlayerGeneral");
+		playerImage = playerPanel.transform.Find ("Image");
+
+		GameObject aiPanel = GameObject.Find ("AIGeneral");
+		enemyImage = aiPanel.transform.Find ("Image");
+
 	}
 
 	void InitialiseList (int tactics)
@@ -307,13 +315,29 @@ public class BattleBoardManager : MonoBehaviour {
 		List <Transform> aiUnits = new List<Transform>(); 
 		foreach(Transform unit in unitPositions){
 			BattleMeta meta = unit.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+
+			/*
+			 * 		
+				GameObject playerPanel = GameObject.Find ("PlayerGeneral");
+				playerImage = playerPanel.transform.Find ("Image");
+
+				GameObject aiPanel = GameObject.Find ("AIGeneral");
+				enemyImage = aiPanel.transform.Find ("Image");
+			 */
+
 			if (playersTurn) {
+
+				switchTurn (true);
+
 				if (meta.getPlayer()) {
 					meta.startTurn ();
 				} else {
 					meta.setTurn (false);
 				}
 			} else if (!playersTurn) {
+
+				switchTurn (false);
+
 				if (meta.getPlayer()) {
 					meta.setTurn (false);
 				} else {
@@ -332,6 +356,30 @@ public class BattleBoardManager : MonoBehaviour {
 			//BattleAI ai = new BattleAI (boardHolder, aiUnits);
 			ai.moveUnits (activateUnits);
 			//activateUnits (true);
+		}
+	}
+
+	public void switchTurn(bool playersTurn){
+		if (playersTurn){
+			Outline pimage = playerImage.gameObject.GetComponent<Outline> ();
+			Color c = pimage.effectColor;
+			c.a = 1;
+			pimage.effectColor = c;
+
+			Outline eimage = enemyImage.gameObject.GetComponent<Outline> ();
+			c = eimage.effectColor;
+			c.a = .1f;
+			eimage.effectColor = c;
+		} else {
+			Outline pimage = playerImage.gameObject.GetComponent<Outline> ();
+			Color c = pimage.effectColor;
+			c.a = .1f;
+			pimage.effectColor = c;
+
+			Outline eimage = enemyImage.gameObject.GetComponent<Outline> ();
+			c = eimage.effectColor;
+			c.a = 1;
+			eimage.effectColor = c;
 		}
 	}
 

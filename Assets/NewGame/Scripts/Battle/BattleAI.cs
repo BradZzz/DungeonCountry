@@ -161,7 +161,7 @@ public class BattleAI : MonoBehaviour {
 
 						//here we need to feed the possible tiles into the ai's choices
 						foreach (Transform tile in floor) {
-							//Find the list of tiles the robot can move to
+							//Find the list of tiles the ai can move to
 							if (Coroutines.checkRange (tile.position, ai.position, meta.movement) 
 								&& (Coroutines.hasParent (tile) || destinations.Contains (new Point3(tile.position)))) {
 								//Check to make sure that enemy isn't on top of the current tile
