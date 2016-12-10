@@ -88,16 +88,27 @@ public class BattleSetupManager : MonoBehaviour {
 	void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum)
 	{
 		int objectCount = UnityEngine.Random.Range (minimum, maximum+1);
-		for(int i = 0; i < objectCount; i++)
+		/*for(int i = 0; i < objectCount; i++)
 		{
 			Vector3 randomPosition = RandomPosition();
 			GameObject tileChoice = tileArray[UnityEngine.Random.Range (0, tileArray.Length)];
 			GameObject instance = Instantiate (tileChoice, randomPosition, Quaternion.identity) as GameObject;
 			Debug.Log ("Name: " + instance.name);
-			/*if (instance.name.Contains("Rock(Crag)")) {
-				Debug.Log ("Found instance name");
-				instance.transform.position = new Vector3(instance.transform.position.x, instance.transform.position.y + .15f, instance.transform.position.z);
-			}*/
+			instance.transform.SetParent (boardHolder);
+		}*/
+
+		int seed = 50;
+
+		for(int i = 0; i < 8; i++)
+		{
+			//Vector3 randomPosition = RandomPosition();
+			GameObject tileChoice = tileArray[UnityEngine.Random.Range (0, tileArray.Length)];
+
+			Vector3 randomPosition = gridPositions[seed + i];
+			gridPositions.RemoveAt (seed + i);
+
+			GameObject instance = Instantiate (tileChoice, randomPosition, Quaternion.identity) as GameObject;
+			Debug.Log ("Name: " + instance.name);
 			instance.transform.SetParent (boardHolder);
 		}
 	}

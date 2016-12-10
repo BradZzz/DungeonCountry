@@ -18,6 +18,7 @@ public class BattleAI : MonoBehaviour {
 	private int movingPosition;
 	private int width, height;
 	private Astar astar;
+	private Point3 retreatPos;
 
 	public void init(Transform boardHolder, List<Transform> aiUnits, int width, int height){
 
@@ -33,6 +34,8 @@ public class BattleAI : MonoBehaviour {
 		playersUnits = new List<Transform>();
 		//These are the player units the ai will be attacking
 		floor = new List<Transform>();
+
+		retreatPos = new Point3 (this.width - 1, this.height / 2, 0);
 
 		foreach (Transform tile in boardHolder){
 			//Organize the units into buckets
@@ -106,6 +109,10 @@ public class BattleAI : MonoBehaviour {
 		List <Transform> attackables = new List<Transform> ();
 		//The ai unit properties
 		BattleMeta meta = ai.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+			
+		if (meta.getActions () > 0) {
+			takeActions(ai, meta);
+		}
 
 		//Check to make sure that an enemy isn't already in the ai's range
 		foreach (Transform unit in playersUnits) {
@@ -115,120 +122,114 @@ public class BattleAI : MonoBehaviour {
 			}
 		}
 
-		if (attackables.Count > 0) {
+		if (meta.getAttacks() > 0 && attackables.Count > 0) {
+			BattleMeta weakest = null;
+			//Have the ai attack the weakest unit
+			foreach (Transform unit in attackables) {
+				BattleMeta unitProp = unit.gameObject.GetComponent (typeof(BattleMeta)) as BattleMeta;
+				if (weakest == null || weakest.getCurrentHP () > unitProp.getCurrentHP ()) {
+					weakest = unitProp;
+				}
+			}
+
+			meta.isAttacking (weakest);
+			weakest.isAttacked (meta.getCharStrength());
+
 			if (meta.getAttacks() > 0) {
-				BattleMeta weakest = null;
-				//Have the ai attack the weakest unit
-				foreach (Transform unit in attackables) {
-					BattleMeta unitProp = unit.gameObject.GetComponent (typeof(BattleMeta)) as BattleMeta;
-					if (weakest == null || weakest.getCurrentHP () > unitProp.getCurrentHP ()) {
-						weakest = unitProp;
-					}
-				}
-				//if (meta.getTurn()) {
-				meta.isAttacking (weakest);
-				weakest.isAttacked (meta.getCharStrength());
-				//}
-
-				if (meta.getAttacks() > 0) {
-					aiMoveSubroutine (ai);
-				}
-				meta.setTurn(false);
-			} else {
-				//End the turn here, since the enemy could attack the player, just ran out of attacks
-
-				/*
-				 * TODO: Back up enemies here with attack range > 1
-				 */ 
-
-				meta.setTurn(false);
+				aiMoveSubroutine (ai);
 			}
-		} else {
-			if (meta.getActions () > 0) {
-				Debug.Log ("Moving");
-				//move ai and repeat function
-				//Get the closest enemy
 
-				Transform enemy = GetClosest (ai, playersUnits);
-				//There are not more player units left to fight. end game...
-				if (enemy == null) {
-					endTurnCallback ();
-				} else {
-					Vector2 ePos = enemy.position;
-					if (enemy != null) {
+			meta.setTurn(false);
+		} 
 
-						List <Point3> moveables = new List<Point3> ();
-
-						//here we need to feed the possible tiles into the ai's choices
-						foreach (Transform tile in floor) {
-							//Find the list of tiles the ai can move to
-							if (Coroutines.checkRange (tile.position, ai.position, meta.movement) 
-								&& (Coroutines.hasParent (tile) || destinations.Contains (new Point3(tile.position)))) {
-								//Check to make sure that enemy isn't on top of the current tile
-								//This is where the movables need to be set
-								moveables.Add (new Point3(tile.position));
-							}
-						}
-
-						//astar.generateOverflowMapv1 (ai, meta, enemy, meta.movement, height, width, moveables, moveCallback);
-
-						//StartCoroutine (steps.baseAlgorithm (new Point3(lastClicked.position), click, gameManager.getRows (), gameManager.getColumns (), obstacles, setPath));
-
-						List<Point3> pathMap = astar.overflowAlgorithm (new Point3 (ai.position), meta.movement, height, width, moveables);
-						moveCallback(pathMap, meta, enemy, ai);
-					} else {
-						meta.setTurn (false);
-					} 
-				}
-			} else {
-				//The ai has no actions and no attacks. end turn
-				meta.setTurn(false);
-			}
+		if (meta.getActions () == 0 && !(meta.getAttacks() > 0 && attackables.Count > 0)) {
+			//The ai has no actions and no valid attacks. end turn
+			meta.setTurn(false);
 		}
+
 		checkEndTurn ();
 	}
 
-	public void  moveCallback(List<Point3> moveables, BattleMeta meta, Transform enemy, Transform ai){
-		Point3 closest = GetClosest (enemy, moveables);
-		//closest = GetClosest (ai, overlap);
-		/*if (meta.range > 1) {
-			List<Point3> overlap = new List<Point3> ();
-			foreach (Point3 move in moveables) {
-				//if (!destinations.Contains (move)) {
-					overlap.Add (move);
-				//}
-			}
-			if (overlap.Count > 0) {
-				closest = GetClosest (ai, overlap);
-			}
-		}*/
+	public void takeActions(Transform ai, BattleMeta meta){
+		Debug.Log ("Moving");
+		//move ai and repeat function
+		//Get the closest enemy
 
-		//astar.baseAlgorithm (new Point3 (ai.position), closest, height, width, obstacles, true);
+		Transform enemy = GetClosest (ai, playersUnits);
+		//There are not more player units left to fight. end game...
+		if (enemy == null) {
+			endTurnCallback ();
+		} else {
+			Vector2 ePos = enemy.position;
+			if (enemy != null) {
 
+				List <Point3> moveables = new List<Point3> ();
 
+				//here we need to feed the possible tiles into the ai's choices
+				foreach (Transform tile in floor) {
+					//Find the list of tiles the ai can move to
+					if (Coroutines.hasParent (tile) || destinations.Contains (new Point3(tile.position)) || new Point3(enemy.position).Equals(new Point3(tile.position))) {
+						//Check to make sure that enemy isn't on top of the current tile
+						//This is where the movables need to be set
+						moveables.Add (new Point3(tile.position));
+					}
+				}
+					
+
+				//This tells the computer where the most direct path to the nearest player
+				List<Point3> pathMap = astar.baseAlgorithm (new Point3 (ai.position), new Point3 (enemy.position), height, width, moveables, true);
+				Point3 closest = new Point3 ();
+
+				if (pathMap != null) {
+					int distance = pathMap.Count - 1;
+					if (distance < 0){
+						closest = new Point3 (ai.position);
+					//Now let's check the ai's range. If the range is bigger than the distance, we need to back up the ai
+					} else if (meta.range > 1 && meta.range > distance + 1) {
+						//Retreat to back lines
+						pathMap = astar.baseAlgorithm (new Point3 (ai.position), retreatPos, height, width, moveables, true);
+
+						closest = pathMap [0];
+
+						int distance2 = pathMap.Count - 1;
+						int extraRange = meta.range - (distance + 1);
+			
+						closest = extraRange > distance2 ? pathMap [distance2] : pathMap [extraRange];
+
+						/*if (distance - meta.range >= distance2 ) {
+							closest = pathMap [distance2];
+						} else {
+							//else take the movement or distance - range. whichever is smaller
+							int smaller = 1;
+							closest = pathMap [smaller];
+						}*/
+
+					} else if (meta.movement > distance - meta.range) {
+						if (distance - meta.range < 0) {
+							closest = new Point3 (ai.position);
+						} else {
+							closest = pathMap [distance - meta.range];
+						}
+					} else {
+						closest = pathMap [meta.movement];
+					}
+				} else {
+					closest = new Point3 (ai.position);
+				}
+				moveCallback(closest, meta, enemy, ai);
+			} else {
+				meta.setTurn (false);
+			} 
+		}
+	}
+
+	public void  moveCallback(Point3 closest, BattleMeta meta, Transform enemy, Transform ai){
 		destinations.Add (closest);
 		meta.isMoving ();
 		if (ai != null) {
 			StartCoroutine (smooth_move (ai, closest.asVector3 (), 1f));
 		}
-
-		//foreach(Point3 step in path){
-		//	yield return StartCoroutine( smooth_move(origin, step.asVector3(), speed));
-		//}
 	}
-
-	/*public List<Point3> getObstacles(){
-		List<Point3> obstacles = new List<Point3> ();
-		foreach (Transform tile in floor) {
-			//Find the list of tiles the robot can move to
-			if (!Coroutines.hasParent (tile) 
-				&& !destinations.Contains (tile)) {
-				//Check to make sure that enemy isn't on top of the current tile
-				obstacles.Add (tile);
-			}
-		}
-		return obstacles;
-	}*/
 
 	private void checkEndTurn(){
 		bool activeUnits = false;
@@ -281,37 +282,6 @@ public class BattleAI : MonoBehaviour {
 		}
 		aiMoveSubroutine (origin);
 	}
-
-	/*IEnumerator smooth_move(Transform origin, Vector3 direction,float speed){
-		float startime = Time.time;
-		Vector3 start_pos = new Vector3(origin.position.x, origin.position.y, origin.position.z);
-		Vector3 end_pos = direction;
-		while (!origin.position.Equals(end_pos)) { 
-
-			//float move = Mathf.Lerp (0,1, (Time.time - startime) * speed);
-			float move = .25f;
-
-			Vector3 position = origin.position;
-
-			position.x += ((end_pos.x - start_pos.x) * move);
-			position.y += ((end_pos.y - start_pos.y) * move);
-
-			if ((start_pos.x > end_pos.x && origin.position.x < end_pos.x) || (start_pos.x < end_pos.x && origin.position.x > end_pos.x)) {
-				position.x = end_pos.x;
-			}
-			if ((start_pos.y > end_pos.y && origin.position.y < end_pos.y)||(start_pos.y < end_pos.y && origin.position.y > end_pos.y)) {
-				position.y = end_pos.y;
-			}
-
-			origin.position = position;
-
-			if (((Time.time - startime) * speed) >= .75f) {
-				origin.position = end_pos;
-			}
-
-			yield return null;
-		}
-	}*/
 
 	//This function returns the closest unit to the player
 	Transform GetClosest(Transform ai,List<Transform> enemies)

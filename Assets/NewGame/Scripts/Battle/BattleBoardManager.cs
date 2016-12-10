@@ -53,11 +53,11 @@ public class BattleBoardManager : MonoBehaviour {
 	void Start(){
 		steps = footsteps.GetComponent<Footsteps>();
 
-		GameObject playerPanel = GameObject.Find ("PlayerGeneral");
-		playerImage = playerPanel.transform.Find ("Image");
+		GameObject playerPanel = GameObject.Find ("PlayerGPanel");
+		playerImage = playerPanel.transform;
 
-		GameObject aiPanel = GameObject.Find ("AIGeneral");
-		enemyImage = aiPanel.transform.Find ("Image");
+		GameObject aiPanel = GameObject.Find ("AIGPanel");
+		enemyImage = aiPanel.transform;
 
 	}
 
@@ -90,8 +90,8 @@ public class BattleBoardManager : MonoBehaviour {
 			GameObject tileChoice = tileArray[Random.Range (0, tileArray.Length)];
 			GameObject instance = Instantiate (tileChoice, randomPosition, Quaternion.identity) as GameObject;
 
-			BattleMeta metaU = tileChoice.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 			BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+			BattleMeta metaU = tileChoice.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 
 			meta.setPlayer (playerArmy);
 			meta.setTurn (active);

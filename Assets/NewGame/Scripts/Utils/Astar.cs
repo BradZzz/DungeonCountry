@@ -26,7 +26,7 @@ public class Astar {
 		yield return foundVal;
 	}
 
-	private List<Point3> baseAlgorithm(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs, bool deleteFirst){
+	public List<Point3> baseAlgorithm(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs, bool deleteFirst){
 		this.destination = destination;
 		this.columns = columns;
 		this.rows = rows;

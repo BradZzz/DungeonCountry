@@ -92,6 +92,7 @@
      <Compile Include="Assets\NewGame\Scripts\Utils\Coroutines.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\DynamicSorting.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\Footsteps.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Utils\GameStatics.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\Move.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\MovingObject.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\PerlinGenerator.cs" />

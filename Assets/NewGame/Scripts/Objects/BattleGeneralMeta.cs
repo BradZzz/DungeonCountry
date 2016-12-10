@@ -10,20 +10,50 @@ public class BattleGeneralMeta : MonoBehaviour {
 	public string description = "none";
 	public List<GameObject> army;
 	public List<int> entranceUsed;
+	public string faction;
+
+	private bool isPlayer;
 
 	private BattleGeneralResources resources;
 		
 	private bool defeated;
+	private Camera cam = null;
 
 	void Awake() {
 		DontDestroyOnLoad(this.gameObject);
 		defeated = false;
 		entranceUsed = new List<int> ();
+		isPlayer = false;
 		//resources = new BattleGeneralResources (this.GetInstanceID (), army);
 	}
 
 	void Start(){
 		resources = new BattleGeneralResources (this.GetInstanceID (), army);
+		cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+	}
+
+	void LateUpdate () 
+	{
+		if (isPlayer) {
+			if (cam == null) {
+				cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+			}
+			Vector3 vec = new Vector3 (this.transform.position.x, this.transform.position.y, -10);
+			Vector3 next = vec;
+			Vector3 current = cam.transform.position;
+
+			if (next.x != current.x || next.y != current.y) {
+				cam.transform.position = vec;
+			}
+		}
+	}
+
+	public void setPlayer(bool isPlayer){
+		this.isPlayer = isPlayer;
+	}
+
+	public bool getPlayer(){
+		return isPlayer;
 	}
 
 	public BattleGeneralResources getResources(){

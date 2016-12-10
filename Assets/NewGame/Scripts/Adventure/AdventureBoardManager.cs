@@ -142,16 +142,22 @@ public class AdventureBoardManager : MonoBehaviour {
 		this.roadPositions = roadPositions;
 		this.openPositions = openPositions;
 
-		foreach (GameObject general in generals) {
-			placeGeneral (general);
+		foreach (GameObject general in generals){
+			BattleGeneralMeta gMeta = general.GetComponent<BattleGeneralMeta> ();
+			if (gMeta != null) {
+				if (checkFaction (SharedPrefs.getPlayerFaction ()) == gMeta.faction) {
+					LayoutObjectAtRandom (new GameObject[]{ general }, 1, 1, true, true);
+				} else {
+					LayoutObjectAtRandom (new GameObject[]{ general }, 1, 1, true, false);
+				}
+			}
 		}
 
 		formatObjects (true);
 	}
 
-	private void placeGeneral (GameObject general)
-	{
-		LayoutObjectAtRandom (new GameObject[]{general}, 1, 1, true);
+	public string checkFaction(int faction){
+		return GameStatics.factionDict[faction];
 	}
 
 	Point3 RandomPosition (bool onRoad)
@@ -169,7 +175,7 @@ public class AdventureBoardManager : MonoBehaviour {
 		return randomPosition;
 	}
 
-	void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum, bool onRoad)
+	void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum, bool onRoad, bool isPlayer)
 	{
 		int objectCount = UnityEngine.Random.Range (minimum, maximum+1);
 		for(int i = 0; i < objectCount; i++)
@@ -177,6 +183,10 @@ public class AdventureBoardManager : MonoBehaviour {
 			Point3 randomPosition = RandomPosition(onRoad);
 			GameObject tileChoice = tileArray[UnityEngine.Random.Range (0, tileArray.Length)];
 			GameObject instance = Instantiate (tileChoice, randomPosition.asVector3(), Quaternion.identity) as GameObject;
+			BattleGeneralMeta gMeta = instance.GetComponent<BattleGeneralMeta> ();
+			if (gMeta != null) {
+				gMeta.setPlayer (isPlayer);
+			}
 			Debug.Log ("Laying down, name: " + instance.name + " position: " + instance.transform.position);
 			instance.transform.SetParent (boardHolder);
 		}
@@ -189,9 +199,12 @@ public class AdventureBoardManager : MonoBehaviour {
 			Debug.Log ("New Click");
 			foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
 				Debug.Log ("Searching");
-				if  (click.Equals(unit.transform.position)) {
-					Debug.Log ("Clicked: " + click.ToString());
-					lastClicked = unit.transform;
+				BattleGeneralMeta gMeta = unit.GetComponent<BattleGeneralMeta> ();
+				if (gMeta != null) {
+					if  (click.Equals(unit.transform.position) && gMeta.getPlayer()) {
+						Debug.Log ("Clicked: " + click.ToString());
+						lastClicked = unit.transform;
+					}
 				}
 			}
 		} else if (lastClicked != null) { 

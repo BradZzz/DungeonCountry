@@ -12,8 +12,14 @@ public class MainMenuStart : MonoBehaviour {
 		t.text = "Start";
 	}
 
-	public void onClick(){
+	public void onClickStart(){
 		Debug.Log ("Clicked!");
+		Application.LoadLevel ("CharacterSelect");
+	}
+
+	public void onClickFaction(int faction){
+		Debug.Log ("Clicked!");
+		SharedPrefs.setPlayerFaction (faction);
 		Application.LoadLevel ("AdventureScene");
 	}
 

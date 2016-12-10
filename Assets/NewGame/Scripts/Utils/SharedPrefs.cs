@@ -5,6 +5,7 @@ public class SharedPrefs : MonoBehaviour {
 
 	public static SharedPrefs Instance;
 
+	private static int playerFaction = 1;
 	private static gOName playerArmyInstance = null;
 	private static gOName enemyArmyInstance = null;
 
@@ -19,6 +20,17 @@ public class SharedPrefs : MonoBehaviour {
 		{
 			Destroy (gameObject);
 		}
+	}
+
+	public static int getPlayerFaction(){
+		if (playerFaction != null) {
+			return playerFaction;
+		}
+		return -1;
+	}
+
+	public static void setPlayerFaction(int name){
+		playerFaction = name;
 	}
 
 	public static string getPlayerName(){

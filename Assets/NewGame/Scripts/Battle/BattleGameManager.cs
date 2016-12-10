@@ -119,15 +119,23 @@ public class BattleGameManager : MonoBehaviour {
 
 		boardSetup.populateUIPanel(armies);
 
-		populateGeneralPanel (playerGeneral, GameObject.Find ("PlayerGeneral"));
-		populateGeneralPanel (aiGeneral, GameObject.Find ("AIGeneral"));
+		populateGeneralPanel (playerGeneral, GameObject.Find ("PlayerGeneral"), true);
+		populateGeneralPanel (aiGeneral, GameObject.Find ("AIGeneral"), false);
 
 		GameObject board = GameObject.Find("Board");
 		board.SetActive (false);
 	}
 
-	public void populateGeneralPanel(GameObject general, GameObject panel){
-		GameObject img = panel.transform.Find("Image").gameObject;
+	public void populateGeneralPanel(GameObject general, GameObject panel, bool player){
+
+		GameObject imgPanel;
+		if (player) {
+			imgPanel = panel.transform.Find ("PlayerGPanel").gameObject;
+		} else {
+			imgPanel = panel.transform.Find ("AIGPanel").gameObject;
+		}
+
+		GameObject img = imgPanel.transform.Find("Image").gameObject;
 
 		Image image = img.GetComponent<Image> ();
 		image.sprite = general.GetComponent<Image> ().sprite;

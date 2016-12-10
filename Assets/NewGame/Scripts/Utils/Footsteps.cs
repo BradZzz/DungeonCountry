@@ -20,11 +20,15 @@ public class Footsteps : MonoBehaviour {
 	private int columns, rows;
 	private int[,] map;
 	private int[,] generatedMap;
-	private List<GameObject> thisPath;
+	private List<GameObject> thisPath = new List<GameObject> ();
 	private int maxCount = 3500;
 
 	void Awake(){
-		thisPath = new List<GameObject> ();
+		//thisPath = new List<GameObject> ();
+	}
+
+	void Start(){
+		//thisPath = new List<GameObject> ();
 	}
 
 	public List<Point3> generateMapv2Serial(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs, int[,] map){
