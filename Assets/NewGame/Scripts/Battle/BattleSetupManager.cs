@@ -25,6 +25,7 @@ public class BattleSetupManager : MonoBehaviour {
 	private GameObject lastClickedUnit;
 	private BattleArmyManager armyManager;
 	private BattleGameManager gameManager;
+	private GeneralAttributes attribs;
 
 	private List <Vector3> gridPositions;
 
@@ -88,16 +89,17 @@ public class BattleSetupManager : MonoBehaviour {
 	void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum)
 	{
 		int objectCount = UnityEngine.Random.Range (minimum, maximum+1);
-		/*for(int i = 0; i < objectCount; i++)
+
+		for(int i = 0; i < objectCount; i++)
 		{
 			Vector3 randomPosition = RandomPosition();
 			GameObject tileChoice = tileArray[UnityEngine.Random.Range (0, tileArray.Length)];
 			GameObject instance = Instantiate (tileChoice, randomPosition, Quaternion.identity) as GameObject;
 			Debug.Log ("Name: " + instance.name);
 			instance.transform.SetParent (boardHolder);
-		}*/
+		}
 
-		int seed = 50;
+		/*int seed = 50;
 
 		for(int i = 0; i < 8; i++)
 		{
@@ -110,7 +112,7 @@ public class BattleSetupManager : MonoBehaviour {
 			GameObject instance = Instantiate (tileChoice, randomPosition, Quaternion.identity) as GameObject;
 			Debug.Log ("Name: " + instance.name);
 			instance.transform.SetParent (boardHolder);
-		}
+		}*/
 	}
 
 	public void SetupScene (BattleArmyManager armyManager, BattleGameManager gameManager)
@@ -120,6 +122,7 @@ public class BattleSetupManager : MonoBehaviour {
 		BoardSetup ();
 		InitialiseList (4);
 		LayoutObjectAtRandom (innerWallTiles, 12, 24);
+		attribs = gameManager.getPlayerGeneral().GetComponent<BattleGeneralMeta> ().getResources ().getAttribs ();
 	}
 
 	public bool setUnit(Transform floor){
@@ -138,12 +141,14 @@ public class BattleSetupManager : MonoBehaviour {
 
 			instance.SetActive (true);
 
+			//Here is where we set the unit bonuses
 			BattleMeta unitMeta = armyManager.getMyArmy () [position].GetComponent<BattleMeta> ();
 			BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 
 			meta.setPlayer (true);
 			meta.setLives (unitMeta.getLives());
 			meta.setGUI (true);
+			meta.setGeneralAttributes (attribs);
 
 			instance.transform.SetParent (boardHolder);
 
@@ -159,6 +164,7 @@ public class BattleSetupManager : MonoBehaviour {
 	public void panelClicked(GameObject unit, BattleGeneralMeta general){
 		overlay = true;
 		lastClickedUnit = unit;
+		//GeneralAttributes attribs = general.getResources ().getAttribs ();
 		for(int x = 0; x < general.tactics; x++) {
 			for (int y = 0; y < gameManager.getRows(); y++) {
 				Vector2 pos = new Vector2 (x, y);

@@ -33,6 +33,8 @@ public class BattleBoardManager : MonoBehaviour {
 	//This is to keep track of the units for quick activition between turns
 	private List <Transform> unitPositions; 
 	protected Dictionary<Vector2, Transform> dict;
+
+	private GeneralAttributes attribs;
 	private BattleArmyManager armyManager;
 	private BattleGameManager gameManager;
 	public GameObject footsteps;
@@ -83,6 +85,7 @@ public class BattleBoardManager : MonoBehaviour {
 
 	void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum, bool active, bool playerArmy)
 	{
+		//Here is where we set the computer bonuses
 		int objectCount = Random.Range (minimum, maximum+1);
 		for(int i = 0; i < objectCount; i++)
 		{
@@ -96,6 +99,7 @@ public class BattleBoardManager : MonoBehaviour {
 			meta.setPlayer (playerArmy);
 			meta.setTurn (active);
 			meta.setLives (metaU.getLives());
+			meta.setGeneralAttributes (attribs);
 
 			instance.transform.SetParent (boardHolder);
 		}
@@ -285,10 +289,9 @@ public class BattleBoardManager : MonoBehaviour {
 		this.armyManager = armyManager;
 		this.dict = dict;
 		this.playersTurn = playersTurn;
-
 		boardHolder = board;
-
 		InitialiseList (general.tactics);
+		attribs = general.getResources ().getAttribs ();
 
 		//foreach (GameObject army in armyManager.getMyArmy()) {
 		//	LayoutObjectAtRandom (new GameObject[]{army}, 1, 1);

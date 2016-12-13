@@ -45,6 +45,7 @@ public class BattleMeta : MonoBehaviour {
 	private Color healthColor;
 	private bool isPlayer;
 	private bool is_gui = true;
+	private GeneralAttributes attribs = null;
 
 	void Awake()
 	{
@@ -67,6 +68,14 @@ public class BattleMeta : MonoBehaviour {
 
 	public void setGUI(bool set){
 		is_gui = set;
+	}
+
+	public int getMovement(){
+		return movement;
+	}
+
+	public int getRange(){
+		return range;
 	}
 
 	public int getLives(){
@@ -118,8 +127,33 @@ public class BattleMeta : MonoBehaviour {
 		return isPlayer;
 	}
 
+	public void setGeneralAttributes(GeneralAttributes attribs){
+		this.attribs = attribs;
+		hp = currentHP = getCharHp ();
+	}
+
+	public int getCharHp(){
+		if (attribs != null) {
+			return hp + attribs.getDefense();
+		} else {
+			return hp;
+		}
+	}
+
+	public int getICharStrength(){
+		if (attribs != null) {
+			return attack + attribs.getAttack();
+		} else {
+			return attack;
+		}
+	}
+
 	public int getCharStrength(){
-		return attack * getLives ();
+		if (attribs != null) {
+			return (attack + attribs.getAttack()) * getLives ();
+		} else {
+			return attack * getLives ();
+		}
 	}
 
 	public void setPlayer(bool player){
@@ -213,7 +247,7 @@ public class BattleMeta : MonoBehaviour {
 		if (currentHP <= 0) {
 			while (currentHP <= 0) {
 				addLives (-1);
-				currentHP += hp;
+				currentHP += getCharHp();
 			}
 			if (getLives() < 1){
 				gameObject.SetActive(false);

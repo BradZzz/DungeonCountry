@@ -1,15 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/NewGame/Scripts/Battle/BattleAI.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/NewGame/Scripts/Objects/GeneralAttributes.cs">
     <Files>
-      <File FileName="Assets/NewGame/Scripts/Battle/BattleAI.cs" Line="197" Column="85" />
-      <File FileName="Assets/NewGame/Scripts/Utils/Astar.cs" Line="133" Column="37" />
-      <File FileName="Assets/NewGame/Scripts/Battle/BattleBoardManager.cs" Line="210" Column="15" />
-      <File FileName="Assets/NewGame/Scripts/Battle/BattleSetupManager.cs" Line="102" Column="23" />
-      <File FileName="Assets/NewGame/Scripts/Adventure/AdventureLoader.cs" Line="15" Column="27" />
-      <File FileName="Assets/NewGame/Scripts/Utils/Point3.cs" Line="1" Column="1" />
-      <File FileName="Assets/NewGame/Scripts/Battle/BattleGameManager.cs" Line="135" Column="28" />
-      <File FileName="Assets/NewGame/Scripts/Objects/BattleMeta.cs" Line="210" Column="1" />
+      <File FileName="Assets/NewGame/Scripts/Utils/GameStatics.cs" Line="13" Column="4" />
+      <File FileName="Assets/NewGame/Scripts/Objects/BattleMeta.cs" Line="52" Column="12" />
+      <File FileName="Assets/NewGame/Scripts/Objects/BattleGeneralMeta.cs" Line="31" Column="59" />
+      <File FileName="Assets/NewGame/Scripts/Objects/BattleGeneralResources.cs" Line="27" Column="3" />
+      <File FileName="Assets/NewGame/Scripts/Battle/BattleBoardManager.cs" Line="284" Column="24" />
+      <File FileName="Assets/NewGame/Scripts/Battle/BattleSetupManager.cs" Line="104" Column="29" />
+      <File FileName="Assets/NewGame/Scripts/Battle/BattleGameManager.cs" Line="149" Column="25" />
+      <File FileName="Assets/NewGame/Scripts/Objects/GeneralAttributes.cs" Line="63" Column="3" />
+      <File FileName="Assets/NewGame/Scripts/MainMenu/MainMenuStart.cs" Line="23" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

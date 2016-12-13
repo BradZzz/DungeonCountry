@@ -86,6 +86,14 @@ public class BattleGameManager : MonoBehaviour {
 		return rows + level;
 	}
 
+	public GameObject getPlayerGeneral() {
+		return playerGeneral;
+	}
+
+	public GameObject getAIGeneral() {
+		return aiGeneral;
+	}
+
 	void Start() {
 		Debug.Log ("Start");
 		Debug.Log("Player Name: " + SharedPrefs.getPlayerName());
@@ -272,16 +280,16 @@ public class BattleGameManager : MonoBehaviour {
 			}
 			if (child.name == "TextAtk"){
 				Debug.Log (unit.attack);
-				((child.gameObject.GetComponentsInChildren<Text> ()) [0]).text = "" + unit.attack;
+				((child.gameObject.GetComponentsInChildren<Text> ()) [0]).text = "" + unit.getCharStrength();
 			}
 			if (child.name == "TextHealth"){
-				((child.gameObject.GetComponentsInChildren<Text> ()) [0]).text = "" + unit.hp;
+				((child.gameObject.GetComponentsInChildren<Text> ()) [0]).text = "" + unit.getCharHp();
 			}
 			if (child.name == "TextMovement"){
-				((child.gameObject.GetComponentsInChildren<Text> ()) [0]).text = "" + unit.movement;
+				((child.gameObject.GetComponentsInChildren<Text> ()) [0]).text = "" + unit.getMovement();
 			}
 			if (child.name == "TextRange"){
-				((child.gameObject.GetComponentsInChildren<Text> ()) [0]).text = "" + unit.range;
+				((child.gameObject.GetComponentsInChildren<Text> ()) [0]).text = "" + unit.getRange();
 			}
 		}
 	}

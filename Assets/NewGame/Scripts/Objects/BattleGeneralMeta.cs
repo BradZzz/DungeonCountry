@@ -41,7 +41,6 @@ public class BattleGeneralMeta : MonoBehaviour {
 			Vector3 vec = new Vector3 (this.transform.position.x, this.transform.position.y, -10);
 			Vector3 next = vec;
 			Vector3 current = cam.transform.position;
-
 			if (next.x != current.x || next.y != current.y) {
 				cam.transform.position = vec;
 			}

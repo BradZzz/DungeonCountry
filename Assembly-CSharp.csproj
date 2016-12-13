@@ -85,6 +85,7 @@
      <Compile Include="Assets\NewGame\Scripts\Objects\BattleMeta.cs" />
      <Compile Include="Assets\NewGame\Scripts\Objects\DwellingMeta.cs" />
      <Compile Include="Assets\NewGame\Scripts\Objects\EntranceMeta.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Objects\GeneralAttributes.cs" />
      <Compile Include="Assets\NewGame\Scripts\Objects\ResourceMeta.cs" />
      <Compile Include="Assets\NewGame\Scripts\UI\Panel.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\Astar.cs" />
