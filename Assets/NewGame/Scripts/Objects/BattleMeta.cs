@@ -46,6 +46,7 @@ public class BattleMeta : MonoBehaviour {
 	private bool isPlayer;
 	private bool is_gui = true;
 	private GeneralAttributes attribs = null;
+	private string effect = null;
 
 	void Awake()
 	{
@@ -242,6 +243,7 @@ public class BattleMeta : MonoBehaviour {
 	public bool isAttacked (int attack) {
 
 		Debug.Log ("Attacked");
+		StartCoroutine (showEffects ("-" + attack.ToString()));
 
 		currentHP -= attack;
 		if (currentHP <= 0) {
@@ -326,6 +328,16 @@ public class BattleMeta : MonoBehaviour {
 			yield return null;
 		}
 		origin.gameObject.SetActive (false);
+	}
+
+	public string getEffect(){
+		return effect;
+	}
+
+	IEnumerator showEffects(string effect){
+		this.effect = effect;
+		yield return new WaitForSeconds(1.5f);
+		this.effect = null;
 	}
 }
 

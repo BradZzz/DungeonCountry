@@ -32,3 +32,7 @@
 /Users/Shared/Unity/git/DungeonCountry/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/Shared/Unity/git/DungeonCountry/Temp/bin/Debug/Mono.Cecil.Pdb.dll
 /Users/Shared/Unity/git/DungeonCountry/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Users/Shared/Unity/git/DungeonCountry/Temp/bin/Debug/UnityEngine.PlaymodeTestsRunner.dll
+/Users/Shared/Unity/git/DungeonCountry/Temp/bin/Debug/UnityEngine.Analytics.dll
+/Users/Shared/Unity/git/DungeonCountry/Temp/bin/Debug/UnityEngine.HoloLens.dll
+/Users/Shared/Unity/git/DungeonCountry/Temp/bin/Debug/UnityEngine.VR.dll

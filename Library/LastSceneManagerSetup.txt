@@ -1,7 +1,7 @@
 sceneSetups:
 - path: Assets/NewGame/Scenes/MainMenu.unity
-  isLoaded: 1
-  isActive: 1
+  isLoaded: 0
+  isActive: 0
 - path: Assets/NewGame/Scenes/CharacterSelect.unity
   isLoaded: 0
   isActive: 0
@@ -17,3 +17,6 @@ sceneSetups:
 - path: Assets/NewGame/Scenes/BattleScene.unity
   isLoaded: 0
   isActive: 0
+- path: Assets/NewGame/Scenes/LevelUpScene.unity
+  isLoaded: 1
+  isActive: 1

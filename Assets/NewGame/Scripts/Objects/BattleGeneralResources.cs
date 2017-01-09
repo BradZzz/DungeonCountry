@@ -8,6 +8,7 @@ public class BattleGeneralResources : MonoBehaviour {
 	private int instanceID;
 	private List<GameObject> army;
 	private GeneralAttributes attribs;
+	//private LevelUpMeta 
 
 	public BattleGeneralResources(BattleGeneralResources clone){
 		this.clone(clone);

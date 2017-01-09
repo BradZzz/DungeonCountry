@@ -30,7 +30,7 @@ public class GeneralAttributes {
 		return attack;
 	}
 
-	public void getDefense(int defense){
+	public void addDefense(int defense){
 		this.defense = defense;
 	}
 
