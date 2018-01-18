@@ -51,7 +51,7 @@ public class SpriteText : MonoBehaviour {
 		outline.alignment = text.alignment;
 		outline.anchor = text.anchor;
 		outline.transform.localScale = text.transform.localScale;
-		outline.transform.localScale += new Vector3 (.02f,.02f,0);
+		outline.transform.localScale += new Vector3 (.008f,.008f,0);
 		outline.color = Color.black;
 
 		outlines.Add (outline);

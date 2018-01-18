@@ -134,7 +134,7 @@ public class BattleMeta : MonoBehaviour {
 
 	public void setGeneralAttributes(GeneralAttributes attribs){
 		this.attribs = attribs;
-		hp = currentHP = getCharHp ();
+		currentHP = getCharHp ();
 	}
 
 	public int getCharHp(){
@@ -199,7 +199,7 @@ public class BattleMeta : MonoBehaviour {
 	private static GUIStyle _staticHealthStyle;
 
 	private void OnGUI() {
-		if (is_gui) {
+		if (is_gui && getLives() > 0) {
 			Vector3 guiPosition = Camera.main.WorldToScreenPoint (transform.position);
 			guiPosition.y = Screen.height - guiPosition.y;
 
@@ -239,9 +239,9 @@ public class BattleMeta : MonoBehaviour {
 
 			GUI.Box (hRect, GUIContent.none, _staticHealthStyle);
 
-//			Debug.Log ("name: " + name);
-//			Debug.Log ("hp: " + hp);
-//			Debug.Log ("currentHP: " + currentHP);
+			Debug.Log ("name: " + name);
+			Debug.Log ("hp: " + hp);
+			Debug.Log ("currentHP: " + currentHP);
 		}
 	}
 
@@ -265,7 +265,10 @@ public class BattleMeta : MonoBehaviour {
 				currentHP += getCharHp();
 			}
 			if (getLives() < 1){
-				gameObject.SetActive(false);
+				setLives (0);
+				currentHP = 0;
+				StartCoroutine (slowDeath ());
+//				gameObject.SetActive(false);
 				//The unit isnt active anymore
 				return false;
 			}
@@ -351,6 +354,12 @@ public class BattleMeta : MonoBehaviour {
 		this.effect = effect;
 		yield return new WaitForSeconds(1.5f);
 		this.effect = null;
+	}
+
+	IEnumerator slowDeath(){
+		yield return new WaitForSeconds(1.5f);
+		//Make the unit inactive after waiting a bit...
+		gameObject.SetActive(false);
 	}
 }
 

@@ -39,7 +39,7 @@ public class BattleConverter : MonoBehaviour {
 		army_2[0].name = "Necropolis_Gargoyle";
 		army_2[0].qty = 50;
 		army_2[1] = new BattleSerializeableArmy ();
-		army_2[1].name = "Necropolis_Gargoyle";
+		army_2[1].name = "Necropolis_ZombieMonarch";
 		army_2[1].qty = 60;
 		battle[1].army = JsonHelper.ToJson(army_2);
 
@@ -63,9 +63,9 @@ public class BattleConverter : MonoBehaviour {
 	}
 
 	public static GameObject[] getSave(Glossary glossary){
-		GameObject playerGeneral;
-		GameObject aiGeneral;
-
+//		GameObject playerGeneral;
+//		GameObject aiGeneral;
+//
 		string newInfo = PlayerPrefs.GetString ("battle");
 		BattleSerializeable[] thisBattle = JsonHelper.FromJson<BattleSerializeable>(newInfo);
 		Debug.Log("after: " + newInfo);
