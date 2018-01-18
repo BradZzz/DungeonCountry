@@ -1,22 +1,7 @@
 sceneSetups:
-- path: Assets/NewGame/Scenes/MainMenu.unity
-  isLoaded: 0
-  isActive: 0
-- path: Assets/NewGame/Scenes/CharacterSelect.unity
-  isLoaded: 0
-  isActive: 0
 - path: Assets/NewGame/Scenes/AdventureScene.unity
-  isLoaded: 1
-  isActive: 1
-- path: Assets/NewGame/Scenes/CastleScene.unity
-  isLoaded: 0
-  isActive: 0
-- path: Assets/NewGame/Scenes/DwellingScene.unity
   isLoaded: 0
   isActive: 0
 - path: Assets/NewGame/Scenes/BattleScene.unity
-  isLoaded: 0
-  isActive: 0
-- path: Assets/NewGame/Scenes/LevelUpScene.unity
-  isLoaded: 0
-  isActive: 0
+  isLoaded: 1
+  isActive: 1

@@ -14,6 +14,12 @@ public class EffectText : MonoBehaviour {
 		parent = transform.parent;
 		parentMeta = parent.GetComponent<BattleMeta>();
 		text = GetComponent<TextMesh>();
+		Vector3 scale = parent.transform.localScale;
+//		Debug.Log ("scale: " + scale.ToString());
+		int fontScale = (int) (Mathf.Max(scale.x,scale.y));
+		text.fontSize = (int) (fontScale * 16 + (Mathf.Pow(fontScale,3) * 1.2));
+
+		Debug.Log ("font: " + text.fontSize);
 
 		var parentRenderer = parent.GetComponent<Renderer>();
 		var renderer = GetComponent<Renderer>();

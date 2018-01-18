@@ -21,13 +21,13 @@ public class Panel : MonoBehaviour {
 	}
 
 	Transform myRayHit(Vector2 click){
-		Debug.Log ("Looking: " + click.ToString());
+//		Debug.Log ("Looking: " + click.ToString());
 		foreach (Transform child in gameObject.transform) {
 			Rect rt = ((RectTransform) child).rect;
 
 			Rect rect = new Rect (child.position.x - (rt.width/2), child.position.y - (rt.height/2), rt.width, rt.height);
 
-			Debug.Log ("Found: " + child.transform + " pos: " + rect.position.ToString() + " dims: " + rect.width + ":" + rect.height);
+			//Debug.Log ("Found: " + child.transform + " pos: " + rect.position.ToString() + " dims: " + rect.width + ":" + rect.height);
 
 			if (rect.Contains (Input.mousePosition) && !child.transform.name.Contains("Button")) {
 				return child;

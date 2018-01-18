@@ -18,6 +18,8 @@ public class SpriteText : MonoBehaviour {
 		parentMeta = parent.GetComponent<BattleMeta>();
 		renderer = GetComponent<Renderer>();
 		text = GetComponent<TextMesh>();
+		Debug.Log ("SpriteText: " + text.characterSize);
+		text.characterSize = 0.12f;
 		renderer.sortingLayerID = parentRenderer.sortingLayerID;
 		renderer.sortingOrder = parentRenderer.sortingOrder;
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 /*
  * TODO:
@@ -38,6 +39,9 @@ public class BattleGameManager : MonoBehaviour {
 	//private bool playersTurn;
 	private int level = 1;
 
+	//New Shit
+	Glossary glossary;
+
 	void Awake()
 	{
 		if (instance == null){
@@ -63,6 +67,8 @@ public class BattleGameManager : MonoBehaviour {
 
 		playerPanel = GameObject.Find("PlayerPanel");
 		enemyPanel = GameObject.Find("EnemyPanel");
+
+		glossary = GameObject.Find("Glossary").GetComponent<Glossary>();
 
 		hidePanel (playerPanel);
 		hidePanel (enemyPanel);
@@ -99,39 +105,24 @@ public class BattleGameManager : MonoBehaviour {
 		Debug.Log("Player Name: " + SharedPrefs.getPlayerName());
 		Debug.Log("Enemy Name: " + SharedPrefs.getEnemyName());
 
-		foreach (GameObject unity in GameObject.FindGameObjectsWithTag("Unit")) {
-			Debug.Log("Unit Name: " + unity.name);
-		}
+		BattleConverter.putSaveDemo ();
+		GameObject[] save = BattleConverter.getSave(glossary);
 
-		playerGeneral = GameObject.Find(SharedPrefs.getPlayerName());
-		aiGeneral = GameObject.Find(SharedPrefs.getEnemyName());
+		playerGeneral = save [0];
+		aiGeneral = save [1];
 
-		if (playerGeneral != null) {
-			Debug.Log("General Name: " + playerGeneral.name);
-		}
+		BattleGeneralMeta playerGenMeta = playerGeneral.GetComponent<BattleGeneralMeta>();
+		BattleGeneralMeta aiGenMeta = aiGeneral.GetComponent<BattleGeneralMeta>();
 
-		if (aiGeneral != null) {
-			Debug.Log("General Name: " + aiGeneral.name);
-		}
-
-		BattleGeneralMeta playGen = playerGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
-		BattleGeneralMeta aiGen = aiGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
-
-		armyScript = new BattleArmyManager(playGen.getResources().getarmy().ToArray(), aiGen.getResources().getarmy().ToArray());
-
+		armyScript = new BattleArmyManager(playerGenMeta.getResources().getarmy().ToArray(), aiGenMeta.getResources().getarmy().ToArray());
 		boardSetup.SetupScene (armyScript, instance);
 
 		//This puts the player's army into the ui panel
 		List<GameObject> armies = new List<GameObject>();
 		armies.AddRange (armyScript.getMyArmy ());
-
 		boardSetup.populateUIPanel(armies);
-
 		populateGeneralPanel (playerGeneral, GameObject.Find ("PlayerGeneral"), true);
 		populateGeneralPanel (aiGeneral, GameObject.Find ("AIGeneral"), false);
-
-		GameObject board = GameObject.Find("Board");
-		board.SetActive (false);
 	}
 
 	public void populateGeneralPanel(GameObject general, GameObject panel, bool player){
@@ -180,12 +171,14 @@ public class BattleGameManager : MonoBehaviour {
 
 	public void panelClicked(GameObject unit){
 		int position = Int32.Parse (unit.transform.name.Replace ("Unit", "")) - 1;
-		GameObject instance = armyScript.getMyArmy () [position];
+		if (armyScript.getMyArmy () != null) {
+			GameObject instance = armyScript.getMyArmy () [position];
 
-		populatePanel (playerPanel, instance);
+			populatePanel (playerPanel, instance);
 
-		BattleGeneralMeta general = playerGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
-		boardSetup.panelClicked (unit, general);
+			BattleGeneralMeta general = playerGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
+			boardSetup.panelClicked (unit, general);
+		}
 	}
 
 	public void isSettingUp(RaycastHit2D [] hit){
@@ -227,11 +220,11 @@ public class BattleGameManager : MonoBehaviour {
 
 			if (!boardScript.charMoving() && !shot.transform.name.Contains("Floor")){
 				hitValid = shot.transform;
-				Debug.Log ("Using: " + hitValid.gameObject.name);
+				//Debug.Log ("Using: " + hitValid.gameObject.name);
 				break;
 			} else if (boardScript.charMoving()) {
 				hitValid = shot.transform;
-				Debug.Log ("Using: " + hitValid.gameObject.name);
+				//Debug.Log ("Using: " + hitValid.gameObject.name);
 				if (hitValid.tag == "Unit") {
 					break;
 				} 
@@ -327,6 +320,8 @@ public class BattleGameManager : MonoBehaviour {
 	public void returnToMenu()
 	{
 		Destroy (gameObject);
-		Application.LoadLevel ("AdventureScene");
+
+		Debug.Log ("Fin");
+//		Application.LoadLevel ("AdventureScene");
 	}
 }

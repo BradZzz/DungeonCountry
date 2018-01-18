@@ -130,7 +130,7 @@ public class Footsteps : MonoBehaviour {
 			//need to compile the unique list of points into a new list here
 			foreach (Point3 point in stepQueue.ToArray()) {
 				if (!foundVal.Contains(point)) {
-					Debug.Log ("Adding: " + point.ToString());
+//					Debug.Log ("Adding: " + point.ToString());
 					foundVal.Add (point);
 				}
 			}

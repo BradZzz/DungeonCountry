@@ -83,7 +83,7 @@ public class BattleGeneralResources : MonoBehaviour {
 			GameObject instance = Instantiate (unit) as GameObject;
 			BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 			meta.setPlayer (true);
-			meta.setLives (1);
+			meta.setLives (amount);
 			meta.setGUI (false);
 			instance.SetActive (false);
 			DontDestroyOnLoad(instance);

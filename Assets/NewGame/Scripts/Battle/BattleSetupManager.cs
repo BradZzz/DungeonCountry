@@ -43,7 +43,6 @@ public class BattleSetupManager : MonoBehaviour {
 	{
 		//Instantiate Board and set boardHolder to its transform.
 		boardHolder = new GameObject ("Board").transform;
-
 		for(int x = -1; x <= gameManager.getColumns(); x++)
 		{
 			for(int y = -1; y <= gameManager.getRows(); y++)
@@ -95,7 +94,7 @@ public class BattleSetupManager : MonoBehaviour {
 			Vector3 randomPosition = RandomPosition();
 			GameObject tileChoice = tileArray[UnityEngine.Random.Range (0, tileArray.Length)];
 			GameObject instance = Instantiate (tileChoice, randomPosition, Quaternion.identity) as GameObject;
-			Debug.Log ("Name: " + instance.name);
+//			Debug.Log ("Name: " + instance.name);
 			instance.transform.SetParent (boardHolder);
 		}
 
@@ -126,19 +125,12 @@ public class BattleSetupManager : MonoBehaviour {
 	}
 
 	public bool setUnit(Transform floor){
-
-		Debug.Log ("SetUnit");
-
 		Vector2 pos = new Vector2 (floor.position.x, floor.position.y);
-
 		if (lastClickedUnit != null && placeable.ContainsKey(pos)) {
 			Debug.Log ("Setting unit at position: " + floor.position.ToString());
 			Debug.Log ("Unit Name: " + lastClickedUnit.transform.name);
-
 			int position = Int32.Parse (lastClickedUnit.transform.name.Replace ("Unit", "")) - 1;
-
 			GameObject instance = Instantiate (armyManager.getMyArmy()[position], floor.position, Quaternion.identity) as GameObject;
-
 			instance.SetActive (true);
 
 			//Here is where we set the unit bonuses
@@ -149,11 +141,10 @@ public class BattleSetupManager : MonoBehaviour {
 			meta.setLives (unitMeta.getLives());
 			meta.setGUI (true);
 			meta.setGeneralAttributes (attribs);
-
 			instance.transform.SetParent (boardHolder);
-
 			GameObject.Find ("Unit" + (position + 1)).SetActive(false);
 		}
+
 		lastClicked = null;
 		overlay = false;
 		resetPanels ();
@@ -195,6 +186,9 @@ public class BattleSetupManager : MonoBehaviour {
 			if (i <= units.Count) {
 				Image image = panelUnit.gameObject.GetComponent<Image> ();
 				image.sprite = units [i - 1].GetComponent<SpriteRenderer> ().sprite;
+				Text livesText = panelUnit.gameObject.transform.GetChild (0).GetComponent<Text> ();
+				BattleMeta met = units [i - 1].GetComponent<BattleMeta> ();
+				livesText.text = met.getLives().ToString();
 			} else {
 				panelUnit.gameObject.SetActive (false);
 			}

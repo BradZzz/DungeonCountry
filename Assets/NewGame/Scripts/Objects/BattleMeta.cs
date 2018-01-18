@@ -50,14 +50,18 @@ public class BattleMeta : MonoBehaviour {
 
 	void Awake()
 	{
-		Debug.Log ("OnAwake");
+		init ();
+	}
+
+	public void init() {
+		Debug.Log ("init");
 		currentHP = hp;
 		lives = 1;
 		animator = GetComponent<Animator>();
 		spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 		actions = new BattleActions (1,1,true);
-		Debug.Log ("Sprite");
-		Debug.Log (spriteRenderer.sprite);
+		//Debug.Log ("Sprite");
+		//Debug.Log (spriteRenderer.sprite);
 		canMove = true;
 	}
 
@@ -134,11 +138,12 @@ public class BattleMeta : MonoBehaviour {
 	}
 
 	public int getCharHp(){
-		if (attribs != null) {
-			return hp + attribs.getDefense();
-		} else {
-			return hp;
-		}
+//		if (attribs != null) {
+//			return hp + attribs.getDefense();
+//		} else {
+//			return hp;
+//		}
+		return hp;
 	}
 
 	public int getICharStrength(){
@@ -233,6 +238,10 @@ public class BattleMeta : MonoBehaviour {
 			_staticHealthStyle.normal.background = _staticHealthTexture;
 
 			GUI.Box (hRect, GUIContent.none, _staticHealthStyle);
+
+//			Debug.Log ("name: " + name);
+//			Debug.Log ("hp: " + hp);
+//			Debug.Log ("currentHP: " + currentHP);
 		}
 	}
 
@@ -244,6 +253,10 @@ public class BattleMeta : MonoBehaviour {
 
 		Debug.Log ("Attacked");
 		StartCoroutine (showEffects ("-" + attack.ToString()));
+
+		if (attribs != null) {
+			attack -= attribs.getDefense() * lives;
+		}
 
 		currentHP -= attack;
 		if (currentHP <= 0) {

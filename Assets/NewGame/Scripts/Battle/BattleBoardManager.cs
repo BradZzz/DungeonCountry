@@ -93,8 +93,16 @@ public class BattleBoardManager : MonoBehaviour {
 			GameObject tileChoice = tileArray[Random.Range (0, tileArray.Length)];
 			GameObject instance = Instantiate (tileChoice, randomPosition, Quaternion.identity) as GameObject;
 
+			instance.SetActive (true);
+
 			BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 			BattleMeta metaU = tileChoice.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+
+			Debug.Log ("Layout at Random");
+			Debug.Log (meta.name);
+			Debug.Log (randomPosition);
+
+			meta.init ();
 
 			meta.setPlayer (playerArmy);
 			meta.setTurn (active);
@@ -106,7 +114,7 @@ public class BattleBoardManager : MonoBehaviour {
 	}
 		
 	public void boardClicked(Transform clickedObject){
-		Debug.Log ("parent: " + clickedObject.name + ": " + clickedObject.position.x + "-" + clickedObject.position.y);
+		//Debug.Log ("parent: " + clickedObject.name + ": " + clickedObject.position.x + "-" + clickedObject.position.y);
 		//StartCoroutine (show_actions (clickedObject));
 		//show_actions (clickedObject);
 		generateWalkRadius(clickedObject);
@@ -214,7 +222,7 @@ public class BattleBoardManager : MonoBehaviour {
 		BattleMeta meta = lastClicked.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 		if (hit.position.x == child.position.x && hit.position.y == child.position.y &&
 			Math.Abs (hit.position.x - lastClicked.position.x) + Math.Abs (hit.position.y - lastClicked.position.y) <= movement && meta.getActions() > 0 && meta.getTurn()) {
-			Vector3 start = new Vector3 ((float)lastClicked.position.x, (float)lastClicked.position.y, (float)lastClicked.position.z);
+//			Vector3 start = new Vector3 ((float)lastClicked.position.x, (float)lastClicked.position.y, (float)lastClicked.position.z);
 			Vector3 end = new Vector3 ((float)hit.position.x, (float)hit.position.y, (float)lastClicked.position.z);
 			meta.isMoving ();
 			StartCoroutine (smooth_move (lastClicked, end, 1f));
@@ -256,7 +264,6 @@ public class BattleBoardManager : MonoBehaviour {
 		Vector3 end_pos = direction;
 		while (origin.position != end_pos) { 
 			float move = Mathf.Lerp (0,1, (Time.time - startime) * speed);
-
 			Vector3 position = origin.position;
 
 			position.x += (end_pos.x - start_pos.x) * move;
@@ -293,16 +300,14 @@ public class BattleBoardManager : MonoBehaviour {
 		InitialiseList (general.tactics);
 		attribs = general.getResources ().getAttribs ();
 
-		//foreach (GameObject army in armyManager.getMyArmy()) {
-		//	LayoutObjectAtRandom (new GameObject[]{army}, 1, 1);
-		//}
-
 		foreach (GameObject army in armyManager.getTheirArmy()) {
 			LayoutObjectAtRandom (new GameObject[]{army}, 1, 1, false, false);
 		}
 
 		foreach (Transform tile in boardHolder) {
 			if (tile.tag.Contains ("Unit")) {
+//				BattleMeta meta = tile.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+//				meta.init ();
 				unitPositions.Add (tile);
 			}
 		}
@@ -318,16 +323,6 @@ public class BattleBoardManager : MonoBehaviour {
 		List <Transform> aiUnits = new List<Transform>(); 
 		foreach(Transform unit in unitPositions){
 			BattleMeta meta = unit.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
-
-			/*
-			 * 		
-				GameObject playerPanel = GameObject.Find ("PlayerGeneral");
-				playerImage = playerPanel.transform.Find ("Image");
-
-				GameObject aiPanel = GameObject.Find ("AIGeneral");
-				enemyImage = aiPanel.transform.Find ("Image");
-			 */
-
 			if (playersTurn) {
 
 				switchTurn (true);
@@ -338,9 +333,7 @@ public class BattleBoardManager : MonoBehaviour {
 					meta.setTurn (false);
 				}
 			} else if (!playersTurn) {
-
 				switchTurn (false);
-
 				if (meta.getPlayer()) {
 					meta.setTurn (false);
 				} else {
@@ -353,12 +346,9 @@ public class BattleBoardManager : MonoBehaviour {
 		}
 		if (!playersTurn) {
 			Debug.Log ("AI turn start");
-
 			BattleAI ai = gameObject.AddComponent<BattleAI> ();
 			ai.init (getBoard(), aiUnits, gameManager.getColumns (), gameManager.getRows ());
-			//BattleAI ai = new BattleAI (boardHolder, aiUnits);
 			ai.moveUnits (activateUnits);
-			//activateUnits (true);
 		}
 	}
 
