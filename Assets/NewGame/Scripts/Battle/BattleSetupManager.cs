@@ -7,9 +7,9 @@ using System;
 public class BattleSetupManager : MonoBehaviour {
 
 
-	public GameObject[] outerWallTiles;
-	public GameObject[] innerWallTiles;
-	public GameObject[] floorTiles;
+//	public GameObject[] outerWallTiles;
+//	public GameObject[] innerWallTiles;
+//	public GameObject[] floorTiles;
 
 	private Transform boardHolder;
 	//This holds all the panels
@@ -39,7 +39,7 @@ public class BattleSetupManager : MonoBehaviour {
 		lastClickedUnit = null;
 	}
 
-	void BoardSetup ()
+	void BoardSetup (BattleLevels level)
 	{
 		//Instantiate Board and set boardHolder to its transform.
 		boardHolder = new GameObject ("Board").transform;
@@ -47,11 +47,11 @@ public class BattleSetupManager : MonoBehaviour {
 		{
 			for(int y = -1; y <= gameManager.getRows(); y++)
 			{
-				GameObject toInstantiate = floorTiles[UnityEngine.Random.Range (0,floorTiles.Length)];
+				GameObject toInstantiate = level.floorTiles[UnityEngine.Random.Range (0,level.floorTiles.Length)];
 
 				if (y == -1 || x == -1 || y == gameManager.getRows() || x == gameManager.getColumns()) {
 					//Debug.Log ("Got here!");
-					toInstantiate = outerWallTiles[UnityEngine.Random.Range (0,outerWallTiles.Length)];
+					toInstantiate = level.outerWallTiles[UnityEngine.Random.Range (0,level.outerWallTiles.Length)];
 					//Debug.Log ("Instantiating: " + toInstantiate.name);
 				}
 
@@ -114,13 +114,13 @@ public class BattleSetupManager : MonoBehaviour {
 		}*/
 	}
 
-	public void SetupScene (BattleArmyManager armyManager, BattleGameManager gameManager)
+	public void SetupScene (BattleArmyManager armyManager, BattleGameManager gameManager, BattleLevels level)
 	{
 		this.armyManager = armyManager;
 		this.gameManager = gameManager;
-		BoardSetup ();
+		BoardSetup (level);
 		InitialiseList (4);
-		LayoutObjectAtRandom (innerWallTiles, 12, 24);
+		LayoutObjectAtRandom (level.innerWallTiles, 12, 24);
 		attribs = gameManager.getPlayerGeneral().GetComponent<BattleGeneralMeta> ().getResources ().getAttribs ();
 	}
 

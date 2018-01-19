@@ -68,6 +68,7 @@
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleCharacter.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleConverter.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleGameManager.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Battle\BattleLevels.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleLoader.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleSerializeable.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleSerializeableArmy.cs" />

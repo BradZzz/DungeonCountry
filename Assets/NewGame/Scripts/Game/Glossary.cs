@@ -6,9 +6,21 @@ public class Glossary : MonoBehaviour {
 
 	public GameObject[] factions;
 	public GameObject[] generals;
+	public GameObject[] levels;
 
 	private AffiliationMeta[] affiliations;
+	private BattleLevels[] stages;
 	private BattleGeneralMeta[] leaders;
+
+	public BattleLevels findLevels(string search) {
+		BattleLevels.lvltype type = (BattleLevels.lvltype)System.Enum.Parse (typeof(BattleLevels.lvltype), search);
+		foreach (BattleLevels stage in stages) {
+			if (stage.lvl == type) {
+				return stage;
+			}
+		}
+		return stages [0];
+	}
 
 	public AffiliationMeta findFaction(string search) {
 		foreach (AffiliationMeta aff in affiliations) {
@@ -48,6 +60,11 @@ public class Glossary : MonoBehaviour {
 		leaders = new BattleGeneralMeta[generals.Length];
 		for(int i = 0; i < generals.Length; i++){
 			leaders[i] = generals[i].GetComponent<BattleGeneralMeta>();
+		}
+
+		stages = new BattleLevels[levels.Length];
+		for(int i = 0; i < levels.Length; i++){
+			stages[i] = levels[i].GetComponent<BattleLevels>();
 		}
 	}
 }
