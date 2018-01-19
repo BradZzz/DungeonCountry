@@ -54,7 +54,7 @@ public class BattleMeta : MonoBehaviour {
 	}
 
 	public void init() {
-		Debug.Log ("init");
+		//Debug.Log ("init");
 		currentHP = hp;
 		lives = 1;
 		animator = GetComponent<Animator>();
@@ -138,11 +138,6 @@ public class BattleMeta : MonoBehaviour {
 	}
 
 	public int getCharHp(){
-//		if (attribs != null) {
-//			return hp + attribs.getDefense();
-//		} else {
-//			return hp;
-//		}
 		return hp;
 	}
 
@@ -238,10 +233,6 @@ public class BattleMeta : MonoBehaviour {
 			_staticHealthStyle.normal.background = _staticHealthTexture;
 
 			GUI.Box (hRect, GUIContent.none, _staticHealthStyle);
-
-			Debug.Log ("name: " + name);
-			Debug.Log ("hp: " + hp);
-			Debug.Log ("currentHP: " + currentHP);
 		}
 	}
 
@@ -251,12 +242,16 @@ public class BattleMeta : MonoBehaviour {
 
 	public bool isAttacked (int attack) {
 
-		Debug.Log ("Attacked");
-		StartCoroutine (showEffects ("-" + attack.ToString()));
+		//Debug.Log ("Attacked");
 
 		if (attribs != null) {
 			attack -= attribs.getDefense() * lives;
+			if (attack <= 0) {
+				attack = 1;
+			}
 		}
+
+		StartCoroutine (showEffects ("-" + attack.ToString()));
 
 		currentHP -= attack;
 		if (currentHP <= 0) {
@@ -291,7 +286,7 @@ public class BattleMeta : MonoBehaviour {
 	}
 
 	public void isAttackingUnrestricted(BattleMeta enemy){
-		Debug.Log ("Attacking!");
+		//Debug.Log ("Attacking!");
 		if (projectile != null) {
 			GameObject thisProjectile = Instantiate<GameObject> (projectile);
 			thisProjectile.transform.position = transform.position;

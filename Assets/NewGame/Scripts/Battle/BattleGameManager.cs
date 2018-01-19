@@ -183,8 +183,8 @@ public class BattleGameManager : MonoBehaviour {
 
 	public void isSettingUp(RaycastHit2D [] hit){
 
-		Debug.Log ("isSettingUp");
-		Debug.Log ("Hit: " + hit.Length);
+		//Debug.Log ("isSettingUp");
+		//Debug.Log ("Hit: " + hit.Length);
 
 		Transform hitValid = null;
 
@@ -194,15 +194,15 @@ public class BattleGameManager : MonoBehaviour {
 
 			if (shot.transform.name.Contains("Floor") && !Coroutines.hasParent(shot.transform)){
 				hitValid = shot.transform;
-				Debug.Log ("Using: " + hitValid.gameObject.name);
+				//Debug.Log ("Using: " + hitValid.gameObject.name);
 				break;
 			} 
 		}
 
 		if (hitValid != null) {
-			Debug.Log ("Hit");
+			//Debug.Log ("Hit");
 			if (boardSetup.getOverlay()) {
-				Debug.Log ("Overlay");
+				//Debug.Log ("Overlay");
 				hidePanel (playerPanel);
 				boardSetup.setUnit (hitValid);
 			}
@@ -211,7 +211,7 @@ public class BattleGameManager : MonoBehaviour {
 
 	public void isBattle(RaycastHit2D [] hit){
 
-		Debug.Log ("isBattle");
+		//Debug.Log ("isBattle");
 
 		Transform hitValid = null;
 		foreach (RaycastHit2D shot in hit){
@@ -244,14 +244,14 @@ public class BattleGameManager : MonoBehaviour {
 			}
 				
 			if (boardScript.charMoving()) {
-				Debug.Log ("Hit2!");
+				//Debug.Log ("Hit2!");
 				boardScript.moveClick (hitValid.transform);
 				if (enemy == null) {
 					hidePanel (playerPanel);
 					hidePanel (enemyPanel);
 				}
 			} else {
-				Debug.Log ("Hit!");
+				//Debug.Log ("Hit!");
 				boardScript.boardClicked (hitValid.transform);
 			}
 		}
@@ -272,7 +272,6 @@ public class BattleGameManager : MonoBehaviour {
 				((child.gameObject.GetComponentsInChildren<Text> ()) [0]).text = "" + unit.getLives();
 			}
 			if (child.name == "TextAtk"){
-				Debug.Log (unit.attack);
 				((child.gameObject.GetComponentsInChildren<Text> ()) [0]).text = "" + unit.getCharStrength();
 			}
 			if (child.name == "TextHealth"){

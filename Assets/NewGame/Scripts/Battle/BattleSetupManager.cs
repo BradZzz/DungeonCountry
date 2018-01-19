@@ -50,9 +50,9 @@ public class BattleSetupManager : MonoBehaviour {
 				GameObject toInstantiate = floorTiles[UnityEngine.Random.Range (0,floorTiles.Length)];
 
 				if (y == -1 || x == -1 || y == gameManager.getRows() || x == gameManager.getColumns()) {
-					Debug.Log ("Got here!");
+					//Debug.Log ("Got here!");
 					toInstantiate = outerWallTiles[UnityEngine.Random.Range (0,outerWallTiles.Length)];
-					Debug.Log ("Instantiating: " + toInstantiate.name);
+					//Debug.Log ("Instantiating: " + toInstantiate.name);
 				}
 
 				GameObject instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
@@ -207,7 +207,7 @@ public class BattleSetupManager : MonoBehaviour {
 	}
 
 	public bool isSettingUp() {
-		Debug.Log ("isSettingUp: " + settingUp);
+		//Debug.Log ("isSettingUp: " + settingUp);
 		return settingUp;
 	}
 

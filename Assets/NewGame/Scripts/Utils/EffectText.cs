@@ -15,11 +15,13 @@ public class EffectText : MonoBehaviour {
 		parentMeta = parent.GetComponent<BattleMeta>();
 		text = GetComponent<TextMesh>();
 		Vector3 scale = parent.transform.localScale;
-//		Debug.Log ("scale: " + scale.ToString());
+		Debug.Log ("scale: " + scale.ToString());
 		int fontScale = (int) (Mathf.Max(scale.x,scale.y));
 		text.fontSize = (int) (fontScale * 16 + (Mathf.Pow(fontScale,3) * 1.2));
 
-		Debug.Log ("font: " + text.fontSize);
+		Debug.Log ("parent: " + parentMeta.name);
+		Debug.Log ("text font: " + text.fontSize);
+		Debug.Log ("text parent scale: " + parent.transform.localScale);
 
 		var parentRenderer = parent.GetComponent<Renderer>();
 		var renderer = GetComponent<Renderer>();
@@ -29,16 +31,18 @@ public class EffectText : MonoBehaviour {
 
 	void refresh(){
 		if (parentMeta.getEffect() != text.text) {
+			Debug.Log ("parent: " + parentMeta.name);
+			Debug.Log ("effect: " + parentMeta.getEffect());
 			if (moveup != null) {
 				StopCoroutine(moveup);
 			}
+			text.text = parentMeta.getEffect();
 			basePos = parent.transform.position;
 			basePos.x = transform.position.x;
 			basePos.y += 1.5f;
 			transform.position = basePos;
 			var spriteTransform = parent.transform;
 			var pos = spriteTransform.position;
-			text.text = parentMeta.getEffect();
 			moveup = jagged_move (transform, .05f);
 			StartCoroutine(moveup);
 		}

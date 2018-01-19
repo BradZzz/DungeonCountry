@@ -98,9 +98,9 @@ public class BattleBoardManager : MonoBehaviour {
 			BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 			BattleMeta metaU = tileChoice.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 
-			Debug.Log ("Layout at Random");
-			Debug.Log (meta.name);
-			Debug.Log (randomPosition);
+			//Debug.Log ("Layout at Random");
+			//Debug.Log (meta.name);
+			//Debug.Log (randomPosition);
 
 			meta.init ();
 
@@ -165,7 +165,7 @@ public class BattleBoardManager : MonoBehaviour {
 			SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
 			sprRend.material.shader = Shader.Find ("Custom/OverlayShaderBlue");
 			movePositions.Add(child); 
-			Debug.Log ("Child: " + child.ToString());
+			//Debug.Log ("Child: " + child.ToString());
 		}
 
 		BattleMeta meta = lastClicked.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
@@ -345,7 +345,7 @@ public class BattleBoardManager : MonoBehaviour {
 			}
 		}
 		if (!playersTurn) {
-			Debug.Log ("AI turn start");
+			//Debug.Log ("AI turn start");
 			BattleAI ai = gameObject.AddComponent<BattleAI> ();
 			ai.init (getBoard(), aiUnits, gameManager.getColumns (), gameManager.getRows ());
 			ai.moveUnits (activateUnits);

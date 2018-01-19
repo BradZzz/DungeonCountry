@@ -44,10 +44,10 @@ public class BattleActions {
 
 	//[MethodImpl(MethodImplOptions.Synchronized)]
 	public bool takeAttack(int cost){
-		Debug.Log ("Attacks: " + thisAttacks + " Cost: " + cost);
+		//Debug.Log ("Attacks: " + thisAttacks + " Cost: " + cost);
 		if (thisAttacks - cost >= 0) {
 			thisAttacks -= cost;
-			Debug.Log ("New Attacks: " + thisAttacks + " Cost: " + cost);
+			//Debug.Log ("New Attacks: " + thisAttacks + " Cost: " + cost);
 			checkEndTurn ();
 			return true;
 		} else {

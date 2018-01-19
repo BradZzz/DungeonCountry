@@ -9,29 +9,29 @@ public class BattleConverter : MonoBehaviour {
 		battle[0] = new BattleSerializeable ();
 		battle[0].name = "Quinn";
 		BattleSerializeableStats stats_1 = new BattleSerializeableStats ();
-		stats_1.attack = 2;
-		stats_1.defense = 1;
+		stats_1.attack = 1;
+		stats_1.defense = 100;
 		stats_1.speed = 1;
-		stats_1.range = 2;
+		stats_1.range = 1;
 		battle[0].stats = JsonUtility.ToJson(stats_1);
 		BattleSerializeableArmy[] army_1 = new BattleSerializeableArmy[3];
 		army_1[0] = new BattleSerializeableArmy ();
 		army_1[0].name = "Human_Peasant";
-		army_1[0].qty = 125;
+		army_1[0].qty = 300;
 		army_1[1] = new BattleSerializeableArmy ();
-		army_1[1].name = "Human_Rogue";
-		army_1[1].qty = 20;
+		army_1[1].name = "Human_Knight";
+		army_1[1].qty = 200;
 		army_1[2] = new BattleSerializeableArmy ();
-		army_1[2].name = "Human_Angel";
-		army_1[2].qty = 50;
+		army_1[2].name = "Human_Lord";
+		army_1[2].qty = 20;
 		battle[0].army = JsonHelper.ToJson(army_1);
 
 		battle[1] = new BattleSerializeable ();
 		battle[1].name = "Zarlock";
 		BattleSerializeableStats stats_2 = new BattleSerializeableStats ();
-		stats_2.attack = 1;
-		stats_2.defense = 2;
-		stats_2.speed = 2;
+		stats_2.attack = 10;
+		stats_2.defense = 1;
+		stats_2.speed = 1;
 		stats_2.range = 1;
 		battle[1].stats = JsonUtility.ToJson(stats_2);
 		BattleSerializeableArmy[] army_2 = new BattleSerializeableArmy[2];
@@ -68,7 +68,7 @@ public class BattleConverter : MonoBehaviour {
 //
 		string newInfo = PlayerPrefs.GetString ("battle");
 		BattleSerializeable[] thisBattle = JsonHelper.FromJson<BattleSerializeable>(newInfo);
-		Debug.Log("after: " + newInfo);
+		//Debug.Log("after: " + newInfo);
 		return new GameObject[]{ deserializeGeneral(thisBattle [0], glossary), deserializeGeneral(thisBattle [1], glossary) };
 	}
 
