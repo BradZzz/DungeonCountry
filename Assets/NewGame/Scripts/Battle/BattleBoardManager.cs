@@ -246,15 +246,15 @@ public class BattleBoardManager : MonoBehaviour {
 	}
 		
 	public void checkConditions(){
-		Debug.Log ("checkConditions");
+		//Debug.Log ("checkConditions");
 		if (armyManager.iLost (boardHolder)) {
-			Debug.Log ("You Lose");
+			//Debug.Log ("You Lose");
 			gameManager.gameOver (false, "You Lose");
 		} else if (armyManager.theyLost (boardHolder)) {
-			Debug.Log ("You Win!");
+			//Debug.Log ("You Win!");
 			gameManager.gameOver (true, "You Win!");
 		} else {
-			Debug.Log ("Game Continues");
+			//Debug.Log ("Game Continues");
 		}
 	}
 

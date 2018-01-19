@@ -3,6 +3,8 @@ using System.Collections;
 
 public class EffectText : MonoBehaviour {
 
+	public int fontIncrease;
+
 	BattleMeta parentMeta;
 	TextMesh text;
 	Transform parent;
@@ -14,14 +16,7 @@ public class EffectText : MonoBehaviour {
 		parent = transform.parent;
 		parentMeta = parent.GetComponent<BattleMeta>();
 		text = GetComponent<TextMesh>();
-		Vector3 scale = parent.transform.localScale;
-		Debug.Log ("scale: " + scale.ToString());
-		int fontScale = (int) (Mathf.Max(scale.x,scale.y));
-		text.fontSize = (int) (fontScale * 16 + (Mathf.Pow(fontScale,3) * 1.2));
-
-		Debug.Log ("parent: " + parentMeta.name);
-		Debug.Log ("text font: " + text.fontSize);
-		Debug.Log ("text parent scale: " + parent.transform.localScale);
+		text.fontSize += fontIncrease;
 
 		var parentRenderer = parent.GetComponent<Renderer>();
 		var renderer = GetComponent<Renderer>();
@@ -31,8 +26,8 @@ public class EffectText : MonoBehaviour {
 
 	void refresh(){
 		if (parentMeta.getEffect() != text.text) {
-			Debug.Log ("parent: " + parentMeta.name);
-			Debug.Log ("effect: " + parentMeta.getEffect());
+//			Debug.Log ("parent: " + parentMeta.name);
+//			Debug.Log ("effect: " + parentMeta.getEffect());
 			if (moveup != null) {
 				StopCoroutine(moveup);
 			}
