@@ -38,3 +38,5 @@
 /Users/Shared/Unity/git/DungeonCountry/Temp/bin/Debug/UnityEngine.VR.dll
 /Users/Shared/Unity/git/DungeonCountry/Temp/bin/Debug/UnityEngine.TestRunner.dll
 /Users/Shared/Unity/git/DungeonCountry/Temp/bin/Debug/nunit.framework.dll
+/Users/Shared/Unity/git/DungeonCountry/Temp/bin/Debug/Assembly-CSharp-firstpass.dll
+/Users/Shared/Unity/git/DungeonCountry/Temp/bin/Debug/Assembly-CSharp-firstpass.dll.mdb

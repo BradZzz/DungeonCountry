@@ -58,7 +58,6 @@ Shader "Custom/OverlayShaderHit" {
                  final.rgb = i.color.rgb * tex.rgb * 2;
                  final.a = i.color.a * tex.a;
                  return lerp(float4(0.5f,0.5f,0.5f,0.1f), final, final.a);
-                 
              }
  
              ENDCG

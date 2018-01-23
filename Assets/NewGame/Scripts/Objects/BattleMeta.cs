@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ using AssemblyCSharp;
 *	TODO: Make sure that units can only be placed on the orange parts of the board on setup
 ***/
 using System.Runtime.CompilerServices;
+using System;
 
 
 public class BattleMeta : MonoBehaviour {
@@ -25,7 +27,9 @@ public class BattleMeta : MonoBehaviour {
 
 	//What team are they on
 	public string affiliation;
-	//public GameObject resourceCost;
+
+	//If they are magical
+	public bool magical = false;
 
 	public int costGold;
 	public int costOre;
@@ -47,6 +51,7 @@ public class BattleMeta : MonoBehaviour {
 	private bool is_gui = true;
 	private GeneralAttributes attribs = null;
 	private string effect = null;
+	private SpriteOutline outline = null;
 
 	void Awake()
 	{
@@ -63,12 +68,15 @@ public class BattleMeta : MonoBehaviour {
 		//Debug.Log ("Sprite");
 		//Debug.Log (spriteRenderer.sprite);
 		canMove = true;
+		outline = GetComponent<SpriteOutline>();
+		outline.enabled = false;
 	}
 
 	public void startTurn(){
 		actions.startTurn ();
 		SpriteRenderer sprRend = gameObject.GetComponent<SpriteRenderer> ();
-		sprRend.material.shader = Shader.Find ("Sprites/Default");
+		outline.enabled = false;
+		//sprRend.material.shader = Shader.Find ("Sprites/Default");
 	}
 
 	public void setGUI(bool set){
@@ -180,7 +188,10 @@ public class BattleMeta : MonoBehaviour {
 	}
 
 	public void applyShadeEnd(SpriteRenderer sprRend){
-		sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
+		Debug.Log ("applyShadeEnd");
+		outline.setColor (false);
+		outline.enabled = true;
+		//sprRend.material.shader = Shader.Find ("Custom/OverlayPencilOutline");
 	}
 
 	public bool checkAttacks(){
@@ -240,9 +251,28 @@ public class BattleMeta : MonoBehaviour {
 		return currentHP;
 	}
 
-	public bool isAttacked (int attack) {
+	public void playEffect(string effect) {
+		try {
+			EffectConfig exp = this.transform.Find(effect).gameObject.GetComponent<EffectConfig> ();
+			exp.Play ();
+		} catch (Exception e) {
+			Debug.Log (e.Message);
+		}
+	}
 
-		//Debug.Log ("Attacked");
+	public bool isAttacked (int attack, bool ranged, bool magical) {
+
+		StartCoroutine (atk_blur (transform));
+
+		if (magical) {
+			playEffect ("Magic");
+		} else {
+			if (ranged) {
+				playEffect ("Explosion");
+			} else {
+				playEffect ("Blood");
+			}
+		}
 
 		if (attribs != null) {
 			attack -= attribs.getDefense() * lives;
@@ -250,9 +280,7 @@ public class BattleMeta : MonoBehaviour {
 				attack = 1;
 			}
 		}
-
 		StartCoroutine (showEffects ("-" + attack.ToString()));
-
 		currentHP -= attack;
 		if (currentHP <= 0) {
 			while (currentHP <= 0) {
@@ -263,8 +291,6 @@ public class BattleMeta : MonoBehaviour {
 				setLives (0);
 				currentHP = 0;
 				StartCoroutine (slowDeath ());
-//				gameObject.SetActive(false);
-				//The unit isnt active anymore
 				return false;
 			}
 		}
@@ -291,7 +317,7 @@ public class BattleMeta : MonoBehaviour {
 			GameObject thisProjectile = Instantiate<GameObject> (projectile);
 			thisProjectile.transform.position = transform.position;
 			if (enemy.isActiveAndEnabled) {
-				StartCoroutine (smooth_move (thisProjectile.transform, enemy.gameObject.transform, 1f));
+				StartCoroutine (smooth_move (thisProjectile.transform, enemy.gameObject.transform, .5f));
 			} else {
 				thisProjectile.gameObject.SetActive (false);
 			}
@@ -303,10 +329,17 @@ public class BattleMeta : MonoBehaviour {
 
 	IEnumerator atk_blur(Transform unit){
 		SpriteRenderer sprRend = unit.gameObject.GetComponent<SpriteRenderer> ();
-		sprRend.material.shader = Shader.Find ("Custom/OverlayShaderHit");
+		//sprRend.material.shader = Shader.Find ("Custom/OverlayShaderHit");
+		outline.setColor (true);
+		outline.enabled = true;
 		yield return new WaitForSeconds(.5f);
 		if (actions.checkTurn () || !getPlayer()) {
-			sprRend.material.shader = Shader.Find ("Sprites/Default");
+			outline.enabled = false;
+			if (!getPlayer()) {
+				outline.setColor (false);
+				outline.enabled = true;
+			}
+			//sprRend.material.shader = Shader.Find ("Sprites/Default");
 		} else {
 			checkFatigue();
 		}

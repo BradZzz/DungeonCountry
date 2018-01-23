@@ -19,7 +19,7 @@ public class Glossary : MonoBehaviour {
 				return stage;
 			}
 		}
-		return stages [0];
+		return stages[0];
 	}
 
 	public AffiliationMeta findFaction(string search) {

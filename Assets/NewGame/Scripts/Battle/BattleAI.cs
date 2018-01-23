@@ -133,7 +133,7 @@ public class BattleAI : MonoBehaviour {
 			}
 
 			meta.isAttacking (weakest);
-			weakest.isAttacked (meta.getCharStrength());
+			weakest.isAttacked (meta.getCharStrength(), meta.range > 1, meta.magical);
 
 			if (meta.getAttacks() > 0) {
 				aiMoveSubroutine (ai);

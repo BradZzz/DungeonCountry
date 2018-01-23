@@ -236,9 +236,8 @@ public class BattleBoardManager : MonoBehaviour {
 			BattleMeta enemy = hit.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 			if (meta.checkAttacks()) {
 				meta.isAttacking(enemy);
-
 				if (enemy != null) {
-					enemy.isAttacked (meta.getCharStrength());
+					enemy.isAttacked (meta.getCharStrength(), meta.range > 1, meta.magical);
 				}
 			}
 			checkConditions ();

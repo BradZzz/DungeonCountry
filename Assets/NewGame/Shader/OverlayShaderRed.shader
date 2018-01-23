@@ -56,7 +56,8 @@ Shader "Custom/OverlayShaderRed" {
                  float4 final;                
                  final.rgb = i.color.rgb * tex.rgb * 2;
                  final.a = (i.color.a * tex.a);
-                 return lerp(float4(0.5f,0.5f,0.5f,0.1f), final, final.a);   
+                 //final.a = .1f;
+                 return lerp(float4(0.5f,0.5f,0.5f,.1f), final, (i.color.a * tex.a));   
              }
              ENDCG   
          }

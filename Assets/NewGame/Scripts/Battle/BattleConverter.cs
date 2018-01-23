@@ -6,8 +6,29 @@ public class BattleConverter : MonoBehaviour {
 	
 	public static void putSaveDemo(){
 		BattleSerializeable[] battle = new BattleSerializeable[2];
+
+//		battle[0] = new BattleSerializeable ();
+//		battle[0].name = "Quinn";
+//		BattleSerializeableStats stats_1 = new BattleSerializeableStats ();
+//		stats_1.attack = 1;
+//		stats_1.defense = 100;
+//		stats_1.speed = 1;
+//		stats_1.range = 1;
+//		battle[0].stats = JsonUtility.ToJson(stats_1);
+//		BattleSerializeableArmy[] army_1 = new BattleSerializeableArmy[3];
+//		army_1[0] = new BattleSerializeableArmy ();
+//		army_1[0].name = "Human_Peasant";
+//		army_1[0].qty = 400;
+//		army_1[1] = new BattleSerializeableArmy ();
+//		army_1[1].name = "Human_Knight";
+//		army_1[1].qty = 250;
+//		army_1[2] = new BattleSerializeableArmy ();
+//		army_1[2].name = "Human_Princess";
+//		army_1[2].qty = 20;
+//		battle[0].army = JsonHelper.ToJson(army_1);
+
 		battle[0] = new BattleSerializeable ();
-		battle[0].name = "Quinn";
+		battle[0].name = "Bumblefreid";
 		BattleSerializeableStats stats_1 = new BattleSerializeableStats ();
 		stats_1.attack = 1;
 		stats_1.defense = 100;
@@ -16,14 +37,14 @@ public class BattleConverter : MonoBehaviour {
 		battle[0].stats = JsonUtility.ToJson(stats_1);
 		BattleSerializeableArmy[] army_1 = new BattleSerializeableArmy[3];
 		army_1[0] = new BattleSerializeableArmy ();
-		army_1[0].name = "Human_Peasant";
-		army_1[0].qty = 300;
+		army_1[0].name = "Gnome_Tinkerer";
+		army_1[0].qty = 150;
 		army_1[1] = new BattleSerializeableArmy ();
-		army_1[1].name = "Human_Knight";
-		army_1[1].qty = 200;
+		army_1[1].name = "Gnome_Druid";
+		army_1[1].qty = 250;
 		army_1[2] = new BattleSerializeableArmy ();
-		army_1[2].name = "Human_Lord";
-		army_1[2].qty = 20;
+		army_1[2].name = "Gnome_Orc";
+		army_1[2].qty = 400;
 		battle[0].army = JsonHelper.ToJson(army_1);
 
 		battle[1] = new BattleSerializeable ();
@@ -37,10 +58,10 @@ public class BattleConverter : MonoBehaviour {
 		BattleSerializeableArmy[] army_2 = new BattleSerializeableArmy[2];
 		army_2[0] = new BattleSerializeableArmy ();
 		army_2[0].name = "Necropolis_Gargoyle";
-		army_2[0].qty = 50;
+		army_2[0].qty = 200;
 		army_2[1] = new BattleSerializeableArmy ();
 		army_2[1].name = "Necropolis_ZombieMonarch";
-		army_2[1].qty = 60;
+		army_2[1].qty = 150;
 		battle[1].army = JsonHelper.ToJson(army_2);
 
 		string json = JsonHelper.ToJson(battle);
