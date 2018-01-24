@@ -64,6 +64,7 @@
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleAIUnit.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleActions.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleArmyManager.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Battle\BattleAttributes.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleBoardManager.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleCharacter.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleConverter.cs" />

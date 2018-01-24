@@ -21,6 +21,7 @@ public class BattleMeta : MonoBehaviour {
 	public int attack;
 	public int hp;
 	public int ability;
+	public GameObject[] abilities;
 
 	public string name;
 	public string description;
@@ -74,13 +75,23 @@ public class BattleMeta : MonoBehaviour {
 
 	public void startTurn(){
 		actions.startTurn ();
-		SpriteRenderer sprRend = gameObject.GetComponent<SpriteRenderer> ();
+		//SpriteRenderer sprRend = gameObject.GetComponent<SpriteRenderer> ();
 		outline.enabled = false;
 		//sprRend.material.shader = Shader.Find ("Sprites/Default");
 	}
 
 	public void setGUI(bool set){
 		is_gui = set;
+	}
+
+	public bool atkAll(){
+		foreach (GameObject ability in abilities) {
+			BattleAttributes att = ability.GetComponent<BattleAttributes> ();
+			if (att.atk_all) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public int getMovement(){
@@ -188,7 +199,7 @@ public class BattleMeta : MonoBehaviour {
 	}
 
 	public void applyShadeEnd(SpriteRenderer sprRend){
-		Debug.Log ("applyShadeEnd");
+		//Debug.Log ("applyShadeEnd");
 		outline.setColor (false);
 		outline.enabled = true;
 		//sprRend.material.shader = Shader.Find ("Custom/OverlayPencilOutline");
@@ -303,8 +314,8 @@ public class BattleMeta : MonoBehaviour {
 		actions.takeAttack (attacks);
 	}
 
-	public bool isAttacking(BattleMeta enemy){
-		if (enemy != null && actions.takeAttack(1)) {
+	public bool isAttacking(BattleMeta enemy, bool atkall){
+		if (enemy != null && (atkall || actions.takeAttack(1))) {
 			isAttackingUnrestricted (enemy);
 			return true;
 		}

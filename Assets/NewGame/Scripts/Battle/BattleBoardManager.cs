@@ -196,13 +196,13 @@ public class BattleBoardManager : MonoBehaviour {
 
 	public void moveClick(Transform hit){
 		BattleMeta meta = lastClicked.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
-
+		bool moved = false;
 		foreach (Transform child in movePositions)
 		{
 			SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
 			sprRend.material.shader = Shader.Find ("Sprites/Default");
 			if (meta != null) {
-				checkMovement (meta.movement, child, hit);
+				moved = checkMovement (meta.movement, child, hit);
 			}
 		}
 		foreach (Transform child in characterPositions)
@@ -213,12 +213,36 @@ public class BattleBoardManager : MonoBehaviour {
 				checkAttack (meta, child, hit);
 			}
 		}
+
+		if (meta.atkAll () && !moved) {
+			Debug.Log ("AtkAll");
+			bool attacked = false;
+			foreach (Transform unit in unitPositions){
+				Debug.Log ("Unit: " + unit.gameObject.name);
+				bool range = Math.Abs (unit.position.x - lastClicked.position.x) + Math.Abs (unit.position.y - lastClicked.position.y) <= meta.range;
+				if (range) {
+					Debug.Log ("In range");
+					BattleMeta enemy = unit.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+					if (enemy != null && !enemy.getPlayer()) {
+						meta.isAttacking(enemy, true);
+						enemy.isAttacked (meta.getCharStrength(), meta.range > 1, meta.magical);
+						attacked = true;
+					}
+				}
+
+			}
+			if (attacked) {
+				meta.takeAttacks (1);
+			}
+			checkConditions ();
+		}
+
 		movePositions.Clear ();
 		characterPositions.Clear ();
 		lastClicked = null;
 	}
 
-	public void checkMovement(int movement, Transform child, Transform hit){
+	public bool checkMovement(int movement, Transform child, Transform hit){
 		BattleMeta meta = lastClicked.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 		if (hit.position.x == child.position.x && hit.position.y == child.position.y &&
 			Math.Abs (hit.position.x - lastClicked.position.x) + Math.Abs (hit.position.y - lastClicked.position.y) <= movement && meta.getActions() > 0 && meta.getTurn()) {
@@ -226,16 +250,39 @@ public class BattleBoardManager : MonoBehaviour {
 			Vector3 end = new Vector3 ((float)hit.position.x, (float)hit.position.y, (float)lastClicked.position.z);
 			meta.isMoving ();
 			StartCoroutine (smooth_move (lastClicked, end, 1f));
+			return true;
 		}
+		return false;
 	}
 
 	public void checkAttack(BattleMeta meta, Transform child, Transform hit){
-		if (hit.position.x == child.position.x && hit.position.y == child.position.y &&
-			Math.Abs (hit.position.x - lastClicked.position.x) + Math.Abs (hit.position.y - lastClicked.position.y) <= meta.range) {
-
+		bool range = Math.Abs (hit.position.x - lastClicked.position.x) + Math.Abs (hit.position.y - lastClicked.position.y) <= meta.range;
+		bool hitChild = hit.position.x == child.position.x && hit.position.y == child.position.y;
+			
+//		if (meta.atkAll() && range) {
+//			foreach (GameObject unit in armyManager.getTheirArmy ()) {
+//
+//			}
+//
+//			BattleMeta enemy = child.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+//			Debug.Log ("Pass: " + child.gameObject.name);
+//			if (enemy) {
+//				Debug.Log ("checkAttack atkAll");
+//				if (meta.checkAttacks() && enemy && !enemy.getPlayer()) {
+//					meta.isAttacking(enemy, true);
+//					if (enemy != null) {
+//						enemy.isAttacked (meta.getCharStrength(), meta.range > 1, meta.magical);
+//					}
+//				}
+//				checkConditions ();
+//			}
+//			return true;
+//		} else 
+		if (!meta.atkAll() && hitChild && range) {
+			Debug.Log ("checkAttack atkSingle");
 			BattleMeta enemy = hit.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 			if (meta.checkAttacks()) {
-				meta.isAttacking(enemy);
+				meta.isAttacking(enemy, false);
 				if (enemy != null) {
 					enemy.isAttacked (meta.getCharStrength(), meta.range > 1, meta.magical);
 				}

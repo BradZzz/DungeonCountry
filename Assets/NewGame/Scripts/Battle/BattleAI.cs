@@ -123,17 +123,26 @@ public class BattleAI : MonoBehaviour {
 		}
 
 		if (meta.getAttacks() > 0 && attackables.Count > 0) {
-			BattleMeta weakest = null;
-			//Have the ai attack the weakest unit
-			foreach (Transform unit in attackables) {
-				BattleMeta unitProp = unit.gameObject.GetComponent (typeof(BattleMeta)) as BattleMeta;
-				if (weakest == null || weakest.getCurrentHP () > unitProp.getCurrentHP ()) {
-					weakest = unitProp;
+			if (meta.atkAll()) {
+				foreach (Transform unit in attackables) {
+					BattleMeta unitProp = unit.gameObject.GetComponent (typeof(BattleMeta)) as BattleMeta;
+					meta.isAttacking (unitProp, true);
+					unitProp.isAttacked (meta.getCharStrength(), meta.range > 1, meta.magical);
 				}
-			}
+				meta.takeAttacks (1);
+			} else {
+				BattleMeta weakest = null;
+				//Have the ai attack the weakest unit
+				foreach (Transform unit in attackables) {
+					BattleMeta unitProp = unit.gameObject.GetComponent (typeof(BattleMeta)) as BattleMeta;
+					if (weakest == null || weakest.getCurrentHP () > unitProp.getCurrentHP ()) {
+						weakest = unitProp;
+					}
+				}
 
-			meta.isAttacking (weakest);
-			weakest.isAttacked (meta.getCharStrength(), meta.range > 1, meta.magical);
+				meta.isAttacking (weakest, false);
+				weakest.isAttacked (meta.getCharStrength(), meta.range > 1, meta.magical);
+			}
 
 			if (meta.getAttacks() > 0) {
 				aiMoveSubroutine (ai);
@@ -189,12 +198,14 @@ public class BattleAI : MonoBehaviour {
 						//Retreat to back lines
 						pathMap = astar.baseAlgorithm (new Point3 (ai.position), retreatPos, height, width, moveables, true);
 
-						closest = pathMap [0];
-
-						int distance2 = pathMap.Count - 1;
-						int extraRange = meta.range - (distance + 1);
-			
-						closest = extraRange > distance2 ? pathMap [distance2] : pathMap [extraRange];
+						try {
+							closest = pathMap [0];
+							int distance2 = pathMap.Count - 1;
+							int extraRange = meta.range - (distance + 1);
+							closest = extraRange > distance2 ? pathMap [distance2] : pathMap [extraRange];
+						} catch (Exception e) {
+							closest = new Point3 (ai.position);
+						}
 
 						/*if (distance - meta.range >= distance2 ) {
 							closest = pathMap [distance2];
