@@ -94,6 +94,26 @@ public class BattleMeta : MonoBehaviour {
 		return false;
 	}
 
+	public bool sap(){
+		foreach (GameObject ability in abilities) {
+			BattleAttributes att = ability.GetComponent<BattleAttributes> ();
+			if (att.sap_obs) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public string sapSpawn(){
+		foreach (GameObject ability in abilities) {
+			BattleAttributes att = ability.GetComponent<BattleAttributes> ();
+			if (!att.sap_spawn.Equals("")) {
+				return att.sap_spawn;
+			}
+		}
+		return "";
+	}
+
 	public int getMovement(){
 		return movement;
 	}

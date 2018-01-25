@@ -19,9 +19,12 @@ public class BattleAI : MonoBehaviour {
 	private int width, height;
 	private Astar astar;
 	private Point3 retreatPos;
+	private BattleBoardManager boardManager;
+	private BattleGameManager gameManager;
+	private GeneralAttributes attribs;
 
-	public void init(Transform boardHolder, List<Transform> aiUnits, int width, int height){
-
+	public void init(Transform boardHolder, List<Transform> aiUnits, int width, int height, 
+		BattleBoardManager boardManager, BattleGameManager gameManager, GeneralAttributes attribs){
 		this.boardHolder = boardHolder;
 		//These are all the objects the ai can interact with
 		allUnits = new List<Transform>();
@@ -29,6 +32,10 @@ public class BattleAI : MonoBehaviour {
 		this.aiUnits = aiUnits;
 		this.height = height;
 		this.width = width;
+		this.boardManager = boardManager;
+		this.gameManager = gameManager;
+		this.attribs = attribs;
+
 		astar = new Astar ();
 		//These are the player units the ai will be attacking
 		playersUnits = new List<Transform>();
@@ -36,7 +43,6 @@ public class BattleAI : MonoBehaviour {
 		floor = new List<Transform>();
 
 		retreatPos = new Point3 (this.width - 1, this.height / 2, 0);
-
 		foreach (Transform tile in boardHolder){
 			//Organize the units into buckets
 			if (tile.tag.Contains ("Unit")) {
@@ -107,6 +113,9 @@ public class BattleAI : MonoBehaviour {
 		//List <Transform> moveables = new List<Transform> ();
 		//The places where we can move
 		List <Transform> attackables = new List<Transform> ();
+		//Obstacles players can interact with
+		List <Transform> obstacles = new List<Transform> ();
+
 		//The ai unit properties
 		BattleMeta meta = ai.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 			
@@ -122,7 +131,46 @@ public class BattleAI : MonoBehaviour {
 			}
 		}
 
-		if (meta.getAttacks() > 0 && attackables.Count > 0) {
+		//Check to make sure that an enemy isn't already in the ai's range
+		foreach (Transform obs in boardManager.getObsPos()) {
+			//Find the list of tiles the robot can move to
+			if (obs.gameObject.activeInHierarchy && Coroutines.checkRange(obs.position, ai.position, meta.range)) {
+				obstacles.Add (obs);
+			}
+		}
+
+		bool sap = meta.sap ();
+		string sapspawn = meta.sapSpawn();
+		bool atsk = meta.getAttacks() > 0;
+		bool ooobs = obstacles.Count > 0;
+
+		Debug.Log (obstacles);
+
+		//Sap
+		if (meta.sap() && !meta.sapSpawn().Equals("") && meta.getAttacks() > 0 && obstacles.Count > 0) {
+			
+			meta.takeAttacks (1);
+			obstacles[0].gameObject.SetActive (false);
+			foreach (GameObject obj in gameManager.getGlossary().factions) {
+				AffiliationMeta affiliation = obj.gameObject.GetComponent( typeof(AffiliationMeta) ) as AffiliationMeta;
+				foreach (GameObject unit in affiliation.units) {
+					if (unit.name.Equals(meta.sapSpawn())) {
+						GameObject instance = Instantiate (unit, obstacles[0].position, Quaternion.identity) as GameObject;
+						instance.SetActive (true);
+						BattleMeta summon = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+						summon.init ();
+						summon.setPlayer (false);
+						summon.setTurn (true);
+						summon.setLives (meta.getLives());
+						summon.setGeneralAttributes (attribs);
+						instance.transform.SetParent (boardHolder);
+						boardManager.addUnit (instance.transform);
+						aiUnits.Add (instance.transform);
+					}
+				}
+			}
+		//Regular attacks
+		} else if (meta.getAttacks() > 0 && attackables.Count > 0) {
 			if (meta.atkAll()) {
 				foreach (Transform unit in attackables) {
 					BattleMeta unitProp = unit.gameObject.GetComponent (typeof(BattleMeta)) as BattleMeta;
@@ -139,7 +187,6 @@ public class BattleAI : MonoBehaviour {
 						weakest = unitProp;
 					}
 				}
-
 				meta.isAttacking (weakest, false);
 				weakest.isAttacked (meta.getCharStrength(), meta.range > 1, meta.magical);
 			}
@@ -171,7 +218,6 @@ public class BattleAI : MonoBehaviour {
 		} else {
 			Vector2 ePos = enemy.position;
 			if (enemy != null) {
-
 				List <Point3> moveables = new List<Point3> ();
 
 				//here we need to feed the possible tiles into the ai's choices
@@ -184,7 +230,6 @@ public class BattleAI : MonoBehaviour {
 					}
 				}
 					
-
 				//This tells the computer where the most direct path to the nearest player
 				List<Point3> pathMap = astar.baseAlgorithm (new Point3 (ai.position), new Point3 (enemy.position), height, width, moveables, true);
 				Point3 closest = new Point3 ();

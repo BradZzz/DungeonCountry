@@ -22,7 +22,7 @@ public class BattleBoardManager : MonoBehaviour {
 		}
 	}
 
-	private bool isMoving = false;
+	//private bool isMoving = false;
 
 	private Transform lastClicked;
 	private Transform boardHolder;
@@ -32,6 +32,7 @@ public class BattleBoardManager : MonoBehaviour {
 	private List <Transform> characterPositions; 
 	//This is to keep track of the units for quick activition between turns
 	private List <Transform> unitPositions; 
+	private List <Transform> obstaclePositions; 
 	protected Dictionary<Vector2, Transform> dict;
 
 	private GeneralAttributes attribs;
@@ -50,6 +51,7 @@ public class BattleBoardManager : MonoBehaviour {
 		characterPositions = new List <Transform> (); 
 		gameManager = GetComponent<BattleGameManager>();
 		unitPositions = new List<Transform> ();
+		obstaclePositions = new List<Transform> ();
 	}
 
 	void Start(){
@@ -142,6 +144,10 @@ public class BattleBoardManager : MonoBehaviour {
 		}
 	}
 
+	public List<Transform> getObsPos(){
+		return obstaclePositions;
+	}
+
 	public List<Point3> getObstacles(){
 		List<Point3> obstacles = new List<Point3> ();
 		for (int x = 0; x < gameManager.getColumns (); x++) {
@@ -181,7 +187,7 @@ public class BattleBoardManager : MonoBehaviour {
 						SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
 						sprRend.material.shader = Shader.Find ("Custom/OverlayShaderRed");
 						//if (hasParent) {
-							characterPositions.Add (child); 
+						characterPositions.Add (child); 
 						//}
 
 					}
@@ -195,6 +201,8 @@ public class BattleBoardManager : MonoBehaviour {
 	}
 
 	public void moveClick(Transform hit){
+		Debug.Log ("moveClick");
+
 		BattleMeta meta = lastClicked.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 		bool moved = false;
 		foreach (Transform child in movePositions)
@@ -215,7 +223,6 @@ public class BattleBoardManager : MonoBehaviour {
 		}
 
 		if (meta.atkAll () && !moved) {
-			Debug.Log ("AtkAll");
 			bool attacked = false;
 			foreach (Transform unit in unitPositions){
 				Debug.Log ("Unit: " + unit.gameObject.name);
@@ -258,37 +265,48 @@ public class BattleBoardManager : MonoBehaviour {
 	public void checkAttack(BattleMeta meta, Transform child, Transform hit){
 		bool range = Math.Abs (hit.position.x - lastClicked.position.x) + Math.Abs (hit.position.y - lastClicked.position.y) <= meta.range;
 		bool hitChild = hit.position.x == child.position.x && hit.position.y == child.position.y;
-			
-//		if (meta.atkAll() && range) {
-//			foreach (GameObject unit in armyManager.getTheirArmy ()) {
-//
-//			}
-//
-//			BattleMeta enemy = child.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
-//			Debug.Log ("Pass: " + child.gameObject.name);
-//			if (enemy) {
-//				Debug.Log ("checkAttack atkAll");
-//				if (meta.checkAttacks() && enemy && !enemy.getPlayer()) {
-//					meta.isAttacking(enemy, true);
-//					if (enemy != null) {
-//						enemy.isAttacked (meta.getCharStrength(), meta.range > 1, meta.magical);
-//					}
-//				}
-//				checkConditions ();
-//			}
-//			return true;
-//		} else 
+
 		if (!meta.atkAll() && hitChild && range) {
 			Debug.Log ("checkAttack atkSingle");
 			BattleMeta enemy = hit.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
-			if (meta.checkAttacks()) {
-				meta.isAttacking(enemy, false);
+			Debug.Log (meta.sap());
+			if (meta.checkAttacks ()) {
 				if (enemy != null) {
-					enemy.isAttacked (meta.getCharStrength(), meta.range > 1, meta.magical);
+					meta.isAttacking (enemy, false);
+					enemy.isAttacked (meta.getCharStrength (), meta.range > 1, meta.magical);
+				} else if (meta.sap()) {
+					GameObject parent = Coroutines.findUnitParent (new Point3 (hit.position));
+					if (parent != null) {
+						meta.takeAttacks (1);
+						parent.SetActive (false);
+						if (!meta.sapSpawn().Equals("")) {
+							foreach (GameObject obj in gameManager.getGlossary().factions) {
+								AffiliationMeta affiliation = obj.gameObject.GetComponent( typeof(AffiliationMeta) ) as AffiliationMeta;
+								foreach (GameObject unit in affiliation.units) {
+									if (unit.name.Equals(meta.sapSpawn())) {
+										GameObject instance = Instantiate (unit, hit.position, Quaternion.identity) as GameObject;
+										instance.SetActive (true);
+										BattleMeta summon = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+										summon.init ();
+										summon.setPlayer (true);
+										summon.setTurn (true);
+										summon.setLives (meta.getLives());
+										summon.setGeneralAttributes (attribs);
+										instance.transform.SetParent (boardHolder);
+										unitPositions.Add (instance.transform);
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 			checkConditions ();
 		}
+	}
+
+	public void addUnit(Transform unit) {
+		unitPositions.Add(unit);
 	}
 		
 	public void checkConditions(){
@@ -352,9 +370,9 @@ public class BattleBoardManager : MonoBehaviour {
 
 		foreach (Transform tile in boardHolder) {
 			if (tile.tag.Contains ("Unit")) {
-//				BattleMeta meta = tile.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
-//				meta.init ();
 				unitPositions.Add (tile);
+			} else if (tile.tag.Contains ("Obstacle")) {
+				obstaclePositions.Add (tile);
 			}
 		}
 	}
@@ -393,7 +411,7 @@ public class BattleBoardManager : MonoBehaviour {
 		if (!playersTurn) {
 			//Debug.Log ("AI turn start");
 			BattleAI ai = gameObject.AddComponent<BattleAI> ();
-			ai.init (getBoard(), aiUnits, gameManager.getColumns (), gameManager.getRows ());
+			ai.init (getBoard(), aiUnits, gameManager.getColumns (), gameManager.getRows (), this, gameManager, attribs);
 			ai.moveUnits (activateUnits);
 		}
 	}

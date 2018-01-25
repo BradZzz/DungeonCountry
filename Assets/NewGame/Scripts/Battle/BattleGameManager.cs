@@ -76,6 +76,10 @@ public class BattleGameManager : MonoBehaviour {
 		levelImage.SetActive (false);
 	}
 
+	public Glossary getGlossary() {
+		return glossary;
+	}
+
 	public BattleSetupManager getBoardSetup() {
 		return boardSetup;
 	}
@@ -215,9 +219,6 @@ public class BattleGameManager : MonoBehaviour {
 
 		Transform hitValid = null;
 		foreach (RaycastHit2D shot in hit){
-
-			BattleMeta enemy = shot.transform.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
-
 			if (!boardScript.charMoving() && !shot.transform.name.Contains("Floor")){
 				hitValid = shot.transform;
 				//Debug.Log ("Using: " + hitValid.gameObject.name);
