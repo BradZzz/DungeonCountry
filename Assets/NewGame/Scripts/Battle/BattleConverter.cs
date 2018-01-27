@@ -3,50 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleConverter : MonoBehaviour {
-	
+
+	public static void putSaveBattleObject(BattleObject game){
+		BattleSerializeable[] battle = new BattleSerializeable[2];
+		battle[0] = new BattleSerializeable ();
+		battle[0].name = game.player1;
+		battle[0].stats = JsonUtility.ToJson(game.stats1);
+		battle[0].army = JsonHelper.ToJson(game.army1);
+
+		battle[1] = new BattleSerializeable ();
+		battle[1].name = game.player2;
+		battle[1].stats = JsonUtility.ToJson(game.stats2);
+		battle[1].army = JsonHelper.ToJson(game.army2);
+
+		string json = JsonHelper.ToJson(battle);
+		PlayerPrefs.SetString ("battle", json);
+		Debug.Log ("json: " + json);
+		Debug.Log ("json: " + game.army1);
+		Debug.Log ("json: " + game.army2);
+	}
+
 	public static void putSaveDemo(){
 		BattleSerializeable[] battle = new BattleSerializeable[2];
-
-//		battle[0] = new BattleSerializeable ();
-//		battle[0].name = "Quinn";
-//		BattleSerializeableStats stats_1 = new BattleSerializeableStats ();
-//		stats_1.attack = 1;
-//		stats_1.defense = 100;
-//		stats_1.speed = 1;
-//		stats_1.range = 1;
-//		battle[0].stats = JsonUtility.ToJson(stats_1);
-//		BattleSerializeableArmy[] army_1 = new BattleSerializeableArmy[3];
-//		army_1[0] = new BattleSerializeableArmy ();
-//		army_1[0].name = "Human_Peasant";
-//		army_1[0].qty = 400;
-//		army_1[1] = new BattleSerializeableArmy ();
-//		army_1[1].name = "Human_Knight";
-//		army_1[1].qty = 250;
-//		army_1[2] = new BattleSerializeableArmy ();
-//		army_1[2].name = "Human_Princess";
-//		army_1[2].qty = 20;
-//		battle[0].army = JsonHelper.ToJson(army_1);
-
-//		battle[0] = new BattleSerializeable ();
-//		battle[0].name = "Bumblefreid";
-//		BattleSerializeableStats stats_1 = new BattleSerializeableStats ();
-//		stats_1.attack = 1;
-//		stats_1.defense = 100;
-//		stats_1.speed = 1;
-//		stats_1.range = 1;
-//		battle[0].stats = JsonUtility.ToJson(stats_1);
-//		BattleSerializeableArmy[] army_1 = new BattleSerializeableArmy[3];
-//		army_1[0] = new BattleSerializeableArmy ();
-//		army_1[0].name = "Gnome_Champion";
-//		army_1[0].qty = 100;
-//		army_1[1] = new BattleSerializeableArmy ();
-//		army_1[1].name = "Gnome_Druid";
-//		army_1[1].qty = 250;
-//		army_1[2] = new BattleSerializeableArmy ();
-//		army_1[2].name = "Gnome_Orc";
-//		army_1[2].qty = 400;
-//		battle[0].army = JsonHelper.ToJson(army_1);
-
 		battle[0] = new BattleSerializeable ();
 		battle[0].name = "Zarlock";
 		BattleSerializeableStats stats_1 = new BattleSerializeableStats ();
@@ -77,6 +55,7 @@ public class BattleConverter : MonoBehaviour {
 
 		string json = JsonHelper.ToJson(battle);
 		PlayerPrefs.SetString ("battle", json);
+		Debug.Log ("json: " + json);
 	}
 
 

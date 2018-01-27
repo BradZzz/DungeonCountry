@@ -139,13 +139,6 @@ public class BattleAI : MonoBehaviour {
 			}
 		}
 
-		bool sap = meta.sap ();
-		string sapspawn = meta.sapSpawn();
-		bool atsk = meta.getAttacks() > 0;
-		bool ooobs = obstacles.Count > 0;
-
-		Debug.Log (obstacles);
-
 		//Sap
 		if (meta.sap() && !meta.sapSpawn().Equals("") && meta.getAttacks() > 0 && obstacles.Count > 0) {
 			

@@ -109,7 +109,9 @@ public class BattleGameManager : MonoBehaviour {
 		Debug.Log("Player Name: " + SharedPrefs.getPlayerName());
 		Debug.Log("Enemy Name: " + SharedPrefs.getEnemyName());
 
-		BattleConverter.putSaveDemo ();
+		//For testing...
+		//BattleConverter.putSaveDemo ();
+
 		GameObject[] save = BattleConverter.getSave(glossary);
 
 		playerGeneral = save [0];
@@ -322,6 +324,7 @@ public class BattleGameManager : MonoBehaviour {
 		Destroy (gameObject);
 
 		Debug.Log ("Fin");
+		Application.LoadLevel ("PuzzleScene");
 //		Application.LoadLevel ("AdventureScene");
 	}
 }
