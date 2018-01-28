@@ -306,7 +306,7 @@ public class BattleMeta : MonoBehaviour {
 		}
 
 		if (attribs != null) {
-			attack -= attribs.getDefense() * lives;
+			attack -= (int) (attribs.getDefense() * lives * (lvl * .05));
 			if (attack <= 0) {
 				attack = 1;
 			}

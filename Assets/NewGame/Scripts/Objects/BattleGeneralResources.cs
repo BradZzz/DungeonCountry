@@ -86,7 +86,7 @@ public class BattleGeneralResources : MonoBehaviour {
 			meta.setLives (amount);
 			meta.setGUI (false);
 			instance.SetActive (false);
-			DontDestroyOnLoad(instance);
+			//DontDestroyOnLoad(instance);
 			army.Add (instance);
 			//Debug.Log ("Unit set");
 			return true;

@@ -100,6 +100,7 @@
      <Compile Include="Assets\NewGame\Scripts\Objects\EntranceMeta.cs" />
      <Compile Include="Assets\NewGame\Scripts\Objects\GeneralAttributes.cs" />
      <Compile Include="Assets\NewGame\Scripts\Objects\ResourceMeta.cs" />
+     <Compile Include="Assets\NewGame\Scripts\UI\ButtonClick.cs" />
      <Compile Include="Assets\NewGame\Scripts\UI\ChallengeButton.cs" />
      <Compile Include="Assets\NewGame\Scripts\UI\ChallengeScrollList.cs" />
      <Compile Include="Assets\NewGame\Scripts\UI\Panel.cs" />

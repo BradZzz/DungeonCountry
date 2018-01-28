@@ -20,7 +20,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 	private Camera cam = null;
 
 	void Awake() {
-		DontDestroyOnLoad(this.gameObject);
+		//DontDestroyOnLoad(this.gameObject);
 		defeated = false;
 		entranceUsed = new List<int> ();
 		isPlayer = false;

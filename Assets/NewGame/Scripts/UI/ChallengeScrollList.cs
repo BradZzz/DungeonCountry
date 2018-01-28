@@ -17,9 +17,7 @@ public class ChallengeScrollList : MonoBehaviour {
 	public List<Challenge> challengeList;
 	public Transform contentPanel;
 	public SimpleObjectPool challengeObjectPool;
-
-
-	// Use this for initialization
+		
 	void Start () 
 	{
 		RefreshDisplay ();

@@ -7,11 +7,13 @@ public class BattleConverter : MonoBehaviour {
 	public static void putSaveBattleObject(BattleObject game){
 		BattleSerializeable[] battle = new BattleSerializeable[2];
 		battle[0] = new BattleSerializeable ();
+		battle[0].level = game.level;
 		battle[0].name = game.player1;
 		battle[0].stats = JsonUtility.ToJson(game.stats1);
 		battle[0].army = JsonHelper.ToJson(game.army1);
 
 		battle[1] = new BattleSerializeable ();
+		battle[1].level = game.level;
 		battle[1].name = game.player2;
 		battle[1].stats = JsonUtility.ToJson(game.stats2);
 		battle[1].army = JsonHelper.ToJson(game.army2);
@@ -74,13 +76,15 @@ public class BattleConverter : MonoBehaviour {
 	}
 
 	public static GameObject[] getSave(Glossary glossary){
-//		GameObject playerGeneral;
-//		GameObject aiGeneral;
-//
 		string newInfo = PlayerPrefs.GetString ("battle");
 		BattleSerializeable[] thisBattle = JsonHelper.FromJson<BattleSerializeable>(newInfo);
-		//Debug.Log("after: " + newInfo);
 		return new GameObject[]{ deserializeGeneral(thisBattle [0], glossary), deserializeGeneral(thisBattle [1], glossary) };
+	}
+
+	public static string getSaveWorld(){
+		string newInfo = PlayerPrefs.GetString ("battle");
+		BattleSerializeable[] thisBattle = JsonHelper.FromJson<BattleSerializeable>(newInfo);
+		return thisBattle[0].level;
 	}
 
 	public static GameObject deserializeGeneral(BattleSerializeable battle, Glossary glossary){

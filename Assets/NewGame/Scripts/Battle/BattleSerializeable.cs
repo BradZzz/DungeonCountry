@@ -2,6 +2,7 @@
 
 [Serializable]
 public class BattleSerializeable {
+	public string level;
 	public string name;
 	public string stats;
 	public string army;

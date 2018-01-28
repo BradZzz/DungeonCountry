@@ -44,12 +44,14 @@ public class BattleGameManager : MonoBehaviour {
 
 	void Awake()
 	{
-		if (instance == null){
-			instance = this;
-		} else if (instance != this) { 
-			Destroy(gameObject);   
-		} 
-		DontDestroyOnLoad(gameObject);
+//		if (instance == null){
+//			instance = this;
+//		} else if (instance != this) { 
+//			Destroy(gameObject);   
+//		} 
+//		DontDestroyOnLoad(gameObject);
+
+		instance = this;
 		lastHitObj = null;
 		boardScript = GetComponent<BattleBoardManager>();
 		boardSetup = GetComponent<BattleSetupManager>();
@@ -121,7 +123,7 @@ public class BattleGameManager : MonoBehaviour {
 		BattleGeneralMeta aiGenMeta = aiGeneral.GetComponent<BattleGeneralMeta>();
 
 		armyScript = new BattleArmyManager(playerGenMeta.getResources().getarmy().ToArray(), aiGenMeta.getResources().getarmy().ToArray());
-		boardSetup.SetupScene (armyScript, instance, glossary.findLevels("Palace"));
+		boardSetup.SetupScene (armyScript, instance, glossary.findLevels(BattleConverter.getSaveWorld()));
 
 		//This puts the player's army into the ui panel
 		List<GameObject> armies = new List<GameObject>();

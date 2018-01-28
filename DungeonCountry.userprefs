@@ -1,23 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/NewGame/Scripts/Battle/BattleObject.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/NewGame/Scripts/UI/ChallengeButton.cs">
     <Files>
-      <File FileName="Assets/NewGame/Scripts/Battle/BattleAI.cs" Line="234" Column="100" />
-      <File FileName="Assets/NewGame/Scripts/Battle/BattleSetupManager.cs" Line="200" Column="12" />
-      <File FileName="Assets/NewGame/Scripts/Battle/BattleBoardManager.cs" Line="107" Column="1" />
-      <File FileName="Assets/NewGame/Scripts/Objects/BattleMeta.cs" Line="233" Column="19" />
-      <File FileName="Assets/NewGame/Scripts/UI/ChallengeButton.cs" Line="32" Column="3" />
-      <File FileName="Assets/NewGame/Scripts/UI/ChallengeScrollList.cs" Line="13" Column="2" />
-      <File FileName="Assets/SimpleObjectPool.cs" Line="20" Column="15" />
-      <File FileName="Assets/NewGame/Scripts/Battle/BattleConverter.cs" Line="7" Column="46" />
-      <File FileName="Assets/NewGame/Scripts/Battle/BattleObject.cs" Line="8" Column="43" />
-      <File FileName="Assets/NewGame/Scripts/Battle/BattleSerializeable.cs" Line="1" Column="1" />
-      <File FileName="Assets/NewGame/Scripts/Battle/BattleSerializeableArmy.cs" Line="4" Column="37" />
-      <File FileName="Assets/NewGame/Scripts/Battle/BattleSerializeableStats.cs" Line="1" Column="1" />
+      <File FileName="Assets/NewGame/Scripts/UI/ChallengeScrollList.cs" Line="19" Column="46" />
+      <File FileName="Assets/NewGame/Scripts/UI/ChallengeButton.cs" Line="35" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/Shared/Unity/git/DungeonCountry/Assets/NewGame/Scripts/Battle/BattleConverter.cs" line="23" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

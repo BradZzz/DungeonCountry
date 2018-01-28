@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleObject : MonoBehaviour {
+	public string level = "World";
+
 	public string player1;
 	public BattleSerializeableStats stats1;
 	public BattleSerializeableArmy[] army1;

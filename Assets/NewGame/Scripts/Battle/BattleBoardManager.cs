@@ -222,7 +222,7 @@ public class BattleBoardManager : MonoBehaviour {
 			}
 		}
 
-		if (meta.atkAll () && !moved) {
+		if (meta.atkAll () && !moved && meta.getAttacks() > 0) {
 			bool attacked = false;
 			foreach (Transform unit in unitPositions){
 				Debug.Log ("Unit: " + unit.gameObject.name);
