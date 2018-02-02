@@ -316,9 +316,10 @@ public class BattleGameManager : MonoBehaviour {
 		Debug.Log ("BattleGameManager startGame");
 		boardSetup.startGame ();
 
-		BattleGeneralMeta general = aiGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
+		BattleGeneralMeta player = playerGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
+		BattleGeneralMeta ai = aiGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 
-		boardScript.setupScene (general, armyScript, boardSetup.getBoard(), boardSetup.getDict(), true);
+		boardScript.setupScene (player, ai, armyScript, boardSetup.getBoard(), boardSetup.getDict(), true);
 	}
 
 	public void returnToMenu()

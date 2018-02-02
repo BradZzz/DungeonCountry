@@ -19,6 +19,9 @@ public class BattleMeta : MonoBehaviour {
 	public int movement;
 	public int range;
 	public int attack;
+	public int defense;
+	public int dMin;
+	public int dMax;
 	public int hp;
 	public int ability;
 	public GameObject[] abilities;
@@ -65,7 +68,7 @@ public class BattleMeta : MonoBehaviour {
 		lives = 1;
 		animator = GetComponent<Animator>();
 		spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-		actions = new BattleActions (1,1,true);
+		actions = new BattleActions (1 + extraAct(), 1 + extraAtk(),true);
 		//Debug.Log ("Sprite");
 		//Debug.Log (spriteRenderer.sprite);
 		canMove = true;
@@ -83,6 +86,27 @@ public class BattleMeta : MonoBehaviour {
 	public void setGUI(bool set){
 		is_gui = set;
 	}
+
+	public int extraAtk(){
+		foreach (GameObject ability in abilities) {
+			BattleAttributes att = ability.GetComponent<BattleAttributes> ();
+			if (att.extra_atk > 0) {
+				return att.extra_atk;
+			}
+		}
+		return 0;
+	}
+
+	public int extraAct(){
+		foreach (GameObject ability in abilities) {
+			BattleAttributes att = ability.GetComponent<BattleAttributes> ();
+			if (att.extra_act > 0) {
+				return att.extra_act;
+			}
+		}
+		return 0;
+	}
+
 
 	public bool atkAll(){
 		foreach (GameObject ability in abilities) {
@@ -291,7 +315,30 @@ public class BattleMeta : MonoBehaviour {
 		}
 	}
 
-	public bool isAttacked (int attack, bool ranged, bool magical) {
+	public bool isAttacked (BattleMeta attacker, GeneralAttributes own, GeneralAttributes theirs) {
+
+		bool ranged = attacker.range > 1;
+		bool magical = attacker.magical;
+
+		int tAtk = attacker.attack + theirs.getAttack ();
+		int tDef = defense + own.getDefense();
+		float I = tAtk >= tDef ? (float) (0.05 * (tAtk - tDef)) : 0;
+		float R = tAtk <= tDef ? (float) (0.025 * (tDef - tAtk)) : 0;
+		int dmgB = UnityEngine.Random.Range (attacker.dMin, attacker.dMax) * attacker.getLives();
+		int attack = (int) (dmgB * (1 + I) * (1 - R));
+
+		//meta.getCharStrength(), meta.range > 1, meta.magical
+//		DMGf = DMGb × (1 + I1 + I2 + I3 + I4 + I5) × (1 - R1) × (1 - R2 - R3) × (1 - R4) × (1 - R5) × (1 - R6) × (1 - R7) × (1 - R8)
+//		Primary determinant for the final damage is the base damage (DMGb), which is affected by the number of attacking creatures and their damage range. 
+//		All other variables are basically modifiers of the base damage. Variables are denoted as I if they (i)ncrease damage and as R if they (r)educe it. 
+//			I1 and R1 are mutually exclusive, but all other variables may simultaneously affect the final damage (DMGf). 
+//			A brief summary of the variables have been given in the table on the right. To summarize the above formula, the content in the first parentheses 
+//			increase the base damage by multiplying it with a modifier varying from 1.00 to 8.00, and the content in the second parentheses reduces 
+//			the damage with a modifier varying from ~0.01 to 1.00.
+
+//		I1   = 0.05 × (Attack - Defense) (if A ≥ D)
+//		R1 = 0.025 × (Defense - Attack) (if D ≥ A)
+
 
 		StartCoroutine (atk_blur (transform));
 
@@ -305,12 +352,6 @@ public class BattleMeta : MonoBehaviour {
 			}
 		}
 
-		if (attribs != null) {
-			attack -= (int) (attribs.getDefense() * lives * (lvl * .05));
-			if (attack <= 0) {
-				attack = 1;
-			}
-		}
 		StartCoroutine (showEffects ("-" + attack.ToString()));
 		currentHP -= attack;
 		if (currentHP <= 0) {

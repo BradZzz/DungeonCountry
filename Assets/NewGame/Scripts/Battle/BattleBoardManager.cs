@@ -35,7 +35,8 @@ public class BattleBoardManager : MonoBehaviour {
 	private List <Transform> obstaclePositions; 
 	protected Dictionary<Vector2, Transform> dict;
 
-	private GeneralAttributes attribs;
+	private GeneralAttributes aiAttribs;
+	private GeneralAttributes playerAttribs;
 	private BattleArmyManager armyManager;
 	private BattleGameManager gameManager;
 	public GameObject footsteps;
@@ -109,7 +110,7 @@ public class BattleBoardManager : MonoBehaviour {
 			meta.setPlayer (playerArmy);
 			meta.setTurn (active);
 			meta.setLives (metaU.getLives());
-			meta.setGeneralAttributes (attribs);
+			meta.setGeneralAttributes (aiAttribs);
 
 			instance.transform.SetParent (boardHolder);
 		}
@@ -232,7 +233,7 @@ public class BattleBoardManager : MonoBehaviour {
 					BattleMeta enemy = unit.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 					if (enemy != null && !enemy.getPlayer()) {
 						meta.isAttacking(enemy, true);
-						enemy.isAttacked (meta.getCharStrength(), meta.range > 1, meta.magical);
+						enemy.isAttacked (meta, aiAttribs, playerAttribs);
 						attacked = true;
 					}
 				}
@@ -273,7 +274,7 @@ public class BattleBoardManager : MonoBehaviour {
 			if (meta.checkAttacks ()) {
 				if (enemy != null) {
 					meta.isAttacking (enemy, false);
-					enemy.isAttacked (meta.getCharStrength (), meta.range > 1, meta.magical);
+					enemy.isAttacked (meta, aiAttribs, playerAttribs);
 				} else if (meta.sap()) {
 					GameObject parent = Coroutines.findUnitParent (new Point3 (hit.position));
 					if (parent != null) {
@@ -291,7 +292,7 @@ public class BattleBoardManager : MonoBehaviour {
 										summon.setPlayer (true);
 										summon.setTurn (true);
 										summon.setLives (meta.getLives());
-										summon.setGeneralAttributes (attribs);
+										summon.setGeneralAttributes (aiAttribs);
 										instance.transform.SetParent (boardHolder);
 										unitPositions.Add (instance.transform);
 									}
@@ -355,14 +356,16 @@ public class BattleBoardManager : MonoBehaviour {
 		}
 	}
 		
-	public void setupScene (BattleGeneralMeta general, BattleArmyManager armyManager, Transform board, Dictionary<Vector2, Transform> dict, bool playersTurn)
+	public void setupScene (BattleGeneralMeta player, BattleGeneralMeta ai, BattleArmyManager armyManager, Transform board, Dictionary<Vector2, Transform> dict, bool playersTurn)
 	{
 		this.armyManager = armyManager;
 		this.dict = dict;
 		this.playersTurn = playersTurn;
 		boardHolder = board;
-		InitialiseList (general.tactics);
-		attribs = general.getResources ().getAttribs ();
+		InitialiseList (ai.tactics);
+
+		playerAttribs = player.getResources ().getAttribs ();
+		aiAttribs = ai.getResources ().getAttribs ();
 
 		foreach (GameObject army in armyManager.getTheirArmy()) {
 			LayoutObjectAtRandom (new GameObject[]{army}, 1, 1, false, false);
@@ -411,7 +414,7 @@ public class BattleBoardManager : MonoBehaviour {
 		if (!playersTurn) {
 			//Debug.Log ("AI turn start");
 			BattleAI ai = gameObject.AddComponent<BattleAI> ();
-			ai.init (getBoard(), aiUnits, gameManager.getColumns (), gameManager.getRows (), this, gameManager, attribs);
+			ai.init (getBoard(), aiUnits, gameManager.getColumns (), gameManager.getRows (), this, gameManager, aiAttribs, playerAttribs);
 			ai.moveUnits (activateUnits);
 		}
 	}

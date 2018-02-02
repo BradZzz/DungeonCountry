@@ -8,5 +8,7 @@ public class BattleAttributes : MonoBehaviour {
 
 	public bool atk_all = false;
 	public bool sap_obs = false;
+	public int extra_atk = 0;
+	public int extra_act = 0;
 	public string sap_spawn = "";
 }

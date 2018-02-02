@@ -21,10 +21,11 @@ public class BattleAI : MonoBehaviour {
 	private Point3 retreatPos;
 	private BattleBoardManager boardManager;
 	private BattleGameManager gameManager;
-	private GeneralAttributes attribs;
+	private GeneralAttributes aiAttribs;
+	private GeneralAttributes playerAttribs;
 
 	public void init(Transform boardHolder, List<Transform> aiUnits, int width, int height, 
-		BattleBoardManager boardManager, BattleGameManager gameManager, GeneralAttributes attribs){
+		BattleBoardManager boardManager, BattleGameManager gameManager, GeneralAttributes aiAttribs, GeneralAttributes playerAttribs){
 		this.boardHolder = boardHolder;
 		//These are all the objects the ai can interact with
 		allUnits = new List<Transform>();
@@ -34,7 +35,8 @@ public class BattleAI : MonoBehaviour {
 		this.width = width;
 		this.boardManager = boardManager;
 		this.gameManager = gameManager;
-		this.attribs = attribs;
+		this.aiAttribs = aiAttribs;
+		this.playerAttribs = playerAttribs;
 
 		astar = new Astar ();
 		//These are the player units the ai will be attacking
@@ -155,7 +157,7 @@ public class BattleAI : MonoBehaviour {
 						summon.setPlayer (false);
 						summon.setTurn (true);
 						summon.setLives (meta.getLives());
-						summon.setGeneralAttributes (attribs);
+						summon.setGeneralAttributes (aiAttribs);
 						instance.transform.SetParent (boardHolder);
 						boardManager.addUnit (instance.transform);
 						aiUnits.Add (instance.transform);
@@ -168,7 +170,7 @@ public class BattleAI : MonoBehaviour {
 				foreach (Transform unit in attackables) {
 					BattleMeta unitProp = unit.gameObject.GetComponent (typeof(BattleMeta)) as BattleMeta;
 					meta.isAttacking (unitProp, true);
-					unitProp.isAttacked (meta.getCharStrength(), meta.range > 1, meta.magical);
+					unitProp.isAttacked (meta, playerAttribs, aiAttribs);
 				}
 				meta.takeAttacks (1);
 			} else {
@@ -181,14 +183,14 @@ public class BattleAI : MonoBehaviour {
 					}
 				}
 				meta.isAttacking (weakest, false);
-				weakest.isAttacked (meta.getCharStrength(), meta.range > 1, meta.magical);
+				weakest.isAttacked (meta, playerAttribs, aiAttribs);
 			}
 
-			if (meta.getAttacks() > 0) {
+			if (meta.getAttacks () > 0) {
 				aiMoveSubroutine (ai);
+			} else {
+				meta.setTurn(false);
 			}
-
-			meta.setTurn(false);
 		} 
 
 		if (meta.getActions () == 0 && !(meta.getAttacks() > 0 && attackables.Count > 0)) {
