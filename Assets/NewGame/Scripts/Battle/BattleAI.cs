@@ -279,6 +279,13 @@ public class BattleAI : MonoBehaviour {
 		meta.isMoving ();
 		if (ai != null) {
 			StartCoroutine (smooth_move (ai, closest.asVector3 (), 1f));
+			GameObject parent = Coroutines.findUnitParent (closest);
+			if (parent != null) {
+				BattleHazard hazard = parent.GetComponent<BattleHazard> ();
+				if (hazard != null) {
+					hazard.eval (meta);
+				}
+			}
 		}
 	}
 

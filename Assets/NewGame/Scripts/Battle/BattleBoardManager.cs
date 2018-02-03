@@ -37,6 +37,7 @@ public class BattleBoardManager : MonoBehaviour {
 
 	private GeneralAttributes aiAttribs;
 	private GeneralAttributes playerAttribs;
+	private BattleLevels level;
 	private BattleArmyManager armyManager;
 	private BattleGameManager gameManager;
 	public GameObject footsteps;
@@ -253,14 +254,49 @@ public class BattleBoardManager : MonoBehaviour {
 	public bool checkMovement(int movement, Transform child, Transform hit){
 		BattleMeta meta = lastClicked.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 		if (hit.position.x == child.position.x && hit.position.y == child.position.y &&
-			Math.Abs (hit.position.x - lastClicked.position.x) + Math.Abs (hit.position.y - lastClicked.position.y) <= movement && meta.getActions() > 0 && meta.getTurn()) {
-//			Vector3 start = new Vector3 ((float)lastClicked.position.x, (float)lastClicked.position.y, (float)lastClicked.position.z);
+			Math.Abs (hit.position.x - lastClicked.position.x) + Math.Abs (hit.position.y - lastClicked.position.y) 
+				<= movement && meta.getActions() > 0 && meta.getTurn()) {
 			Vector3 end = new Vector3 ((float)hit.position.x, (float)hit.position.y, (float)lastClicked.position.z);
 			meta.isMoving ();
 			StartCoroutine (smooth_move (lastClicked, end, 1f));
+			GameObject parent = Coroutines.findUnitParent (new Point3 (hit.position));
+			if (parent != null) {
+				BattleHazard hazard = parent.GetComponent<BattleHazard> ();
+				if (hazard != null) {
+					hazard.eval (meta);
+				}
+			}
 			return true;
 		}
 		return false;
+	}
+
+	public void coverRadius(GameObject tile, Point3 hit, int radius) {
+		for (int x = hit.x - radius; x < hit.x + radius + 1; x++){
+			for (int y = hit.y - radius; y < hit.y + radius + 1; y++){
+				Point3 pnt = new Point3 (x, y, hit.z);
+				if (checkAll(pnt)) {
+					makeTile (pnt, tile);
+				}
+			}
+		}
+	}
+
+	public bool checkAll(Point3 pos) {
+		if (pos.x >= 0 && pos.x < gameManager.getColumns () &&
+			pos.y >= 0 && pos.y < gameManager.getRows ()) {
+			GameObject parent = Coroutines.findUnitParent (pos);
+			if (parent == null) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void makeTile(Point3 pos, GameObject tile) {
+		GameObject instance = Instantiate (tile, pos.asVector3(), Quaternion.identity) as GameObject;
+		instance.SetActive (true);
+		instance.transform.SetParent (boardHolder);
 	}
 
 	public void checkAttack(BattleMeta meta, Transform child, Transform hit){
@@ -280,6 +316,14 @@ public class BattleBoardManager : MonoBehaviour {
 					if (parent != null) {
 						meta.takeAttacks (1);
 						parent.SetActive (false);
+						if (meta.sapSludge() > 0) {
+							GameObject sludge = level.sludgeTiles [0];
+							coverRadius(sludge, new Point3(hit.position.x, hit.position.y, hit.position.z), meta.sapSludge());
+						} 
+						if (meta.sapLava() > 0) {
+							GameObject lava = level.lavaTiles [0];
+							coverRadius(lava, new Point3(hit.position.x, hit.position.y, hit.position.z), meta.sapLava());
+						} 
 						if (!meta.sapSpawn().Equals("")) {
 							foreach (GameObject obj in gameManager.getGlossary().factions) {
 								AffiliationMeta affiliation = obj.gameObject.GetComponent( typeof(AffiliationMeta) ) as AffiliationMeta;
@@ -356,11 +400,13 @@ public class BattleBoardManager : MonoBehaviour {
 		}
 	}
 		
-	public void setupScene (BattleGeneralMeta player, BattleGeneralMeta ai, BattleArmyManager armyManager, Transform board, Dictionary<Vector2, Transform> dict, bool playersTurn)
+	public void setupScene (BattleGeneralMeta player, BattleGeneralMeta ai, BattleArmyManager armyManager, 
+		Transform board, Dictionary<Vector2, Transform> dict, bool playersTurn, BattleLevels level)
 	{
 		this.armyManager = armyManager;
 		this.dict = dict;
 		this.playersTurn = playersTurn;
+		this.level = level;
 		boardHolder = board;
 		InitialiseList (ai.tactics);
 

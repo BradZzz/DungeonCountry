@@ -319,7 +319,7 @@ public class BattleGameManager : MonoBehaviour {
 		BattleGeneralMeta player = playerGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 		BattleGeneralMeta ai = aiGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 
-		boardScript.setupScene (player, ai, armyScript, boardSetup.getBoard(), boardSetup.getDict(), true);
+		boardScript.setupScene (player, ai, armyScript, boardSetup.getBoard(), boardSetup.getDict(), true, glossary.findLevels(BattleConverter.getSaveWorld()));
 	}
 
 	public void returnToMenu()

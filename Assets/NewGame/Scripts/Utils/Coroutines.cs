@@ -107,8 +107,12 @@ namespace AssemblyCSharp
 					return children;
 				}
 			}
-			//This is only for units, not for obstacles
 			foreach (GameObject children in GameObject.FindGameObjectsWithTag("Obstacle")) {
+				if (child.Equals(children.transform.position)) {
+					return children;
+				}
+			}
+			foreach (GameObject children in GameObject.FindGameObjectsWithTag("Hazard")) {
 				if (child.Equals(children.transform.position)) {
 					return children;
 				}

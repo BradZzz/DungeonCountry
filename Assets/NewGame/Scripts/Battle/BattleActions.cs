@@ -21,8 +21,8 @@ public class BattleActions {
 		this.isTurn = isTurn;
 	}
 
-	public void startTurn(){
-		thisActions = maxActions;
+	public void startTurn(bool slow){
+		thisActions = maxActions - (slow ? 1 : 0);
 		thisAttacks = maxAttacks;
 		isTurn = true;
 	}

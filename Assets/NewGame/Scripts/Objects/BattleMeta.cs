@@ -46,6 +46,7 @@ public class BattleMeta : MonoBehaviour {
 	private int lives;
 	private bool canMove;
 	private bool canAttack;
+	private bool slow = false;
 	private BattleActions actions;
 	private int currentHP;
 	private Animator animator;
@@ -77,10 +78,16 @@ public class BattleMeta : MonoBehaviour {
 	}
 
 	public void startTurn(){
-		actions.startTurn ();
+		actions.startTurn (slow);
+		slow = false;
 		//SpriteRenderer sprRend = gameObject.GetComponent<SpriteRenderer> ();
 		outline.enabled = false;
 		//sprRend.material.shader = Shader.Find ("Sprites/Default");
+	}
+
+	public void slowUnit(){
+		StartCoroutine (showEffects ("Slowed!"));
+		slow = true;
 	}
 
 	public void setGUI(bool set){
@@ -126,6 +133,26 @@ public class BattleMeta : MonoBehaviour {
 			}
 		}
 		return false;
+	}
+
+	public int sapLava(){
+		foreach (GameObject ability in abilities) {
+			BattleAttributes att = ability.GetComponent<BattleAttributes> ();
+			if (att.sap_lava_radius > 0) {
+				return att.sap_lava_radius;
+			}
+		}
+		return 0;
+	}
+
+	public int sapSludge(){
+		foreach (GameObject ability in abilities) {
+			BattleAttributes att = ability.GetComponent<BattleAttributes> ();
+			if (att.sap_sludge_radius > 0) {
+				return att.sap_sludge_radius;
+			}
+		}
+		return 0;
 	}
 
 	public string sapSpawn(){
@@ -312,6 +339,23 @@ public class BattleMeta : MonoBehaviour {
 			exp.Play ();
 		} catch (Exception e) {
 			Debug.Log (e.Message);
+		}
+	}
+
+	public void isAttackedTrap(int damage){
+		playEffect ("Explosion");
+		StartCoroutine (showEffects ("-" + damage.ToString()));
+		currentHP -= damage;
+		if (currentHP <= 0) {
+			while (currentHP <= 0) {
+				addLives (-1);
+				currentHP += getCharHp();
+			}
+			if (getLives() < 1){
+				setLives (0);
+				currentHP = 0;
+				StartCoroutine (slowDeath ());
+			}
 		}
 	}
 

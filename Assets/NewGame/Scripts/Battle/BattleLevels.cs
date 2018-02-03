@@ -12,4 +12,6 @@ public class BattleLevels : MonoBehaviour {
 	public GameObject[] outerWallTiles;
 	public GameObject[] innerWallTiles;
 	public GameObject[] floorTiles;
+	public GameObject[] sludgeTiles;
+	public GameObject[] lavaTiles;
 }
