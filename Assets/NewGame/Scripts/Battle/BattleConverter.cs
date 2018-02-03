@@ -40,6 +40,7 @@ public class BattleConverter : MonoBehaviour {
 		army_1[0].name = "Necropolis_LichLord";
 		army_1[0].qty = 200;
 		battle[0].army = JsonHelper.ToJson(army_1);
+		battle[0].level = "Magical";
 
 		battle[1] = new BattleSerializeable ();
 		battle[1].name = "Zarlock";
@@ -54,6 +55,7 @@ public class BattleConverter : MonoBehaviour {
 		army_2[0].name = "Necropolis_LichLord";
 		army_2[0].qty = 200;
 		battle[1].army = JsonHelper.ToJson(army_2);
+		battle[1].level = "Magical";
 
 		string json = JsonHelper.ToJson(battle);
 		PlayerPrefs.SetString ("battle", json);
