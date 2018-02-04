@@ -63,6 +63,22 @@ public class BattleGeneralResources : MonoBehaviour {
 		return resources;
 	}
 
+	public bool addUnitFill(GameObject unit, int amount){
+		BattleMeta pUnitMeta = unit.GetComponent<BattleMeta> ();
+		if (army.Count < 6) {
+			GameObject instance = Instantiate (unit) as GameObject;
+			BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+			meta.setPlayer (true);
+			meta.setLives (amount);
+			meta.setGUI (false);
+			instance.SetActive (false);
+			army.Add (instance);
+			return true;
+		}
+
+		return false;
+	}
+
 	public bool addUnit(GameObject unit, int amount){
 		//Debug.Log ("Searching for unit");
 		BattleMeta pUnitMeta = unit.GetComponent<BattleMeta> ();
@@ -70,25 +86,19 @@ public class BattleGeneralResources : MonoBehaviour {
 		foreach (GameObject arm in army) {
 			BattleMeta armMeta = arm.GetComponent<BattleMeta> ();
 			if (pUnitMeta.name == armMeta.name) {
-				//Debug.Log ("Unit in army");
 				armMeta.addLives (amount);
 				return true;
 			}
 		}
 
 		if (army.Count < 6) {
-			//Debug.Log ("Unit not in army");
-			//Create a copy of the gameobject
-			//GameObject instance = Instantiate (unit, null, Quaternion.identity) as GameObject;
 			GameObject instance = Instantiate (unit) as GameObject;
 			BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 			meta.setPlayer (true);
 			meta.setLives (amount);
 			meta.setGUI (false);
 			instance.SetActive (false);
-			//DontDestroyOnLoad(instance);
 			army.Add (instance);
-			//Debug.Log ("Unit set");
 			return true;
 		}
 

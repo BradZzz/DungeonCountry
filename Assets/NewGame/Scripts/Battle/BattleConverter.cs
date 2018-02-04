@@ -105,7 +105,7 @@ public class BattleConverter : MonoBehaviour {
 		foreach (BattleSerializeableArmy arm in army) {
 			for (int j = 0; j < GenAff.units.Length; j++) {
 				if (GenAff.units[j].name.Equals(arm.name)) {
-					GenMeta.getResources ().addUnit (GenAff.units [j], arm.qty);
+					GenMeta.getResources ().addUnitFill (GenAff.units [j], arm.qty);
 				}
 			}
 		}
