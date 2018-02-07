@@ -142,6 +142,13 @@ public class BattleAI : MonoBehaviour {
 		}
 
 		//Sap
+		/*
+		 * The computer only knows how to use the spawn sap at this point.
+		 * TODO:
+		 * Add Regular Sap
+		 * Add Sludge Sap
+		 * Add Blood Sap
+		 */
 		if (meta.sap() && !meta.sapSpawn().Equals("") && meta.getAttacks() > 0 && obstacles.Count > 0) {
 			meta.takeAttacks (1);
 			obstacles[0].gameObject.SetActive (false);
@@ -196,8 +203,6 @@ public class BattleAI : MonoBehaviour {
 			//The ai has no actions and no valid attacks. end turn
 			meta.setTurn(false);
 		}
-
-		checkEndTurn ();
 	}
 
 	public Point3 getRetreatPos() {
@@ -296,18 +301,6 @@ public class BattleAI : MonoBehaviour {
 					hazard.eval (meta);
 				}
 			}
-		}
-	}
-
-	private void checkEndTurn(){
-		bool activeUnits = false;
-		int atks, actions;
-		foreach(Transform unit in aiUnits){
-			BattleMeta unitProp = unit.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
-			//Check to make sure the enemy is active and the enemy is available in the heirarchy
-			atks = unitProp.getAttacks ();
-			actions = unitProp.getActions ();
-			activeUnits = activeUnits || unitProp.getTurn();
 		}
 	}
 

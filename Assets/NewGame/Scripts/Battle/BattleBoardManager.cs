@@ -87,32 +87,78 @@ public class BattleBoardManager : MonoBehaviour {
 		return randomPosition;
 	}
 
-	void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum, bool active, bool playerArmy)
+	void LayoutAIArmy (GameObject[] tiles, bool active, bool playerArmy)
 	{
+		//Here is where we look at our terrain and figure out the best place to start our army
+
+		//Look at what we have in our army and use it to plan accordingly
+		int ranged = 0;
+		int melee = 0;
+		foreach (GameObject tile in tiles) {
+			BattleMeta ai = tile.GetComponent<BattleMeta>();
+			if (ai.getRange () > 1) {
+				ranged++;
+			} else {
+				melee++;
+			}
+		}
+			
+		int top = gameManager.getRows () / 4;
+		int bottom = 3 * gameManager.getRows () / 4;
+		int middle = Random.Range (top + 1, bottom - 1);
+		int front = gameManager.getColumns () - 2;
+		int z = (int) tiles [0].transform.position.z;
+
+		Vector3[,] formations;
+		switch(Random.Range (0, 3)) {
+			case 0:
+				formations = new Vector3[3, 2] {{new Vector3(front,top,z),new Vector3(front-1,top,z)},
+				{new Vector3(front,middle,z),new Vector3(front-1,middle,z)}, 
+				{new Vector3(front,bottom,z),new Vector3(front-1,bottom,z)}};
+				break;
+			case 1:
+				formations = new Vector3[3, 2] {{new Vector3(front,middle - 1,z),new Vector3(front-1,middle-1,z)},
+				{new Vector3(front,middle,z),new Vector3(front-1,middle,z)}, 
+				{new Vector3(front,middle+1,z),new Vector3(front-1,middle+1,z)}};
+				break;
+			default:
+				formations = new Vector3[3, 2] {{new Vector3(front,middle - 3,z),new Vector3(front-1,middle - 1,z)},
+				{new Vector3(front,middle,z),new Vector3(front-1,middle,z)}, 
+				{new Vector3(front,middle + 3,z),new Vector3(front-1,middle + 1,z)}};
+				break;
+		}
+
+		Vector3 pos = RandomPosition ();
+		int[] iter = new int[2]{ 0, 0 };
+
 		//Here is where we set the computer bonuses
-		int objectCount = Random.Range (minimum, maximum+1);
-		for(int i = 0; i < objectCount; i++)
-		{
-			Vector3 randomPosition = RandomPosition();
-			GameObject tileChoice = tileArray[Random.Range (0, tileArray.Length)];
-			GameObject instance = Instantiate (tileChoice, randomPosition, Quaternion.identity) as GameObject;
-
+		foreach(GameObject tile in tiles){
+			BattleMeta metaU = tile.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+			if (metaU.getRange () > 1) {
+				if (iter [1] < 3) {
+					pos = formations[iter [1], 1];
+					iter [1]++;
+				} else {
+					pos = formations[iter [0], 0];
+					iter [0]++;
+				}
+			} else {
+				if (iter [0] < 3) {
+					pos = formations[iter [0], 0];
+					iter [0]++;
+				} else {
+					pos = formations[iter [1], 1];
+					iter [1]++;
+				}
+			}
+			GameObject instance = Instantiate (tile, pos, Quaternion.identity) as GameObject;
 			instance.SetActive (true);
-
 			BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
-			BattleMeta metaU = tileChoice.GetComponent( typeof(BattleMeta) ) as BattleMeta;
-
-			//Debug.Log ("Layout at Random");
-			//Debug.Log (meta.name);
-			//Debug.Log (randomPosition);
-
 			meta.init ();
-
 			meta.setPlayer (playerArmy);
 			meta.setTurn (active);
 			meta.setLives (metaU.getLives());
 			meta.setGeneralAttributes (aiAttribs);
-
 			instance.transform.SetParent (boardHolder);
 		}
 	}
@@ -413,9 +459,7 @@ public class BattleBoardManager : MonoBehaviour {
 		playerAttribs = player.getResources ().getAttribs ();
 		aiAttribs = ai.getResources ().getAttribs ();
 
-		foreach (GameObject army in armyManager.getTheirArmy()) {
-			LayoutObjectAtRandom (new GameObject[]{army}, 1, 1, false, false);
-		}
+		LayoutAIArmy (armyManager.getTheirArmy().ToArray(), false, false);
 
 		foreach (Transform tile in boardHolder) {
 			if (tile.tag.Contains ("Unit")) {
