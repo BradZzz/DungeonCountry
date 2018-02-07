@@ -46,7 +46,7 @@ public class BattleMeta : MonoBehaviour {
 	private int lives;
 	private bool canMove;
 	private bool canAttack;
-	private bool slow = false;
+	private int slow = 0;
 	private BattleActions actions;
 	private int currentHP;
 	private Animator animator;
@@ -78,8 +78,8 @@ public class BattleMeta : MonoBehaviour {
 	}
 
 	public void startTurn(){
-		actions.startTurn (slow);
-		slow = false;
+		actions.startTurn ();
+		slow = slow > 0 ? slow--: 0;
 		//SpriteRenderer sprRend = gameObject.GetComponent<SpriteRenderer> ();
 		outline.enabled = false;
 		//sprRend.material.shader = Shader.Find ("Sprites/Default");
@@ -87,11 +87,31 @@ public class BattleMeta : MonoBehaviour {
 
 	public void slowUnit(){
 		StartCoroutine (showEffects ("Slowed!"));
-		slow = true;
+		slow = 2;
 	}
 
 	public void setGUI(bool set){
 		is_gui = set;
+	}
+
+	public int atkLVL(){
+		foreach (GameObject ability in abilities) {
+			BattleAttributes att = ability.GetComponent<BattleAttributes> ();
+			if (att.atkLVL > 0) {
+				return att.atkLVL;
+			}
+		}
+		return 0;
+	}
+
+	public int defLVL(){
+		foreach (GameObject ability in abilities) {
+			BattleAttributes att = ability.GetComponent<BattleAttributes> ();
+			if (att.defLVL > 0) {
+				return att.defLVL;
+			}
+		}
+		return 0;
 	}
 
 	public int extraAtk(){
@@ -166,6 +186,9 @@ public class BattleMeta : MonoBehaviour {
 	}
 
 	public int getMovement(){
+		if (slow > 0) {
+			return 1;
+		}
 		return movement;
 	}
 
@@ -360,16 +383,17 @@ public class BattleMeta : MonoBehaviour {
 	}
 
 	public bool isAttacked (BattleMeta attacker, GeneralAttributes own, GeneralAttributes theirs) {
-
 		bool ranged = attacker.range > 1;
 		bool magical = attacker.magical;
 
 		int tAtk = attacker.attack + theirs.getAttack ();
 		int tDef = defense + own.getDefense();
 		float I = tAtk >= tDef ? (float) (0.05 * (tAtk - tDef)) : 0;
+		float I2 = (float) 0.1 * attacker.atkLVL ();
 		float R = tAtk <= tDef ? (float) (0.025 * (tDef - tAtk)) : 0;
+		float R2 = (float) 0.05 * defLVL();
 		int dmgB = UnityEngine.Random.Range (attacker.dMin, attacker.dMax) * attacker.getLives();
-		int attack = (int) (dmgB * (1 + I) * (1 - R));
+		int attack = (int) (dmgB * (1 + I + I2) * (1 - R) * (1 - R2));
 
 		//meta.getCharStrength(), meta.range > 1, meta.magical
 //		DMGf = DMGb × (1 + I1 + I2 + I3 + I4 + I5) × (1 - R1) × (1 - R2 - R3) × (1 - R4) × (1 - R5) × (1 - R6) × (1 - R7) × (1 - R8)

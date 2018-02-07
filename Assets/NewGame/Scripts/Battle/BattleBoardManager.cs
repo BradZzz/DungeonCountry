@@ -137,7 +137,7 @@ public class BattleBoardManager : MonoBehaviour {
 			if (meta != null) {
 				lastClicked = clickedObject;
 				if (meta.getActions() > 0 && meta.getTurn()) {
-					StartCoroutine (steps.generateOverflowMapv1 (new Point3 (lastClicked.position), meta.movement, 
+					StartCoroutine (steps.generateOverflowMapv1 (new Point3 (lastClicked.position), meta.getMovement(), 
 						gameManager.getRows (), gameManager.getColumns (), getObstacles(), show_actions));
 				} else if (meta.getAttacks() > 0 && meta.getTurn()) {
 					show_actions (new List<Point3>());
@@ -212,7 +212,7 @@ public class BattleBoardManager : MonoBehaviour {
 			SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
 			sprRend.material.shader = Shader.Find ("Sprites/Default");
 			if (meta != null) {
-				moved = checkMovement (meta.movement, child, hit);
+				moved = checkMovement (meta.getMovement(), child, hit);
 			}
 		}
 		foreach (Transform child in characterPositions)

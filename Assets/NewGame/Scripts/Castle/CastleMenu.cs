@@ -155,7 +155,7 @@ public class CastleMenu : MonoBehaviour {
 			Transform rangeText = assets.transform.Find("RangeText");
 			rangeText.gameObject.GetComponent<Text> ().text = purchaseUnit.GetComponent<BattleMeta> ().range.ToString();
 			Transform actionText = assets.transform.Find("ActionText");
-			actionText.gameObject.GetComponent<Text> ().text = purchaseUnit.GetComponent<BattleMeta> ().movement.ToString();
+			actionText.gameObject.GetComponent<Text> ().text = purchaseUnit.GetComponent<BattleMeta> ().getMovement().ToString();
 
 			Transform resourceP = unitPPurchase.transform.Find("UnitResourcePanel");
 			Transform sapphireText = resourceP.transform.Find ("SapphireText"); 

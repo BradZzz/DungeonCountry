@@ -6,6 +6,9 @@ public class BattleAttributes : MonoBehaviour {
 	public string name;
 	public string description;
 
+	public int atkLVL = 0;
+	public int defLVL = 0;
+
 	public bool atk_all = false;
 	public bool sap_obs = false;
 	public int extra_atk = 0;

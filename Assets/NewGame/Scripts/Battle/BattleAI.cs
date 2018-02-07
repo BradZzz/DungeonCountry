@@ -101,7 +101,7 @@ public class BattleAI : MonoBehaviour {
 	}
 
 	IEnumerator aiMove(Transform ai){
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (.5f);
 
 		aiMoveSubroutine(ai);
 		iterateAIUnit ();
@@ -143,7 +143,6 @@ public class BattleAI : MonoBehaviour {
 
 		//Sap
 		if (meta.sap() && !meta.sapSpawn().Equals("") && meta.getAttacks() > 0 && obstacles.Count > 0) {
-			
 			meta.takeAttacks (1);
 			obstacles[0].gameObject.SetActive (false);
 			foreach (GameObject obj in gameManager.getGlossary().factions) {
@@ -201,6 +200,27 @@ public class BattleAI : MonoBehaviour {
 		checkEndTurn ();
 	}
 
+	public Point3 getRetreatPos() {
+		Transform bestChoice = null;
+		float maxDist = -1f;
+		foreach (Transform tile in floor) {
+			if (tile.position.x < this.width && this.width - 1 <= tile.position.x 
+				&& tile.position.y >= 0 && tile.position.y < this.height) {
+				if (!Coroutines.hasParent (tile)) {
+					float distance = 0;
+					foreach(Transform unit in playersUnits) {
+						distance += Vector3.Distance (tile.position, unit.position);
+					}
+					if (bestChoice == null || maxDist < 0 || maxDist < distance) {
+						maxDist = distance;
+						bestChoice = tile;
+					}
+				}
+			}
+		}
+		return new Point3(bestChoice.position);
+	}
+
 	public void takeActions(Transform ai, BattleMeta meta){
 		Debug.Log ("Moving");
 		//move ai and repeat function
@@ -236,8 +256,7 @@ public class BattleAI : MonoBehaviour {
 					//Now let's check the ai's range. If the range is bigger than the distance, we need to back up the ai
 					} else if (meta.range > 1 && meta.range > distance + 1) {
 						//Retreat to back lines
-						pathMap = astar.baseAlgorithm (new Point3 (ai.position), retreatPos, height, width, moveables, true);
-
+						pathMap = astar.baseAlgorithm (new Point3 (ai.position), getRetreatPos(), height, width, moveables, true);
 						try {
 							closest = pathMap [0];
 							int distance2 = pathMap.Count - 1;
@@ -246,23 +265,14 @@ public class BattleAI : MonoBehaviour {
 						} catch (Exception e) {
 							closest = new Point3 (ai.position);
 						}
-
-						/*if (distance - meta.range >= distance2 ) {
-							closest = pathMap [distance2];
-						} else {
-							//else take the movement or distance - range. whichever is smaller
-							int smaller = 1;
-							closest = pathMap [smaller];
-						}*/
-
-					} else if (meta.movement > distance - meta.range) {
+					} else if (meta.getMovement() > distance - meta.range) {
 						if (distance - meta.range < 0) {
 							closest = new Point3 (ai.position);
 						} else {
 							closest = pathMap [distance - meta.range];
 						}
 					} else {
-						closest = pathMap [meta.movement];
+						closest = pathMap [meta.getMovement()];
 					}
 				} else {
 					closest = new Point3 (ai.position);

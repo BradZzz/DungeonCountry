@@ -75,7 +75,6 @@ public class BattleGeneralResources : MonoBehaviour {
 			army.Add (instance);
 			return true;
 		}
-
 		return false;
 	}
 
