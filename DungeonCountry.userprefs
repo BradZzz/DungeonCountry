@@ -1,15 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/NewGame/Scripts/Battle/BattleAI.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/NewGame/Scripts/Battle/BattleBoardManager.cs">
     <Files>
-      <File FileName="Assets/NewGame/Scripts/Battle/BattleAI.cs" Line="239" Column="1" />
+      <File FileName="Assets/NewGame/Scripts/Battle/BattleAI.cs" Line="150" Column="15" />
       <File FileName="Assets/NewGame/Scripts/Utils/Coroutines.cs" Line="81" Column="38" />
+      <File FileName="Assets/NewGame/Scripts/Utils/Point3.cs" Line="1" Column="1" />
+      <File FileName="Assets/NewGame/Scripts/Battle/BattleBoardManager.cs" Line="113" Column="28" />
+      <File FileName="Assets/NewGame/Scripts/Battle/BattleGameManager.cs" Line="10" Column="17" />
+      <File FileName="Assets/NewGame/Scripts/Objects/BattleMeta.cs" Line="236" Column="2" />
+      <File FileName="Assets/NewGame/Scripts/Battle/BattleSetupManager.cs" Line="123" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/Shared/Unity/git/DungeonCountry/Assets/NewGame/Scripts/Battle/BattleGameManager.cs" line="133" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

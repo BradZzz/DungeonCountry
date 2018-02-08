@@ -8,6 +8,3 @@ sceneSetups:
 - path: Assets/NewGame/Scenes/PuzzleScene.unity
   isLoaded: 1
   isActive: 1
-- path: Assets/NewGame/Scenes/TestScene.unity
-  isLoaded: 0
-  isActive: 0
