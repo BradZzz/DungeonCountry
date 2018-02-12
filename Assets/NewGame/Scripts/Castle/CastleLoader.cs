@@ -15,8 +15,7 @@ public class CastleLoader : MonoBehaviour {
 			init (CastlePrefs.getGeneralMeta (), CastlePrefs.getCastleMeta (), false);
 		}
 	}
-	
-	// Update is called once per frame
+
 	void init (BattleGeneralResources gMeta, CastleMeta dMeta, bool reset) {
 		//Pull the canvas from the hierarchy
 		GameObject canvas = GameObject.Find ("Canvas"); 
@@ -77,29 +76,31 @@ public class CastleLoader : MonoBehaviour {
 		}
 		count = 0;
 		foreach (GameObject unit in gMeta.getarmy()) {
-			count += 1;
+			if (count < 6) {
+				count += 1;
 
-			BattleMeta bMeta = unit.GetComponent<BattleMeta> ();
+				BattleMeta bMeta = unit.GetComponent<BattleMeta> ();
 
-			Debug.Log ("bMeta: " + bMeta.name);
+				Debug.Log ("bMeta: " + bMeta.name);
 
-			Transform unitPanel = unitP.transform.Find ("Unit" + count + "Panel"); 
-			unitPanel.gameObject.SetActive (true);
-			Transform unitImage = unitPanel.transform.Find ("Unit" + count); 
-			Image sprImg = unitImage.gameObject.GetComponent<Image> ();
-			sprImg.sprite = unit.GetComponent<SpriteRenderer> ().sprite;
+				Transform unitPanel = unitP.transform.Find ("Unit" + count + "Panel"); 
+				unitPanel.gameObject.SetActive (true);
+				Transform unitImage = unitPanel.transform.Find ("Unit" + count); 
+				Image sprImg = unitImage.gameObject.GetComponent<Image> ();
+				sprImg.sprite = unit.GetComponent<SpriteRenderer> ().sprite;
 
-			Transform unitSubPanel = unitPanel.transform.Find ("Q" + count); 
-			Transform unitText = unitSubPanel.transform.Find ("Unit" + count + "Text"); 
-			unitText.gameObject.GetComponent<Text> ().text = bMeta.getLives().ToString();
+				Transform unitSubPanel = unitPanel.transform.Find ("Q" + count); 
+				Transform unitText = unitSubPanel.transform.Find ("Unit" + count + "Text"); 
+				unitText.gameObject.GetComponent<Text> ().text = bMeta.getLives().ToString();
 
-			Color temp = sprImg.color;
-			if (count == CastlePrefs.toDelete) {
-				temp.a=0.5f;
-			} else {
-				temp.a=1f;
+				Color temp = sprImg.color;
+				if (count == CastlePrefs.toDelete) {
+					temp.a=0.5f;
+				} else {
+					temp.a=1f;
+				}
+				sprImg.color = temp;
 			}
-			sprImg.color = temp;
 
 		}
 

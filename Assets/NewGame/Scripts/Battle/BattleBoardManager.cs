@@ -203,6 +203,7 @@ public class BattleBoardManager : MonoBehaviour {
 				Vector2 pos = new Vector2 (x, y);
 				Transform child = dict [pos];
 				if (Coroutines.hasParent (child)) {
+					Debug.Log ("Obstacle");
 					obstacles.Add (new Point3 (pos));
 				}
 			}
@@ -401,13 +402,13 @@ public class BattleBoardManager : MonoBehaviour {
 	}
 		
 	public void checkConditions(){
-		//Debug.Log ("checkConditions");
+		Debug.Log ("checkConditions");
 		if (armyManager.iLost (boardHolder)) {
-			//Debug.Log ("You Lose");
-			gameManager.gameOver (false, "You Lose");
+			Debug.Log ("You Lose");
+			gameManager.gameOver (false, "You Lose", armyManager.getResults(boardHolder));
 		} else if (armyManager.theyLost (boardHolder)) {
-			//Debug.Log ("You Win!");
-			gameManager.gameOver (true, "You Win!");
+			Debug.Log ("You Win!");
+			gameManager.gameOver (true, "You Win!", armyManager.getResults(boardHolder));
 		} else {
 			//Debug.Log ("Game Continues");
 		}

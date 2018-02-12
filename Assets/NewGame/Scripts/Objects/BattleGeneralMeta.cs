@@ -29,22 +29,42 @@ public class BattleGeneralMeta : MonoBehaviour {
 
 	void Start(){
 		resources = new BattleGeneralResources (this.GetInstanceID (), army);
-		cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+		if (GameObject.Find("Main Camera") != null) {
+			cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+		}
 	}
 
 	void LateUpdate () 
 	{
 		if (isPlayer) {
-			if (cam == null) {
+			if (cam == null && GameObject.Find("Main Camera") != null) {
 				cam = GameObject.Find("Main Camera").GetComponent<Camera>();
 			}
 			Vector3 vec = new Vector3 (this.transform.position.x, this.transform.position.y, -10);
 			Vector3 next = vec;
-			Vector3 current = cam.transform.position;
-			if (next.x != current.x || next.y != current.y) {
-				cam.transform.position = vec;
+			if (cam != null && cam.isActiveAndEnabled) {
+				Vector3 current = cam.transform.position;
+				if (next.x != current.x || next.y != current.y) {
+					cam.transform.position = vec;
+				}
 			}
 		}
+	}
+
+	public void setArmy(List<GameObject> army){
+		if (resources == null) {
+			Start ();
+		}
+		this.army = army;
+		resources.setarmy (army);
+	}
+
+	public void addUnit(GameObject unit, int amt){
+		resources.addUnitFill(unit, amt);
+	}
+
+	public List<GameObject> getArmy(){
+		return getResources().getarmy();
 	}
 
 	public void setPlayer(bool isPlayer){

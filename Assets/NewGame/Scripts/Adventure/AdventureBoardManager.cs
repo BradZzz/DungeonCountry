@@ -26,10 +26,11 @@ public class AdventureBoardManager : MonoBehaviour {
 	private int waters = 4;
 
 	public GameObject worldCreator;
+	public GameObject glossary;
 	private AdventureWorldCreator creator;
 
 	public GameObject cliffNinePatch;
-
+	private Glossary glossy;
 	private Transform lastClicked;
 	private Transform boardHolder;
 	private Point3 lastClick;
@@ -56,6 +57,8 @@ public class AdventureBoardManager : MonoBehaviour {
 
 	void Start(){
 		cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+		glossy = glossary.GetComponent<Glossary> ();
+		glossy.init ();
 		steps = footsteps.GetComponent<Footsteps>();
 		creator = worldCreator.GetComponent<AdventureWorldCreator>();
 		openPositions = new List <Point3> ();
@@ -71,15 +74,38 @@ public class AdventureBoardManager : MonoBehaviour {
 
 	private void formatObjects(bool init){
 
-		//Point3 playerPos = new Point3(), enemyPos = new Point3();
-
-		//bool sharedPrefs = enemy != null || player != null;
+		GameObject[] generals = BattleConverter.getSave (glossy);
 
 		//if (sharedPrefs || init) {
 		foreach(GameObject unity in GameObject.FindGameObjectsWithTag("Unit")){
 			//Transform unit = unity.transform;
 			//Point3 pos = new Point3(unit.position);
 			BattleGeneralMeta meta = unity.GetComponent<BattleGeneralMeta> ();
+			if (!init) {
+				if (generals != null) {
+					BattleGeneralMeta player = generals[0].GetComponent<BattleGeneralMeta> ();
+					BattleGeneralMeta ai = generals[1].GetComponent<BattleGeneralMeta> ();
+					if (meta.name.Equals(player.name)) {
+						meta.setArmy(player.getArmy());
+						if (meta.getArmy().Count < 1) {
+							meta.setDefeated (true);
+						}
+						//BattleGeneralResources srcs = meta.getResources ();
+						//srcs.setarmy (player.getResources().getarmy());
+					} else if (meta.name.Equals(ai.name)) {
+						meta.setArmy(ai.getArmy());
+						if (meta.getArmy().Count < 1) {
+							meta.setDefeated (true);
+						}
+						//BattleGeneralResources srcs = meta.getResources ();
+						//srcs.setarmy (ai.getResources().getarmy());
+					}
+				}
+			}
+
+			if (generals != null) {
+				BattleConverter.reset ();
+			}
 
 			if (meta != null) {
 				if (meta.getDefeated ()) {
@@ -93,19 +119,24 @@ public class AdventureBoardManager : MonoBehaviour {
 				if (init) {
 					//BattleGeneralResources res = meta.getResources ();
 					//if (res != null){
-						List<GameObject> newUnits = new List<GameObject> ();
-						foreach (GameObject unit in meta.army) {
+					List<GameObject> newUnits = new List<GameObject> ();
+					AffiliationMeta affmet = glossy.findFaction(meta.faction);
+					foreach (GameObject unit in affmet.units) {
 							BattleMeta gmeta = unit.GetComponent<BattleMeta> ();
 							if (gmeta.lvl < 3) {
 								if (gmeta.lvl == 1) {
 									gmeta.setLives (Random.Range (15, 25));
 								} else {
-									gmeta.setLives (Random.Range (5, 10));
+								if (meta.getPlayer()) {
+										gmeta.setLives (Random.Range (100, 105));
+									} else {
+										gmeta.setLives (Random.Range (5, 10));
+									}
 								}
 								newUnits.Add (unit);
 							}
 						}
-						meta.army = newUnits;
+						meta.setArmy(newUnits);
 					//}
 				}
 			}
@@ -262,13 +293,20 @@ public class AdventureBoardManager : MonoBehaviour {
 				//SharedPrefs.playerArmy = Instantiate (lastClicked.gameObject, lastClicked.position, Quaternion.identity) as GameObject;
 				//SharedPrefs.playerArmy.SetActive (false);
 
-				SharedPrefs.setPlayerName (lastClicked.gameObject.name);
-				SharedPrefs.setEnemyName (enemy.name);
+//				SharedPrefs.setPlayerName (lastClicked.gameObject.name);
+//				SharedPrefs.setEnemyName (enemy.name);
+//
+//				//SharedPrefs.enemyArmy = Instantiate (enemy, enemy.transform.position, Quaternion.identity) as GameObject;
+//				//SharedPrefs.enemyArmy.SetActive (false);
+//				Debug.Log ("Player: " + SharedPrefs.getPlayerName());
+//				Debug.Log ("Enemy: " + SharedPrefs.getEnemyName());
 
-				//SharedPrefs.enemyArmy = Instantiate (enemy, enemy.transform.position, Quaternion.identity) as GameObject;
-				//SharedPrefs.enemyArmy.SetActive (false);
-				Debug.Log ("Player: " + SharedPrefs.getPlayerName());
-				Debug.Log ("Enemy: " + SharedPrefs.getEnemyName());
+				BattleGeneralMeta player = lastClicked.gameObject.GetComponent<BattleGeneralMeta> ();
+				BattleGeneralMeta ai = enemy.GetComponent<BattleGeneralMeta> ();
+				BattleConverter.putSave (player, ai);
+
+				Debug.Log (PlayerPrefs.GetString ("battle"));
+
 				attacking = true;
 			}
 		} else {

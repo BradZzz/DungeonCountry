@@ -16,7 +16,7 @@ using AssemblyCSharp;
 
 public class BattleGameManager : MonoBehaviour {
 
-	public float levelStartDelay = 2f;
+	public float levelStartDelay = 2.2f;
 	public static BattleGameManager instance = null;
 	//public GameObject[] battleUnits;       
 
@@ -34,7 +34,7 @@ public class BattleGameManager : MonoBehaviour {
 	private BattleArmyManager armyScript;
 	private Transform lastHitObj;
 	private GameObject levelImage, playerPanel, enemyPanel;
-	private Text levelText;
+	private Text levelText, gameOverText;
 
 	//private bool playersTurn;
 	private int level = 1;
@@ -65,7 +65,8 @@ public class BattleGameManager : MonoBehaviour {
 	void InitGame()
 	{
 		levelImage = GameObject.Find("oImage");
-		levelText = GameObject.Find("oText").GetComponent<Text>();
+		levelText = GameObject.Find("gText").GetComponent<Text>();
+		gameOverText = GameObject.Find("oText").GetComponent<Text>();
 
 		playerPanel = GameObject.Find("PlayerPanel");
 		enemyPanel = GameObject.Find("EnemyPanel");
@@ -76,6 +77,7 @@ public class BattleGameManager : MonoBehaviour {
 		hidePanel (enemyPanel);
 
 		levelImage.SetActive (false);
+		levelText.gameObject.SetActive (false);
 	}
 
 	public Glossary getGlossary() {
@@ -291,22 +293,30 @@ public class BattleGameManager : MonoBehaviour {
 		}
 	}
 
-	public void gameOver(bool won, string lvlText){
+	public void gameOver(bool won, string lvlText, List <GameObject>[] results){
+
+		BattleGeneralMeta playGen = playerGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
+		BattleGeneralMeta aiGen = aiGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 
 		if (won) {
-			BattleGeneralMeta aiGen = aiGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
+//			aiGen = aiGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 			aiGen.setDefeated (true);
 		} else {
-			BattleGeneralMeta playGen = playerGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
+//			playGen = playerGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 			playGen.setDefeated (true);
 		}
+
+		playGen.setArmy(results[0]);
+		aiGen.setArmy(results[1]);
+
+		BattleConverter.putSave (playGen, aiGen);
 
 		GameObject button = GameObject.Find ("Button");
 		if (button != null) {
 			button.SetActive (false);
 		}
 		boardScript.UnloadScene ();
-		levelText.text = lvlText;
+		gameOverText.text = lvlText;
 		levelImage.SetActive (true);
 		enabled = false;
 		Invoke("returnToMenu", levelStartDelay);
@@ -320,6 +330,23 @@ public class BattleGameManager : MonoBehaviour {
 		BattleGeneralMeta ai = aiGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 
 		boardScript.setupScene (player, ai, armyScript, boardSetup.getBoard(), boardSetup.getDict(), true, glossary.findLevels(BattleConverter.getSaveWorld()));
+
+		setLevelImageText ("Game Start");
+	}
+
+	public void setLevelImageText(string msg)
+	{
+		levelText.gameObject.SetActive (true);
+		playEffect ("Stars");
+		levelText.text = msg;
+		//playEffect ("Blood");
+		Invoke("setLevelTextInactive", levelStartDelay);
+	}
+
+	public void setLevelTextInactive()
+	{
+		levelText.text = "";
+		levelText.gameObject.SetActive (false);
 	}
 
 	public void returnToMenu()
@@ -327,7 +354,16 @@ public class BattleGameManager : MonoBehaviour {
 		Destroy (gameObject);
 
 		Debug.Log ("Fin");
-		Application.LoadLevel ("PuzzleScene");
-//		Application.LoadLevel ("AdventureScene");
+//		Application.LoadLevel ("PuzzleScene");
+		Application.LoadLevel ("AdventureScene");
+	}
+
+	public void playEffect(string effect) {
+		try {
+			EffectConfig exp = levelText.transform.Find(effect).gameObject.GetComponent<EffectConfig> ();
+			exp.Play ();
+		} catch (Exception e) {
+			Debug.Log (e.Message);
+		}
 	}
 }

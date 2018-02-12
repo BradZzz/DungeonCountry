@@ -52,6 +52,7 @@ public class BattleArmyManager {
 			BattleMeta bMeta = child.gameObject.GetComponent<BattleMeta> ();
 			if (bMeta != null && bMeta.getPlayer()) {
 				if (bMeta.getLives () > 0) {
+					Debug.Log ("Player alive because of: " + bMeta.name);
 					return false;
 				}
 			}
@@ -64,10 +65,27 @@ public class BattleArmyManager {
 			BattleMeta bMeta = child.gameObject.GetComponent<BattleMeta> ();
 			if (bMeta != null && !bMeta.getPlayer()) {
 				if (bMeta.getLives () > 0) {
+					Debug.Log ("AI alive because of: " + bMeta.name);
 					return false;
 				}
 			}
 		}
 		return true;
+	}
+
+	public List <GameObject>[] getResults(Transform board){
+		List <GameObject> playerArmy = new List <GameObject> (); 
+		List <GameObject> aiArmy = new List <GameObject> (); 
+		foreach (Transform child in board) {
+			BattleMeta bMeta = child.gameObject.GetComponent<BattleMeta> ();
+			if (bMeta != null && bMeta.getLives () > 0) {
+				if (!bMeta.getPlayer ()) {
+					aiArmy.Add (child.gameObject);
+				} else {
+					playerArmy.Add (child.gameObject);
+				}
+			}
+		}
+		return new List <GameObject>[]{ playerArmy, aiArmy };
 	}
 }

@@ -84,7 +84,7 @@ namespace AssemblyCSharp
 					return true;
 				}
 			}
-			foreach (GameObject children in GameObject.FindGameObjectsWithTag("Obstacle")) {
+			foreach (GameObject children in GameObject.FindGameObjectsWithTag("ObsBattle")) {
 				if (children.transform.position.x == child.x && children.transform.position.y == child.y) {
 					return true;
 				}
@@ -107,7 +107,7 @@ namespace AssemblyCSharp
 					return children;
 				}
 			}
-			foreach (GameObject children in GameObject.FindGameObjectsWithTag("Obstacle")) {
+			foreach (GameObject children in GameObject.FindGameObjectsWithTag("ObsBattle")) {
 				if (child.Equals(children.transform.position)) {
 					return children;
 				}

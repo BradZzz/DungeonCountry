@@ -22,6 +22,17 @@ public class Glossary : MonoBehaviour {
 		return stages[0];
 	}
 
+	public GameObject findUnit(string search) {
+		foreach (AffiliationMeta aff in affiliations) {
+			foreach (GameObject unit in aff.units) {
+				if (unit.name.Equals(search)) {
+					return unit;
+				}
+			}
+		}
+		return affiliations[0].units[0];
+	}
+
 	public AffiliationMeta findFaction(string search) {
 		foreach (AffiliationMeta aff in affiliations) {
 			if (aff.name.Equals(search)) {
@@ -48,6 +59,10 @@ public class Glossary : MonoBehaviour {
 			}
 		}
 		return generals[0];
+	}
+
+	public void init() {
+		Start ();
 	}
 		
 	// Use this for initialization

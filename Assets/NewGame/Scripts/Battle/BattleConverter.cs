@@ -63,13 +63,15 @@ public class BattleConverter : MonoBehaviour {
 	}
 
 
-	public void putSave(BattleGeneralMeta player, BattleGeneralMeta ai){
+	public static void putSave(BattleGeneralMeta player, BattleGeneralMeta ai){
 		BattleGeneralMeta playerGenMeta = player.GetComponent<BattleGeneralMeta> ();
 		BattleGeneralMeta aiGenMeta = ai.GetComponent<BattleGeneralMeta> ();
 
 		BattleSerializeable[] battle = new BattleSerializeable[2];
 		battle [0] = serializeGeneral (playerGenMeta);
 		battle [1] = serializeGeneral (aiGenMeta);
+		battle[0].level = "World";
+		battle[1].level = "World";
 
 		string json = JsonHelper.ToJson(battle);
 		PlayerPrefs.SetString ("battle", json);
@@ -77,10 +79,24 @@ public class BattleConverter : MonoBehaviour {
 		Debug.Log("before: " + json);
 	}
 
+	public static void reset(){
+		PlayerPrefs.SetString ("battle", "");
+	}
+
 	public static GameObject[] getSave(Glossary glossary){
 		string newInfo = PlayerPrefs.GetString ("battle");
+		Debug.Log("after: " + newInfo);
+		if (newInfo.Length == 0) {
+			return null;
+		}
 		BattleSerializeable[] thisBattle = JsonHelper.FromJson<BattleSerializeable>(newInfo);
-		return new GameObject[]{ deserializeGeneral(thisBattle [0], glossary), deserializeGeneral(thisBattle [1], glossary) };
+		if (thisBattle != null) {
+			return new GameObject[] {
+				deserializeGeneral (thisBattle [0], glossary),
+				deserializeGeneral (thisBattle [1], glossary)
+			};
+		}
+		return null;
 	}
 
 	public static string getSaveWorld(){
@@ -90,7 +106,6 @@ public class BattleConverter : MonoBehaviour {
 	}
 
 	public static GameObject deserializeGeneral(BattleSerializeable battle, Glossary glossary){
-
 		GameObject general = null;
 		BattleGeneralMeta GenMeta = null;
 		AffiliationMeta GenAff = null; 
@@ -99,16 +114,45 @@ public class BattleConverter : MonoBehaviour {
 		general = glossary.findGeneralGO (btl.name);
 		GenMeta = general.GetComponent<BattleGeneralMeta>();
 		GenAff = glossary.findFaction (GenMeta.faction);
-		GenMeta.setResources (new BattleGeneralResources (1, new List<GameObject>()));
+//		GenMeta.setResources (new BattleGeneralResources (1, new List<GameObject>()));
 
+//		List<GameObject> newUnits = new List<GameObject> ();
+//		AffiliationMeta affmet = glossy.findFaction(meta.faction);
+//		foreach (GameObject unit in affmet.units) {
+//			BattleMeta gmeta = unit.GetComponent<BattleMeta> ();
+//			if (gmeta.lvl < 3) {
+//				if (gmeta.lvl == 1) {
+//					gmeta.setLives (Random.Range (15, 25));
+//				} else {
+//					if (meta.getPlayer()) {
+//						gmeta.setLives (Random.Range (100, 105));
+//					} else {
+//						gmeta.setLives (Random.Range (5, 10));
+//					}
+//				}
+//				newUnits.Add (unit);
+//			}
+//		}
+//		meta.setArmy(newUnits);
+
+		List<GameObject> newUnits = new List<GameObject> ();
 		BattleSerializeableArmy[] army = JsonHelper.FromJson<BattleSerializeableArmy> (btl.army);
 		foreach (BattleSerializeableArmy arm in army) {
-			for (int j = 0; j < GenAff.units.Length; j++) {
-				if (GenAff.units[j].name.Equals(arm.name)) {
-					GenMeta.getResources ().addUnitFill (GenAff.units [j], arm.qty);
-				}
-			}
+			GameObject unit = glossary.findUnit (arm.name.Replace("(Clone)",""));
+			BattleMeta bMet = unit.GetComponent<BattleMeta> ();
+			bMet.setLives (arm.qty);
+			newUnits.Add (unit);
+
+//			for (int j = 0; j < GenAff.units.Length; j++) {
+//				if (GenAff.units[j].name.Equals(arm.name)) {
+//					GenMeta.addUnit (GenAff.units [j], arm.qty);
+//					//GenMeta.getResources ().addUnitFill (GenAff.units [j], arm.qty);
+//					//GenMeta.army.Add();
+//				}
+//			}
 		}
+		GenMeta.setArmy (newUnits);
+
 		return general;
 	}
 
@@ -121,11 +165,11 @@ public class BattleConverter : MonoBehaviour {
 		stats.speed = 1;
 		stats.range = 1;
 		battle.stats = JsonUtility.ToJson(stats);
-		BattleSerializeableArmy[] army = new BattleSerializeableArmy[general.army.Count];
-		for (int i =0; i < general.army.Count; i++){
-			BattleMeta armMeta = general.army[i].GetComponent<BattleMeta> ();
+		BattleSerializeableArmy[] army = new BattleSerializeableArmy[general.getArmy().Count];
+		for (int i =0; i < general.getArmy().Count; i++){
+			BattleMeta armMeta = general.getArmy()[i].GetComponent<BattleMeta> ();
 			army[i] = new BattleSerializeableArmy ();
-			army[i].name = general.army[i].name;
+			army[i].name = general.getArmy()[i].name;
 			army[i].qty = armMeta.getLives();
 		}
 		battle.army = JsonHelper.ToJson(army);
