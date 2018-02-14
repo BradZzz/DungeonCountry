@@ -341,6 +341,7 @@ public class AdventureWorldCreator : MonoBehaviour {
 						GameObject tileChoice = foundationTiles [UnityEngine.Random.Range (0, foundationTiles.Length)];
 						GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
 						instance.transform.SetParent (board);
+
 						tileChoice = towerTiles [UnityEngine.Random.Range (0, towerTiles.Length)];
 						instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
 						instance.transform.SetParent (board);

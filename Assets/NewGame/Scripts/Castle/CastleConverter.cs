@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleConverter : MonoBehaviour {
+public class CastleConverter : MonoBehaviour {
 
 	public static void putSaveBattleObject(BattleObject game){
 		BattleSerializeable[] battle = new BattleSerializeable[2];
@@ -19,7 +19,7 @@ public class BattleConverter : MonoBehaviour {
 		battle[1].army = JsonHelper.ToJson(game.army2);
 
 		string json = JsonHelper.ToJson(battle);
-		PlayerPrefs.SetString ("battle", json);
+		PlayerPrefs.SetString ("castle", json);
 		Debug.Log ("json: " + json);
 		Debug.Log ("json: " + game.army1);
 		Debug.Log ("json: " + game.army2);
@@ -58,7 +58,7 @@ public class BattleConverter : MonoBehaviour {
 		battle[1].level = "Magical";
 
 		string json = JsonHelper.ToJson(battle);
-		PlayerPrefs.SetString ("battle", json);
+		PlayerPrefs.SetString ("castle", json);
 		Debug.Log ("json: " + json);
 	}
 
@@ -74,17 +74,17 @@ public class BattleConverter : MonoBehaviour {
 		battle[1].level = "World";
 
 		string json = JsonHelper.ToJson(battle);
-		PlayerPrefs.SetString ("battle", json);
+		PlayerPrefs.SetString ("castle", json);
 
 		Debug.Log("before: " + json);
 	}
 
 	public static void reset(){
-		PlayerPrefs.SetString ("battle", "");
+		PlayerPrefs.SetString ("castle", "");
 	}
 
 	public static GameObject[] getSave(Glossary glossary){
-		string newInfo = PlayerPrefs.GetString ("battle");
+		string newInfo = PlayerPrefs.GetString ("castle");
 		Debug.Log("after: " + newInfo);
 		if (newInfo.Length == 0) {
 			return null;
@@ -100,7 +100,7 @@ public class BattleConverter : MonoBehaviour {
 	}
 
 	public static string getSaveWorld(){
-		string newInfo = PlayerPrefs.GetString ("battle");
+		string newInfo = PlayerPrefs.GetString ("castle");
 		BattleSerializeable[] thisBattle = JsonHelper.FromJson<BattleSerializeable>(newInfo);
 		return thisBattle[0].level;
 	}

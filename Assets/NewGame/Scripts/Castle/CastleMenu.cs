@@ -12,9 +12,9 @@ public class CastleMenu : MonoBehaviour {
 	private CastleMeta dMeta = null;
 	private BattleGeneralResources gMeta = null;
 	GameObject purchaseUnit = null;
-	private int lastClickRemoved = -1;
 
-	private bool showUnitCity = true;
+	//private int lastClickRemoved = -1;
+	//private bool showUnitCity = true;
 
 	private void initVars(){
 		if (imageP ==  null){

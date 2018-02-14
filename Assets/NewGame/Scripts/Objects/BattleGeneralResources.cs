@@ -91,13 +91,22 @@ public class BattleGeneralResources : MonoBehaviour {
 		}
 
 		if (army.Count < 6) {
+//			GameObject instance = Instantiate (unit) as GameObject;
+//			BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+//			meta.setPlayer (true);
+//			meta.setLives (amount);
+//			meta.setGUI (false);
+//			instance.SetActive (false);
+//			army.Add (instance);
+//			return true;
+
 			GameObject instance = Instantiate (unit) as GameObject;
-			BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+			BattleMeta meta = unit.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 			meta.setPlayer (true);
 			meta.setLives (amount);
 			meta.setGUI (false);
-			instance.SetActive (false);
-			army.Add (instance);
+			unit.SetActive (false);
+			army.Add (unit);
 			return true;
 		}
 

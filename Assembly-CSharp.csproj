@@ -75,8 +75,10 @@
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleObject.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleSerializeable.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleSerializeableArmy.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Battle\BattleSerializeableResource.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleSerializeableStats.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleSetupManager.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Castle\CastleConverter.cs" />
      <Compile Include="Assets\NewGame\Scripts\Castle\CastleLoader.cs" />
      <Compile Include="Assets\NewGame\Scripts\Castle\CastleMenu.cs" />
      <Compile Include="Assets\NewGame\Scripts\Castle\CastleMeta.cs" />

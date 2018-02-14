@@ -6,4 +6,5 @@ public class BattleSerializeable {
 	public string name;
 	public string stats;
 	public string army;
+	public string resources;
 }

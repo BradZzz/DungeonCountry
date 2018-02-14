@@ -122,21 +122,21 @@ public class AdventureBoardManager : MonoBehaviour {
 					List<GameObject> newUnits = new List<GameObject> ();
 					AffiliationMeta affmet = glossy.findFaction(meta.faction);
 					foreach (GameObject unit in affmet.units) {
-							BattleMeta gmeta = unit.GetComponent<BattleMeta> ();
-							if (gmeta.lvl < 3) {
-								if (gmeta.lvl == 1) {
-									gmeta.setLives (Random.Range (15, 25));
+						BattleMeta gmeta = unit.GetComponent<BattleMeta> ();
+						if (gmeta.lvl < 3) {
+							if (gmeta.lvl == 1) {
+								gmeta.setLives (Random.Range (15, 25));
+							} else {
+							if (meta.getPlayer()) {
+									gmeta.setLives (Random.Range (15, 20));
 								} else {
-								if (meta.getPlayer()) {
-										gmeta.setLives (Random.Range (100, 105));
-									} else {
-										gmeta.setLives (Random.Range (5, 10));
-									}
+									gmeta.setLives (Random.Range (5, 10));
 								}
-								newUnits.Add (unit);
 							}
+							newUnits.Add (unit);
 						}
-						meta.setArmy(newUnits);
+					}
+					meta.setArmy(newUnits);
 					//}
 				}
 			}
