@@ -11,12 +11,19 @@ public class CastleMenu : MonoBehaviour {
 	private GameObject unitPPurchase = null;
 	private CastleMeta dMeta = null;
 	private BattleGeneralResources gMeta = null;
+	private BattleGeneralMeta genMeta = null;
 	GameObject purchaseUnit = null;
 
-	//private int lastClickRemoved = -1;
-	//private bool showUnitCity = true;
+	private BattleGeneralMeta getGeneral(GameObject glossary){
+		if (gMeta == null) {
+			Glossary glossy = glossary.GetComponent<Glossary> ();
+			GameObject gObj = CastleConverter.getSave (glossy);
+			genMeta = gObj.GetComponent<BattleGeneralMeta> ();
+		}
+		return genMeta;
+	}
 
-	private void initVars(){
+	public void initVars(GameObject glossary){
 		if (imageP ==  null){
 			imageP = GameObject.Find ("ImagePanel");
 		}
@@ -29,24 +36,21 @@ public class CastleMenu : MonoBehaviour {
 		if (dMeta == null) {
 			dMeta = CastlePrefs.getCastleMeta ();
 		}
-		if (gMeta == null) {
-			gMeta = CastlePrefs.getGeneralMeta ();
+		if (genMeta == null) {
+			genMeta = getGeneral(glossary);
 		}
 	}
 
 	public void openPurchaseView(int unit){
-		initVars ();
 		unitPPurchase.SetActive(true);
 		loadPurchase (unit);
 	}
 
 	public void onClickUnitToggle(){
-		initVars ();
 		unitPMarket.SetActive(!unitPMarket.activeSelf);
 	}
 
 	public void onPurchaseBuy(){
-		initVars ();
 		if (purchaseUnit != null) {
 			BattleMeta pUnitMeta = purchaseUnit.GetComponent<BattleMeta> ();
 			//foreach (GameObject unit in gMeta.getarmy()) {
@@ -61,7 +65,7 @@ public class CastleMenu : MonoBehaviour {
 			resources.Add ("crystal", pUnitMeta.costCrystal);
 			resources.Add ("sapphire", pUnitMeta.costSapphire);
 
-			if (gMeta.canPurchaseUnit (resources, purchaseUnit)) {
+			if (genMeta.getResources().canPurchaseUnit (resources, purchaseUnit)) {
 				Debug.Log ("Purchased!");
 				CastlePrefs.dirty = true;
 				//unitPPurchase.SetActive(false);
@@ -75,49 +79,32 @@ public class CastleMenu : MonoBehaviour {
 	}
 
 	public void onFlipMenu() {
-		initVars ();
 		CastlePrefs.showUnitCity = !CastlePrefs.showUnitCity;
 		CastlePrefs.dirty = true;
 	}
 
 	public void onPurchaseCancel(){
-		initVars ();
 		unitPPurchase.SetActive(false);
 	}
 
 	public void onCloseAll(){
-		initVars ();
 		unitPPurchase.SetActive(false);
 		unitPMarket.SetActive(false);
 	}
 
 	public void onClickAccept(){
-		
-		/*foreach (GameObject unity in GameObject.FindGameObjectsWithTag("Unit")) {
-			if (unity.GetInstanceID () == CastlePrefs.getGeneralID ()) {
-				BattleGeneralMeta gmeta = unity.GetComponent<BattleGeneralMeta> ();
-				if (gmeta != null) {
-					gmeta.setResources (CastlePrefs.getGeneralMeta ());
-				}
-			}
-		}*/
-
+		CastleConverter.putSave (genMeta);
 		SceneManager.LoadScene ("AdventureScene");
 	}
 
-	/*public void onClickDecline(){
-		Application.LoadLevel ("AdventureScene");
-	}*/
-
 	public void onClickRemove(int unit){
-		initVars ();
-		if (CastlePrefs.toDelete == unit && gMeta.getarmy ().Count > 1) {
+		if (CastlePrefs.toDelete == unit && genMeta.getResources().getarmy ().Count > 1) {
 			// Remove here
 			Debug.Log("Removing here: " + unit);
 			CastlePrefs.toDelete = -1;
-			List<GameObject> army = gMeta.getarmy (); 
+			List<GameObject> army = genMeta.getResources().getarmy (); 
 			army.RemoveAt(unit - 1);
-			gMeta.setarmy (army);
+			genMeta.setArmy (army);
 		} else {
 			CastlePrefs.toDelete = unit;
 		}

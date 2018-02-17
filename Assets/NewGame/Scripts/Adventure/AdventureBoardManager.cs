@@ -64,17 +64,19 @@ public class AdventureBoardManager : MonoBehaviour {
 		openPositions = new List <Point3> ();
 		roadPositions = new List <Point3> ();
 		cliffPatch = cliffNinePatch.GetComponent<TileNinePatch> ();
-		if (board == null){
+		if (board == null) {
 			board = new GameObject ("Board");
-		} else if (instance != this) { 
-			Destroy(gameObject);   
-		} 
+		}
+//		} else if (instance != this) { 
+//			Destroy(gameObject);   
+//		} 
 		DontDestroyOnLoad(board);
 	}
 
 	private void formatObjects(bool init){
 
 		GameObject[] generals = BattleConverter.getSave (glossy);
+		GameObject cGeneral = CastleConverter.getSave (glossy);
 
 		//if (sharedPrefs || init) {
 		foreach(GameObject unity in GameObject.FindGameObjectsWithTag("Unit")){
@@ -82,6 +84,16 @@ public class AdventureBoardManager : MonoBehaviour {
 			//Point3 pos = new Point3(unit.position);
 			BattleGeneralMeta meta = unity.GetComponent<BattleGeneralMeta> ();
 			if (!init) {
+				if (cGeneral != null) {
+					BattleGeneralMeta player = cGeneral.GetComponent<BattleGeneralMeta> ();
+					if (meta.name.Equals(player.name)) {
+						meta.setResources (player.getResources());
+						meta.setArmy(player.getArmy());
+						if (meta.getArmy().Count < 1) {
+							meta.setDefeated (true);
+						}
+					}
+				}
 				if (generals != null) {
 					BattleGeneralMeta player = generals[0].GetComponent<BattleGeneralMeta> ();
 					BattleGeneralMeta ai = generals[1].GetComponent<BattleGeneralMeta> ();
@@ -259,6 +271,7 @@ public class AdventureBoardManager : MonoBehaviour {
 
 				StartCoroutine (steps.generateMapv2 (new Point3(lastClicked.position), click, gameManager.getRows (), gameManager.getColumns (), obstacles, setPath));
 			} else if (steps.walking () && click.Equals(lastClick)) {
+				BattleConverter.reset ();
 				moveAdventurer (lastClicked, path);
 				lastClicked = null;
 				steps.destroySteps ();

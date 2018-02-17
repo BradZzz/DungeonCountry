@@ -4,15 +4,31 @@ using UnityEngine.UI;
 
 public class CastleLoader : MonoBehaviour {
 
+	public GameObject glossary;
+	public GameObject castleBtn;
+
+	private Glossary glossy;
+	private BattleGeneralResources btlRes;
+
 	// Use this for initialization
 	void Start () {
-		init (CastlePrefs.getGeneralMeta (), CastlePrefs.getCastleMeta (), true);
+		/*
+		 * Read converter here:
+		 */
+
+		glossy = glossary.GetComponent<Glossary> ();
+		GameObject gObj = CastleConverter.getSave (glossy);
+		btlRes = gObj.GetComponent<BattleGeneralMeta> ().getResources();
+
+		init (btlRes, CastlePrefs.getCastleMeta (), true);
+		CastleMenu menuHolder = castleBtn.GetComponent<CastleMenu>();
+		menuHolder.initVars (glossary);
 	}
 
 	void Update(){
 		if (CastlePrefs.dirty) {
 			CastlePrefs.dirty = false;
-			init (CastlePrefs.getGeneralMeta (), CastlePrefs.getCastleMeta (), false);
+			init (btlRes, CastlePrefs.getCastleMeta (), false);
 		}
 	}
 
@@ -75,6 +91,7 @@ public class CastleLoader : MonoBehaviour {
 			Debug.Log ("Name: " + unit.name);
 		}
 		count = 0;
+
 		foreach (GameObject unit in gMeta.getarmy()) {
 			if (count < 6) {
 				count += 1;

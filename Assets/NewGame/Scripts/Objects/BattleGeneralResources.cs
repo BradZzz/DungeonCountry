@@ -14,10 +14,22 @@ public class BattleGeneralResources : MonoBehaviour {
 		this.clone(clone);
 	}
 
+	public void init(int instanceID, List<GameObject> army){
+		fill (instanceID, army);
+	}
+
 	public BattleGeneralResources(int instanceID, List<GameObject> army){
+		fill (instanceID, army);
+	}
+
+	private void fill(int instanceID, List<GameObject> army){
 		this.instanceID = instanceID;
 		this.army = army;
+		initRes ();
+		attribs = new GeneralAttributes();
+	}
 
+	private void initRes(){
 		resources = new Dictionary<string, int> ();
 		resources.Add ("gold", 0);
 		resources.Add ("ore", 0);
@@ -25,8 +37,6 @@ public class BattleGeneralResources : MonoBehaviour {
 		resources.Add ("ruby", 0);
 		resources.Add ("crystal", 0);
 		resources.Add ("sapphire", 0);
-
-		attribs = new GeneralAttributes ();
 	}
 
 	public void clone(BattleGeneralResources clone){
@@ -52,14 +62,23 @@ public class BattleGeneralResources : MonoBehaviour {
 	}
 
 	public int setResources(string name, int quantity){
+		if (resources == null) {
+			initRes ();
+		}
 		return resources[name] += quantity;
 	}
 
 	public int getResource(string name){
+		if (resources == null) {
+			initRes ();
+		}
 		return resources[name];
 	}
 
 	public Dictionary<string, int> getResources(){
+		if (resources == null) {
+			initRes ();
+		}
 		return resources;
 	}
 
