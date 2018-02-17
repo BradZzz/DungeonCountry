@@ -58,6 +58,9 @@ public class BattleGeneralResources : MonoBehaviour {
 	}
 
 	public GeneralAttributes getAttribs(){
+		if (attribs == null) {
+			attribs = new GeneralAttributes();
+		}
 		return attribs;
 	}
 

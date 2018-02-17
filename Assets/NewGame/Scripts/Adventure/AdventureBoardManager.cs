@@ -159,6 +159,8 @@ public class AdventureBoardManager : MonoBehaviour {
 			}
 
 		}
+		BattleConverter.reset ();
+		CastleConverter.reset ();
 	}
 
 	public void setupScene (AdventureGameManager gameManager, GameObject[] generals)
@@ -271,7 +273,7 @@ public class AdventureBoardManager : MonoBehaviour {
 
 				StartCoroutine (steps.generateMapv2 (new Point3(lastClicked.position), click, gameManager.getRows (), gameManager.getColumns (), obstacles, setPath));
 			} else if (steps.walking () && click.Equals(lastClick)) {
-				BattleConverter.reset ();
+//				BattleConverter.reset ();
 				moveAdventurer (lastClicked, path);
 				lastClicked = null;
 				steps.destroySteps ();
