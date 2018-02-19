@@ -319,6 +319,7 @@ public class AdventureBoardManager : MonoBehaviour {
 				BattleGeneralMeta player = lastClicked.gameObject.GetComponent<BattleGeneralMeta> ();
 				BattleGeneralMeta ai = enemy.GetComponent<BattleGeneralMeta> ();
 				BattleConverter.putSave (player, ai);
+				BattleConverter.putPrevScene ("AdventureScene");
 
 				Debug.Log (PlayerPrefs.GetString ("battle"));
 

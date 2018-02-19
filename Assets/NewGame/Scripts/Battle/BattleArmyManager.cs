@@ -63,7 +63,7 @@ public class BattleArmyManager {
 	public bool theyLost(Transform board){
 		foreach (Transform child in board) {
 			BattleMeta bMeta = child.gameObject.GetComponent<BattleMeta> ();
-			if (bMeta != null && !bMeta.getPlayer()) {
+			if (bMeta != null && !bMeta.getPlayer() && child.gameObject.activeInHierarchy) {
 				if (bMeta.getLives () > 0) {
 					Debug.Log ("AI alive because of: " + bMeta.name);
 					return false;

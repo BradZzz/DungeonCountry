@@ -80,6 +80,10 @@ public class CastleConverter : MonoBehaviour {
 		PlayerPrefs.SetString ("castle", "");
 	}
 
+	public static bool hasData(){
+		return PlayerPrefs.GetString ("castle").Length > 0;
+	}
+
 	public static GameObject getSave(Glossary glossary){
 		string newInfo = PlayerPrefs.GetString ("castle");
 		Debug.Log("after: " + newInfo);

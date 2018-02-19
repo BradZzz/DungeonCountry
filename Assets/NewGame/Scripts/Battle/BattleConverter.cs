@@ -86,6 +86,18 @@ public class BattleConverter : MonoBehaviour {
 		PlayerPrefs.SetString ("battle", "");
 	}
 
+	public static void putPrevScene(string prev_scene){
+		PlayerPrefs.SetString ("prev_battle_scene", prev_scene);
+	}
+
+	public static string prevScene(){
+		return PlayerPrefs.GetString ("prev_battle_scene");
+	}
+
+	public static bool hasData(){
+		return PlayerPrefs.GetString ("battle").Length > 0;
+	}
+
 	public static GameObject[] getSave(Glossary glossary){
 		string newInfo = PlayerPrefs.GetString ("battle");
 		Debug.Log("after: " + newInfo);

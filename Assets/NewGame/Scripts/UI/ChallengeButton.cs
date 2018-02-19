@@ -32,6 +32,7 @@ public class ChallengeButton : MonoBehaviour {
 	public void HandleClick(){
 		Debug.Log ("click");
 		BattleConverter.putSaveBattleObject (battle);
+		BattleConverter.putPrevScene ("PuzzleScene");
 		Application.LoadLevel ("BattleScene");
 	}
 }

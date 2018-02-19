@@ -354,8 +354,7 @@ public class BattleGameManager : MonoBehaviour {
 		Destroy (gameObject);
 
 		Debug.Log ("Fin");
-//		Application.LoadLevel ("PuzzleScene");
-		Application.LoadLevel ("AdventureScene");
+		Application.LoadLevel (BattleConverter.prevScene());
 	}
 
 	public void playEffect(string effect) {
