@@ -108,9 +108,11 @@ public class CastleConverter : MonoBehaviour {
 		GenMeta = general.GetComponent<BattleGeneralMeta>();
 		GenMeta.init ();
 		BattleSerializeableResource[] resources = JsonHelper.FromJson<BattleSerializeableResource> (btl.resources);
+		Dictionary<string,int> resMap = new Dictionary<string,int> ();
 		foreach (BattleSerializeableResource res in resources) {
-			GenMeta.addResource (res.resource,res.qty);
+			resMap.Add (res.resource,res.qty);
 		}
+		GenMeta.setResources (resMap);
 
 		List<GameObject> newUnits = new List<GameObject> ();
 		BattleSerializeableArmy[] army = JsonHelper.FromJson<BattleSerializeableArmy> (btl.army);
@@ -121,7 +123,7 @@ public class CastleConverter : MonoBehaviour {
 			newUnits.Add (unit);
 		}
 		GenMeta.setArmy (newUnits);
-		GenMeta.init ();
+//		GenMeta.init ();
 
 		return general;
 	}

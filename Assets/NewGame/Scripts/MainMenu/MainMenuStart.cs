@@ -23,6 +23,14 @@ public class MainMenuStart : MonoBehaviour {
 		Application.LoadLevel ("AdventureScene");
 	}
 
+	public void onClickPuzzle(){
+		Application.LoadLevel ("PuzzleScene");
+	}
+
+	public void onClickBack(){
+		Application.LoadLevel ("MainMenu");
+	}
+
 	//This is the panel click for the foreground panel
 	//It behaves differently depending on if it was clicked n=1 and n=m times
 	public void onClickPanel(){

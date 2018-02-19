@@ -38,7 +38,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 		if (resources == null) {
 			BattleGeneralResources bg = gameObject.AddComponent<BattleGeneralResources> ();
 			bg.init (this.GetInstanceID (), army);
-			return bg;
+			resources = bg;
 		}
 		return resources;
 	}
@@ -65,13 +65,11 @@ public class BattleGeneralMeta : MonoBehaviour {
 	}
 
 	public void setArmy(List<GameObject> army){
-		if (resources == null) { init(); }
 		this.army = army;
 		resources.setarmy (army);
 	}
 
 	public void addUnit(GameObject unit, int amt){
-		if (resources == null) { init(); }
 		resources.addUnitFill(unit, amt);
 	}
 
@@ -88,7 +86,6 @@ public class BattleGeneralMeta : MonoBehaviour {
 	}
 
 	public BattleGeneralResources getResources(){
-		if (resources == null) { init(); }
 		return resources;
 	}
 
@@ -96,19 +93,19 @@ public class BattleGeneralMeta : MonoBehaviour {
 		this.resources = resources;
 	}
 
-	public int addResource(string name, int quantity){
-		if (resources == null) { init(); }
+	public void setResources(Dictionary<string,int> resources){
+		this.resources.setResources (resources);
+	}
 
+	public int addResource(string name, int quantity){
 		return resources.setResources (name, quantity);
 	}
 
 	public bool useResource(string name, int quantity){
-		if (resources == null) { init(); }
 		return resources.useResource (name, quantity);
 	}
 
 	public int getResource(string name){
-		if (resources == null) { init(); }
 		return resources.getResource(name);
 	}
 

@@ -11,12 +11,15 @@ public class BattleConverter : MonoBehaviour {
 		battle[0].name = game.player1;
 		battle[0].stats = JsonUtility.ToJson(game.stats1);
 		battle[0].army = JsonHelper.ToJson(game.army1);
+		BattleSerializeableResource[] blank = new BattleSerializeableResource[0];
+		battle[0].resources = JsonHelper.ToJson (blank);
 
 		battle[1] = new BattleSerializeable ();
 		battle[1].level = game.level;
 		battle[1].name = game.player2;
 		battle[1].stats = JsonUtility.ToJson(game.stats2);
 		battle[1].army = JsonHelper.ToJson(game.army2);
+		battle[1].resources = JsonHelper.ToJson (blank);
 
 		string json = JsonHelper.ToJson(battle);
 		PlayerPrefs.SetString ("battle", json);
@@ -113,11 +116,13 @@ public class BattleConverter : MonoBehaviour {
 		BattleSerializeable btl = battle;
 		general = glossary.findGeneralGO (btl.name);
 		GenMeta = general.GetComponent<BattleGeneralMeta>();
-//		BattleSerializeableResource[] resources = JsonHelper.FromJson<BattleSerializeableResource> (btl.resources);
-//
-//		foreach (BattleSerializeableResource res in resources) {
-//			GenMeta.addResource (res.resource,res.qty);
-//		}
+		GenMeta.init ();
+		BattleSerializeableResource[] resources = JsonHelper.FromJson<BattleSerializeableResource> (btl.resources);
+		Dictionary<string,int> resMap = new Dictionary<string,int> ();
+		foreach (BattleSerializeableResource res in resources) {
+			resMap.Add (res.resource,res.qty);
+		}
+		GenMeta.setResources (resMap);
 
 		List<GameObject> newUnits = new List<GameObject> ();
 		BattleSerializeableArmy[] army = JsonHelper.FromJson<BattleSerializeableArmy> (btl.army);
@@ -141,14 +146,16 @@ public class BattleConverter : MonoBehaviour {
 		stats.speed = 1;
 		stats.range = 1;
 		battle.stats = JsonUtility.ToJson(stats);
-		BattleSerializeableResource[] res = new BattleSerializeableResource[0];
-//		int cnt = 0;
-//		foreach(string key in general.getResources().getResources().Keys) {
-//			res [cnt].resource = key;
-//			res [cnt].qty = general.getResources().getResources()[key];
-//			cnt++;
-//		}
-		battle.resources = JsonUtility.ToJson(res);
+		BattleSerializeableResource[] res = new BattleSerializeableResource[general.getResources().getResources().Count];
+		int cnt = 0;
+		foreach(KeyValuePair<string,int> resStat in general.getResources().getResources())
+		{
+			res [cnt] = new BattleSerializeableResource ();
+			res [cnt].resource = resStat.Key;
+			res [cnt].qty = resStat.Value;
+			cnt++;
+		}
+		battle.resources = JsonHelper.ToJson(res);
 		BattleSerializeableArmy[] army = new BattleSerializeableArmy[general.getArmy().Count];
 		for (int i =0; i < general.getArmy().Count; i++){
 			BattleMeta armMeta = general.getArmy()[i].GetComponent<BattleMeta> ();

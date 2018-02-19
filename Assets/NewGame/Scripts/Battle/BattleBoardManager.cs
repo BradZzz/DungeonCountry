@@ -258,8 +258,10 @@ public class BattleBoardManager : MonoBehaviour {
 		{
 			SpriteRenderer sprRend = child.gameObject.GetComponent<SpriteRenderer> ();
 			sprRend.material.shader = Shader.Find ("Sprites/Default");
-			if (meta != null) {
-				moved = checkMovement (meta.getMovement(), child, hit);
+			if (meta != null && !moved) {
+				if (checkMovement (meta.getMovement(), child, hit)) {
+					moved = true;
+				}
 			}
 		}
 		foreach (Transform child in characterPositions)
@@ -271,7 +273,7 @@ public class BattleBoardManager : MonoBehaviour {
 			}
 		}
 
-		if (meta.atkAll () && !moved && meta.getAttacks() > 0) {
+		if (meta.atkAll () && !moved && meta.getAttacks() > 0 && !hit.position.Equals(lastClicked.position)) {
 			bool attacked = false;
 			foreach (Transform unit in unitPositions){
 				Debug.Log ("Unit: " + unit.gameObject.name);
