@@ -229,7 +229,7 @@ public class BattleBoardManager : MonoBehaviour {
 				Vector2 pos = new Vector2 (x, y);
 				Transform child = dict[pos];
 				if ((x != lastClicked.position.x || y != lastClicked.position.y) && 
-					(checkRange(lastClicked.position, pos, meta.range)) && meta.getAttacks() > 0 && meta.getTurn()) {
+					(checkRange(lastClicked.position, pos, meta.getRange(), meta.sniper())) && meta.getAttacks() > 0 && meta.getTurn()) {
 					bool hasParent = Coroutines.hasParent (child);
 					//If the attack radius isn't in the walking radius or there is an enemy in the walking radius
 					if (!Coroutines.containsPoint(movePositions,new Point3(child.position)) || hasParent) {
@@ -245,8 +245,9 @@ public class BattleBoardManager : MonoBehaviour {
 		}
 	}
 
-	public bool checkRange(Vector2 pos, Vector2 sqr, int range){
-		return Math.Abs(pos.x - sqr.x) + Math.Abs(pos.y - sqr.y) <= range;
+	public bool checkRange(Vector2 pos, Vector2 sqr, int range, bool sniper){
+		bool rng = (Math.Abs (pos.x - sqr.x) + Math.Abs (pos.y - sqr.y) <= range);
+		return sniper ? rng && ( pos.x == sqr.x || pos.y == sqr.y ) : rng;
 	}
 
 	public void moveClick(Transform hit){
@@ -277,7 +278,10 @@ public class BattleBoardManager : MonoBehaviour {
 			bool attacked = false;
 			foreach (Transform unit in unitPositions){
 				Debug.Log ("Unit: " + unit.gameObject.name);
-				bool range = Math.Abs (unit.position.x - lastClicked.position.x) + Math.Abs (unit.position.y - lastClicked.position.y) <= meta.range;
+				//bool range = Math.Abs (unit.position.x - lastClicked.position.x) + Math.Abs (unit.position.y - lastClicked.position.y) <= meta.getRange();
+				bool range = checkRange(new Vector2(unit.position.x,unit.position.y), 
+					new Vector2(lastClicked.position.x,lastClicked.position.y), 
+					meta.getRange(), meta.sniper());
 				if (range) {
 					Debug.Log ("In range");
 					BattleMeta enemy = unit.gameObject.GetComponent( typeof(BattleMeta) ) as BattleMeta;
@@ -349,7 +353,7 @@ public class BattleBoardManager : MonoBehaviour {
 	}
 
 	public void checkAttack(BattleMeta meta, Transform child, Transform hit){
-		bool range = Math.Abs (hit.position.x - lastClicked.position.x) + Math.Abs (hit.position.y - lastClicked.position.y) <= meta.range;
+		bool range = Math.Abs (hit.position.x - lastClicked.position.x) + Math.Abs (hit.position.y - lastClicked.position.y) <= meta.getRange();
 		bool hitChild = hit.position.x == child.position.x && hit.position.y == child.position.y;
 
 		if (!meta.atkAll() && hitChild && range) {

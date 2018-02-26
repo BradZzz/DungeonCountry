@@ -290,6 +290,9 @@ public class BattleGameManager : MonoBehaviour {
 			if (child.name == "TextRange"){
 				((child.gameObject.GetComponentsInChildren<Text> ()) [0]).text = "" + unit.getRange();
 			}
+			if (child.name == "AbilityText"){
+				((child.gameObject.GetComponentsInChildren<Text> ()) [0]).text = "" + unit.getAbilityString();
+			}
 		}
 	}
 
@@ -299,10 +302,13 @@ public class BattleGameManager : MonoBehaviour {
 		BattleGeneralMeta aiGen = aiGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 
 		if (won) {
-//			aiGen = aiGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 			aiGen.setDefeated (true);
+			ScoreSerializeableStats score = new ScoreSerializeableStats ();
+			score.medal = 0;
+			score.name = ScoreConverter.getCurrentLvl();
+			score.score = ScoreConverter.computeResults(results[0]);
+			ScoreConverter.putSaveScoreObject(score);
 		} else {
-//			playGen = playerGeneral.GetComponent( typeof(BattleGeneralMeta) ) as BattleGeneralMeta;
 			playGen.setDefeated (true);
 		}
 

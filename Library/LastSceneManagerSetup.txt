@@ -8,3 +8,21 @@ sceneSetups:
 - path: Assets/NewGame/Scenes/PuzzleScene.unity
   isLoaded: 1
   isActive: 1
+- path: Assets/NewGame/Scenes/CastleScene.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/NewGame/Scenes/CharacterSelect.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/NewGame/Scenes/CityScene.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/NewGame/Scenes/DwellingScene.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/NewGame/Scenes/LevelUpScene.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/NewGame/Scenes/MainMenu.unity
+  isLoaded: 0
+  isActive: 0

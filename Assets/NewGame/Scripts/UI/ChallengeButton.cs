@@ -23,7 +23,7 @@ public class ChallengeButton : MonoBehaviour {
 	{
 		item = currentItem;
 		name.text = item.lvlName;
-		score.text = item.lvlScore;
+		score.text = "Score: " + ScoreConverter.getSaveScore(name.text).ToString();
 		image.color = item.lvlColor;
 		battle = item.challengeObject.GetComponent<BattleObject> ();
 		scrollList = currentScrollList;
@@ -33,6 +33,7 @@ public class ChallengeButton : MonoBehaviour {
 		Debug.Log ("click");
 		BattleConverter.putSaveBattleObject (battle);
 		BattleConverter.putPrevScene ("PuzzleScene");
+		ScoreConverter.setCurrentLvl (name.text);
 		Application.LoadLevel ("BattleScene");
 	}
 }

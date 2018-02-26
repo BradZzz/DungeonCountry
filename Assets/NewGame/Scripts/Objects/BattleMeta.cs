@@ -46,6 +46,7 @@ public class BattleMeta : MonoBehaviour {
 	private int lives;
 	private bool canMove;
 	private bool canAttack;
+	private bool isStopped;
 	private int slow = 0;
 	private BattleActions actions;
 	private int currentHP;
@@ -78,11 +79,12 @@ public class BattleMeta : MonoBehaviour {
 	}
 
 	public void startTurn(){
-		actions.startTurn ();
+		if (!isStopped) {
+			actions.startTurn ();
+			outline.enabled = false;
+		} 
 		slow = slow > 0 ? slow--: 0;
-		//SpriteRenderer sprRend = gameObject.GetComponent<SpriteRenderer> ();
-		outline.enabled = false;
-		//sprRend.material.shader = Shader.Find ("Sprites/Default");
+		isStopped = false;
 	}
 
 	public void slowUnit(){
@@ -92,6 +94,18 @@ public class BattleMeta : MonoBehaviour {
 
 	public void setGUI(bool set){
 		is_gui = set;
+	}
+
+	public string getAbilityString(){
+		string abString = "";
+		for (int i = 0; i< abilities.Length; i++) {
+			if (i == abilities.Length - 1) {
+				abString += abilities[i].name;
+			} else {
+				abString += abilities[i].name + ", ";
+			}
+		}
+		return abString;
 	}
 
 	public int atkLVL(){
@@ -134,11 +148,40 @@ public class BattleMeta : MonoBehaviour {
 		return 0;
 	}
 
+	public int extraRng(){
+		foreach (GameObject ability in abilities) {
+			BattleAttributes att = ability.GetComponent<BattleAttributes> ();
+			if (att.extra_rng > 0) {
+				return att.extra_rng;
+			}
+		}
+		return 0;
+	}
 
 	public bool atkAll(){
 		foreach (GameObject ability in abilities) {
 			BattleAttributes att = ability.GetComponent<BattleAttributes> ();
 			if (att.atk_all) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public bool sniper(){
+		foreach (GameObject ability in abilities) {
+			BattleAttributes att = ability.GetComponent<BattleAttributes> ();
+			if (att.sniper) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public bool stop(){
+		foreach (GameObject ability in abilities) {
+			BattleAttributes att = ability.GetComponent<BattleAttributes> ();
+			if (att.stop) {
 				return true;
 			}
 		}
@@ -193,7 +236,7 @@ public class BattleMeta : MonoBehaviour {
 	}
 
 	public int getRange(){
-		return range;
+		return range + extraRng ();
 	}
 
 	public int getLives(){
@@ -383,6 +426,11 @@ public class BattleMeta : MonoBehaviour {
 	}
 
 	public bool isAttacked (BattleMeta attacker, GeneralAttributes own, GeneralAttributes theirs) {
+		if (attacker.stop()) {
+			StartCoroutine (showEffects ("Stopped!"));
+			isStopped = true;
+		}
+
 		bool ranged = attacker.range > 1;
 		bool magical = attacker.magical;
 

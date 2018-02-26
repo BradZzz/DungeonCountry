@@ -128,7 +128,7 @@ public class BattleAI : MonoBehaviour {
 		//Check to make sure that an enemy isn't already in the ai's range
 		foreach (Transform unit in playersUnits) {
 			//Find the list of tiles the robot can move to
-			if (unit.gameObject.activeInHierarchy && Coroutines.checkRange(unit.position, ai.position, meta.range)) {
+			if (unit.gameObject.activeInHierarchy && Coroutines.checkRange(unit.position, ai.position, meta.getRange())) {
 				attackables.Add (unit);
 			}
 		}
@@ -136,7 +136,7 @@ public class BattleAI : MonoBehaviour {
 		//Check to make sure that an enemy isn't already in the ai's range
 		foreach (Transform obs in boardManager.getObsPos()) {
 			//Find the list of tiles the robot can move to
-			if (obs.gameObject.activeInHierarchy && Coroutines.checkRange(obs.position, ai.position, meta.range)) {
+			if (obs.gameObject.activeInHierarchy && Coroutines.checkRange(obs.position, ai.position, meta.getRange())) {
 				obstacles.Add (obs);
 			}
 		}
@@ -259,22 +259,22 @@ public class BattleAI : MonoBehaviour {
 					if (distance < 0){
 						closest = new Point3 (ai.position);
 					//Now let's check the ai's range. If the range is bigger than the distance, we need to back up the ai
-					} else if (meta.range > 1 && meta.range > distance + 1) {
+					} else if (meta.getRange() > 1 && meta.getRange() > distance + 1) {
 						//Retreat to back lines
 						pathMap = astar.baseAlgorithm (new Point3 (ai.position), getRetreatPos(), height, width, moveables, true);
 						try {
 							closest = pathMap [0];
 							int distance2 = pathMap.Count - 1;
-							int extraRange = meta.range - (distance + 1);
+							int extraRange = meta.getRange() - (distance + 1);
 							closest = extraRange > distance2 ? pathMap [distance2] : pathMap [extraRange];
 						} catch (Exception e) {
 							closest = new Point3 (ai.position);
 						}
-					} else if (meta.getMovement() > distance - meta.range) {
-						if (distance - meta.range < 0) {
+					} else if (meta.getMovement() > distance - meta.getRange()) {
+						if (distance - meta.getRange() < 0) {
 							closest = new Point3 (ai.position);
 						} else {
-							closest = pathMap [distance - meta.range];
+							closest = pathMap [distance - meta.getRange()];
 						}
 					} else {
 						closest = pathMap [meta.getMovement()];

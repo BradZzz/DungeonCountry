@@ -227,13 +227,13 @@ public class AdventureBoardManager : MonoBehaviour {
 		{
 			Point3 randomPosition = RandomPosition(onRoad);
 			GameObject tileChoice = tileArray[UnityEngine.Random.Range (0, tileArray.Length)];
-			GameObject instance = Instantiate (tileChoice, randomPosition.asVector3(), Quaternion.identity) as GameObject;
+			Vector3 pos = randomPosition.asVector3 ();
+			GameObject instance = Instantiate (tileChoice, randomPosition.asVector3(), Quaternion.identity, boardHolder) as GameObject;
 			BattleGeneralMeta gMeta = instance.GetComponent<BattleGeneralMeta> ();
 			if (gMeta != null) {
 				gMeta.setPlayer (isPlayer);
 			}
-			Debug.Log ("Laying down, name: " + instance.name + " position: " + instance.transform.position);
-			instance.transform.SetParent (boardHolder);
+			instance.transform.position = pos;
 		}
 	}
 
