@@ -63,6 +63,7 @@
      <Compile Include="Assets\NewGame\Scripts\Adventure\AdventureGameManager.cs" />
      <Compile Include="Assets\NewGame\Scripts\Adventure\AdventureLoader.cs" />
      <Compile Include="Assets\NewGame\Scripts\Adventure\AdventureMeta.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Adventure\AdventurePanel.cs" />
      <Compile Include="Assets\NewGame\Scripts\Adventure\AdventureScenery.cs" />
      <Compile Include="Assets\NewGame\Scripts\Adventure\AdventureWorldCreator.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleActions.cs" />
