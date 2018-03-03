@@ -5,17 +5,23 @@ using AssemblyCSharp;
 
 public class BattleGeneralMeta : MonoBehaviour {
 
-	public int tactics = 2;
 	public string name = "none";
 	public string description = "none";
 	public List<GameObject> army;
 	public List<int> entranceUsed;
 	public string faction;
 
-	private bool isPlayer;
+	public enum AttributeList {attack , defense , tactics , level , movement, magic};
 
+	public int attack = 1;
+	public int defense = 1;
+	public int tactics = 2;
+	public int level = 1;
+	public int movement = 1;
+	public int magic = 1;
+
+	private bool isPlayer;
 	private BattleGeneralResources resources;
-		
 	private bool defeated;
 	private Camera cam = null;
 
@@ -61,6 +67,42 @@ public class BattleGeneralMeta : MonoBehaviour {
 					cam.transform.position = vec;
 				}
 			}
+		}
+	}
+
+	public int getAttribute(BattleGeneralMeta.AttributeList att){
+		switch(att){
+			case AttributeList.attack:return attack;
+			case AttributeList.defense:return defense;
+			case AttributeList.tactics:return tactics;
+			case AttributeList.movement:return movement;
+			case AttributeList.magic:return magic;
+			case AttributeList.level:return level;
+			default:return attack;
+		}
+	}
+
+	public void setAttribute(BattleGeneralMeta.AttributeList att, int value){
+		switch(att){
+			case AttributeList.attack:
+				attack = value;
+				break;
+			case AttributeList.defense:
+				defense = value;
+				break;
+			case AttributeList.tactics:
+				tactics = value;
+				break;
+			case AttributeList.movement:
+				movement = value;
+				break;
+			case AttributeList.magic:
+				magic = value;
+				break;
+			case AttributeList.level:
+				level = value;
+				break;
+			default:break;
 		}
 	}
 
