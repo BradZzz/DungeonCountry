@@ -11,7 +11,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 	public List<int> entranceUsed;
 	public string faction;
 
-	public enum AttributeList {attack , defense , tactics , level , movement, magic};
+	public enum AttributeList {attack , defense , tactics , level , movement, magic, currMovement};
 
 	public int attack = 1;
 	public int defense = 1;
@@ -20,6 +20,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 	public int movement = 1;
 	public int magic = 1;
 
+	private int currentMove = 0;
 	private bool isPlayer;
 	private BattleGeneralResources resources;
 	private bool defeated;
@@ -51,6 +52,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 
 	public void init() {
 		resources = getResource ();
+		startTurn ();
 	}
 
 	void LateUpdate () 
@@ -70,6 +72,19 @@ public class BattleGeneralMeta : MonoBehaviour {
 		}
 	}
 
+	public void startTurn() {
+		currentMove = getAttribute (BattleGeneralMeta.AttributeList.movement);
+	}
+
+	public int makeSteps(int number) {
+		int diff = currentMove - number;
+		currentMove = currentMove - number;
+		if (currentMove < 0) {
+			currentMove = 0;
+		}
+		return diff;
+	}
+
 	public int getAttribute(BattleGeneralMeta.AttributeList att){
 		switch(att){
 			case AttributeList.attack:return attack;
@@ -78,6 +93,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 			case AttributeList.movement:return movement;
 			case AttributeList.magic:return magic;
 			case AttributeList.level:return level;
+			case AttributeList.currMovement:return currentMove;
 			default:return attack;
 		}
 	}
@@ -101,6 +117,9 @@ public class BattleGeneralMeta : MonoBehaviour {
 				break;
 			case AttributeList.level:
 				level = value;
+				break;
+			case AttributeList.currMovement:
+				currentMove = value;
 				break;
 			default:break;
 		}

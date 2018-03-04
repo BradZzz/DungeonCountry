@@ -73,17 +73,17 @@ public class AdventurePanel : MonoBehaviour {
 		addResource ("Image_06", "crystal");
 
 		//Attack
-		addGeneralAtt ("Image_01", player.getAttribute(BattleGeneralMeta.AttributeList.attack));
+		addGeneralAtt ("Image_01", player.getAttribute(BattleGeneralMeta.AttributeList.attack).ToString());
 		//Magic
-		addGeneralAtt ("Image_02", player.getAttribute(BattleGeneralMeta.AttributeList.magic));
+		addGeneralAtt ("Image_02", player.getAttribute(BattleGeneralMeta.AttributeList.magic).ToString());
 		//Movement
-		addGeneralAtt ("Image_03", player.getAttribute(BattleGeneralMeta.AttributeList.movement));
+		addGeneralAtt ("Image_03",  "<color='#ff0000ff'>" + player.getAttribute(BattleGeneralMeta.AttributeList.currMovement) + "</color> (<color='#008000ff'>" + player.getAttribute(BattleGeneralMeta.AttributeList.movement) + "</color>)");
 		//Defense
-		addGeneralAtt ("Image_04", player.getAttribute(BattleGeneralMeta.AttributeList.defense));
+		addGeneralAtt ("Image_04", player.getAttribute(BattleGeneralMeta.AttributeList.defense).ToString());
 		//Tactics
-		addGeneralAtt ("Image_05", player.getAttribute(BattleGeneralMeta.AttributeList.tactics));
+		addGeneralAtt ("Image_05", player.getAttribute(BattleGeneralMeta.AttributeList.tactics).ToString());
 		//Level
-		addGeneralAtt ("Image_06", player.getAttribute(BattleGeneralMeta.AttributeList.level));
+		addGeneralAtt ("Image_06", player.getAttribute(BattleGeneralMeta.AttributeList.level).ToString());
 
 //		GameObject ore = ResourcePanel.transform.Find ("Image_02").gameObject;
 //		GameObject wood = ResourcePanel.transform.Find ("Image_03").gameObject;
@@ -109,12 +109,36 @@ public class AdventurePanel : MonoBehaviour {
 //		}
 	}
 
-	private void addGeneralAtt(string panel, int amount) {
+	public List<GameObject> getAI(){
+		List<GameObject> ai = new List<GameObject> ();
+		GameObject[] units = GameObject.FindGameObjectsWithTag("Unit");
+		foreach (GameObject unit in units) {
+			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
+			if (!bgm.getPlayer ()) {
+				ai.Add (unit);
+			}
+		}
+		return ai;
+	}
+
+	public void EndTurn(){
+		GameObject[] units = GameObject.FindGameObjectsWithTag("Unit");
+		foreach (GameObject unit in units) {
+			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
+			if (!bgm.getPlayer ()) {
+				// Move the camera to where the ai is for 2 seconds
+
+			}
+		}
+		player.startTurn ();
+	}
+
+	private void addGeneralAtt(string panel, string amount) {
 		GameObject res = GeneralPanel.transform.Find (panel).gameObject;
 		GameObject pnl = res.transform.Find ("Qty").gameObject;
 		GameObject txt = pnl.transform.Find ("QtyTxt").gameObject;
 		Text txtm = txt.GetComponent<Text> ();
-		txtm.text = amount.ToString();
+		txtm.text = amount;
 	}
 
 	private void addResource(string panel, string resource) {

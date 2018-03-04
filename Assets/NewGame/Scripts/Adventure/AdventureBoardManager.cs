@@ -291,32 +291,15 @@ public class AdventureBoardManager : MonoBehaviour {
 	public void moveAdventurer(Transform lastClicked, List<Point3> path) {
 		//Check to make sure the last step isn't an enemy here
 		int prevTotal = path.Count;
-
 		Point3 edge  = path [path.Count - 1];
-
 		Debug.Log ("Searching for: " + edge.ToString());
-
 		bool attacking = false;
 		GameObject enemy = Coroutines.findUnitParent (edge);
-
+		BattleGeneralMeta player = lastClicked.gameObject.GetComponent<BattleGeneralMeta> ();
 		if (enemy != null) {
 			Debug.Log ("Enemy is not null!");
-
 			path.Remove (edge);
-
 			if (enemy.tag.Equals ("Unit")) {
-				//SharedPrefs.playerArmy = Instantiate (lastClicked.gameObject, lastClicked.position, Quaternion.identity) as GameObject;
-				//SharedPrefs.playerArmy.SetActive (false);
-
-//				SharedPrefs.setPlayerName (lastClicked.gameObject.name);
-//				SharedPrefs.setEnemyName (enemy.name);
-//
-//				//SharedPrefs.enemyArmy = Instantiate (enemy, enemy.transform.position, Quaternion.identity) as GameObject;
-//				//SharedPrefs.enemyArmy.SetActive (false);
-//				Debug.Log ("Player: " + SharedPrefs.getPlayerName());
-//				Debug.Log ("Enemy: " + SharedPrefs.getEnemyName());
-
-				BattleGeneralMeta player = lastClicked.gameObject.GetComponent<BattleGeneralMeta> ();
 				BattleGeneralMeta ai = enemy.GetComponent<BattleGeneralMeta> ();
 				BattleConverter.putSave (player, ai);
 				BattleConverter.putPrevScene ("AdventureScene");
@@ -327,6 +310,15 @@ public class AdventureBoardManager : MonoBehaviour {
 			}
 		} else {
 			Debug.Log ("Enemy is null!");
+		}
+
+		int stepsLeft = player.makeSteps (path.Count);
+		if (stepsLeft < 0) {
+			attacking = false;
+			while (stepsLeft < 0) {
+				path.RemoveAt(path.Count - 1);
+				stepsLeft += 1;
+			}
 		}
 
 		StartCoroutine (step_path (lastClicked, path, .5f, attacking));
