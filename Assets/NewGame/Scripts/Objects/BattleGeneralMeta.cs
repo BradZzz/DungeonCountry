@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using AssemblyCSharp;
+using UnityEngine.SceneManagement;
 
 public class BattleGeneralMeta : MonoBehaviour {
 
@@ -217,7 +218,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 						Debug.Log ("Dwelling name: " + dwell.name);
 						Debug.Log ("Dwelling description: " + dwell.description);
 						DwellingPrefs.setPlayerName (gameObject.name);
-						Application.LoadLevel ("DwellingScene");
+						SceneManager.LoadScene ("DwellingScene");
 						entranceUsed.Add (other.GetInstanceID ());
 					}
 
@@ -228,7 +229,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 						//Debug.Log ("Castle affiliation: " + castle.castleAffiliation);
 						//DwellingPrefs.setPlayerName (gameObject.name);
 						CastleConverter.putSave (this);
-						Application.LoadLevel ("CastleScene");
+						SceneManager.LoadScene ("CastleScene");
 					} 
 					//return eMeta.GetComponent<DwellingMeta> ();
 				} else {
@@ -250,11 +251,10 @@ public class BattleGeneralMeta : MonoBehaviour {
 			}
 		} else {
 			// Do the ai version of whatever interactions we need here
-//			Debug.Log ("AI actions");
 			Debug.Log ("AI Name: " + gameObject.name);
 			if (other.tag.Equals ("Unit")) {
 				Debug.Log ("Attacking!" + other.name);
-			} else if (other.tag.Equals ("Entrance") && !entranceUsed.Contains (other.GetInstanceID ())) {
+			} else if (other.tag.Equals ("Entrance")) {
 				Debug.Log ("Entering: " + other.name);
 			} else if (other.tag.Equals ("Resource")) {
 				Debug.Log ("Picking Up: " + other.name);
