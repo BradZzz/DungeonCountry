@@ -22,6 +22,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 
 	private int currentMove = 0;
 	private bool isPlayer;
+	private bool isTurn = false;
 	private BattleGeneralResources resources;
 	private bool defeated;
 	private Camera cam = null;
@@ -52,12 +53,11 @@ public class BattleGeneralMeta : MonoBehaviour {
 
 	public void init() {
 		resources = getResource ();
-		startTurn ();
 	}
 
 	void LateUpdate () 
 	{
-		if (isPlayer) {
+		if (isPlayer || isTurn) {
 			if (cam == null && GameObject.Find("Main Camera") != null) {
 				cam = GameObject.Find("Main Camera").GetComponent<Camera>();
 			}
@@ -74,6 +74,15 @@ public class BattleGeneralMeta : MonoBehaviour {
 
 	public void startTurn() {
 		currentMove = getAttribute (BattleGeneralMeta.AttributeList.movement);
+		isTurn = true;
+	}
+
+	public bool getTurn() {
+		return isTurn;
+	}
+
+	public void endTurn() {
+		isTurn = false;
 	}
 
 	public int makeSteps(int number) {
@@ -187,56 +196,69 @@ public class BattleGeneralMeta : MonoBehaviour {
 	private void OnTriggerEnter2D (Collider2D other)
 	{
 		//Check if the tag of the trigger collided with is Exit.
-		if (other.tag == "Entrance" && !entranceUsed.Contains (other.GetInstanceID ())) {
-			Debug.Log ("Entrance!");
-			//SharedPrefs.playerArmy = Instantiate (this.gameObject, this.gameObject.transform.position, Quaternion.identity) as GameObject;
-			//SharedPrefs.playerArmy.SetActive (false);
+		if (getPlayer ()) {
+			if (other.tag == "Entrance" && !entranceUsed.Contains (other.GetInstanceID ())) {
+				Debug.Log ("Entrance!");
+				//SharedPrefs.playerArmy = Instantiate (this.gameObject, this.gameObject.transform.position, Quaternion.identity) as GameObject;
+				//SharedPrefs.playerArmy.SetActive (false);
 
-			SharedPrefs.setPlayerName (gameObject.name);
-			GameObject board = GameObject.Find ("Board");
-			Coroutines.toggleVisibilityTransform (board.transform, false);
+				SharedPrefs.setPlayerName (gameObject.name);
+				GameObject board = GameObject.Find ("Board");
+				Coroutines.toggleVisibilityTransform (board.transform, false);
 
-			EntranceMeta eMeta = other.gameObject.GetComponent<EntranceMeta> ();
-			if (eMeta != null) {
-				Debug.Log ("Dwelling name: " + eMeta.name);
+				EntranceMeta eMeta = other.gameObject.GetComponent<EntranceMeta> ();
+				if (eMeta != null) {
+					Debug.Log ("Dwelling name: " + eMeta.name);
 
-				GameObject info = eMeta.entranceInfo;
-				DwellingMeta dwell = info.GetComponent<DwellingMeta> ();
-				if (dwell != null) {
-					DwellingPrefs.setDwellingInfo (eMeta.image, dwell);
-					Debug.Log ("Dwelling name: " + dwell.name);
-					Debug.Log ("Dwelling description: " + dwell.description);
-					DwellingPrefs.setPlayerName (gameObject.name);
-					Application.LoadLevel ("DwellingScene");
-					entranceUsed.Add (other.GetInstanceID ());
+					GameObject info = eMeta.entranceInfo;
+					DwellingMeta dwell = info.GetComponent<DwellingMeta> ();
+					if (dwell != null) {
+						DwellingPrefs.setDwellingInfo (eMeta.image, dwell);
+						Debug.Log ("Dwelling name: " + dwell.name);
+						Debug.Log ("Dwelling description: " + dwell.description);
+						DwellingPrefs.setPlayerName (gameObject.name);
+						Application.LoadLevel ("DwellingScene");
+						entranceUsed.Add (other.GetInstanceID ());
+					}
+
+					CastleMeta castle = info.GetComponent<CastleMeta> ();
+					if (castle != null) {
+						Debug.Log ("Castle name: " + castle.name);
+						CastlePrefs.setCastleInfo (resources, castle, this.gameObject.GetInstanceID ());
+						//Debug.Log ("Castle affiliation: " + castle.castleAffiliation);
+						//DwellingPrefs.setPlayerName (gameObject.name);
+						CastleConverter.putSave (this);
+						Application.LoadLevel ("CastleScene");
+					} 
+					//return eMeta.GetComponent<DwellingMeta> ();
+				} else {
+					Debug.Log ("No Dwelling");
 				}
-
-				CastleMeta castle = info.GetComponent<CastleMeta> ();
-				if (castle != null) {
-					Debug.Log ("Castle name: " + castle.name);
-					CastlePrefs.setCastleInfo (resources, castle, this.gameObject.GetInstanceID());
-					//Debug.Log ("Castle affiliation: " + castle.castleAffiliation);
-					//DwellingPrefs.setPlayerName (gameObject.name);
-					CastleConverter.putSave(this);
-					Application.LoadLevel ("CastleScene");
-				} 
-				//return eMeta.GetComponent<DwellingMeta> ();
+				//other.gameObject.SetActive (false);
+			} else if (other.tag == "Resource") {
+				ResourceMeta rMeta = other.gameObject.GetComponent<ResourceMeta> ();
+				if (rMeta != null) {
+					Debug.Log ("Resource Found: " + rMeta.getName ());
+					Debug.Log ("Resource value: " + rMeta.getValue ());
+					addResource (rMeta.getName (), rMeta.getValue ());
+					other.gameObject.SetActive (false);
+				} else {
+					Debug.Log ("Resource Not Found!");
+				}
 			} else {
-				Debug.Log ("No Dwelling");
-			}
-			//other.gameObject.SetActive (false);
-		} else if (other.tag == "Resource") {
-			ResourceMeta rMeta = other.gameObject.GetComponent<ResourceMeta> ();
-			if (rMeta != null) {
-				Debug.Log ("Resource Found: " + rMeta.getName ());
-				Debug.Log ("Resource value: " + rMeta.getValue ());
-				addResource (rMeta.getName (), rMeta.getValue ());
-				other.gameObject.SetActive (false);
-			} else {
-				Debug.Log ("Resource Not Found!");
+				Debug.Log ("Found: " + other.tag);
 			}
 		} else {
-			Debug.Log ("Found: " + other.tag);
+			// Do the ai version of whatever interactions we need here
+//			Debug.Log ("AI actions");
+			Debug.Log ("AI Name: " + gameObject.name);
+			if (other.tag.Equals ("Unit")) {
+				Debug.Log ("Attacking!" + other.name);
+			} else if (other.tag.Equals ("Entrance") && !entranceUsed.Contains (other.GetInstanceID ())) {
+				Debug.Log ("Entering: " + other.name);
+			} else if (other.tag.Equals ("Resource")) {
+				Debug.Log ("Picking Up: " + other.name);
+			}
 		}
 	}
 }

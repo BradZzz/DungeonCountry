@@ -15,6 +15,7 @@ public class EntranceMeta : MonoBehaviour {
 		if (entranceInfo == null) {
 			entranceInfo = new GameObject ("Entrance");
 			DontDestroyOnLoad(entranceInfo);
+			entranceInfo.tag = "Entrance";
 		}
 		Coroutines.CopyComponent (component,entranceInfo);
 	}

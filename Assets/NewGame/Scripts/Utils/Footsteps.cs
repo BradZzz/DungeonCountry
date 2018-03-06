@@ -47,6 +47,12 @@ public class Footsteps : MonoBehaviour {
 		yield return foundVal;
 	}
 
+	public IEnumerator generateMapv2(Transform ai, Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs, Action<Transform, List<Point3>, Point3> pathCallback){
+		foundVal = baseAlgorithm (startingPos, destination, rows, columns, obs, true);
+		pathCallback (ai, foundVal, destination);
+		yield return foundVal;
+	}
+
 	public IEnumerator generateOverflowMapv1(Point3 startingPos, int move, int rows, int columns, List<Point3> obs, Action<List<Point3>> pathCallback){
 		foundVal = overflowAlgorithm (startingPos, move, rows, columns, obs);
 		pathCallback (foundVal);

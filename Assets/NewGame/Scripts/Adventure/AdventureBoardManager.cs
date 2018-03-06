@@ -336,21 +336,21 @@ public class AdventureBoardManager : MonoBehaviour {
 	}
 
 	//This takes each individual path and smooths them out
-	public List<Point3> compilePath(List<Point3> path){
-		List<Point3> smoothed = new List<Point3> ();
-		Point3 lastStep = null;
-		bool changeX = false;
-		foreach (Point3 step in path) {
-			bool lastX = changeX;
-			if (lastStep == null) { lastStep = step; }
-			if (lastStep.x != step.x) { changeX = true; }
-			if (lastStep.y != step.y) { changeX = false; }
-			if (lastX != changeX) { smoothed.Add (lastStep); } 
-			lastStep = step;
-		}
-		smoothed.Add (path[path.Count - 1]);
-		return smoothed;
-	}
+//	public List<Point3> compilePath(List<Point3> path){
+//		List<Point3> smoothed = new List<Point3> ();
+//		Point3 lastStep = null;
+//		bool changeX = false;
+//		foreach (Point3 step in path) {
+//			bool lastX = changeX;
+//			if (lastStep == null) { lastStep = step; }
+//			if (lastStep.x != step.x) { changeX = true; }
+//			if (lastStep.y != step.y) { changeX = false; }
+//			if (lastX != changeX) { smoothed.Add (lastStep); } 
+//			lastStep = step;
+//		}
+//		smoothed.Add (path[path.Count - 1]);
+//		return smoothed;
+//	}
 
 	IEnumerator step_path(Transform origin, List<Point3> path, float speed, bool battle)
 	{

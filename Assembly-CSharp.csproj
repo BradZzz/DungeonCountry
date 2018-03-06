@@ -102,6 +102,7 @@
      <Compile Include="Assets\NewGame\Scripts\LevelUp\LvlUpManager.cs" />
      <Compile Include="Assets\NewGame\Scripts\MainMenu\MainMenuStart.cs" />
      <Compile Include="Assets\NewGame\Scripts\Objects\AffiliationMeta.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Objects\BattleGeneralAI.cs" />
      <Compile Include="Assets\NewGame\Scripts\Objects\BattleGeneralMeta.cs" />
      <Compile Include="Assets\NewGame\Scripts\Objects\BattleGeneralResources.cs" />
      <Compile Include="Assets\NewGame\Scripts\Objects\BattleMeta.cs" />
