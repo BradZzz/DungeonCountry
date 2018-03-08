@@ -10,7 +10,7 @@ A game based off the classic Heroes of Might and Magic franchise.
 
 ### Development
 
-Development currently at 60% to Beta.
+Development currently at 80% to Alpha.
 
 ### Install
 
