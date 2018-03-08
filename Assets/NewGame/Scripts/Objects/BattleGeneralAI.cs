@@ -89,11 +89,14 @@ public class BattleGeneralAI {
 		bool needResources = checkResources (ai.GetComponent<BattleGeneralMeta> ());
 
 		if (armyStronger) {
+			Debug.Log ("Decision: Attack Player");
 			potentialObjectives = rivals;
 		} else {
 			if (needResources) {
+				Debug.Log ("Decision: Collect Resources");
 				potentialObjectives = resources;
 			} else {
+				Debug.Log ("Decision: Visit Castle");
 				potentialObjectives = castles;
 			}
 		}
@@ -132,7 +135,7 @@ public class BattleGeneralAI {
 			// do something with entry.Value or entry.Key
 			if (item.Key.Equals("gold")) {
 				if (item.Value < 2500) {
-					return false;
+					return true;
 				}
 			} else if (item.Key.Equals("ore") || item.Key.Equals("wood")) {
 				simpResCnt += item.Value;
@@ -141,9 +144,9 @@ public class BattleGeneralAI {
 			}
 		}
 		if (simpResCnt < 50 || advResCnt < 10) {
-			return false;
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 	private bool checkUnitOn(List<Transform> rivals, Point3 point){

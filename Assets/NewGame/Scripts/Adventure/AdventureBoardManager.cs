@@ -232,6 +232,8 @@ public class AdventureBoardManager : MonoBehaviour {
 			BattleGeneralMeta gMeta = instance.GetComponent<BattleGeneralMeta> ();
 			if (gMeta != null) {
 				gMeta.setPlayer (isPlayer);
+				gMeta.startTurn ();
+				gMeta.startMoving ();
 			}
 			instance.transform.position = pos;
 		}

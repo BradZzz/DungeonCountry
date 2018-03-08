@@ -87,6 +87,17 @@ public class BattleMeta : MonoBehaviour {
 		isStopped = false;
 	}
 
+	public Dictionary<string, int> getResourcesAsDict(){
+		Dictionary<string, int> rDict = new Dictionary<string, int> ();
+		rDict.Add ("gold", costGold);
+		rDict.Add ("ore", costOre);
+		rDict.Add ("wood", costWood);
+		rDict.Add ("sapphire", costSapphire);
+		rDict.Add ("crystal", costCrystal);
+		rDict.Add ("ruby", costRuby);
+		return rDict;
+	}
+
 	public void slowUnit(){
 		StartCoroutine (showEffects ("Slowed!"));
 		slow = 2;

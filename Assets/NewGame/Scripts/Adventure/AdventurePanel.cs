@@ -108,28 +108,37 @@ public class AdventurePanel : MonoBehaviour {
 
 	public void EndTurn(){
 		Debug.Log ("End Turn");
-		GameObject[] units = GameObject.FindGameObjectsWithTag("Unit");
-		foreach (GameObject unit in units) {
+		wakeAI ();
+		makeDecision(getNextAI());
+	}
+
+	private void makeDecision(GameObject unit){
+		if (unit == null) {
+			Debug.Log ("Error Receiving Unit!");
+			player.startTurn ();
+		} else {
 			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
-			if (!bgm.getPlayer ()) {
-				// Move the camera to where the ai is for 2 seconds
-				bgm.startTurn();
-				BattleGeneralAI ai = new BattleGeneralAI (unit);
-				ai.moveGeneral (GameObject.Find ("Board").transform);
-				Debug.Log ("Move AI");
-				StartCoroutine (steps.generateMapv2(unit.transform, new Point3(unit.transform.position), new Point3(ai.getObjective().transform.position), agm.getRows(), agm.getColumns(), ai.getObstacles(), getPath));
-//				bgm.endTurn ();
+			if (bgm != null) {
+				if (!bgm.getPlayer ()) {
+					// TODO: Move the camera to where the ai is for 2 seconds
+					// bgm.startTurn ();
+					BattleGeneralAI ai = new BattleGeneralAI (unit);
+					ai.moveGeneral (GameObject.Find ("Board").transform);
+					Debug.Log ("Move AI");
+					StartCoroutine (steps.generateMapv2 (unit.transform, new Point3 (unit.transform.position), new Point3 (ai.getObjective ().transform.position), agm.getRows (), agm.getColumns (), ai.getObstacles (), getPath));
+				}
 			}
 		}
-//		player.startTurn ();
 	}
 
 	private bool checkAIOver(){
 		GameObject[] units = GameObject.FindGameObjectsWithTag("Unit");
 		foreach (GameObject unit in units) {
 			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
-			if (!bgm.getPlayer () && bgm.getTurn()) {
-				return false;
+			if (bgm != null) {
+				if (!bgm.getPlayer () && bgm.getTurn()) {
+					return false;
+				}
 			}
 		}
 		return true;
@@ -151,23 +160,59 @@ public class AdventurePanel : MonoBehaviour {
 		txtm.text = player.getResource(resource).ToString();
 	}
 
-	public void getPath(Transform ai, List<Point3> path, Point3 destination){
+	private void getPath(Transform ai, List<Point3> path, Point3 destination){
 		Debug.Log ("Get Path");
 		StartCoroutine (step_path (ai, path, destination, .5f));
 	}
 
+	private void wakeAI(){
+		GameObject[] units = GameObject.FindGameObjectsWithTag("Unit");
+		foreach (GameObject unit in units) {
+			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
+			if (bgm != null) {
+				bgm.startTurn ();
+			}
+		}
+	}
+		
+	private GameObject getNextAI(){
+		GameObject[] units = GameObject.FindGameObjectsWithTag("Unit");
+		foreach (GameObject unit in units) {
+			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
+			if (bgm != null) {
+				if (!bgm.getPlayer () && bgm.getTurn()) {
+					if (bgm.makeSteps(0) > 0 && !bgm.getMoving()) {
+						bgm.startMoving ();
+					}
+					return unit;
+				}
+			}
+		}
+		return null;
+	}
+
 	IEnumerator step_path(Transform ai, List<Point3> step_path, Point3 destination, float speed)
 	{
+		BattleGeneralMeta bgm = ai.gameObject.GetComponent<BattleGeneralMeta> ();
+		int steps_left = bgm.makeSteps (step_path.Count);
+		if (steps_left <= 0) {
+			bgm.endTurn ();
+			while (steps_left < 0) {
+				step_path.RemoveAt (step_path.Count - 1);
+				steps_left++;
+			}
+		}
+			
 		foreach(Point3 step in step_path){
 			yield return StartCoroutine( Coroutines.smooth_move(ai, step.asVector3(), speed));
 		}
 
-		BattleGeneralMeta bgm = ai.gameObject.GetComponent<BattleGeneralMeta> ();
-		bgm.endTurn ();
-
 		//Start the player's turn after all the ai players have moved
-		if (checkAIOver()) {
+		if (checkAIOver ()) {
 			player.startTurn ();
+			player.startMoving ();
+		} else {
+			makeDecision(getNextAI());
 		}
 	}
 }

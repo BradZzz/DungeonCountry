@@ -24,6 +24,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 	private int currentMove = 0;
 	private bool isPlayer;
 	private bool isTurn = false;
+	private bool isMoving = false;
 	private BattleGeneralResources resources;
 	private bool defeated;
 	private Camera cam = null;
@@ -58,7 +59,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 
 	void LateUpdate () 
 	{
-		if (isPlayer || isTurn) {
+		if (isTurn && isMoving) {
 			if (cam == null && GameObject.Find("Main Camera") != null) {
 				cam = GameObject.Find("Main Camera").GetComponent<Camera>();
 			}
@@ -76,6 +77,15 @@ public class BattleGeneralMeta : MonoBehaviour {
 	public void startTurn() {
 		currentMove = getAttribute (BattleGeneralMeta.AttributeList.movement);
 		isTurn = true;
+		isMoving = false;
+	}
+
+	public void startMoving() {
+		isMoving = true;
+	}
+
+	public bool getMoving() {
+		return isMoving;
 	}
 
 	public bool getTurn() {
@@ -84,6 +94,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 
 	public void endTurn() {
 		isTurn = false;
+		isMoving = false;
 	}
 
 	public int makeSteps(int number) {
@@ -256,8 +267,48 @@ public class BattleGeneralMeta : MonoBehaviour {
 				Debug.Log ("Attacking!" + other.name);
 			} else if (other.tag.Equals ("Entrance")) {
 				Debug.Log ("Entering: " + other.name);
+				EntranceMeta eMeta = other.gameObject.GetComponent<EntranceMeta> ();
+				if (eMeta != null) {
+					//For now we are only having the ai visit castles and not dwellings...
+					GameObject info = eMeta.entranceInfo;
+					CastleMeta castle = info.GetComponent<CastleMeta> ();
+					if (castle != null) {
+						Debug.Log ("Castle name: " + castle.name);
+						//Right here we need to figure out who we can recruit from the castle army-wise
+						//Get ai army
+						//List<GameObject> aiArmy = getArmy();
+						//Get castle recruitables
+						GameObject[] castleRecruitables = castle.affiliation.units;
+						//While ai still has money. buy the most expensive unit ai can afford
+						bool purchased = true;
+						Debug.Log ("Buying Shit");
+						while (purchased) {
+							purchased = false;
+							foreach(GameObject recruit in castleRecruitables) {
+								Dictionary<string, int> cost = recruit.GetComponent<BattleMeta> ().getResourcesAsDict ();
+								if (getResources().checkCanPurchase(cost, recruit)){
+									// Buy as many as you can afford
+									while (getResources().canPurchaseUnit(cost, recruit)) {
+										// Do nothing. (canPurchaseUnit buys the unit...)
+									}
+									// Then set flag that you purchased something
+									purchased = true;
+									// Repeat until you can't buy anymore
+								}
+							}
+						}
+						//Dictionary<string, int> resources = getResources ().getResources ();
+						//List<GameObject> aiArmy = getArmy();
+						Debug.Log ("Bought Shit");
+					} 
+				}
 			} else if (other.tag.Equals ("Resource")) {
-				Debug.Log ("Picking Up: " + other.name);
+				ResourceMeta rMeta = other.gameObject.GetComponent<ResourceMeta> ();
+				if (rMeta != null) {
+					addResource (rMeta.getName (), rMeta.getValue ());
+					other.gameObject.SetActive (false);
+				}
+				Debug.Log ("Picked up resource");
 			}
 		}
 	}

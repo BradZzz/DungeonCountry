@@ -117,15 +117,6 @@ public class BattleGeneralResources : MonoBehaviour {
 		}
 
 		if (army.Count < 6) {
-//			GameObject instance = Instantiate (unit) as GameObject;
-//			BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
-//			meta.setPlayer (true);
-//			meta.setLives (amount);
-//			meta.setGUI (false);
-//			instance.SetActive (false);
-//			army.Add (instance);
-//			return true;
-
 			GameObject instance = Instantiate (unit) as GameObject;
 			BattleMeta meta = unit.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 			meta.setPlayer (true);
@@ -159,6 +150,29 @@ public class BattleGeneralResources : MonoBehaviour {
 		} 
 
 		return false;
+	}
+
+	public bool checkCanPurchase(Dictionary<string, int> cost, GameObject unit){
+		//Check to make sure we have enough $ to purchase
+		foreach(KeyValuePair<string, int> entry in cost)
+		{
+			if (resources[entry.Key] < entry.Value) {
+				return false;
+			}
+		}
+
+		//Do we still have empty space in our army?
+		if (army.Count < 6) {
+			return true;
+		} else {
+			//If there isn't empty space, do we have that unit in our army so we can add to it?
+			foreach (GameObject arm in army) {
+				if (arm.name.Equals(unit.name)) {
+					return true;
+				}
+			}
+			return false;
+		}
 	}
 
 	public bool useResource(string name, int quantity){
