@@ -46,8 +46,14 @@ public class BattleGeneralMeta : MonoBehaviour {
 
 	private BattleGeneralResources getResource() {
 		if (resources == null) {
-			BattleGeneralResources bg = gameObject.AddComponent<BattleGeneralResources> ();
-			bg.init (this.GetInstanceID (), army);
+			BattleGeneralResources bg = null;
+			if (gameObject.GetComponent<BattleGeneralResources> () != null) {
+				bg = gameObject.GetComponent<BattleGeneralResources> ();
+				bg.init (this.GetInstanceID (), army);
+			} else {
+				bg = gameObject.AddComponent<BattleGeneralResources> ();
+				bg.init (this.GetInstanceID (), army);
+			}
 			resources = bg;
 		}
 		return resources;
@@ -168,7 +174,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 	}
 
 	public BattleGeneralResources getResources(){
-		return resources;
+		return getResource();
 	}
 
 	public void setResources(BattleGeneralResources resources){
@@ -239,7 +245,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 						CastlePrefs.setCastleInfo (resources, castle, this.gameObject.GetInstanceID ());
 						//Debug.Log ("Castle affiliation: " + castle.castleAffiliation);
 						//DwellingPrefs.setPlayerName (gameObject.name);
-						CastleConverter.putSave (this);
+						CastleConverter.putSave (this, board.transform);
 						SceneManager.LoadScene ("CastleScene");
 					} 
 					//return eMeta.GetComponent<DwellingMeta> ();
@@ -279,24 +285,42 @@ public class BattleGeneralMeta : MonoBehaviour {
 						//List<GameObject> aiArmy = getArmy();
 						//Get castle recruitables
 						GameObject[] castleRecruitables = castle.affiliation.units;
+
+//						GameObject[] units = GameObject.FindGameObjectsWithTag("Unit");
+//						foreach (GameObject unit in units) {
+//							BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
+//							if (!bgm.getPlayer ()) {
+//								ai.Add (unit);
+//							}
+//						}
+
+						GameObject glossary = GameObject.Find ("Glossary");
+						Glossary glossy = glossary.GetComponent<Glossary> ();
+
 						//While ai still has money. buy the most expensive unit ai can afford
-						bool purchased = true;
 						Debug.Log ("Buying Shit");
-						while (purchased) {
-							purchased = false;
-							foreach(GameObject recruit in castleRecruitables) {
-								Dictionary<string, int> cost = recruit.GetComponent<BattleMeta> ().getResourcesAsDict ();
-								if (getResources().checkCanPurchase(cost, recruit)){
+						foreach(GameObject faction in glossy.factions){
+							AffiliationMeta meta = faction.GetComponent<AffiliationMeta> ();
+							if (meta.name.Equals(castle.affiliation.name)) {
+								foreach(GameObject recruit in meta.units) {
+
+									//Check to make sure that the glossary unit is in the castle
+
+									Dictionary<string, int> cost = recruit.GetComponent<BattleMeta> ().getResourcesAsDict ();
 									// Buy as many as you can afford
-									while (getResources().canPurchaseUnit(cost, recruit)) {
+									while (getResources().purchaseUnit(cost, recruit)) {
 										// Do nothing. (canPurchaseUnit buys the unit...)
 									}
-									// Then set flag that you purchased something
-									purchased = true;
-									// Repeat until you can't buy anymore
 								}
 							}
 						}
+//						foreach(GameObject recruit in glossy.factions) {
+//							Dictionary<string, int> cost = recruit.GetComponent<BattleMeta> ().getResourcesAsDict ();
+//							// Buy as many as you can afford
+//							while (getResources().purchaseUnit(cost, recruit)) {
+//								// Do nothing. (canPurchaseUnit buys the unit...)
+//							}
+//						}
 						//Dictionary<string, int> resources = getResources ().getResources ();
 						//List<GameObject> aiArmy = getArmy();
 						Debug.Log ("Bought Shit");

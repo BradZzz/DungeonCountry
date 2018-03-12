@@ -117,6 +117,7 @@
      <Compile Include="Assets\NewGame\Scripts\Utils\Astar.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\Coroutines.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\CoRoutineWithData.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Utils\DataStoreConverter.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\DynamicSorting.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\EffectConfig.cs" />
      <Compile Include="Assets\NewGame\Scripts\Utils\EffectHolder.cs" />

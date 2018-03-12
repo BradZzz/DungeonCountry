@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using AssemblyCSharp;
+using UnityEngine.SceneManagement;
 
 public class AdventureBoardManager : MonoBehaviour {
 
@@ -75,48 +76,92 @@ public class AdventureBoardManager : MonoBehaviour {
 
 	private void formatObjects(bool init){
 
-		GameObject[] generals = BattleConverter.getSave (glossy);
-		GameObject cGeneral = CastleConverter.getSave (glossy);
+		GameObject[] savedGenerals = new GameObject[0];
+
+		if (!init) {
+			GameObject[] bGenerals = BattleConverter.getSave (glossy);
+			GameObject cGeneral = CastleConverter.getSave (glossy);
+
+			if (cGeneral != null) {
+//				GameObject instance = Instantiate (cGeneral) as GameObject;
+//				BattleGeneralMeta meta = cGeneral.GetComponent<BattleGeneralMeta> ();
+//				BattleGeneralMeta iMeta = instance.GetComponent<BattleGeneralMeta> ();
+//				iMeta.setPlayer (true);
+//				iMeta.setResources (meta.getResources());
+				DataStoreConverter.updateGeneral (glossy, "BoardSave", cGeneral);
+			}
+			if (bGenerals != null) {
+				foreach (GameObject general in bGenerals) {
+					if (general != null) {
+						BattleConverter.reset ();
+//						GameObject instance = Instantiate (general) as GameObject;
+//						BattleGeneralMeta meta = general.GetComponent<BattleGeneralMeta> ();
+//						BattleGeneralMeta iMeta = instance.GetComponent<BattleGeneralMeta> ();
+//						if (meta.getPlayer()) {
+//							iMeta.setPlayer (true);
+//						}
+//						iMeta.setResources (meta.getResources());
+						DataStoreConverter.updateGeneral (glossy, "BoardSave", general);
+					}
+				}
+			}
+
+			savedGenerals = DataStoreConverter.getSave (glossy, "BoardSave");
+		} else {
+			DataStoreConverter.reset ("BoardSave");
+			BattleConverter.reset ();
+			CastleConverter.reset ();
+		}
 
 		//if (sharedPrefs || init) {
 		foreach(GameObject unity in GameObject.FindGameObjectsWithTag("Unit")){
 			//Transform unit = unity.transform;
 			//Point3 pos = new Point3(unit.position);
 			BattleGeneralMeta meta = unity.GetComponent<BattleGeneralMeta> ();
-			if (!init) {
-				if (cGeneral != null) {
-					BattleGeneralMeta player = cGeneral.GetComponent<BattleGeneralMeta> ();
-					if (meta.name.Equals(player.name)) {
-						meta.setResources (player.getResources());
-						meta.setArmy(player.getArmy());
+			if (!init && meta != null) {
+				foreach (GameObject general in savedGenerals) {
+					BattleGeneralMeta gen = general.GetComponent<BattleGeneralMeta> ();
+					if (meta.name.Equals (gen.name)) {
+						if (gen.getResources() != null) {
+							meta.setResources (gen.getResources());
+						}
+						meta.setArmy(gen.getArmy());
 						if (meta.getArmy().Count < 1) {
 							meta.setDefeated (true);
 						}
 					}
 				}
-				if (generals != null) {
-					BattleGeneralMeta player = generals[0].GetComponent<BattleGeneralMeta> ();
-					BattleGeneralMeta ai = generals[1].GetComponent<BattleGeneralMeta> ();
-					if (meta.name.Equals(player.name)) {
-						meta.setArmy(player.getArmy());
-						if (meta.getArmy().Count < 1) {
-							meta.setDefeated (true);
-						}
-						//BattleGeneralResources srcs = meta.getResources ();
-						//srcs.setarmy (player.getResources().getarmy());
-					} else if (meta.name.Equals(ai.name)) {
-						meta.setArmy(ai.getArmy());
-						if (meta.getArmy().Count < 1) {
-							meta.setDefeated (true);
-						}
-						//BattleGeneralResources srcs = meta.getResources ();
-						//srcs.setarmy (ai.getResources().getarmy());
-					}
-				}
-			}
 
-			if (generals != null) {
-				BattleConverter.reset ();
+
+//				if (cGeneral != null) {
+//					BattleGeneralMeta player = cGeneral.GetComponent<BattleGeneralMeta> ();
+//					if (meta.name.Equals(player.name)) {
+//						meta.setResources (player.getResources());
+//						meta.setArmy(player.getArmy());
+//						if (meta.getArmy().Count < 1) {
+//							meta.setDefeated (true);
+//						}
+//					}
+//				}
+//				if (generals != null) {
+//					BattleGeneralMeta player = generals[0].GetComponent<BattleGeneralMeta> ();
+//					BattleGeneralMeta ai = generals[1].GetComponent<BattleGeneralMeta> ();
+//					if (meta.name.Equals(player.name)) {
+//						meta.setArmy(player.getArmy());
+//						if (meta.getArmy().Count < 1) {
+//							meta.setDefeated (true);
+//						}
+//						//BattleGeneralResources srcs = meta.getResources ();
+//						//srcs.setarmy (player.getResources().getarmy());
+//					} else if (meta.name.Equals(ai.name)) {
+//						meta.setArmy(ai.getArmy());
+//						if (meta.getArmy().Count < 1) {
+//							meta.setDefeated (true);
+//						}
+//						//BattleGeneralResources srcs = meta.getResources ();
+//						//srcs.setarmy (ai.getResources().getarmy());
+//					}
+//				}
 			}
 
 			if (meta != null) {
@@ -136,16 +181,33 @@ public class AdventureBoardManager : MonoBehaviour {
 					foreach (GameObject unit in affmet.units) {
 						BattleMeta gmeta = unit.GetComponent<BattleMeta> ();
 						if (gmeta.lvl < 3) {
-							if (gmeta.lvl == 1) {
-								gmeta.setLives (Random.Range (15, 25));
+							GameObject instance = Instantiate (unit) as GameObject;
+							BattleMeta bMet = instance.GetComponent<BattleMeta> ();
+							bMet.setGUI (false);
+							if (meta.getPlayer ()) {
+								bMet.setPlayer (true);
+								switch(bMet.lvl){
+									case 1:
+										bMet.setLives (Random.Range (15, 25));
+										break;
+									default:
+										bMet.setLives (Random.Range (15, 20));
+										break;
+								}
 							} else {
-							if (meta.getPlayer()) {
-									gmeta.setLives (Random.Range (15, 20));
-								} else {
-									gmeta.setLives (Random.Range (5, 10));
+								bMet.setPlayer (false);
+								switch(bMet.lvl){
+								case 1:
+									bMet.setLives (Random.Range (15, 25));
+									break;
+								default:
+									bMet.setLives (Random.Range (5, 10));
+									break;
 								}
 							}
-							newUnits.Add (unit);
+
+							instance.SetActive (false);
+							newUnits.Add (instance);
 						}
 					}
 					meta.setArmy(newUnits);
@@ -303,7 +365,7 @@ public class AdventureBoardManager : MonoBehaviour {
 			path.Remove (edge);
 			if (enemy.tag.Equals ("Unit")) {
 				BattleGeneralMeta ai = enemy.GetComponent<BattleGeneralMeta> ();
-				BattleConverter.putSave (player, ai);
+				BattleConverter.putSave (player, ai, boardHolder);
 				BattleConverter.putPrevScene ("AdventureScene");
 
 				Debug.Log (PlayerPrefs.GetString ("battle"));
@@ -364,7 +426,8 @@ public class AdventureBoardManager : MonoBehaviour {
 			Coroutines.toggleVisibilityTransform(boardHolder,false);
 			//Remove the gameManager click listeners
 			gameManager.gameObject.SetActive (false);
-			Application.LoadLevel ("BattleScene");
+//			Application.LoadLevel ("BattleScene");
+			SceneManager.LoadScene ("BattleScene");
 		}
 	}
 }

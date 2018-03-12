@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreConverter : MonoBehaviour {
+public class ScoreConverter : DataStoreConverter {
 
 	public static void putSaveScoreObject(ScoreSerializeableStats gmScore){
 		string scores = PlayerPrefs.GetString ("scores");

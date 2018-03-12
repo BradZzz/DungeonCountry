@@ -45,7 +45,7 @@ public class AdventurePanel : MonoBehaviour {
 		GameObject[] units = GameObject.FindGameObjectsWithTag("Unit");
 		foreach (GameObject unit in units) {
 			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
-			if (bgm.getPlayer ()) {
+			if (bgm != null && bgm.getPlayer ()) {
 				player = bgm;
 			}
 		}
@@ -125,6 +125,9 @@ public class AdventurePanel : MonoBehaviour {
 					BattleGeneralAI ai = new BattleGeneralAI (unit);
 					ai.moveGeneral (GameObject.Find ("Board").transform);
 					Debug.Log ("Move AI");
+					if (unit.transform.position.x > 50) {
+						Debug.Log("What");
+					}
 					StartCoroutine (steps.generateMapv2 (unit.transform, new Point3 (unit.transform.position), new Point3 (ai.getObjective ().transform.position), agm.getRows (), agm.getColumns (), ai.getObstacles (), getPath));
 				}
 			}
@@ -193,18 +196,22 @@ public class AdventurePanel : MonoBehaviour {
 
 	IEnumerator step_path(Transform ai, List<Point3> step_path, Point3 destination, float speed)
 	{
-		BattleGeneralMeta bgm = ai.gameObject.GetComponent<BattleGeneralMeta> ();
-		int steps_left = bgm.makeSteps (step_path.Count);
-		if (steps_left <= 0) {
-			bgm.endTurn ();
-			while (steps_left < 0) {
-				step_path.RemoveAt (step_path.Count - 1);
-				steps_left++;
+		if (step_path != null) {
+			BattleGeneralMeta bgm = ai.gameObject.GetComponent<BattleGeneralMeta> ();
+			int steps_left = bgm.makeSteps (step_path.Count);
+			if (steps_left <= 0) {
+				bgm.endTurn ();
+				while (steps_left < 0) {
+					step_path.RemoveAt (step_path.Count - 1);
+					steps_left++;
+				}
 			}
-		}
-			
-		foreach(Point3 step in step_path){
-			yield return StartCoroutine( Coroutines.smooth_move(ai, step.asVector3(), speed));
+			foreach (Point3 step in step_path) {
+				yield return StartCoroutine (Coroutines.smooth_move (ai, step.asVector3 (), speed));
+			}
+		} else {
+			BattleGeneralMeta bgm = ai.gameObject.GetComponent<BattleGeneralMeta> ();
+			bgm.endTurn ();
 		}
 
 		//Start the player's turn after all the ai players have moved

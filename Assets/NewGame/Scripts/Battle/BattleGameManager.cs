@@ -315,7 +315,7 @@ public class BattleGameManager : MonoBehaviour {
 		playGen.setArmy(results[0]);
 		aiGen.setArmy(results[1]);
 
-		BattleConverter.putSave (playGen, aiGen);
+		BattleConverter.putSave (playGen, aiGen, null);
 
 		GameObject button = GameObject.Find ("Button");
 		if (button != null) {

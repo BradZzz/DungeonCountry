@@ -93,7 +93,7 @@ public class CastleMenu : MonoBehaviour {
 	}
 
 	public void onClickAccept(){
-		CastleConverter.putSave (genMeta);
+		CastleConverter.putSave (genMeta, null);
 		SceneManager.LoadScene ("AdventureScene");
 	}
 

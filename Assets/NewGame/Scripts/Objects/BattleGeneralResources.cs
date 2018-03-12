@@ -31,12 +31,12 @@ public class BattleGeneralResources : MonoBehaviour {
 
 	private void initRes(){
 		resources = new Dictionary<string, int> ();
-		resources.Add ("gold", 0);
-		resources.Add ("ore", 0);
-		resources.Add ("wood", 0);
-		resources.Add ("ruby", 0);
-		resources.Add ("crystal", 0);
-		resources.Add ("sapphire", 0);
+		resources.Add ("gold", 15000);
+		resources.Add ("ore", 20);
+		resources.Add ("wood", 20);
+		resources.Add ("ruby", 1);
+		resources.Add ("crystal", 1);
+		resources.Add ("sapphire", 1);
 	}
 
 	public void clone(BattleGeneralResources clone){
@@ -117,13 +117,14 @@ public class BattleGeneralResources : MonoBehaviour {
 		}
 
 		if (army.Count < 6) {
+			Debug.Log ("");
 			GameObject instance = Instantiate (unit) as GameObject;
-			BattleMeta meta = unit.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+			BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
 			meta.setPlayer (true);
 			meta.setLives (amount);
 			meta.setGUI (false);
-			unit.SetActive (false);
-			army.Add (unit);
+			instance.SetActive (false);
+			army.Add (instance);
 			return true;
 		}
 
@@ -150,6 +151,43 @@ public class BattleGeneralResources : MonoBehaviour {
 		} 
 
 		return false;
+	}
+
+	public bool purchaseUnit(Dictionary<string, int> cost, GameObject unit){
+		if (checkCanPurchase (cost, unit)) {
+			foreach (KeyValuePair<string, int> entry in cost) {
+				useResource (entry.Key, entry.Value);
+			}
+			if (army.Count < 6) {
+				bool found = false;
+				foreach (GameObject arm in army) {
+					if (arm.name.Contains (unit.name)) {
+						BattleMeta bMet = unit.GetComponent<BattleMeta> ();
+						bMet.setLives (bMet.getLives () + 1);
+						found = true;
+					}
+				}
+				if (!found) {
+					GameObject instance = Instantiate (unit) as GameObject;
+					BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+					meta.setLives (1);
+					instance.SetActive (false);
+					meta.setGUI (false);
+					meta.setPlayer (false);
+					army.Add (instance);
+				}
+			} else {
+				foreach (GameObject arm in army) {
+					if (arm.name.Contains (unit.name)) {
+						BattleMeta bMet = unit.GetComponent<BattleMeta> ();
+						bMet.setLives (bMet.getLives () + 1);
+					}
+				}
+			}
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public bool checkCanPurchase(Dictionary<string, int> cost, GameObject unit){
