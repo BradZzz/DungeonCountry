@@ -127,8 +127,6 @@ public class BattleGeneralAI {
 	}
 
 	private bool checkResources(BattleGeneralMeta unit){
-		int simpResCnt = 0;
-		int advResCnt = 0;
 		BattleGeneralResources res = unit.getResources ();
 		foreach(KeyValuePair<string, int> item in res.getResources())
 		{
@@ -137,14 +135,7 @@ public class BattleGeneralAI {
 				if (item.Value < 2500) {
 					return true;
 				}
-			} else if (item.Key.Equals("ore") || item.Key.Equals("wood")) {
-				simpResCnt += item.Value;
-			} else {
-				advResCnt += item.Value;
 			}
-		}
-		if (simpResCnt < 50 || advResCnt < 10) {
-			return true;
 		}
 		return false;
 	}

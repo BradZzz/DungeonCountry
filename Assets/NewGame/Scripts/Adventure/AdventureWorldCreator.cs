@@ -32,12 +32,32 @@ public class AdventureWorldCreator : MonoBehaviour {
 	private Transform board;
 	private List<Point3> openPositions;
 	private List<Point3> roadPositions;
+	private resSorter rez;
 
 	private Action<List<Point3>, List<Point3>> callback;
+
+	private class resSorter {
+		public List<GameObject> gold, common, rare;
+		public resSorter(GameObject[] resourceTiles){
+			gold = new List<GameObject>();
+			common = new List<GameObject>();
+			rare = new List<GameObject>();
+			foreach (GameObject tile in resourceTiles) {
+				if (tile.name.ToLower().Contains("gold")) {
+					gold.Add(tile);
+				} else if (tile.name.ToLower().Contains("ore") || tile.name.ToLower().Contains("wood")) {
+					common.Add(tile);
+				} else {
+					rare.Add(tile);
+				}
+			}
+		}
+	}
 
 	public void createWorld(Transform board, int columns, int rows, Action<List<Point3>, List<Point3>> callback){
 		this.board = board;
 		this.callback = callback;
+		rez = new resSorter (resourceTiles);
 
 		steps = footsteps.GetComponent<Footsteps>();
 		cliffPatch = cliffNinePatch.GetComponent<TileNinePatch> ();
@@ -369,7 +389,15 @@ public class AdventureWorldCreator : MonoBehaviour {
 
 				//resources = 4x
 				if (map [x, y] == 40) {
-					GameObject tileChoice = resourceTiles [UnityEngine.Random.Range (0, resourceTiles.Length)];
+					GameObject tileChoice;
+					int rng = UnityEngine.Random.Range (0, 50);
+					if (rng < 30) {
+						tileChoice = rez.gold [0];
+					} else if (rng < 46) {
+						tileChoice = rez.common [UnityEngine.Random.Range (0, rez.common.Count)];
+					} else {
+						tileChoice = rez.rare [UnityEngine.Random.Range (0, rez.rare.Count)];
+					}
 					GameObject instance = Instantiate (tileChoice, pos.asVector3 (), Quaternion.identity) as GameObject;
 					instance.transform.SetParent (board);
 				}
