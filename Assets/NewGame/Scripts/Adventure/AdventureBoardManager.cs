@@ -79,7 +79,7 @@ public class AdventureBoardManager : MonoBehaviour {
 		GameObject[] savedGenerals = new GameObject[0];
 
 		if (!init) {
-			GameObject[] bGenerals = BattleConverter.getSave (glossy);
+			BattleGeneralMeta[] bGenerals = BattleConverter.getSaveBGM (glossy);
 			GameObject cGeneral = CastleConverter.getSave (glossy);
 
 			if (cGeneral != null) {
@@ -88,22 +88,24 @@ public class AdventureBoardManager : MonoBehaviour {
 //				BattleGeneralMeta iMeta = instance.GetComponent<BattleGeneralMeta> ();
 //				iMeta.setPlayer (true);
 //				iMeta.setResources (meta.getResources());
-				DataStoreConverter.updateGeneral (glossy, "BoardSave", cGeneral);
+				BattleGeneralMeta cgMeta = cGeneral.GetComponent<BattleGeneralMeta> ();
+				DataStoreConverter.updateGeneral (glossy, "BoardSave", cgMeta);
 			}
 			if (bGenerals != null) {
-				foreach (GameObject general in bGenerals) {
-					if (general != null) {
-						BattleConverter.reset ();
-//						GameObject instance = Instantiate (general) as GameObject;
-//						BattleGeneralMeta meta = general.GetComponent<BattleGeneralMeta> ();
-//						BattleGeneralMeta iMeta = instance.GetComponent<BattleGeneralMeta> ();
-//						if (meta.getPlayer()) {
-//							iMeta.setPlayer (true);
-//						}
-//						iMeta.setResources (meta.getResources());
-						DataStoreConverter.updateGeneral (glossy, "BoardSave", general);
-					}
-				}
+				DataStoreConverter.updateGeneral (glossy, "BoardSave", bGenerals);
+//				foreach (BattleGeneralMeta gItem in bGenerals) {
+//					if (gItem != null) {
+////						GameObject instance = Instantiate (general) as GameObject;
+////						BattleGeneralMeta meta = general.GetComponent<BattleGeneralMeta> ();
+////						BattleGeneralMeta iMeta = instance.GetComponent<BattleGeneralMeta> ();
+////						if (meta.getPlayer()) {
+////							iMeta.setPlayer (true);
+////						}
+////						iMeta.setResources (meta.getResources());
+//						DataStoreConverter.updateGeneral (glossy, "BoardSave", gItem);
+//					}
+//				}
+				BattleConverter.reset ();
 			}
 
 			savedGenerals = DataStoreConverter.getSave (glossy, "BoardSave");
@@ -191,7 +193,7 @@ public class AdventureBoardManager : MonoBehaviour {
 										bMet.setLives (Random.Range (15, 25));
 										break;
 									default:
-										bMet.setLives (Random.Range (15, 20));
+										bMet.setLives (Random.Range (115, 200));
 										break;
 								}
 							} else {

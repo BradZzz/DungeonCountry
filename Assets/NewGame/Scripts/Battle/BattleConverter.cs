@@ -102,6 +102,23 @@ public class BattleConverter : DataStoreConverter {
 		return PlayerPrefs.GetString ("battle").Length > 0;
 	}
 
+	public static BattleGeneralMeta[] getSaveBGM(Glossary glossary){
+		string newInfo = PlayerPrefs.GetString ("battle");
+		Debug.Log("after: " + newInfo);
+		if (newInfo.Length == 0) {
+			return null;
+		}
+		BattleSerializeable[] thisBattle = JsonHelper.FromJson<BattleSerializeable>(newInfo);
+		if (thisBattle != null) {
+			BattleGeneralMeta[] generals = new BattleGeneralMeta[2];
+			generals [0] = deserializeGeneral (thisBattle [0], glossary).GetComponent<BattleGeneralMeta> ();
+			generals [1] = deserializeGeneral (thisBattle [1], glossary).GetComponent<BattleGeneralMeta> ();
+
+			return generals;
+		}
+		return null;
+	}
+
 	public static GameObject[] getSave(Glossary glossary){
 		string newInfo = PlayerPrefs.GetString ("battle");
 		Debug.Log("after: " + newInfo);
@@ -110,10 +127,14 @@ public class BattleConverter : DataStoreConverter {
 		}
 		BattleSerializeable[] thisBattle = JsonHelper.FromJson<BattleSerializeable>(newInfo);
 		if (thisBattle != null) {
-			return new GameObject[] {
-				deserializeGeneral (thisBattle [0], glossary),
-				deserializeGeneral (thisBattle [1], glossary)
-			};
+			GameObject[] generals = new GameObject[2];
+			generals [0] = deserializeGeneral (thisBattle [0], glossary);
+			generals [1] = deserializeGeneral (thisBattle [1], glossary);
+
+			BattleGeneralMeta meta = generals [0].GetComponent<BattleGeneralMeta> ();
+			BattleGeneralMeta meta2 = generals [1].GetComponent<BattleGeneralMeta> ();
+
+			return generals;
 		}
 		return null;
 	}

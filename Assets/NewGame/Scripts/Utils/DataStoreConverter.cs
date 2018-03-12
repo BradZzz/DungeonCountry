@@ -51,11 +51,13 @@ public class DataStoreConverter : MonoBehaviour {
 		PlayerPrefs.SetString (saveKey, "");
 	}
 
-	public static void updateGeneral(Glossary glossary, string saveKey, GameObject replaceGeneral){
+	public static void updateGeneral(Glossary glossary, string saveKey, BattleGeneralMeta bgMet){
 		Debug.Log ("Update General!");
-		BattleGeneralMeta bgMet = replaceGeneral.GetComponent<BattleGeneralMeta> ();
+		//		BattleGeneralMeta bgMet = replaceGeneral.GetComponent<BattleGeneralMeta> ();
 		BattleSerializeable rpSrz = serializeGeneral (bgMet);
+		Debug.Log ("From: " + JsonUtility.ToJson(rpSrz));
 		GameObject[] generals = getSave(glossary, saveKey);
+
 		BattleSerializeable[] newGenerals = new BattleSerializeable[generals.Length];
 		for (int i = 0; i < generals.Length; i++) {
 			BattleGeneralMeta gm = generals[i].GetComponent<BattleGeneralMeta>();
@@ -68,8 +70,35 @@ public class DataStoreConverter : MonoBehaviour {
 		string json = JsonHelper.ToJson(newGenerals);
 		PlayerPrefs.SetString (saveKey, json);
 		Debug.Log ("update: " + json);
-		Debug.Log ("From: " + rpSrz);
+	}
 
+	public static void updateGeneral(Glossary glossary, string saveKey, BattleGeneralMeta[] bgMet){
+		Debug.Log ("Update General!");
+		//		BattleGeneralMeta bgMet = replaceGeneral.GetComponent<BattleGeneralMeta> ();
+		BattleSerializeable[] rpSrz = new BattleSerializeable[bgMet.Length];
+		for(int i =0; i < bgMet.Length; i++){
+			rpSrz [i] = serializeGeneral (bgMet [i]);
+		}
+		//BattleSerializeable rpSrz = serializeGeneral (bgMet);
+		Debug.Log ("From: " + JsonUtility.ToJson(rpSrz));
+		GameObject[] generals = getSave(glossary, saveKey);
+		BattleSerializeable[] newGenerals = new BattleSerializeable[generals.Length];
+		for (int i = 0; i < generals.Length; i++) {
+			BattleGeneralMeta gm = generals[i].GetComponent<BattleGeneralMeta>();
+			bool found = false;
+			foreach(BattleSerializeable rps in rpSrz){
+				if (rps.name.Equals (gm.name)) {
+					newGenerals [i] = rps;
+					found = true;
+				}
+			}
+			if (!found) {
+				newGenerals [i] = serializeGeneral (gm);
+			}
+		}
+		string json = JsonHelper.ToJson(newGenerals);
+		PlayerPrefs.SetString (saveKey, json);
+		Debug.Log ("update: " + json);
 	}
 
 	public static GameObject deserializeGeneral(BattleSerializeable battle, Glossary glossary){
