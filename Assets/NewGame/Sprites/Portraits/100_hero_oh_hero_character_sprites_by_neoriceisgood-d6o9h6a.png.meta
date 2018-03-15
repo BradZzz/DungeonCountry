@@ -1,0 +1,1607 @@
+fileFormatVersion: 2
+guid: 1db0213dcd209411694145736736896a
+timeCreated: 1520890165
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_0
+    21300002: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_1
+    21300004: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_2
+    21300006: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_3
+    21300008: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_4
+    21300010: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_5
+    21300012: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_6
+    21300014: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_7
+    21300016: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_8
+    21300018: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_9
+    21300020: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_10
+    21300022: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_11
+    21300024: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_12
+    21300026: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_13
+    21300028: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_14
+    21300030: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_15
+    21300032: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_16
+    21300034: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_17
+    21300036: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_18
+    21300038: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_19
+    21300040: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_20
+    21300042: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_21
+    21300044: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_22
+    21300046: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_23
+    21300048: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_24
+    21300050: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_25
+    21300052: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_26
+    21300054: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_27
+    21300056: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_28
+    21300058: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_29
+    21300060: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_30
+    21300062: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_31
+    21300064: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_32
+    21300066: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_33
+    21300068: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_34
+    21300070: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_35
+    21300072: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_36
+    21300074: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_37
+    21300076: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_38
+    21300078: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_39
+    21300080: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_40
+    21300082: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_41
+    21300084: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_42
+    21300086: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_43
+    21300088: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_44
+    21300090: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_45
+    21300092: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_46
+    21300094: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_47
+    21300096: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_48
+    21300098: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_49
+    21300100: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_50
+    21300102: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_51
+    21300104: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_52
+    21300106: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_53
+    21300108: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_54
+    21300110: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_55
+    21300112: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_56
+    21300114: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_57
+    21300116: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_58
+    21300118: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_59
+    21300120: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_60
+    21300122: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_61
+    21300124: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_62
+    21300126: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_63
+    21300128: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_64
+    21300130: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_65
+    21300132: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_66
+    21300134: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_67
+    21300136: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_68
+    21300138: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_69
+    21300140: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_70
+    21300142: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_71
+    21300144: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_72
+    21300146: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_73
+    21300148: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_74
+    21300150: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_75
+    21300152: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_76
+    21300154: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_77
+    21300156: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_78
+    21300158: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_79
+    21300160: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_80
+    21300162: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_81
+    21300164: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_82
+    21300166: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_83
+    21300168: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_84
+    21300170: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_85
+    21300172: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_86
+    21300174: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_87
+    21300176: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_88
+    21300178: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_89
+    21300180: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_90
+    21300182: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_91
+    21300184: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_92
+    21300186: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_93
+    21300188: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_94
+    21300190: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_95
+    21300192: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_96
+    21300194: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_97
+    21300196: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_98
+    21300198: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_99
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 881
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_1
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 881
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_2
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 881
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_3
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 881
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_4
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 881
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_5
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 881
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_6
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 881
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_7
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 881
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_8
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 881
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_9
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 881
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_10
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 784
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_11
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 784
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_12
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 784
+        width: 74
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_13
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 784
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_14
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 784
+        width: 74
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_15
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 784
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_16
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 784
+        width: 74
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_17
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 784
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_18
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 784
+        width: 74
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_19
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 784
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_20
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 686
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_21
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 686
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_22
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 686
+        width: 77
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_23
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 686
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_24
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 686
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_25
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 686
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_26
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 686
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_27
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 686
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_28
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 686
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_29
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 686
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_30
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 589
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_31
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 589
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_32
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 589
+        width: 74
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_33
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 589
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_34
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 589
+        width: 74
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_35
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 589
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_36
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 589
+        width: 74
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_37
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 589
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_38
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 589
+        width: 74
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_39
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 589
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_40
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 491
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_41
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 491
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_42
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 491
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_43
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 491
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_44
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 491
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_45
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 491
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_46
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 491
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_47
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 491
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_48
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 491
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_49
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 491
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_50
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 394
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_51
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 394
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_52
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 394
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_53
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 394
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_54
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 394
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_55
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 394
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_56
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 394
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_57
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 394
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_58
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 394
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_59
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 394
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_60
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 297
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_61
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 297
+        width: 73
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_62
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 297
+        width: 74
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_63
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 297
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_64
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 297
+        width: 74
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_65
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 297
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_66
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 297
+        width: 74
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_67
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 297
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_68
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 297
+        width: 74
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_69
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 297
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_70
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 199
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_71
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 199
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_72
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 199
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_73
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 199
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_74
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 199
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_75
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 199
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_76
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 199
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_77
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 199
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_78
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 199
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_79
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 199
+        width: 73
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_80
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 102
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_81
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 102
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_82
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 102
+        width: 74
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_83
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 102
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_84
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 102
+        width: 74
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_85
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 102
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_86
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 100
+        width: 74
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_87
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 102
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_88
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 102
+        width: 74
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_89
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 102
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_90
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 4
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_91
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 4
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_92
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 4
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_93
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 4
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_94
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 4
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_95
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 4
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_96
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 4
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_97
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 4
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_98
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 4
+        width: 74
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 100_hero_oh_hero_character_sprites_by_neoriceisgood-d6o9h6a_99
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 4
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

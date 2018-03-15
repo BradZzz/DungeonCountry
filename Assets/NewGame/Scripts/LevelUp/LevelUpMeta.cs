@@ -6,9 +6,8 @@ using AssemblyCSharp;
 
 public class LevelUpMeta : MonoBehaviour {
 
-	public LevelTree lvlTree;
-	public LevelUpResources res;
-
+	private LevelTree lvlTree;
+	private LevelUpResources res;
 	private Panel p1,p2,p3;
 	private GameObject ch1, ch2, ch3;
 
@@ -42,8 +41,8 @@ public class LevelUpMeta : MonoBehaviour {
 		}
 	}
 
-	public LevelUpMeta(GeneralAttributes general) {
-		res = new LevelUpResources (general);
+	public LevelUpMeta(GeneralAttributes general, GameObject[] upgrades) {
+		res = new LevelUpResources (general, upgrades);
 		lvlTree = new LevelTree (res);
 
 		ch1 = GameObject.Find("Choice1");
@@ -101,7 +100,7 @@ public class LevelUpMeta : MonoBehaviour {
 	public class LevelTree {
 		
 		public List<BonusItem> starters;
-		public List<BonusItem> selected;
+		public BonusItem selected;
 		public List<BonusItem> all;
 
 		public LevelTree (LevelUpResources res) {
@@ -119,7 +118,6 @@ public class LevelUpMeta : MonoBehaviour {
 		}
 
 		public void selectStarters(BonusItem clicked){
-			BonusItem selected = null;
 			foreach (BonusItem item in all) {
 				if  (item == clicked) {
 					selected = clicked;
@@ -133,21 +131,6 @@ public class LevelUpMeta : MonoBehaviour {
 					all.Add (child);
 				}
 			}
-
-//			BonusItem bonusMeta = child;
-//			if (parentMeta != null && bonusMeta != null) {
-//				bonusMeta.activateBonus ();
-//				selected.Add(child);
-//				bool allChld = true;
-//				foreach (BonusItem childY in parentMeta.getChildren()) {
-//					if (!selected.Contains(childY)) {
-//						allChld = false;
-//					}
-//				}
-//				if (allChld == true) {
-//					starters.Remove (parent);
-//				}
-//			}
 		}
 	}
 

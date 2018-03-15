@@ -19,7 +19,7 @@ public class AdventureGameManager : MonoBehaviour {
 
 	public int columns = 10;
 	public int rows = 10;
-	public GameObject[] generals;
+//	public GameObject[] generals;
 	//public GameObject playerGeneral;
 	//public GameObject enemyGeneral;
 
@@ -41,7 +41,7 @@ public class AdventureGameManager : MonoBehaviour {
 		instance.gameObject.SetActive (true);
 		boardSetup = GetComponent<AdventureBoardManager>();
 		level = 1;
-		boardSetup.setupScene (instance, generals);
+		boardSetup.setupScene (instance);
 	}
 
 	public void startAgain(){

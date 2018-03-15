@@ -10,8 +10,9 @@ public class AdventurePanel : MonoBehaviour {
 	private GameObject adventureManager;
 	private Footsteps steps;
 	private AdventureGameManager agm;
-	private GameObject GeneralPanel, ResourcePanel, ArmyPanel;
+	private GameObject GeneralPanel, ResourcePanel, ArmyPanel, Avatar;
 	private BattleGeneralMeta player;
+	private Image playerImg;
 
 	// Use this for initialization
 	void Start () {
@@ -22,24 +23,15 @@ public class AdventurePanel : MonoBehaviour {
 		{
 			if (child.name.Equals ("GeneralPanel")) {
 				GeneralPanel = child.gameObject;
-				Debug.Log ("GeneralPanel");
-				foreach (Transform aChild in GeneralPanel.transform) {
-					Debug.Log (aChild.name);
-				}
 			}
 			if (child.name.Equals ("ResourcePanel")) {
 				ResourcePanel = child.gameObject;
-				Debug.Log ("ResourcePanel");
-				foreach (Transform aChild in ResourcePanel.transform) {
-					Debug.Log (aChild.name);
-				}
 			}
 			if (child.name.Equals ("ArmyPanel")) {
 				ArmyPanel = child.gameObject;
-				Debug.Log ("ArmyPanel");
-				foreach (Transform aChild in ArmyPanel.transform) {
-					Debug.Log (aChild.name);
-				}
+			}
+			if (child.name.Equals ("Avatar")) {
+				Avatar = child.gameObject;
 			}
 		}
 		GameObject[] units = GameObject.FindGameObjectsWithTag("Unit");
@@ -47,12 +39,15 @@ public class AdventurePanel : MonoBehaviour {
 			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
 			if (bgm != null && bgm.getPlayer ()) {
 				player = bgm;
+				playerImg = unit.GetComponent<Image> ();
 			}
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		setPlayerAvatar (playerImg);
+
 		List<GameObject> army = player.getArmy ();
 		for(int i = 0; i < 6; i++){
 			if (i < army.Count) {
@@ -124,10 +119,6 @@ public class AdventurePanel : MonoBehaviour {
 					// bgm.startTurn ();
 					BattleGeneralAI ai = new BattleGeneralAI (unit);
 					ai.moveGeneral (GameObject.Find ("Board").transform);
-					Debug.Log ("Move AI");
-					if (unit.transform.position.x > 50) {
-						Debug.Log("What");
-					}
 					StartCoroutine (steps.generateMapv2 (unit.transform, new Point3 (unit.transform.position), new Point3 (ai.getObjective ().transform.position), agm.getRows (), agm.getColumns (), ai.getObstacles (), getPath));
 				}
 			}
@@ -161,6 +152,12 @@ public class AdventurePanel : MonoBehaviour {
 		GameObject txt = pnl.transform.Find ("QtyTxt").gameObject;
 		Text txtm = txt.GetComponent<Text> ();
 		txtm.text = player.getResource(resource).ToString();
+	}
+
+	private void setPlayerAvatar(Image sprite) {
+		GameObject profImage = Avatar.transform.Find ("ProfileImage").gameObject;
+		Image img = profImage.GetComponent<Image> ();
+		img.sprite = sprite.sprite;
 	}
 
 	private void getPath(Transform ai, List<Point3> path, Point3 destination){

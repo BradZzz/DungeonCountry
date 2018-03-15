@@ -68,9 +68,6 @@ public class AdventureBoardManager : MonoBehaviour {
 		if (board == null) {
 			board = new GameObject ("Board");
 		}
-//		} else if (instance != this) { 
-//			Destroy(gameObject);   
-//		} 
 		DontDestroyOnLoad(board);
 	}
 
@@ -83,28 +80,11 @@ public class AdventureBoardManager : MonoBehaviour {
 			GameObject cGeneral = CastleConverter.getSave (glossy);
 
 			if (cGeneral != null) {
-//				GameObject instance = Instantiate (cGeneral) as GameObject;
-//				BattleGeneralMeta meta = cGeneral.GetComponent<BattleGeneralMeta> ();
-//				BattleGeneralMeta iMeta = instance.GetComponent<BattleGeneralMeta> ();
-//				iMeta.setPlayer (true);
-//				iMeta.setResources (meta.getResources());
 				BattleGeneralMeta cgMeta = cGeneral.GetComponent<BattleGeneralMeta> ();
 				DataStoreConverter.updateGeneral (glossy, "BoardSave", cgMeta);
 			}
 			if (bGenerals != null) {
 				DataStoreConverter.updateGeneral (glossy, "BoardSave", bGenerals);
-//				foreach (BattleGeneralMeta gItem in bGenerals) {
-//					if (gItem != null) {
-////						GameObject instance = Instantiate (general) as GameObject;
-////						BattleGeneralMeta meta = general.GetComponent<BattleGeneralMeta> ();
-////						BattleGeneralMeta iMeta = instance.GetComponent<BattleGeneralMeta> ();
-////						if (meta.getPlayer()) {
-////							iMeta.setPlayer (true);
-////						}
-////						iMeta.setResources (meta.getResources());
-//						DataStoreConverter.updateGeneral (glossy, "BoardSave", gItem);
-//					}
-//				}
 				BattleConverter.reset ();
 			}
 
@@ -133,37 +113,6 @@ public class AdventureBoardManager : MonoBehaviour {
 						}
 					}
 				}
-
-
-//				if (cGeneral != null) {
-//					BattleGeneralMeta player = cGeneral.GetComponent<BattleGeneralMeta> ();
-//					if (meta.name.Equals(player.name)) {
-//						meta.setResources (player.getResources());
-//						meta.setArmy(player.getArmy());
-//						if (meta.getArmy().Count < 1) {
-//							meta.setDefeated (true);
-//						}
-//					}
-//				}
-//				if (generals != null) {
-//					BattleGeneralMeta player = generals[0].GetComponent<BattleGeneralMeta> ();
-//					BattleGeneralMeta ai = generals[1].GetComponent<BattleGeneralMeta> ();
-//					if (meta.name.Equals(player.name)) {
-//						meta.setArmy(player.getArmy());
-//						if (meta.getArmy().Count < 1) {
-//							meta.setDefeated (true);
-//						}
-//						//BattleGeneralResources srcs = meta.getResources ();
-//						//srcs.setarmy (player.getResources().getarmy());
-//					} else if (meta.name.Equals(ai.name)) {
-//						meta.setArmy(ai.getArmy());
-//						if (meta.getArmy().Count < 1) {
-//							meta.setDefeated (true);
-//						}
-//						//BattleGeneralResources srcs = meta.getResources ();
-//						//srcs.setarmy (ai.getResources().getarmy());
-//					}
-//				}
 			}
 
 			if (meta != null) {
@@ -227,11 +176,11 @@ public class AdventureBoardManager : MonoBehaviour {
 		CastleConverter.reset ();
 	}
 
-	public void setupScene (AdventureGameManager gameManager, GameObject[] generals)
+	public void setupScene (AdventureGameManager gameManager)
 	{
 		Start ();
 		this.gameManager = gameManager;
-		this.generals = generals;
+		this.generals = glossy.generals;
 		boardHolder = board.transform;
 		if (boardHolder.childCount > 0) {
 			Debug.Log ("Refreshing board");
@@ -251,14 +200,17 @@ public class AdventureBoardManager : MonoBehaviour {
 		this.roadPositions = roadPositions;
 		this.openPositions = openPositions;
 
+		List<string> foundFactions = new List<string> ();
+		Coroutines.ShuffleArray (generals);
 		foreach (GameObject general in generals){
 			BattleGeneralMeta gMeta = general.GetComponent<BattleGeneralMeta> ();
-			if (gMeta != null) {
+			if (gMeta != null && !foundFactions.Contains(gMeta.faction)) {
 				if (checkFaction (SharedPrefs.getPlayerFaction ()) == gMeta.faction) {
 					LayoutObjectAtRandom (new GameObject[]{ general }, 1, 1, true, true);
 				} else {
 					LayoutObjectAtRandom (new GameObject[]{ general }, 1, 1, true, false);
 				}
+				foundFactions.Add (gMeta.faction);
 			}
 		}
 
@@ -296,8 +248,10 @@ public class AdventureBoardManager : MonoBehaviour {
 			BattleGeneralMeta gMeta = instance.GetComponent<BattleGeneralMeta> ();
 			if (gMeta != null) {
 				gMeta.setPlayer (isPlayer);
-				gMeta.startTurn ();
-				gMeta.startMoving ();
+				if (isPlayer) {
+					gMeta.startTurn ();
+					gMeta.startMoving ();
+				}
 			}
 			instance.transform.position = pos;
 		}
