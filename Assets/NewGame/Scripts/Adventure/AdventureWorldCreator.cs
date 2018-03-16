@@ -21,6 +21,7 @@ public class AdventureWorldCreator : MonoBehaviour {
 	public GameObject[] towerTiles;
 	public GameObject[] resourceTiles;
 	public GameObject footsteps;
+	public GameObject Glossary;
 
 	private int waters = 4;
 	private static int odds = 50;

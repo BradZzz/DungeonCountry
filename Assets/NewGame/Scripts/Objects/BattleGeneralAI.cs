@@ -30,6 +30,8 @@ public class BattleGeneralAI {
 	 */
 
 	public void moveGeneral(Transform board){
+		BattleGeneralMeta aiMeta = ai.GetComponent<BattleGeneralMeta> ();
+
 		List<Transform> castles = new List<Transform> ();
 		List<Transform> resources = new List<Transform> ();
 		List<Transform> rivals = new List<Transform> ();
@@ -74,7 +76,6 @@ public class BattleGeneralAI {
 		}
 
 		// First we need to figure out where we want our enemy hero to go
-//		decision = Random.Range(0, 3);
 		List<Transform> potentialObjectives = new List<Transform> ();
 
 		/*
@@ -88,7 +89,7 @@ public class BattleGeneralAI {
 		bool armyStronger = (aiArmyScore / 1.5) > playerArmyScore;
 		bool needResources = checkResources (ai.GetComponent<BattleGeneralMeta> ());
 
-		if (armyStronger) {
+		if (armyStronger || aiMeta.faction.Equals("Neutral")) {
 			Debug.Log ("Decision: Attack Player");
 			potentialObjectives = rivals;
 		} else {
@@ -101,25 +102,8 @@ public class BattleGeneralAI {
 			}
 		}
 
-//		switch(decision){
-//			case 0:
-//				potentialObjectives = castles;
-//				break;
-//			case 1:
-//				//Eventually make gold the highest priority here
-//				potentialObjectives = resources;
-//				break;
-//			case 2:
-//				potentialObjectives = rivals;
-//				break;
-//		}
-
 		// This is where we are heading to
 		objective = GetClosest(ai.transform, potentialObjectives);
-		// Now that we know where we are going, we need to figure out how to get there
-		// StartCoroutine (steps.generateMapv2 (new Point3(lastClicked.position), click, gameManager.getRows (), gameManager.getColumns (), obstacles, setPath))
-		// generateMapv2(Point3 startingPos, Point3 destination, int rows, int columns, List<Point3> obs, Action<List<Point3>, Point3> pathCallback)
-		// steps.generateMapv2(new Point3(ai.transform.position), new Point3(objective.transform.position), rows, columns, obstacles, getPath);
 	}
 
 	private int getArmyScore(BattleGeneralMeta unit){

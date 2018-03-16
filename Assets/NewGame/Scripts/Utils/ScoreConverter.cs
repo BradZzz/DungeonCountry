@@ -59,6 +59,11 @@ public class ScoreConverter : DataStoreConverter {
 		PlayerPrefs.SetString ("scores", "");
 	}
 
+	public static int computeResults(GameObject unit){
+		List <GameObject> units = new List<GameObject> (){unit};
+		return computeResults(units);
+	}
+
 	public static int computeResults(List <GameObject> units){
 		int score = 0;
 		foreach(GameObject unit in units){

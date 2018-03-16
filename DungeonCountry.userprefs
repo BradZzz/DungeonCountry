@@ -1,23 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/NewGame/Scripts/Utils/Coroutines.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/NewGame/Scripts/LevelUp/LevelUpMeta.cs">
     <Files>
-      <File FileName="Assets/NewGame/Scripts/Adventure/AdventurePanel.cs" Line="159" Column="37" />
-      <File FileName="Assets/NewGame/Scripts/Battle/BattleConverter.cs" Line="1" Column="1" />
-      <File FileName="Assets/NewGame/Scripts/Adventure/AdventureBoardManager.cs" Line="204" Column="38" />
-      <File FileName="Assets/NewGame/Scripts/Utils/DataStoreConverter.cs" Line="1" Column="1" />
-      <File FileName="Assets/NewGame/Scripts/Objects/BattleGeneralMeta.cs" Line="1" Column="1" />
-      <File FileName="Assets/NewGame/Scripts/Objects/BattleGeneralResources.cs" Line="1" Column="1" />
-      <File FileName="Assets/NewGame/Scripts/Castle/CastleConverter.cs" Line="1" Column="1" />
-      <File FileName="Assets/NewGame/Scripts/Castle/CastleMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets/NewGame/Scripts/Objects/BattleMeta.cs" Line="1" Column="1" />
-      <File FileName="Assets/NewGame/Scripts/Adventure/AdventureGameManager.cs" Line="28" Column="2" />
-      <File FileName="Assets/NewGame/Scripts/Adventure/AdventureWorldCreator.cs" Line="1" Column="1" />
-      <File FileName="Assets/NewGame/Scripts/Adventure/AdventureScenery.cs" Line="1" Column="1" />
-      <File FileName="Assets/NewGame/Scripts/MainMenu/MainMenuStart.cs" Line="22" Column="19" />
-      <File FileName="Assets/NewGame/Scripts/Utils/SharedPrefs.cs" Line="25" Column="36" />
-      <File FileName="Assets/NewGame/Scripts/Utils/Coroutines.cs" Line="130" Column="4" />
-      <File FileName="Assets/NewGame/Scripts/Utils/CoRoutineWithData.cs" Line="1" Column="1" />
+      <File FileName="Assets/NewGame/Scripts/Adventure/AdventureBoardManager.cs" Line="255" Column="5" />
+      <File FileName="Assets/NewGame/Scripts/LevelUp/LvlUpManager.cs" Line="15" Column="13" />
+      <File FileName="Assets/NewGame/Scripts/LevelUp/LevelUpMeta.cs" Line="120" Column="13" />
+      <File FileName="Assets/NewGame/Scripts/LevelUp/LevelUpResources.cs" Line="105" Column="49" />
+      <File FileName="Assets/NewGame/Scripts/LevelUp/BonusItem.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

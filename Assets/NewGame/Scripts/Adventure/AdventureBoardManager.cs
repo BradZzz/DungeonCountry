@@ -131,7 +131,7 @@ public class AdventureBoardManager : MonoBehaviour {
 					AffiliationMeta affmet = glossy.findFaction(meta.faction);
 					foreach (GameObject unit in affmet.units) {
 						BattleMeta gmeta = unit.GetComponent<BattleMeta> ();
-						if (gmeta.lvl < 3) {
+						if ((!meta.faction.Equals ("Neutral") && gmeta.lvl < 3) || (meta.faction.Equals ("Neutral") && gmeta.lvl < 5)) {
 							GameObject instance = Instantiate (unit) as GameObject;
 							BattleMeta bMet = instance.GetComponent<BattleMeta> ();
 							bMet.setGUI (false);
@@ -147,13 +147,30 @@ public class AdventureBoardManager : MonoBehaviour {
 								}
 							} else {
 								bMet.setPlayer (false);
-								switch(bMet.lvl){
-								case 1:
-									bMet.setLives (Random.Range (15, 25));
-									break;
-								default:
-									bMet.setLives (Random.Range (5, 10));
-									break;
+								if (meta.faction.Equals ("Neutral")) {
+									switch(bMet.lvl){
+//										case 1:
+//											bMet.setLives (Random.Range (80, 100));
+//											break;
+//										case 2:
+//											bMet.setLives (Random.Range (60, 80));
+//											break;
+//										case 3:
+//											bMet.setLives (Random.Range (40, 60));
+//											break;
+										default:
+											bMet.setLives (Random.Range (5, 10));
+											break;
+									}
+								} else {
+									switch(bMet.lvl){
+										case 1:
+											bMet.setLives (Random.Range (15, 25));
+											break;
+										default:
+											bMet.setLives (Random.Range (5, 10));
+											break;
+									}
 								}
 							}
 
@@ -188,6 +205,9 @@ public class AdventureBoardManager : MonoBehaviour {
 			boardHolder.gameObject.SetActive (true);
 			Coroutines.toggleVisibilityTransform(boardHolder,true);
 			formatObjects (false);
+			GameObject pMenu = GameObject.Find("PlayerMenu");
+			AdventurePanel pMen = pMenu.GetComponent<AdventurePanel> ();
+			pMen.FinishTurn ();
 		} else {
 			Debug.Log ("Creating board");
 			creator.createWorld(boardHolder, gameManager.getColumns (), gameManager.getRows (), boardCreated);
@@ -204,7 +224,7 @@ public class AdventureBoardManager : MonoBehaviour {
 		Coroutines.ShuffleArray (generals);
 		foreach (GameObject general in generals){
 			BattleGeneralMeta gMeta = general.GetComponent<BattleGeneralMeta> ();
-			if (gMeta != null && !foundFactions.Contains(gMeta.faction)) {
+			if (gMeta != null && (!foundFactions.Contains(gMeta.faction) || (gMeta.faction.Equals("Neutral")))) {
 				if (checkFaction (SharedPrefs.getPlayerFaction ()) == gMeta.faction) {
 					LayoutObjectAtRandom (new GameObject[]{ general }, 1, 1, true, true);
 				} else {

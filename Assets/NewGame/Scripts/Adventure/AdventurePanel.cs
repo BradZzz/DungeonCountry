@@ -107,10 +107,17 @@ public class AdventurePanel : MonoBehaviour {
 		makeDecision(getNextAI());
 	}
 
+	public void FinishTurn(){
+		Debug.Log ("Finish Turn");
+		Start ();
+		makeDecision(getNextAI());
+	}
+
 	private void makeDecision(GameObject unit){
 		if (unit == null) {
 			Debug.Log ("Error Receiving Unit!");
 			player.startTurn ();
+			player.startMoving ();
 		} else {
 			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
 			if (bgm != null) {
@@ -180,7 +187,7 @@ public class AdventurePanel : MonoBehaviour {
 		foreach (GameObject unit in units) {
 			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
 			if (bgm != null) {
-				if (!bgm.getPlayer () && bgm.getTurn()) {
+				if (!bgm.getPlayer () && bgm.getTurn() && bgm.getArmy().Count > 0) {
 					if (bgm.makeSteps(0) > 0 && !bgm.getMoving()) {
 						bgm.startMoving ();
 					}
@@ -193,6 +200,11 @@ public class AdventurePanel : MonoBehaviour {
 
 	IEnumerator step_path(Transform ai, List<Point3> step_path, Point3 destination, float speed)
 	{
+		BattleGeneralMeta aiMeta = ai.gameObject.GetComponent<BattleGeneralMeta> ();
+		//Neutral armies only attack the player and even then, only when the player is within a super short range
+		if (aiMeta.faction.Equals("Neutral") && step_path.Count > aiMeta.getCurrentMoves()) {
+			step_path = null;
+		}
 		if (step_path != null) {
 			BattleGeneralMeta bgm = ai.gameObject.GetComponent<BattleGeneralMeta> ();
 			int steps_left = bgm.makeSteps (step_path.Count);
