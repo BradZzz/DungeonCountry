@@ -21,6 +21,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 	public int movement = 1;
 	public int magic = 1;
 
+	private Color banner = Color.clear;
 	private int currentMove = 0;
 	private bool isPlayer;
 	private bool isTurn = false;
@@ -42,6 +43,14 @@ public class BattleGeneralMeta : MonoBehaviour {
 		if (GameObject.Find("Main Camera") != null) {
 			cam = GameObject.Find("Main Camera").GetComponent<Camera>();
 		}
+	}
+
+	public void setBanner(Color banner){
+		this.banner = banner;
+	}
+
+	public Color getBanner(){
+		return banner;
 	}
 
 	private BattleGeneralResources getResource() {
@@ -243,6 +252,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 
 					CastleMeta castle = info.GetComponent<CastleMeta> ();
 					if (castle != null) {
+						eMeta.plantFlag(banner);
 						Debug.Log ("Castle name: " + castle.name);
 						CastlePrefs.setCastleInfo (resources, castle, this.gameObject.GetInstanceID ());
 						CastleConverter.putSave (this, board.transform);
@@ -289,6 +299,9 @@ public class BattleGeneralMeta : MonoBehaviour {
 					GameObject info = eMeta.entranceInfo;
 					CastleMeta castle = info.GetComponent<CastleMeta> ();
 					if (castle != null) {
+						// Change the castle's banner to the ai's banner
+						eMeta.plantFlag(banner);
+
 						Debug.Log ("Castle name: " + castle.name);
 						//Right here we need to figure out who we can recruit from the castle army-wise
 						GameObject[] castleRecruitables = castle.affiliation.units;

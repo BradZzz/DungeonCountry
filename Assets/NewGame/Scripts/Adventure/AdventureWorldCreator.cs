@@ -252,8 +252,11 @@ public class AdventureWorldCreator : MonoBehaviour {
 
 						CastleSceneMeta sMeta = castleChoice.GetComponent<CastleSceneMeta> ();
 						GameObject meta = sMeta.cMeta.gameObject;
+//						CastleMeta cstle = meta.GetComponent<CastleMeta> ();
 						EntranceMeta eMeta = entranceInstance.gameObject.GetComponent<EntranceMeta> ();
 						eMeta.addComponent (meta.GetComponent<CastleMeta> ());
+						//eMeta.addComponent (sMeta);
+						//eMeta.GetComponent<CastleSceneMeta> ().plantFlag (Color.blue);
 						eMeta.image = meta.GetComponent<SpriteRenderer> ().sprite; 
 
 					} else {

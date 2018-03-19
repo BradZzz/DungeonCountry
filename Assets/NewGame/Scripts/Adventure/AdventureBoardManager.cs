@@ -222,6 +222,19 @@ public class AdventureBoardManager : MonoBehaviour {
 
 		List<string> foundFactions = new List<string> ();
 		Coroutines.ShuffleArray (generals);
+		/*
+		Here is where the generals banners need to be selected from the color list
+		*/ 
+		List<Color> banners = new List<Color> () {
+			Color.blue,
+			Color.cyan,
+			Color.green,
+			Color.magenta,
+			Color.red,
+			Color.yellow
+		};
+		Coroutines.ShuffleArray (banners);
+
 		foreach (GameObject general in generals){
 			BattleGeneralMeta gMeta = general.GetComponent<BattleGeneralMeta> ();
 			if (gMeta != null && (!foundFactions.Contains(gMeta.faction) || (gMeta.faction.Equals("Neutral")))) {
@@ -229,6 +242,10 @@ public class AdventureBoardManager : MonoBehaviour {
 					LayoutObjectAtRandom (new GameObject[]{ general }, 1, 1, true, true);
 				} else {
 					LayoutObjectAtRandom (new GameObject[]{ general }, 1, 1, true, false);
+				}
+				if (!gMeta.faction.Equals("Neutral")) {
+					gMeta.setBanner (banners[0]);
+					banners.RemoveAt (0);
 				}
 				foundFactions.Add (gMeta.faction);
 			}
@@ -277,6 +294,15 @@ public class AdventureBoardManager : MonoBehaviour {
 		}
 	}
 
+	private bool obsClick(Point3 click){
+		foreach (GameObject obs in GameObject.FindGameObjectsWithTag("Obstacle")) {
+			if (click.Equals(new Point3(obs.transform.position))) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public void clicked(Point3 click){
 		Debug.Log ("Clicked: " + click.ToString());
 		Debug.Log("LastClicked: " + lastClicked);
@@ -294,12 +320,11 @@ public class AdventureBoardManager : MonoBehaviour {
 			}
 		} else if (lastClicked != null) { 
 			Debug.Log("LastClicked: " + lastClicked.name + " pos: " + lastClicked.position);
-			if (!click.Equals(lastClicked.position) && (!steps.walking () || !click.Equals(lastClick))) {
+			if (!click.Equals(lastClicked.position) && (!steps.walking () || !click.Equals(lastClick)) && !obsClick(click)) {
 				steps.destroySteps ();
 				Debug.Log ("Moving: " + lastClicked.name);
 				List<Point3> obstacles = new List<Point3> ();
 				foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
-					Debug.Log ("Placing Unit: " + unit.name + " Position: " + unit.transform.position);
 					obstacles.Add (new Point3(unit.transform.position));
 				}
 
@@ -310,7 +335,7 @@ public class AdventureBoardManager : MonoBehaviour {
 				foreach (GameObject obs in GameObject.FindGameObjectsWithTag("Entrance")) {
 					obstacles.Add (new Point3(obs.transform.position));
 				}
-
+					
 				StartCoroutine (steps.generateMapv2 (new Point3(lastClicked.position), click, gameManager.getRows (), gameManager.getColumns (), obstacles, setPath));
 			} else if (steps.walking () && click.Equals(lastClick)) {
 //				BattleConverter.reset ();
