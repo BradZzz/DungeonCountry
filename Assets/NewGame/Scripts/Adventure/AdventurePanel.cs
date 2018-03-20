@@ -202,7 +202,7 @@ public class AdventurePanel : MonoBehaviour {
 	{
 		BattleGeneralMeta aiMeta = ai.gameObject.GetComponent<BattleGeneralMeta> ();
 		//Neutral armies only attack the player and even then, only when the player is within a super short range
-		if (aiMeta.faction.Equals("Neutral") && step_path.Count > aiMeta.getCurrentMoves()) {
+		if (aiMeta != null && aiMeta.faction.Equals("Neutral") && step_path.Count > aiMeta.getCurrentMoves()) {
 			step_path = null;
 		}
 		if (step_path != null) {

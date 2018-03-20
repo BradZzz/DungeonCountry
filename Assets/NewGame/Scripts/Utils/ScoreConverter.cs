@@ -59,6 +59,15 @@ public class ScoreConverter : DataStoreConverter {
 		PlayerPrefs.SetString ("scores", "");
 	}
 
+	public static int computeResults(GameObject unit, bool single){
+		if (single) {
+			BattleMeta pUnitMeta = unit.GetComponent<BattleMeta> ();
+			pUnitMeta.setLives (1);
+		}
+		List <GameObject> units = new List<GameObject> (){unit};
+		return computeResults(units);
+	}
+
 	public static int computeResults(GameObject unit){
 		List <GameObject> units = new List<GameObject> (){unit};
 		return computeResults(units);
@@ -68,7 +77,13 @@ public class ScoreConverter : DataStoreConverter {
 		int score = 0;
 		foreach(GameObject unit in units){
 			BattleMeta pUnitMeta = unit.GetComponent<BattleMeta> ();
-			score += (int) (pUnitMeta.getLives () * (pUnitMeta.getCharHp () * .05) * (pUnitMeta.getCharStrength () * .2) * (pUnitMeta.abilities.Length * .55));
+//			float hpScore = pUnitMeta.getCharHp () * .25f < 1 ? 1 : pUnitMeta.getCharHp () * .25f;
+//			float strengthScore = pUnitMeta.getCharStrength () * .35f < 1 ? 1 : pUnitMeta.getCharStrength () * .35f;
+//			float abilityScore = pUnitMeta.abilities.Length * 1.2f < 1 ? 1 : pUnitMeta.abilities.Length * 1.2f;
+			float hpScore = pUnitMeta.getCharHp ();
+			float strengthScore = pUnitMeta.getICharStrength ();
+			float abilityScore = pUnitMeta.abilities.Length * 3.5f > 0 ? pUnitMeta.abilities.Length * 3.5f : 1;
+			score += (int) (pUnitMeta.getLives () * hpScore * strengthScore * abilityScore);
 		}
 		return score;
 	}

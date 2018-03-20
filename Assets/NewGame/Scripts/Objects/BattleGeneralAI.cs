@@ -42,7 +42,7 @@ public class BattleGeneralAI {
 			if (child.tag.Equals("Unit")) {
 				BattleGeneralMeta unit = child.GetComponent<BattleGeneralMeta> ();
 				if (unit != null && unit.getPlayer()) {
-					if (unit.getPlayer ()) {
+					if (unit.getPlayer () || !unit.faction.Equals("Neutral")) {
 						rivals.Add (child.transform);
 						obstacles.Add (new Point3 (child.transform.position));
 					} else {
@@ -85,13 +85,29 @@ public class BattleGeneralAI {
 		 */ 
 
 		int aiArmyScore = getArmyScore(ai.GetComponent<BattleGeneralMeta>());
-		int playerArmyScore = getArmyScore(rivals [0].GetComponent<BattleGeneralMeta>());
-		bool armyStronger = (aiArmyScore / 1.5) > playerArmyScore;
+
+//		int playerArmyScore = getArmyScore(rivals [0].GetComponent<BattleGeneralMeta>());
+//		bool armyStronger = (aiArmyScore / 1.5) > playerArmyScore;
+
+		List<Transform> weakRivals = new List<Transform> ();
+		foreach (Transform rival in rivals) {
+//			int armyScore = getArmyScore(rival.GetComponent<BattleGeneralMeta>());
+//			if ((aiArmyScore / 1.25) >= armyScore) {
+//				weakRivals.Add (rival);
+//			}
+			if (!rival.GetComponent<BattleGeneralMeta>().getPlayer()) {
+				weakRivals.Add (rival);
+			}
+		}
 		bool needResources = checkResources (ai.GetComponent<BattleGeneralMeta> ());
 
-		if (armyStronger || aiMeta.faction.Equals("Neutral")) {
+		if (weakRivals.Count > 0 || aiMeta.faction.Equals("Neutral")) {
 			Debug.Log ("Decision: Attack Player");
-			potentialObjectives = rivals;
+			if (aiMeta.faction.Equals("Neutral")) {
+				potentialObjectives = rivals;
+			} else {
+				potentialObjectives = weakRivals;
+			}
 		} else {
 			if (needResources) {
 				Debug.Log ("Decision: Collect Resources");

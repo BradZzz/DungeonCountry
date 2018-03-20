@@ -225,7 +225,16 @@ public class AdventureBoardManager : MonoBehaviour {
 		/*
 		Here is where the generals banners need to be selected from the color list
 		*/ 
-		List<Color> banners = new List<Color> () {
+
+//		List<Color> banners = new List<Color> () {
+//			Color.blue,
+//			Color.cyan,
+//			Color.green,
+//			Color.magenta,
+//			Color.red,
+//			Color.yellow
+//		};
+		Color[] banners = new Color[]{
 			Color.blue,
 			Color.cyan,
 			Color.green,
@@ -234,6 +243,8 @@ public class AdventureBoardManager : MonoBehaviour {
 			Color.yellow
 		};
 		Coroutines.ShuffleArray (banners);
+
+		int count = 0;
 
 		foreach (GameObject general in generals){
 			BattleGeneralMeta gMeta = general.GetComponent<BattleGeneralMeta> ();
@@ -244,8 +255,8 @@ public class AdventureBoardManager : MonoBehaviour {
 					LayoutObjectAtRandom (new GameObject[]{ general }, 1, 1, true, false);
 				}
 				if (!gMeta.faction.Equals("Neutral")) {
-					gMeta.setBanner (banners[0]);
-					banners.RemoveAt (0);
+					gMeta.setBanner (banners[count]);
+					count++;
 				}
 				foundFactions.Add (gMeta.faction);
 			}

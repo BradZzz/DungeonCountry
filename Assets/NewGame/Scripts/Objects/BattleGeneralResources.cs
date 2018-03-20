@@ -162,7 +162,7 @@ public class BattleGeneralResources : MonoBehaviour {
 				bool found = false;
 				foreach (GameObject arm in army) {
 					if (arm.name.Contains (unit.name)) {
-						BattleMeta bMet = unit.GetComponent<BattleMeta> ();
+						BattleMeta bMet = arm.GetComponent<BattleMeta> ();
 						bMet.setLives (bMet.getLives () + 1);
 						found = true;
 					}
@@ -179,7 +179,7 @@ public class BattleGeneralResources : MonoBehaviour {
 			} else {
 				foreach (GameObject arm in army) {
 					if (arm.name.Contains (unit.name)) {
-						BattleMeta bMet = unit.GetComponent<BattleMeta> ();
+						BattleMeta bMet = arm.GetComponent<BattleMeta> ();
 						bMet.setLives (bMet.getLives () + 1);
 					}
 				}

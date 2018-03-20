@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using AssemblyCSharp;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class BattleGeneralMeta : MonoBehaviour {
 
@@ -21,7 +22,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 	public int movement = 1;
 	public int magic = 1;
 
-	private Color banner = Color.clear;
+	public Color banner = Color.clear;
 	private int currentMove = 0;
 	private bool isPlayer;
 	private bool isTurn = false;
@@ -223,6 +224,66 @@ public class BattleGeneralMeta : MonoBehaviour {
 		this.defeated = defeated;
 	}
 
+	public class ArmyStore : MonoBehaviour
+	{
+		public int score;
+		public GameObject unit;
+		public ArmyStore(int score, GameObject unit){
+			this.score = score;
+			this.unit = unit;
+		}
+	}
+
+	private List<GameObject> pruneArmy(List<GameObject> army, int oppArmyScore){
+		// Since there is only a 1.25 score calculation between the attack and victory, 
+		// we need to provide some leeway when it comes to which comp unit is discarded
+		int chanceQual = Random.Range (0, 10);
+		oppArmyScore = (int) (oppArmyScore * (.5 + (chanceQual * .35)));
+//
+//		List<ArmyStore> armSto = new List<ArmyStore> ();
+//		foreach (GameObject unit in army) {
+//			BattleMeta bU = unit.GetComponent<BattleMeta> ();
+//			armSto.Add (new ArmyStore(ScoreConverter.computeResults(unit,true), unit));
+//		}
+//		ArmyStore[] aStore = armSto.OrderBy(o => o.score).ToArray();
+//
+		List<GameObject> newArmy = new List<GameObject> ();
+		foreach (GameObject unit in army) {
+			BattleMeta bU = unit.GetComponent<BattleMeta> ();
+			int lives = bU.getLives ();
+			int finalLives = 0;
+			int unitScore = ScoreConverter.computeResults(unit,true);
+			for (int i = 0; i < lives; i++) {
+				if (oppArmyScore > unitScore) {
+					oppArmyScore -= unitScore;
+				} else {
+					finalLives += 1;
+				}
+			}
+			if (finalLives > 0) {
+				bU.setLives (finalLives);
+				newArmy.Add (unit);
+			}
+		}
+
+		return newArmy;
+	}
+
+	//This function is for when the computer battles itself
+	private BattleGeneralMeta returnVictor(BattleGeneralMeta genA, BattleGeneralMeta genB){
+		int scoreA = ScoreConverter.computeResults (genA.army);
+		int scoreB = ScoreConverter.computeResults (genB.army);
+		if (scoreA >= scoreB) {
+			genB.setDefeated (true);
+			genA.setArmy (pruneArmy(genA.getResources().getarmy(), scoreB));
+			return genA;
+		} else {
+			genA.setDefeated (true);
+			genB.setArmy (pruneArmy(genB.getResources().getarmy(), scoreA));
+			return genB;
+		}
+	}
+
 	//OnTriggerEnter2D is sent when another object enters a trigger collider attached to this object (2D physics only).
 	private void OnTriggerEnter2D (Collider2D other)
 	{
@@ -249,7 +310,6 @@ public class BattleGeneralMeta : MonoBehaviour {
 						SceneManager.LoadScene ("DwellingScene");
 						entranceUsed.Add (other.GetInstanceID ());
 					}
-
 					CastleMeta castle = info.GetComponent<CastleMeta> ();
 					if (castle != null) {
 						eMeta.plantFlag(banner);
@@ -275,14 +335,14 @@ public class BattleGeneralMeta : MonoBehaviour {
 			} else {
 				Debug.Log ("Found: " + other.tag);
 			}
-		} else {
+		} else if (isMoving) {
 			// Do the ai version of whatever interactions we need here
 			Debug.Log ("AI Name: " + gameObject.name);
 			if (other.tag.Equals ("Unit")) {
 				Debug.Log ("Attacking!" + other.name);
+				GameObject board = GameObject.Find ("Board");
 				BattleGeneralMeta gen = other.GetComponent<BattleGeneralMeta> ();
 				if (gen != null && gen.getPlayer() && faction.Equals("Neutral")) {
-					GameObject board = GameObject.Find ("Board");
 					BattleConverter.putSave (gen, this, board.transform);
 					BattleConverter.putPrevScene ("AdventureScene");
 					Coroutines.toggleVisibilityTransform(board.transform,false);
@@ -290,6 +350,13 @@ public class BattleGeneralMeta : MonoBehaviour {
 						cam.GetComponent<AdventureLoader>().adventureGameManager.gameObject.SetActive (false);
 					}
 					SceneManager.LoadScene ("BattleScene");
+				} else if (gen != null && !gen.getPlayer()) {
+					BattleGeneralMeta victor = returnVictor (this, gen);
+					BattleConverter.putSave (gen, this, board.transform);
+					BattleConverter.putPrevScene ("AdventureScene");
+
+					// Reload adventure scene so that the blood shows up for the defeated player
+					SceneManager.LoadScene ("AdventureScene");
 				}
 			} else if (other.tag.Equals ("Entrance")) {
 				Debug.Log ("Entering: " + other.name);
@@ -362,15 +429,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 										// Do nothing. (canPurchaseUnit buys the unit...)
 									}
 								}
-
-//								//For now, lets order the units in terms of level
-//								foreach(GameObject recruit in meta.units) {
-//									Dictionary<string, int> cost = recruit.GetComponent<BattleMeta> ().getResourcesAsDict ();
-//									// Buy as many as you can afford
-//									while (getResources().purchaseUnit(cost, recruit)) {
-//										// Do nothing. (canPurchaseUnit buys the unit...)
-//									}
-//								}
+								Debug.Log ("Bought after");
 							}
 						}
 						Debug.Log ("Bought Shit");
