@@ -13,6 +13,7 @@ public class AdventurePanel : MonoBehaviour {
 	private GameObject GeneralPanel, ResourcePanel, ArmyPanel, Avatar;
 	private BattleGeneralMeta player;
 	private Image playerImg;
+	private BattleGeneralAI ai;
 
 	// Use this for initialization
 	void Start () {
@@ -124,7 +125,8 @@ public class AdventurePanel : MonoBehaviour {
 				if (!bgm.getPlayer ()) {
 					// TODO: Move the camera to where the ai is for 2 seconds
 					// bgm.startTurn ();
-					BattleGeneralAI ai = new BattleGeneralAI (unit);
+					ai = new BattleGeneralAI (unit);
+//					BattleGeneralAI ai = new BattleGeneralAI (unit);
 					ai.moveGeneral (GameObject.Find ("Board").transform);
 					StartCoroutine (steps.generateMapv2 (unit.transform, new Point3 (unit.transform.position), new Point3 (ai.getObjective ().transform.position), agm.getRows (), agm.getColumns (), ai.getObstacles (), getPath));
 				}
@@ -198,15 +200,15 @@ public class AdventurePanel : MonoBehaviour {
 		return null;
 	}
 
-	IEnumerator step_path(Transform ai, List<Point3> step_path, Point3 destination, float speed)
+	IEnumerator step_path(Transform aiObj, List<Point3> step_path, Point3 destination, float speed)
 	{
-		BattleGeneralMeta aiMeta = ai.gameObject.GetComponent<BattleGeneralMeta> ();
+		BattleGeneralMeta aiMeta = aiObj.gameObject.GetComponent<BattleGeneralMeta> ();
 		//Neutral armies only attack the player and even then, only when the player is within a super short range
 		if (aiMeta != null && aiMeta.faction.Equals("Neutral") && step_path.Count > aiMeta.getCurrentMoves()) {
 			step_path = null;
 		}
 		if (step_path != null) {
-			BattleGeneralMeta bgm = ai.gameObject.GetComponent<BattleGeneralMeta> ();
+			BattleGeneralMeta bgm = aiObj.gameObject.GetComponent<BattleGeneralMeta> ();
 			int steps_left = bgm.makeSteps (step_path.Count);
 			if (steps_left <= 0) {
 				bgm.endTurn ();
@@ -216,11 +218,17 @@ public class AdventurePanel : MonoBehaviour {
 				}
 			}
 			foreach (Point3 step in step_path) {
-				yield return StartCoroutine (Coroutines.smooth_move (ai, step.asVector3 (), speed));
+				yield return StartCoroutine (Coroutines.smooth_move (aiObj, step.asVector3 (), speed));
 			}
 		} else {
-			BattleGeneralMeta bgm = ai.gameObject.GetComponent<BattleGeneralMeta> ();
-			bgm.endTurn ();
+			Transform newObjective = ai.getAltObjective ();
+			if (newObjective != null && !aiMeta.faction.Equals("Neutral")) {
+				StartCoroutine (steps.generateMapv2 (aiObj, new Point3 (aiObj.position), 
+					new Point3 (newObjective.position), agm.getRows (), agm.getColumns (), ai.getObstacles (), getPath));
+			} else {
+				BattleGeneralMeta bgm = aiObj.gameObject.GetComponent<BattleGeneralMeta> ();
+				bgm.endTurn ();
+			}
 		}
 
 		//Start the player's turn after all the ai players have moved

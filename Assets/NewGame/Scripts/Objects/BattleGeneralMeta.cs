@@ -265,6 +265,11 @@ public class BattleGeneralMeta : MonoBehaviour {
 				newArmy.Add (unit);
 			}
 		}
+		if (newArmy.Count == 0) {
+			BattleMeta bU = army[0].GetComponent<BattleMeta> ();
+			bU.setLives (1);
+			newArmy.Add (army[0]);
+		}
 
 		return newArmy;
 	}

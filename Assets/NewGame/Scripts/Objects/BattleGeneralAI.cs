@@ -6,6 +6,7 @@ using AssemblyCSharp;
 public class BattleGeneralAI {
 	private GameObject ai;
 	private Transform objective;
+	private Stack<Transform> altObjectives;
 	private int decision;
 	private List<Point3> obstacles;
 
@@ -14,12 +15,28 @@ public class BattleGeneralAI {
 	}
 
 	public Transform getObjective(){
-		return objective;
+		if (objective != null) {
+			return objective;
+		} else {
+			return getAltObjective ();
+		}
 	}
 
 	public List<Point3> getObstacles(){
 		return obstacles;
 	}
+
+	public Transform getAltObjective(){
+		if (altObjectives.Count > 0) {
+			return altObjectives.Pop();
+		} else {
+			return null;
+		}
+	}
+
+//	public void popAltObjective(){
+//		altObjectives.RemoveAt (0);
+//	}
 
 	/*
 	 * TODO:
@@ -30,6 +47,7 @@ public class BattleGeneralAI {
 	 */
 
 	public void moveGeneral(Transform board){
+		altObjectives = new Stack<Transform> ();
 		BattleGeneralMeta aiMeta = ai.GetComponent<BattleGeneralMeta> ();
 
 		List<Transform> castles = new List<Transform> ();
@@ -41,7 +59,9 @@ public class BattleGeneralAI {
 		foreach (Transform child in board) {
 			if (child.tag.Equals("Unit")) {
 				BattleGeneralMeta unit = child.GetComponent<BattleGeneralMeta> ();
-				if (unit != null && unit.getPlayer()) {
+				if (unit != null && child.position.x != ai.transform.position.x && child.position.y != ai.transform.position.y) {
+//					rivals.Add (child.transform);
+//					obstacles.Add (new Point3 (child.transform.position));
 					if (unit.getPlayer () || !unit.faction.Equals("Neutral")) {
 						rivals.Add (child.transform);
 						obstacles.Add (new Point3 (child.transform.position));
@@ -100,6 +120,7 @@ public class BattleGeneralAI {
 			}
 		}
 		bool needResources = checkResources (ai.GetComponent<BattleGeneralMeta> ());
+		int choice = 1;
 
 		if (weakRivals.Count > 0 || aiMeta.faction.Equals("Neutral")) {
 			Debug.Log ("Decision: Attack Player");
@@ -112,14 +133,52 @@ public class BattleGeneralAI {
 			if (needResources) {
 				Debug.Log ("Decision: Collect Resources");
 				potentialObjectives = resources;
+				choice = 2;
 			} else {
 				Debug.Log ("Decision: Visit Castle");
 				potentialObjectives = castles;
+				choice = 3;
 			}
 		}
 
-		// This is where we are heading to
+		//Were we are going
 		objective = GetClosest(ai.transform, potentialObjectives);
+
+		switch(choice) {
+			case 1:
+				foreach (Transform obs in potentialObjectives) {
+					altObjectives.Push (obs);
+				}
+				foreach (Transform obs in resources) {
+					altObjectives.Push (obs);
+				}
+				foreach (Transform obs in castles) {
+					altObjectives.Push (obs);
+				}
+				break;
+			case 2:
+				foreach (Transform obs in castles) {
+					altObjectives.Push (obs);
+				}
+				foreach (Transform obs in resources) {
+					altObjectives.Push (obs);
+				}
+				foreach (Transform obs in rivals) {
+					altObjectives.Push (obs);
+				}
+				break;
+			default:
+				foreach (Transform obs in castles) {
+					altObjectives.Push (obs);
+				}
+				foreach (Transform obs in resources) {
+					altObjectives.Push (obs);
+				}
+				foreach (Transform obs in rivals) {
+					altObjectives.Push (obs);
+				}
+				break;
+		}
 	}
 
 	private int getArmyScore(BattleGeneralMeta unit){
