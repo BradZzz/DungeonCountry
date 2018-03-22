@@ -57,7 +57,7 @@ public class BattleGeneralAI {
 		obstacles = new List<Point3> ();
 
 		foreach (Transform child in board) {
-			if (child.tag.Equals("Unit")) {
+			if (child.tag.Equals("Unit") && child.gameObject.activeInHierarchy) {
 				BattleGeneralMeta unit = child.GetComponent<BattleGeneralMeta> ();
 				if (unit != null && child.position.x != ai.transform.position.x && child.position.y != ai.transform.position.y) {
 //					rivals.Add (child.transform);
@@ -73,21 +73,23 @@ public class BattleGeneralAI {
 		}
 
 		foreach (Transform child in board) {
-			//Check to make sure that another unit isn't over the entrance here
-			if (child.tag.Equals("Entrance")) {
-				EntranceMeta eMeta = child.gameObject.GetComponent<EntranceMeta> ();
-				GameObject info = eMeta.entranceInfo;
-				CastleMeta castle = info.GetComponent<CastleMeta> ();
-				if (castle != null && !checkUnitOn(rivals, new Point3(child.position))) {
-					Debug.Log("Castle at: " + child.transform.position.ToString());
-					castles.Add (child.transform);
-					obstacles.Add (new Point3 (child.transform.position));
+			if (child.gameObject.activeInHierarchy && child.position.x != ai.transform.position.x && child.position.y != ai.transform.position.y) {
+				//Check to make sure that another unit isn't over the entrance here
+				if (child.tag.Equals("Entrance")) {
+					EntranceMeta eMeta = child.gameObject.GetComponent<EntranceMeta> ();
+					GameObject info = eMeta.entranceInfo;
+					CastleMeta castle = info.GetComponent<CastleMeta> ();
+					if (castle != null && !checkUnitOn(rivals, new Point3(child.position))) {
+						Debug.Log("Castle at: " + child.transform.position.ToString());
+						castles.Add (child.transform);
+						obstacles.Add (new Point3 (child.transform.position));
+					}
 				}
-			}
-			if (child.tag.Equals("Resource")) {
-				ResourceMeta resource = child.GetComponent<ResourceMeta> ();
-				if (resource != null) {
-					resources.Add (child.transform);
+				if (child.tag.Equals("Resource")) {
+					ResourceMeta resource = child.GetComponent<ResourceMeta> ();
+					if (resource != null) {
+						resources.Add (child.transform);
+					}
 				}
 			}
 			if (child.tag.Equals("Obstacle")) {
@@ -146,35 +148,24 @@ public class BattleGeneralAI {
 
 		switch(choice) {
 			case 1:
+				foreach (Transform obs in castles) {
+					altObjectives.Push (obs);
+				}
+				foreach (Transform obs in resources) {
+					altObjectives.Push (obs);
+				}
 				foreach (Transform obs in potentialObjectives) {
-					altObjectives.Push (obs);
-				}
-				foreach (Transform obs in resources) {
-					altObjectives.Push (obs);
-				}
-				foreach (Transform obs in castles) {
-					altObjectives.Push (obs);
-				}
-				break;
-			case 2:
-				foreach (Transform obs in castles) {
-					altObjectives.Push (obs);
-				}
-				foreach (Transform obs in resources) {
-					altObjectives.Push (obs);
-				}
-				foreach (Transform obs in rivals) {
 					altObjectives.Push (obs);
 				}
 				break;
 			default:
+				foreach (Transform obs in rivals) {
+					altObjectives.Push (obs);
+				}
 				foreach (Transform obs in castles) {
 					altObjectives.Push (obs);
 				}
 				foreach (Transform obs in resources) {
-					altObjectives.Push (obs);
-				}
-				foreach (Transform obs in rivals) {
 					altObjectives.Push (obs);
 				}
 				break;
