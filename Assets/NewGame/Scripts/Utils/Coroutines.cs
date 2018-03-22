@@ -22,11 +22,41 @@ namespace AssemblyCSharp
 			}
 		}
 
-		public static IEnumerator smooth_move(Transform origin, Vector3 direction,float speed){
+//		public static IEnumerator smooth_move(Transform origin, Vector3 direction, float speed, Action pathCallback){
+//			float startime = Time.time;
+//			Vector3 start_pos = new Vector3(origin.position.x, origin.position.y, origin.position.z);
+//			Vector3 end_pos = direction;
+//			while (!origin.position.Equals(end_pos)) { 
+//				float move = .25f;
+//
+//				Vector3 position = origin.position;
+//
+//				position.x += ((end_pos.x - start_pos.x) * move);
+//				position.y += ((end_pos.y - start_pos.y) * move);
+//
+//				if ((start_pos.x > end_pos.x && origin.position.x < end_pos.x) || (start_pos.x < end_pos.x && origin.position.x > end_pos.x)) {
+//					position.x = end_pos.x;
+//				}
+//				if ((start_pos.y > end_pos.y && origin.position.y < end_pos.y)||(start_pos.y < end_pos.y && origin.position.y > end_pos.y)) {
+//					position.y = end_pos.y;
+//				}
+//
+//				origin.position = position;
+//
+//				if (((Time.time - startime) * speed) >= .75f) {
+//					origin.position = end_pos;
+//				}
+//
+//				yield return null;
+//			}
+//			pathCallback ();
+//		}
+
+		public static IEnumerator smooth_move(Transform origin, Vector3 direction, float speed){
 			float startime = Time.time;
 			Vector3 start_pos = new Vector3(origin.position.x, origin.position.y, origin.position.z);
 			Vector3 end_pos = direction;
-			while (!origin.position.Equals(end_pos)) { 
+			while (!origin.position.Equals(end_pos)) {
 				float move = .25f;
 
 				Vector3 position = origin.position;

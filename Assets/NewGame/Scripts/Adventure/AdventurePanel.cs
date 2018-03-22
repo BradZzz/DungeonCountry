@@ -202,6 +202,7 @@ public class AdventurePanel : MonoBehaviour {
 
 	IEnumerator step_path(Transform aiObj, List<Point3> step_path, Point3 destination, float speed)
 	{
+		bool turnEnded = false;
 		BattleGeneralMeta aiMeta = aiObj.gameObject.GetComponent<BattleGeneralMeta> ();
 		//Neutral armies only attack the player and even then, only when the player is within a super short range
 		if (aiMeta != null && aiMeta.faction.Equals("Neutral") && step_path.Count > aiMeta.getCurrentMoves()) {
@@ -211,7 +212,8 @@ public class AdventurePanel : MonoBehaviour {
 			BattleGeneralMeta bgm = aiObj.gameObject.GetComponent<BattleGeneralMeta> ();
 			int steps_left = bgm.makeSteps (step_path.Count);
 			if (steps_left <= 0) {
-				bgm.endTurn ();
+				//bgm.endTurn ();
+				turnEnded = true;
 				while (steps_left < 0) {
 					step_path.RemoveAt (step_path.Count - 1);
 					steps_left++;
@@ -227,11 +229,20 @@ public class AdventurePanel : MonoBehaviour {
 					new Point3 (newObjective.position), agm.getRows (), agm.getColumns (), ai.getObstacles (), getPath));
 			} else {
 				BattleGeneralMeta bgm = aiObj.gameObject.GetComponent<BattleGeneralMeta> ();
-				bgm.endTurn ();
+				//bgm.endTurn ();
+				turnEnded = true;
+				//checkTurnEnd ();
 			}
 		}
 
 		//Start the player's turn after all the ai players have moved
+		if (turnEnded) {
+			aiMeta.endTurn ();
+		}
+		checkTurnEnd ();
+	}
+
+	public void checkTurnEnd(){
 		if (checkAIOver ()) {
 			player.startTurn ();
 			player.startMoving ();

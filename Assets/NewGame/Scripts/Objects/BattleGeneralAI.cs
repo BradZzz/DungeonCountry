@@ -113,13 +113,13 @@ public class BattleGeneralAI {
 
 		List<Transform> weakRivals = new List<Transform> ();
 		foreach (Transform rival in rivals) {
-//			int armyScore = getArmyScore(rival.GetComponent<BattleGeneralMeta>());
-//			if ((aiArmyScore / 1.25) >= armyScore) {
-//				weakRivals.Add (rival);
-//			}
-			if (!rival.GetComponent<BattleGeneralMeta>().getPlayer()) {
+			int armyScore = getArmyScore(rival.GetComponent<BattleGeneralMeta>());
+			if ((aiArmyScore / 2.25) >= armyScore) {
 				weakRivals.Add (rival);
 			}
+//			if (!rival.GetComponent<BattleGeneralMeta>().getPlayer()) {
+//				weakRivals.Add (rival);
+//			}
 		}
 		bool needResources = checkResources (ai.GetComponent<BattleGeneralMeta> ());
 		int choice = 1;
