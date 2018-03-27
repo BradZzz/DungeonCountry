@@ -289,6 +289,16 @@ public class BattleGeneralMeta : MonoBehaviour {
 		}
 	}
 
+	private void turnOffCastleGUI(){
+		foreach (GameObject ents in GameObject.FindGameObjectsWithTag("Entrance"))
+		{
+			EntranceMeta eMet = ents.GetComponent<EntranceMeta> ();
+			if (eMet != null) {
+				eMet.hideFlag ();
+			}
+		}
+	}
+
 	//OnTriggerEnter2D is sent when another object enters a trigger collider attached to this object (2D physics only).
 	private void OnTriggerEnter2D (Collider2D other)
 	{
@@ -318,6 +328,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 					CastleMeta castle = info.GetComponent<CastleMeta> ();
 					if (castle != null) {
 						eMeta.plantFlag(banner);
+						turnOffCastleGUI ();
 						Debug.Log ("Castle name: " + castle.name);
 						CastlePrefs.setCastleInfo (resources, castle, this.gameObject.GetInstanceID ());
 						CastleConverter.putSave (this, board.transform);

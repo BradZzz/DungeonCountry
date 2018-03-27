@@ -41,6 +41,7 @@ public class AdventurePanel : MonoBehaviour {
 			if (bgm != null && bgm.getPlayer ()) {
 				player = bgm;
 				playerImg = unit.GetComponent<Image> ();
+				transform.Find ("FactionColorPanel").GetComponent<Image>().color = bgm.getBanner();
 			}
 		}
 	}
@@ -117,8 +118,10 @@ public class AdventurePanel : MonoBehaviour {
 	private void makeDecision(GameObject unit){
 		if (unit == null) {
 			Debug.Log ("Error Receiving Unit!");
-			player.startTurn ();
-			player.startMoving ();
+			if (!player.getTurn()) {
+				player.startTurn ();
+				player.startMoving ();
+			}
 		} else {
 			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
 			if (bgm != null) {

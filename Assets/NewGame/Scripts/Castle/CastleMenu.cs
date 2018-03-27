@@ -9,6 +9,11 @@ public class CastleMenu : MonoBehaviour {
 	private GameObject imageP = null;
 	private GameObject unitPMarket = null;
 	private GameObject unitPPurchase = null;
+
+	private GameObject townSelection = null;
+	private GameObject upgradePurchase = null;
+	private GameObject tavernHire = null;
+
 	private CastleMeta dMeta = null;
 	private BattleGeneralResources gMeta = null;
 	private BattleGeneralMeta genMeta = null;
@@ -27,6 +32,18 @@ public class CastleMenu : MonoBehaviour {
 		if (imageP ==  null){
 			imageP = GameObject.Find ("ImagePanel");
 		}
+		if (upgradePurchase == null) {
+			upgradePurchase = imageP.transform.Find ("CastleUpgrades").gameObject; 
+			upgradePurchase.SetActive (false);
+		}
+		if (townSelection == null) {
+			townSelection = imageP.transform.Find ("TownSelection").gameObject; 
+			townSelection.SetActive (false);
+		}
+		if (tavernHire == null) {
+			tavernHire = imageP.transform.Find ("TavernSelection").gameObject; 
+			tavernHire.SetActive (false);
+		}
 		if (unitPMarket == null) {
 			unitPMarket = imageP.transform.Find ("UnitPanelMarket").gameObject; 
 		}
@@ -41,21 +58,9 @@ public class CastleMenu : MonoBehaviour {
 		}
 	}
 
-	public void openPurchaseView(int unit){
-		unitPPurchase.SetActive(true);
-		loadPurchase (unit);
-	}
-
-	public void onClickUnitToggle(){
-		unitPMarket.SetActive(!unitPMarket.activeSelf);
-	}
-
 	public void onPurchaseBuy(){
 		if (purchaseUnit != null) {
 			BattleMeta pUnitMeta = purchaseUnit.GetComponent<BattleMeta> ();
-			//foreach (GameObject unit in gMeta.getarmy()) {
-			//BattleMeta unitMeta = unit.GetComponent<BattleMeta> ();
-			//if (unitMeta.name.Equals(pUnitMeta.name)) {
 				
 			Dictionary<string, int> resources = new Dictionary<string, int> ();
 			resources.Add ("gold", pUnitMeta.costGold);
@@ -68,13 +73,9 @@ public class CastleMenu : MonoBehaviour {
 			if (genMeta.getResources().canPurchaseUnit (resources, purchaseUnit)) {
 				Debug.Log ("Purchased!");
 				CastlePrefs.dirty = true;
-				//unitPPurchase.SetActive(false);
 			} else {
 				Debug.Log ("Not Purchased!");
 			}
-
-			//}
-			//}
 		}
 	}
 
@@ -83,6 +84,10 @@ public class CastleMenu : MonoBehaviour {
 		CastlePrefs.dirty = true;
 	}
 
+	/*
+	 * Click Toggle UI Code
+	 */ 
+
 	public void onPurchaseCancel(){
 		unitPPurchase.SetActive(false);
 	}
@@ -90,7 +95,50 @@ public class CastleMenu : MonoBehaviour {
 	public void onCloseAll(){
 		unitPPurchase.SetActive(false);
 		unitPMarket.SetActive(false);
+		onLeaveTavern ();
+		onLeaveUpgrades ();
 	}
+
+	public void openPurchaseView(int unit){
+		unitPPurchase.SetActive(true);
+		loadPurchase (unit);
+	}
+
+	public void onClickUnitToggle(){
+		townSelection.SetActive (false);
+		unitPMarket.SetActive(!unitPMarket.activeSelf);
+		if (!unitPMarket.activeSelf) {
+			onCloseAll ();
+		}
+	}
+
+	public void onClickTownToggle(){
+		unitPMarket.SetActive (false);
+		townSelection.SetActive(!townSelection.activeSelf);
+		if (!townSelection.activeSelf) {
+			onCloseAll ();
+		}
+	}
+
+	public void onEnterTavern(){
+		tavernHire.SetActive(true);
+	}
+
+	public void onLeaveTavern(){
+		tavernHire.SetActive(false);
+	}
+
+	public void onEnterUpgrades(){
+		upgradePurchase.SetActive(true);
+	}
+
+	public void onLeaveUpgrades(){
+		upgradePurchase.SetActive(false);
+	}
+		
+	/*
+	 * End toggle code
+	 */ 
 
 	public void onClickAccept(){
 		CastleConverter.putSave (genMeta, null);

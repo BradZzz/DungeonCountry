@@ -8,6 +8,15 @@ public class EntranceMeta : MonoBehaviour {
 	public GameObject entranceInfo;
 	public Sprite image;
 	Color thisFlag = Color.clear;
+	bool flagVisible = true;
+
+	public void hideFlag(){
+		flagVisible = false;
+	}
+
+	public void showFlag(){
+		flagVisible = true;
+	}
 
 	public void plantFlag(Color flag){
 		thisFlag = flag;
@@ -46,8 +55,7 @@ public class EntranceMeta : MonoBehaviour {
 
 	private void OnGUI() {
 		if (thisFlag != Color.clear) {
-			Scene currentScene = SceneManager.GetActiveScene ();
-			if (currentScene.name.Equals("AdventureScene")) {
+			if (flagVisible) {
 				Vector3 guiPosition = Camera.main.WorldToScreenPoint (transform.position);
 				guiPosition.y = Screen.height - guiPosition.y;
 

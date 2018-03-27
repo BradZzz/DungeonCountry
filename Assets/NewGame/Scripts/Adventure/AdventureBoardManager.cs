@@ -71,11 +71,22 @@ public class AdventureBoardManager : MonoBehaviour {
 		DontDestroyOnLoad(board);
 	}
 
+	private void turnOnCastleGUI(){
+		foreach (GameObject ents in GameObject.FindGameObjectsWithTag("Entrance"))
+		{
+			EntranceMeta eMet = ents.GetComponent<EntranceMeta> ();
+			if (eMet != null) {
+				eMet.showFlag ();
+			}
+		}
+	}
+
 	private void formatObjects(bool init){
 
 		GameObject[] savedGenerals = new GameObject[0];
 
 		if (!init) {
+			turnOnCastleGUI ();
 			BattleGeneralMeta[] bGenerals = BattleConverter.getSaveBGM (glossy);
 			GameObject cGeneral = CastleConverter.getSave (glossy);
 
@@ -242,7 +253,7 @@ public class AdventureBoardManager : MonoBehaviour {
 			Color.red,
 			Color.yellow
 		};
-		Coroutines.ShuffleArray (banners);
+		//Coroutines.ShuffleArray (banners);
 
 		int count = 0;
 
