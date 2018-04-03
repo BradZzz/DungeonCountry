@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public class CastleMenu : MonoBehaviour {
+	private Glossary glossary = null;
+	private BattleGeneralResources bgMeta = null;
+	private CastleMeta cMeta = null;
 
 	private GameObject imageP = null;
 	private GameObject unitPMarket = null;
@@ -12,7 +15,12 @@ public class CastleMenu : MonoBehaviour {
 
 	private GameObject townSelection = null;
 	private GameObject upgradePurchase = null;
+
 	private GameObject tavernHire = null;
+	private GameObject tavernPanelDesc = null;
+	private GameObject tavernNxtPanelDesc = null;
+	private GameObject[] tavernRoster = new GameObject[6];
+	private int tavernSelected = -1;
 
 	private CastleMeta dMeta = null;
 	private BattleGeneralResources gMeta = null;
@@ -28,7 +36,11 @@ public class CastleMenu : MonoBehaviour {
 		return genMeta;
 	}
 
-	public void initVars(GameObject glossary){
+	public void initVars(GameObject glossary, BattleGeneralResources bgMeta, CastleMeta cMeta){
+		this.glossary = glossary.GetComponent<Glossary>();
+		this.bgMeta = bgMeta;
+		this.cMeta = cMeta;
+
 		if (imageP ==  null){
 			imageP = GameObject.Find ("ImagePanel");
 		}
@@ -42,6 +54,8 @@ public class CastleMenu : MonoBehaviour {
 		}
 		if (tavernHire == null) {
 			tavernHire = imageP.transform.Find ("TavernSelection").gameObject; 
+			tavernPanelDesc = tavernHire.transform.Find ("PanelDesc").gameObject; 
+			tavernNxtPanelDesc = tavernHire.transform.Find ("PanelNxtDesc").gameObject; 
 			tavernHire.SetActive (false);
 		}
 		if (unitPMarket == null) {
@@ -122,6 +136,92 @@ public class CastleMenu : MonoBehaviour {
 
 	public void onEnterTavern(){
 		tavernHire.SetActive(true);
+		tavernSelected = -1;
+
+		// Populate tavern shit here
+		Debug.Log("Tavern Occupants");
+		int cnt = 1;
+		foreach (GameObject met in glossary.generals) {
+			BattleGeneralMeta bgm = met.GetComponent<BattleGeneralMeta> ();
+			if (bgm.faction.Equals(cMeta.affiliation.name) && cnt < 7) {
+				Transform genTrans = tavernHire.transform.Find("Hero_0" + cnt);
+				genTrans.gameObject.SetActive (true);
+				Image portrait = genTrans.transform.Find("Portrait").GetComponent<Image>();
+				Text hrText = genTrans.transform.Find("TxtOverlay").Find("Text").GetComponent<Text>();
+				portrait.sprite = met.GetComponent<Image> ().sprite;
+				hrText.text = bgm.name;
+				tavernRoster [cnt - 1] = met;
+				cnt++;
+			}
+		}
+		while (cnt < 7) {
+			Transform genTrans = tavernHire.transform.Find("Hero_0" + cnt);
+			genTrans.gameObject.SetActive (false);
+			tavernRoster [cnt - 1] = null;
+			cnt++;
+		}
+
+		//Add click actions here, and change descriptions if the hero has been clicked on
+		tavernPanelDesc.GetComponent<Text>().text = "";
+		tavernNxtPanelDesc.GetComponent<Text>().text = "";
+	}
+
+	public void onClickTavernHero(int pos){
+		Debug.Log ("Click: " + pos);
+		GameObject clicked = tavernRoster [pos - 1];
+		if (clicked != null) {
+			BattleGeneralMeta bgm = clicked.GetComponent<BattleGeneralMeta> ();
+			tavernPanelDesc.GetComponent<Text>().text = bgm.name;
+			tavernNxtPanelDesc.GetComponent<Text>().text = bgm.description;
+			tavernSelected = pos;
+		}
+	}
+
+	public void onClickBuyTavernHero(){
+		Debug.Log ("Currently Selected Hero: " + tavernSelected);
+		//Remove resources from player
+
+		//Make sure the hero is marked player and the hero's banner matches the player's banner
+		BattleGeneralMeta tHero = tavernRoster [tavernSelected - 1].GetComponent<BattleGeneralMeta>();
+		tHero.setBanner (genMeta.banner);
+		tHero.setPlayer (true);
+		tHero.init ();
+
+		List<GameObject> newUnits = new List<GameObject> ();
+		AffiliationMeta affmet = glossary.findFaction(tHero.faction);
+		foreach (GameObject unit in affmet.units) {
+			BattleMeta gmeta = unit.GetComponent<BattleMeta> ();
+			if (gmeta.lvl < 3) {
+				GameObject instance = Instantiate (unit) as GameObject;
+				BattleMeta bMet = instance.GetComponent<BattleMeta> ();
+				bMet.setGUI (false);
+				bMet.setPlayer (false);
+				switch (bMet.lvl) {
+				case 1:
+					bMet.setLives (Random.Range (15, 25));
+					break;
+				default:
+					bMet.setLives (Random.Range (5, 10));
+					break;
+				}
+				instance.SetActive (false);
+				newUnits.Add (instance);
+			}
+		}
+		tHero.getResources ().init (0,newUnits);
+
+
+		//If the player has enough resources, purchase hero and add it to the queue
+		CastleConverter.putTavernGeneral(new BattleGeneralMeta[]{tHero});
+
+
+//		GameObject clicked = tavernRoster [pos - 1];
+//		if (clicked != null) {
+//			BattleGeneralMeta bgm = clicked.GetComponent<BattleGeneralMeta> ();
+//			tavernPanelDesc.GetComponent<Text>().text = bgm.name;
+//			tavernNxtPanelDesc.GetComponent<Text>().text = bgm.description;
+//			tavernSelected = pos;
+//		}
 	}
 
 	public void onLeaveTavern(){

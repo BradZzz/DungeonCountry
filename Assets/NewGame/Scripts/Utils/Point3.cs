@@ -59,7 +59,7 @@ public class Point3 {
 	}
 
 	public string ToString(){
-		return "(" + x + "," + y + "," + z + ")";
+		return x + "," + y + "," + z;
 	}
 
 	public bool awayFromEdge(int[,] map){

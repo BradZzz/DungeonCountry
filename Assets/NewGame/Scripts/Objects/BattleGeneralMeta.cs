@@ -8,6 +8,7 @@ using System.Linq;
 public class BattleGeneralMeta : MonoBehaviour {
 
 	public string name = "none";
+	[TextArea(15,20)]
 	public string description = "none";
 	public List<GameObject> army;
 	public List<int> entranceUsed;

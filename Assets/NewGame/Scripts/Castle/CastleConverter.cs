@@ -103,6 +103,33 @@ public class CastleConverter : DataStoreConverter {
 		return null;
 	}
 
+	public static void putTavernGeneral(BattleGeneralMeta[] newGeneral){
+		BattleSerializeable[] battle = new BattleSerializeable[newGeneral.Length];
+		for (int i = 0; i < newGeneral.Length; i++) {
+			battle [i] = serializeGeneral (newGeneral[i]);
+			battle[i].level = "World";
+		}
+		string json = JsonHelper.ToJson(battle);
+		PlayerPrefs.SetString ("tavern", json);
+	}
+
+	public static GameObject[] getBoughtTavernGenerals(Glossary glossary){
+		string tavernInfo = PlayerPrefs.GetString ("tavern");
+		if (tavernInfo.Length == 0) {
+			return null;
+		}
+		BattleSerializeable[] thisTavern = JsonHelper.FromJson<BattleSerializeable>(tavernInfo);
+		if (thisTavern != null) {
+			GameObject[] generals = new GameObject[thisTavern.Length];
+			for (int i = 0; i < generals.Length; i++) {
+				generals [i] = deserializeGeneral (thisTavern [i], glossary);
+			}
+			return generals;
+		}
+		return null;
+
+	}
+
 	public static string getSaveWorld(){
 		string newInfo = PlayerPrefs.GetString ("castle");
 		BattleSerializeable[] thisBattle = JsonHelper.FromJson<BattleSerializeable>(newInfo);

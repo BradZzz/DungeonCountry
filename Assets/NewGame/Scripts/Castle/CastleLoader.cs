@@ -22,7 +22,7 @@ public class CastleLoader : MonoBehaviour {
 
 		init (btlRes, CastlePrefs.getCastleMeta (), true);
 		CastleMenu menuHolder = castleBtn.GetComponent<CastleMenu>();
-		menuHolder.initVars (glossary);
+		menuHolder.initVars (glossary, btlRes, CastlePrefs.getCastleMeta ());
 	}
 
 	void Update(){

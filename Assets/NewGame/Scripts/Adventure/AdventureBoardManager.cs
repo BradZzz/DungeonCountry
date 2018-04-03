@@ -81,6 +81,49 @@ public class AdventureBoardManager : MonoBehaviour {
 		}
 	}
 
+	class DescComparer<T> : IComparer<T>
+	{
+		public int Compare(T x, T y)
+		{
+			return Comparer<T>.Default.Compare(y, x);
+		}
+	}
+
+	private Point3[] getEmptySpaces(Point3 startPt, int spcNeeded){
+		string strtPt = (new Point3 (startPt.x, startPt.y, 0)).ToString ();
+		Point3[] spcs = new Point3[spcNeeded];
+		int cnt = 0;
+		int spread = 1;
+		//gameManager.getColumns (), gameManager.getRows ()
+		List<string> obs = new List<string>();
+		foreach(Point3 ob in getObstacles ()){
+			obs.Add ((new Point3 (ob.x, ob.y, 0)).ToString());
+		}
+
+		SortedList<string,int> pts = new SortedList<string,int>(new DescComparer<string>());
+		for (int x = 0; x < gameManager.getColumns (); x++) {
+			for (int y = 0; y < gameManager.getRows (); y++) {
+				int distance = Mathf.Abs(startPt.x - x) + Mathf.Abs(startPt.y - y);
+				string pt = (new Point3 (x, y, 0)).ToString ();
+				if (!obs.Contains(pt) && !strtPt.Equals(pt) && distance < 3) {
+					pts.Add (pt, distance);
+				}
+			}
+		}
+
+		int idx = 0;
+		foreach (KeyValuePair<string, int> pair in pts)
+		{
+			string[] coor = pair.Key.Split(',');
+			if (idx == spcNeeded) {
+				break;
+			}
+			spcs [idx] = new Point3 (int.Parse(coor[0]), int.Parse(coor[1]), 0);
+			idx++;
+		}
+		return spcs;
+	}
+
 	private void formatObjects(bool init){
 
 		GameObject[] savedGenerals = new GameObject[0];
@@ -89,10 +132,31 @@ public class AdventureBoardManager : MonoBehaviour {
 			turnOnCastleGUI ();
 			BattleGeneralMeta[] bGenerals = BattleConverter.getSaveBGM (glossy);
 			GameObject cGeneral = CastleConverter.getSave (glossy);
+			GameObject[] tGenerals = CastleConverter.getBoughtTavernGenerals (glossy);
 
 			if (cGeneral != null) {
 				BattleGeneralMeta cgMeta = cGeneral.GetComponent<BattleGeneralMeta> ();
 				DataStoreConverter.updateGeneral (glossy, "BoardSave", cgMeta);
+				if (tGenerals != null) {
+					//Place the new generals here
+					Debug.Log("New generals bought at the tavern");
+					//Now we need to find the closest spaces around the cGeneral
+					Point3 pos = new Point3();
+					foreach (GameObject unity in GameObject.FindGameObjectsWithTag("Unit")) {
+						if (unity.name.Contains(cGeneral.name)) {
+							pos = new Point3 (unity.transform.position);
+						}
+					}
+					Point3[] spaces = getEmptySpaces(pos, tGenerals.Length);
+					for (int i = 0; i < tGenerals.Length; i++) {
+						//General appearing in the wrong place
+						//Cannot select general
+						GameObject instance = Instantiate (tGenerals[i], spaces[i].asVector3(), Quaternion.identity, boardHolder) as GameObject;
+						instance.transform.localPosition = spaces [i].asVector3 ();
+//						GameObject instance = Instantiate (tGenerals[i], spaces[i].asVector3(), Quaternion.identity) as GameObject;
+//						instance.transform.SetParent (boardHolder);
+					}
+				}
 			}
 			if (bGenerals != null) {
 				DataStoreConverter.updateGeneral (glossy, "BoardSave", bGenerals);
@@ -326,46 +390,51 @@ public class AdventureBoardManager : MonoBehaviour {
 	}
 
 	public void clicked(Point3 click){
-		Debug.Log ("Clicked: " + click.ToString());
-		Debug.Log("LastClicked: " + lastClicked);
-		if (lastClicked == null) {
-			Debug.Log ("New Click");
-			foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
-				Debug.Log ("Searching");
-				BattleGeneralMeta gMeta = unit.GetComponent<BattleGeneralMeta> ();
-				if (gMeta != null) {
-					if  (click.Equals(unit.transform.position) && gMeta.getPlayer()) {
-						Debug.Log ("Clicked: " + click.ToString());
-						lastClicked = unit.transform;
+		if (SceneManager.GetActiveScene ().name.Equals("AdventureScene")){
+			Debug.Log ("Clicked: " + click.ToString());
+			Debug.Log("LastClicked: " + lastClicked);
+			if (lastClicked == null) {
+				Debug.Log ("New Click");
+				foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
+					Debug.Log ("Searching");
+					BattleGeneralMeta gMeta = unit.GetComponent<BattleGeneralMeta> ();
+					if (gMeta != null) {
+						if  (click.Equals(unit.transform.position) && gMeta.getPlayer()) {
+							Debug.Log ("Clicked: " + click.ToString());
+							lastClicked = unit.transform;
+						}
 					}
 				}
-			}
-		} else if (lastClicked != null) { 
-			Debug.Log("LastClicked: " + lastClicked.name + " pos: " + lastClicked.position);
-			if (!click.Equals(lastClicked.position) && (!steps.walking () || !click.Equals(lastClick)) && !obsClick(click)) {
-				steps.destroySteps ();
-				Debug.Log ("Moving: " + lastClicked.name);
-				List<Point3> obstacles = new List<Point3> ();
-				foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
-					obstacles.Add (new Point3(unit.transform.position));
+			} else if (lastClicked != null) { 
+				Debug.Log("LastClicked: " + lastClicked.name + " pos: " + lastClicked.position);
+				if (!click.Equals(lastClicked.position) && (!steps.walking () || !click.Equals(lastClick)) && !obsClick(click)) {
+					steps.destroySteps ();
+					Debug.Log ("Moving: " + lastClicked.name);
+					StartCoroutine (steps.generateMapv2 (new Point3(lastClicked.position), click, gameManager.getRows (), gameManager.getColumns (), getObstacles(), setPath));
+				} else if (steps.walking () && click.Equals(lastClick)) {
+	//				BattleConverter.reset ();
+					moveAdventurer (lastClicked, path);
+					lastClicked = null;
+					steps.destroySteps ();
 				}
-
-				foreach (GameObject obs in GameObject.FindGameObjectsWithTag("Obstacle")) {
-					obstacles.Add (new Point3(obs.transform.position));
-				}
-
-				foreach (GameObject obs in GameObject.FindGameObjectsWithTag("Entrance")) {
-					obstacles.Add (new Point3(obs.transform.position));
-				}
-					
-				StartCoroutine (steps.generateMapv2 (new Point3(lastClicked.position), click, gameManager.getRows (), gameManager.getColumns (), obstacles, setPath));
-			} else if (steps.walking () && click.Equals(lastClick)) {
-//				BattleConverter.reset ();
-				moveAdventurer (lastClicked, path);
-				lastClicked = null;
-				steps.destroySteps ();
 			}
 		}
+	}
+
+	private List<Point3> getObstacles(){
+		List<Point3> obstacles = new List<Point3> ();
+		foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
+			obstacles.Add (new Point3(unit.transform.position));
+		}
+
+		foreach (GameObject obs in GameObject.FindGameObjectsWithTag("Obstacle")) {
+			obstacles.Add (new Point3(obs.transform.position));
+		}
+
+		foreach (GameObject obs in GameObject.FindGameObjectsWithTag("Entrance")) {
+			obstacles.Add (new Point3(obs.transform.position));
+		}
+		return obstacles;
 	}
 
 	public bool inScene(Point3 targetPosition){
