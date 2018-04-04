@@ -2,8 +2,8 @@
 
 [ExecuteInEditMode]
 public class SpriteOutline : MonoBehaviour {
-	public Color hitcolor = Color.white;
-	public Color fatiguecolor = Color.white;
+	public Color hitcolor = Color.clear;
+	public Color fatiguecolor = Color.clear;
 
 	private Color color;
 	private SpriteRenderer spriteRenderer;
@@ -11,6 +11,7 @@ public class SpriteOutline : MonoBehaviour {
 	void Awake()
 	{
 		color = hitcolor;
+		//color = Color.red;
 	}
 
 	public void setColor(bool isHit) {
@@ -19,6 +20,10 @@ public class SpriteOutline : MonoBehaviour {
 		} else {
 			color = fatiguecolor;
 		}
+	}
+
+	public void setColor(Color banner) {
+		color = banner;
 	}
 
 	void OnEnable() {

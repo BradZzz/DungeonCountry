@@ -309,17 +309,15 @@ public class AdventureBoardManager : MonoBehaviour {
 //			Color.red,
 //			Color.yellow
 //		};
-		Color[] banners = new Color[]{
-			Color.blue,
-			Color.cyan,
-			Color.green,
-			Color.magenta,
-			Color.red,
-			Color.yellow
-		};
+		Stack<Color> Banners = new Stack<Color>();
+		Banners.Push (Color.blue);
+		Banners.Push (Color.cyan);
+		Banners.Push (Color.green);
+		Banners.Push (Color.magenta);
+		Banners.Push (Color.red);
+		Banners.Push (Color.yellow);
 		//Coroutines.ShuffleArray (banners);
 
-		int count = 0;
 
 		foreach (GameObject general in generals){
 			BattleGeneralMeta gMeta = general.GetComponent<BattleGeneralMeta> ();
@@ -330,8 +328,7 @@ public class AdventureBoardManager : MonoBehaviour {
 					LayoutObjectAtRandom (new GameObject[]{ general }, 1, 1, true, false);
 				}
 				if (!gMeta.faction.Equals("Neutral")) {
-					gMeta.setBanner (banners[count]);
-					count++;
+					gMeta.setBanner (Banners.Pop());
 				}
 				foundFactions.Add (gMeta.faction);
 			}

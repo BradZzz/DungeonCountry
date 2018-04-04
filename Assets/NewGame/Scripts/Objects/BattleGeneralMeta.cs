@@ -31,6 +31,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 	private BattleGeneralResources resources;
 	private bool defeated;
 	private Camera cam = null;
+	private SpriteOutline outline = null;
 
 	void Awake() {
 		//DontDestroyOnLoad(this.gameObject);
@@ -48,6 +49,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 	}
 
 	public void setBanner(Color banner){
+		Debug.Log ("New Color: " + banner.ToString());
 		this.banner = banner;
 	}
 
@@ -57,14 +59,18 @@ public class BattleGeneralMeta : MonoBehaviour {
 
 	private BattleGeneralResources getResource() {
 		if (resources == null) {
-			BattleGeneralResources bg = null;
-			if (gameObject.GetComponent<BattleGeneralResources> () != null) {
-				bg = gameObject.GetComponent<BattleGeneralResources> ();
-				bg.init (this.GetInstanceID (), army);
-			} else {
-				bg = gameObject.AddComponent<BattleGeneralResources> ();
-				bg.init (this.GetInstanceID (), army);
-			}
+			BattleGeneralResources bg = gameObject.GetComponent<BattleGeneralResources> ();
+
+			//bg = gameObject.GetComponent<BattleGeneralResources> ();
+			bg.init (this.GetInstanceID (), army);
+
+//			if (gameObject.GetComponent<BattleGeneralResources> () != null) {
+//				bg = gameObject.GetComponent<BattleGeneralResources> ();
+//				bg.init (this.GetInstanceID (), army);
+//			} else {
+////				bg = gameObject.AddComponent<BattleGeneralResources> ();
+////				bg.init (this.GetInstanceID (), army);
+//			}
 			resources = bg;
 		}
 		return resources;
@@ -87,6 +93,14 @@ public class BattleGeneralMeta : MonoBehaviour {
 				if (next.x != current.x || next.y != current.y) {
 					cam.transform.position = vec;
 				}
+			}
+		}
+		outline = GetComponent<SpriteOutline>();
+		if (outline != null) {
+			outline.enabled = false;
+			if (banner != Color.clear) {
+				outline.setColor (banner);
+				outline.enabled = true;
 			}
 		}
 	}
