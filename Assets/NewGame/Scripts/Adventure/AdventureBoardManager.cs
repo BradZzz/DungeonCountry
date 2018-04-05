@@ -142,17 +142,24 @@ public class AdventureBoardManager : MonoBehaviour {
 					Debug.Log("New generals bought at the tavern");
 					//Now we need to find the closest spaces around the cGeneral
 					Point3 pos = new Point3();
+					Color banner = Color.clear;
 					foreach (GameObject unity in GameObject.FindGameObjectsWithTag("Unit")) {
 						if (unity.name.Contains(cGeneral.name)) {
 							pos = new Point3 (unity.transform.position);
+							banner = unity.GetComponent<BattleGeneralMeta>().getBanner();
 						}
 					}
 					Point3[] spaces = getEmptySpaces(pos, tGenerals.Length);
 					for (int i = 0; i < tGenerals.Length; i++) {
 						//General appearing in the wrong place
 						//Cannot select general
+						//BattleGeneralMeta bgmT = tGenerals[i].GetComponent<BattleGeneralMeta>();
 						GameObject instance = Instantiate (tGenerals[i], spaces[i].asVector3(), Quaternion.identity, boardHolder) as GameObject;
 						instance.transform.localPosition = spaces [i].asVector3 ();
+						BattleGeneralMeta bgmM = instance.GetComponent<BattleGeneralMeta> ();
+						bgmM.setBanner(banner);
+						bgmM.setPlayer(tGenerals[i].GetComponent<BattleGeneralMeta>().getPlayer());
+						bgmM.startTurn ();
 //						GameObject instance = Instantiate (tGenerals[i], spaces[i].asVector3(), Quaternion.identity) as GameObject;
 //						instance.transform.SetParent (boardHolder);
 					}
@@ -297,18 +304,10 @@ public class AdventureBoardManager : MonoBehaviour {
 
 		List<string> foundFactions = new List<string> ();
 		Coroutines.ShuffleArray (generals);
+
 		/*
 		Here is where the generals banners need to be selected from the color list
 		*/ 
-
-//		List<Color> banners = new List<Color> () {
-//			Color.blue,
-//			Color.cyan,
-//			Color.green,
-//			Color.magenta,
-//			Color.red,
-//			Color.yellow
-//		};
 		Stack<Color> Banners = new Stack<Color>();
 		Banners.Push (Color.blue);
 		Banners.Push (Color.cyan);
@@ -316,8 +315,6 @@ public class AdventureBoardManager : MonoBehaviour {
 		Banners.Push (Color.magenta);
 		Banners.Push (Color.red);
 		Banners.Push (Color.yellow);
-		//Coroutines.ShuffleArray (banners);
-
 
 		foreach (GameObject general in generals){
 			BattleGeneralMeta gMeta = general.GetComponent<BattleGeneralMeta> ();

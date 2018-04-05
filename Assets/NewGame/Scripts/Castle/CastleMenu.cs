@@ -183,7 +183,7 @@ public class CastleMenu : MonoBehaviour {
 
 		//Make sure the hero is marked player and the hero's banner matches the player's banner
 		BattleGeneralMeta tHero = tavernRoster [tavernSelected - 1].GetComponent<BattleGeneralMeta>();
-		tHero.setBanner (genMeta.banner);
+		tHero.setBanner (genMeta.getBanner());
 		tHero.setPlayer (true);
 		tHero.init ();
 

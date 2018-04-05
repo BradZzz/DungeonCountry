@@ -84,6 +84,7 @@ public class CastleConverter : DataStoreConverter {
 
 	public static void reset(){
 		PlayerPrefs.SetString ("castle", "");
+		PlayerPrefs.SetString ("tavern", "");
 	}
 
 	public static bool hasData(){

@@ -23,9 +23,13 @@ public class BattleGeneralMeta : MonoBehaviour {
 	public int movement = 1;
 	public int magic = 1;
 
-	public Color banner = Color.clear;
-	private int currentMove = 0;
+	[SerializeField]
+	private Color banner = Color.clear;
+
+	[SerializeField]
 	private bool isPlayer;
+
+	private int currentMove = 0;
 	private bool isTurn = false;
 	private bool isMoving = false;
 	private BattleGeneralResources resources;

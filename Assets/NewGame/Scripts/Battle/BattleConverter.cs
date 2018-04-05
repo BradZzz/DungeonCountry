@@ -130,10 +130,10 @@ public class BattleConverter : DataStoreConverter {
 			GameObject[] generals = new GameObject[2];
 			generals [0] = deserializeGeneral (thisBattle [0], glossary);
 			generals [1] = deserializeGeneral (thisBattle [1], glossary);
-
-			BattleGeneralMeta meta = generals [0].GetComponent<BattleGeneralMeta> ();
-			BattleGeneralMeta meta2 = generals [1].GetComponent<BattleGeneralMeta> ();
-
+//
+//			BattleGeneralMeta meta = generals [0].GetComponent<BattleGeneralMeta> ();
+//			BattleGeneralMeta meta2 = generals [1].GetComponent<BattleGeneralMeta> ();
+//
 			return generals;
 		}
 		return null;
