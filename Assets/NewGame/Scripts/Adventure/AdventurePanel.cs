@@ -35,20 +35,22 @@ public class AdventurePanel : MonoBehaviour {
 				Avatar = child.gameObject;
 			}
 		}
-		GameObject[] units = GameObject.FindGameObjectsWithTag("Unit");
-		foreach (GameObject unit in units) {
-			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
-			if (bgm != null && bgm.getPlayer ()) {
-				player = bgm;
-				playerImg = unit.GetComponent<Image> ();
-				transform.Find ("FactionColorPanel").GetComponent<Image>().color = bgm.getBanner();
-			}
-		}
+//		GameObject[] units = GameObject.FindGameObjectsWithTag("Unit");
+//		foreach (GameObject unit in units) {
+//			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
+//			if (bgm != null && bgm.getPlayer ()) {
+//				player = bgm;
+//				playerImg = unit.GetComponent<Image> ();
+//				transform.Find ("FactionColorPanel").GetComponent<Image>().color = bgm.getBanner();
+//			}
+//		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		setPlayerAvatar (playerImg);
+		player = getSelectedPlayer ();
+		setPlayerAvatar (player.GetComponent<Image> ());
+		transform.Find ("FactionColorPanel").GetComponent<Image>().color = player.getBanner();
 
 		List<GameObject> army = player.getArmy ();
 		for(int i = 0; i < 6; i++){
@@ -118,9 +120,8 @@ public class AdventurePanel : MonoBehaviour {
 	private void makeDecision(GameObject unit){
 		if (unit == null) {
 			Debug.Log ("Error Receiving Unit!");
-			if (!player.getTurn()) {
-				player.startTurn ();
-				player.startMoving ();
+			if (!anyPlayersTurn()) {
+				startPlayerTurn ();
 			}
 		} else {
 			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
@@ -137,9 +138,48 @@ public class AdventurePanel : MonoBehaviour {
 		}
 	}
 
+	private BattleGeneralMeta getSelectedPlayer(){
+		BattleGeneralMeta holder = null;
+		foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
+			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
+			if (bgm != null) {
+				if (bgm.getPlayer()) {
+					holder = bgm;
+					if (bgm.isSel ()) {
+						return bgm;
+					}
+				}
+			}
+		}
+		return holder;
+	}
+
+	private bool anyPlayersTurn(){
+		foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
+			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
+			if (bgm != null) {
+				if (bgm.getPlayer () && bgm.getTurn()) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	private void startPlayerTurn(){
+		foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
+			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
+			if (bgm != null) {
+				if (bgm.getPlayer ()) {
+					bgm.startTurn ();
+					bgm.startMoving ();
+				}
+			}
+		}
+	}
+
 	private bool checkAIOver(){
-		GameObject[] units = GameObject.FindGameObjectsWithTag("Unit");
-		foreach (GameObject unit in units) {
+		foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
 			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
 			if (bgm != null) {
 				if (!bgm.getPlayer () && bgm.getTurn()) {
@@ -178,8 +218,7 @@ public class AdventurePanel : MonoBehaviour {
 	}
 
 	private void wakeAI(){
-		GameObject[] units = GameObject.FindGameObjectsWithTag("Unit");
-		foreach (GameObject unit in units) {
+		foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
 			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
 			if (bgm != null) {
 				bgm.startTurn ();
@@ -188,8 +227,7 @@ public class AdventurePanel : MonoBehaviour {
 	}
 		
 	private GameObject getNextAI(){
-		GameObject[] units = GameObject.FindGameObjectsWithTag("Unit");
-		foreach (GameObject unit in units) {
+		foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
 			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
 			if (bgm != null) {
 				if (!bgm.getPlayer () && bgm.getTurn() && bgm.getArmy().Count > 0) {
@@ -247,8 +285,7 @@ public class AdventurePanel : MonoBehaviour {
 
 	public void checkTurnEnd(){
 		if (checkAIOver ()) {
-			player.startTurn ();
-			player.startMoving ();
+			startPlayerTurn();
 		} else {
 			makeDecision(getNextAI());
 		}

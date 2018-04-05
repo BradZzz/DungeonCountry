@@ -29,6 +29,10 @@ public class BattleGeneralMeta : MonoBehaviour {
 	[SerializeField]
 	private bool isPlayer;
 
+	//This field determines if the hero's information will be shown in the adventure bar
+	[SerializeField]
+	private bool isSelected;
+
 	private int currentMove = 0;
 	private bool isTurn = false;
 	private bool isMoving = false;
@@ -42,6 +46,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 		defeated = false;
 		entranceUsed = new List<int> ();
 		isPlayer = false;
+		isSelected = false;
 		init ();
 		//resources = new BattleGeneralResources (this.GetInstanceID (), army);
 	}
@@ -50,6 +55,14 @@ public class BattleGeneralMeta : MonoBehaviour {
 		if (GameObject.Find("Main Camera") != null) {
 			cam = GameObject.Find("Main Camera").GetComponent<Camera>();
 		}
+	}
+
+	public bool isSel(){
+		return isSelected;
+	}
+
+	public void toggleSelected(bool selected){
+		isSelected = selected;
 	}
 
 	public void setBanner(Color banner){

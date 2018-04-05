@@ -143,10 +143,12 @@ public class AdventureBoardManager : MonoBehaviour {
 					//Now we need to find the closest spaces around the cGeneral
 					Point3 pos = new Point3();
 					Color banner = Color.clear;
+					bool psUnit = false;
 					foreach (GameObject unity in GameObject.FindGameObjectsWithTag("Unit")) {
 						if (unity.name.Contains(cGeneral.name)) {
 							pos = new Point3 (unity.transform.position);
 							banner = unity.GetComponent<BattleGeneralMeta>().getBanner();
+							psUnit = unity.GetComponent<BattleGeneralMeta>().getPlayer();
 						}
 					}
 					Point3[] spaces = getEmptySpaces(pos, tGenerals.Length);
@@ -158,7 +160,7 @@ public class AdventureBoardManager : MonoBehaviour {
 						instance.transform.localPosition = spaces [i].asVector3 ();
 						BattleGeneralMeta bgmM = instance.GetComponent<BattleGeneralMeta> ();
 						bgmM.setBanner(banner);
-						bgmM.setPlayer(tGenerals[i].GetComponent<BattleGeneralMeta>().getPlayer());
+						bgmM.setPlayer(psUnit);
 						bgmM.startTurn ();
 //						GameObject instance = Instantiate (tGenerals[i], spaces[i].asVector3(), Quaternion.identity) as GameObject;
 //						instance.transform.SetParent (boardHolder);
@@ -394,9 +396,12 @@ public class AdventureBoardManager : MonoBehaviour {
 					Debug.Log ("Searching");
 					BattleGeneralMeta gMeta = unit.GetComponent<BattleGeneralMeta> ();
 					if (gMeta != null) {
-						if  (click.Equals(unit.transform.position) && gMeta.getPlayer()) {
-							Debug.Log ("Clicked: " + click.ToString());
+						if (click.Equals (unit.transform.position) && gMeta.getPlayer ()) {
+							Debug.Log ("Clicked: " + click.ToString ());
 							lastClicked = unit.transform;
+							gMeta.toggleSelected (true);
+						} else {
+							gMeta.toggleSelected (false);
 						}
 					}
 				}
