@@ -26,6 +26,10 @@ public class SpriteOutline : MonoBehaviour {
 		color = banner;
 	}
 
+	public Color getColor() {
+		return color;
+	}
+
 	void OnEnable() {
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		UpdateOutline(true);

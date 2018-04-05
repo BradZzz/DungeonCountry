@@ -320,13 +320,13 @@ public class AdventureBoardManager : MonoBehaviour {
 			BattleGeneralMeta gMeta = general.GetComponent<BattleGeneralMeta> ();
 			if (gMeta != null && (!foundFactions.Contains(gMeta.faction) || (gMeta.faction.Equals("Neutral")))) {
 				if (checkFaction (SharedPrefs.getPlayerFaction ()) == gMeta.faction) {
-					LayoutObjectAtRandom (new GameObject[]{ general }, 1, 1, true, true);
+					LayoutObjectAtRandom (new GameObject[]{ general }, 1, 1, true, true, Banners.Pop());
 				} else {
-					LayoutObjectAtRandom (new GameObject[]{ general }, 1, 1, true, false);
+					LayoutObjectAtRandom (new GameObject[]{ general }, 1, 1, true, false, gMeta.faction.Equals("Neutral") ? Color.clear : Banners.Pop());
 				}
-				if (!gMeta.faction.Equals("Neutral")) {
-					gMeta.setBanner (Banners.Pop());
-				}
+//				if (!gMeta.faction.Equals("Neutral")) {
+//					gMeta.setBanner (Banners.Pop());
+//				}
 				foundFactions.Add (gMeta.faction);
 			}
 		}
@@ -353,7 +353,7 @@ public class AdventureBoardManager : MonoBehaviour {
 		return randomPosition;
 	}
 
-	void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum, bool onRoad, bool isPlayer)
+	void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum, bool onRoad, bool isPlayer, Color banner)
 	{
 		int objectCount = UnityEngine.Random.Range (minimum, maximum+1);
 		for(int i = 0; i < objectCount; i++)
@@ -369,6 +369,7 @@ public class AdventureBoardManager : MonoBehaviour {
 					gMeta.startTurn ();
 					gMeta.startMoving ();
 				}
+				gMeta.setBanner (banner);
 			}
 			instance.transform.position = pos;
 		}

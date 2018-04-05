@@ -53,8 +53,15 @@ public class BattleGeneralMeta : MonoBehaviour {
 	}
 
 	public void setBanner(Color banner){
-		Debug.Log ("New Color: " + banner.ToString());
-		this.banner = banner;
+		if (banner != Color.clear) {
+			Debug.Log ("New Color: " + banner.ToString());
+			this.banner = banner;
+			outline = gameObject.GetComponent<SpriteOutline>();
+			if (outline != null) {
+				outline.setColor (banner);
+				outline.enabled = true;
+			}
+		}
 	}
 
 	public Color getBanner(){
@@ -97,14 +104,6 @@ public class BattleGeneralMeta : MonoBehaviour {
 				if (next.x != current.x || next.y != current.y) {
 					cam.transform.position = vec;
 				}
-			}
-		}
-		outline = GetComponent<SpriteOutline>();
-		if (outline != null) {
-			outline.enabled = false;
-			if (banner != Color.clear) {
-				outline.setColor (banner);
-				outline.enabled = true;
 			}
 		}
 	}
