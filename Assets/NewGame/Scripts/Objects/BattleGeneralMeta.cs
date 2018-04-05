@@ -63,6 +63,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 
 	public void toggleSelected(bool selected){
 		isSelected = selected;
+		isMoving = selected;
 	}
 
 	public void setBanner(Color banner){
