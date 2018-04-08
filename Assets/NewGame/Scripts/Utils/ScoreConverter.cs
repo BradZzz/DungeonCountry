@@ -82,7 +82,8 @@ public class ScoreConverter : DataStoreConverter {
 //			float abilityScore = pUnitMeta.abilities.Length * 1.2f < 1 ? 1 : pUnitMeta.abilities.Length * 1.2f;
 			float hpScore = pUnitMeta.getCharHp ();
 			float strengthScore = pUnitMeta.getICharStrength ();
-			float abilityScore = pUnitMeta.abilities.Length * 3.5f > 0 ? pUnitMeta.abilities.Length * 3.5f : 1;
+			//float abilityScore = pUnitMeta.abilities.Length * 3.5f > 0 ? pUnitMeta.abilities.Length * 3.5f : 1;
+			float abilityScore = 1;
 			score += (int) (pUnitMeta.getLives () * hpScore * strengthScore * abilityScore);
 		}
 		return score;

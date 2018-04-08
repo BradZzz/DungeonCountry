@@ -9,9 +9,12 @@ public class BattleGeneralAI {
 	private Stack<Transform> altObjectives;
 	private int decision;
 	private List<Point3> obstacles;
+	private int turn;
 
-	public BattleGeneralAI (GameObject ai) {
+	public BattleGeneralAI (GameObject ai, int turn) {
 		this.ai = ai;
+		this.turn = turn;
+		Debug.Log ("Turn: " + turn.ToString());
 	}
 
 	public Transform getObjective(){
@@ -107,6 +110,7 @@ public class BattleGeneralAI {
 		 */ 
 
 		int aiArmyScore = getArmyScore(ai.GetComponent<BattleGeneralMeta>());
+		Debug.Log ("Chosen General: " + aiMeta.name + " score: " + aiArmyScore.ToString());
 
 //		int playerArmyScore = getArmyScore(rivals [0].GetComponent<BattleGeneralMeta>());
 //		bool armyStronger = (aiArmyScore / 1.5) > playerArmyScore;
@@ -114,7 +118,8 @@ public class BattleGeneralAI {
 		List<Transform> weakRivals = new List<Transform> ();
 		foreach (Transform rival in rivals) {
 			int armyScore = getArmyScore(rival.GetComponent<BattleGeneralMeta>());
-			if ((aiArmyScore / 2.25) >= armyScore) {
+			if ((aiArmyScore / 2.75) >= armyScore && turn > 5) {
+				Debug.Log ("Weak Rival General: " + rival.GetComponent<BattleGeneralMeta>().name + " score: " + armyScore.ToString());
 				weakRivals.Add (rival);
 			}
 //			if (!rival.GetComponent<BattleGeneralMeta>().getPlayer()) {

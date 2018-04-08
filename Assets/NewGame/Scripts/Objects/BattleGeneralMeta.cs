@@ -310,6 +310,8 @@ public class BattleGeneralMeta : MonoBehaviour {
 	private BattleGeneralMeta returnVictor(BattleGeneralMeta genA, BattleGeneralMeta genB){
 		int scoreA = ScoreConverter.computeResults (genA.army);
 		int scoreB = ScoreConverter.computeResults (genB.army);
+		Debug.Log ("General: " + genA.name + " score: " + scoreA.ToString());
+		Debug.Log ("General: " + genB.name + " score: " + scoreB.ToString());
 		if (scoreA >= scoreB) {
 			genB.setDefeated (true);
 			genA.setArmy (pruneArmy(genA.getResources().getarmy(), scoreB));

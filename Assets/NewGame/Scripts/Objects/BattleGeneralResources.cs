@@ -5,7 +5,9 @@ using System.Collections.Generic;
 public class BattleGeneralResources : MonoBehaviour {
 
 	private Dictionary<string, int> resources;
+	[SerializeField]
 	private int instanceID;
+	[SerializeField]
 	private List<GameObject> army;
 	private GeneralAttributes attribs;
 	//private LevelUpMeta 
@@ -31,12 +33,12 @@ public class BattleGeneralResources : MonoBehaviour {
 
 	private void initRes(){
 		resources = new Dictionary<string, int> ();
-		resources.Add ("gold", 15000);
-		resources.Add ("ore", 20);
-		resources.Add ("wood", 20);
-		resources.Add ("ruby", 1);
-		resources.Add ("crystal", 1);
-		resources.Add ("sapphire", 1);
+		resources.Add ("gold", 1000);
+		resources.Add ("ore", 5);
+		resources.Add ("wood", 5);
+		resources.Add ("ruby", 0);
+		resources.Add ("crystal", 0);
+		resources.Add ("sapphire", 0);
 	}
 
 	public void clone(BattleGeneralResources clone){

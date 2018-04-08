@@ -14,6 +14,8 @@ public class AdventurePanel : MonoBehaviour {
 	private BattleGeneralMeta player;
 	private Image playerImg;
 	private BattleGeneralAI ai;
+	[SerializeField]
+	private int turn;
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +37,7 @@ public class AdventurePanel : MonoBehaviour {
 				Avatar = child.gameObject;
 			}
 		}
+		turn = 1;
 //		GameObject[] units = GameObject.FindGameObjectsWithTag("Unit");
 //		foreach (GameObject unit in units) {
 //			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
@@ -51,6 +54,7 @@ public class AdventurePanel : MonoBehaviour {
 		player = getSelectedPlayer ();
 		setPlayerAvatar (player.GetComponent<Image> ());
 		transform.Find ("FactionColorPanel").GetComponent<Image>().color = player.getBanner();
+		transform.Find ("FactionColorPanel").Find("Turn").GetComponent<Text>().text = turn.ToString();
 
 		List<GameObject> army = player.getArmy ();
 		for(int i = 0; i < 6; i++){
@@ -129,7 +133,7 @@ public class AdventurePanel : MonoBehaviour {
 				if (!bgm.getPlayer ()) {
 					// TODO: Move the camera to where the ai is for 2 seconds
 					// bgm.startTurn ();
-					ai = new BattleGeneralAI (unit);
+					ai = new BattleGeneralAI (unit, turn);
 //					BattleGeneralAI ai = new BattleGeneralAI (unit);
 					ai.moveGeneral (GameObject.Find ("Board").transform);
 					StartCoroutine (steps.generateMapv2 (unit.transform, new Point3 (unit.transform.position), new Point3 (ai.getObjective ().transform.position), agm.getRows (), agm.getColumns (), ai.getObstacles (), getPath));
@@ -167,6 +171,7 @@ public class AdventurePanel : MonoBehaviour {
 	}
 
 	private void startPlayerTurn(){
+		turn++;
 		foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
 			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
 			if (bgm != null) {
