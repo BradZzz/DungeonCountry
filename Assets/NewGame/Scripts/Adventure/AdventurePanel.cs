@@ -55,6 +55,7 @@ public class AdventurePanel : MonoBehaviour {
 		setPlayerAvatar (player.GetComponent<Image> ());
 		transform.Find ("FactionColorPanel").GetComponent<Image>().color = player.getBanner();
 		transform.Find ("TurnPanel").Find("Turn").GetComponent<Text>().text = turn.ToString();
+		transform.Find ("HeroPanel").Find("HeroToggle").Find("HeroCnt").GetComponent<Text>().text = getPlayersHeros().Count.ToString();
 
 		List<GameObject> army = player.getArmy ();
 		for(int i = 0; i < 6; i++){
