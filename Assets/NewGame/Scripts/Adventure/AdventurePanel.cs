@@ -142,6 +142,49 @@ public class AdventurePanel : MonoBehaviour {
 		}
 	}
 
+	private List<BattleGeneralMeta> getPlayersHeros(){
+		List<BattleGeneralMeta> pHeroes = new List<BattleGeneralMeta> ();
+		foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
+			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
+			if (bgm != null) {
+				if (bgm.getPlayer()) {
+					pHeroes.Add (bgm);
+				}
+			}
+		}
+		return pHeroes;
+	}
+
+	public void toggleSelectedPlayer(){
+		BattleGeneralMeta sel = getSelectedPlayer ();
+		List<BattleGeneralMeta> pHeroes = getPlayersHeros ();
+		int newSelected = 0;
+		if (pHeroes.Count > 1) {
+			int selId = sel.gameObject.GetInstanceID();
+			List<int> ids = new List<int>();
+			foreach(BattleGeneralMeta pHero in pHeroes){
+				ids.Add (pHero.gameObject.GetInstanceID());
+			}
+			if (ids.IndexOf (selId) != 0) {
+				newSelected = ids.IndexOf (selId) - 1;
+			} else {
+				newSelected = pHeroes.Count - 1;
+			}
+		}
+		sel.toggleSelected (false);
+		pHeroes [newSelected].toggleSelected (true);
+
+		Debug.Log ("Toggle Off: " + sel.gameObject.GetInstanceID());
+		Debug.Log ("Toggle On: " + pHeroes [newSelected].gameObject.GetInstanceID());
+
+
+//		Debug.Log (sel.gameObject.GetInstanceID());
+//		foreach(BattleGeneralMeta pher in pHeroes){
+//			Debug.Log (pher.gameObject.GetInstanceID());
+//		}
+//		Debug.Log ("Something here");
+	}
+
 	private BattleGeneralMeta getSelectedPlayer(){
 		BattleGeneralMeta holder = null;
 		foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {

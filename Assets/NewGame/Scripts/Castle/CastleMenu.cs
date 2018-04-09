@@ -187,11 +187,11 @@ public class CastleMenu : MonoBehaviour {
 	}
 
 	public void onClickBuyTavernHero(){
-		if (genMeta.getResources ().getResource("gold") >= 5000) {
+		if (genMeta.getResources ().getResource("gold") >= 1000) {
 			Debug.Log ("Currently Selected Hero: " + tavernSelected);
 			BattleGeneralMeta tHero = tavernRoster [tavernSelected - 1].GetComponent<BattleGeneralMeta>();
 			onClickBuyTavernPos (tHero, genMeta.getBanner(), glossary.findFaction(tHero.faction));
-			genMeta.getResources ().useResource ("gold",5000);
+			genMeta.getResources ().useResource ("gold",1000);
 			onToggleModal(false);
 			CastlePrefs.dirty = true;
 		}

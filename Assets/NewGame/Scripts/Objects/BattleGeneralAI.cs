@@ -113,9 +113,6 @@ public class BattleGeneralAI {
 		int aiArmyScore = getArmyScore(ai.GetComponent<BattleGeneralMeta>());
 		Debug.Log ("Chosen General: " + aiMeta.name + " score: " + aiArmyScore.ToString());
 
-//		int playerArmyScore = getArmyScore(rivals [0].GetComponent<BattleGeneralMeta>());
-//		bool armyStronger = (aiArmyScore / 1.5) > playerArmyScore;
-
 		List<Transform> weakRivals = new List<Transform> ();
 		foreach (Transform rival in rivals) {
 			int armyScore = getArmyScore(rival.GetComponent<BattleGeneralMeta>());
@@ -125,9 +122,6 @@ public class BattleGeneralAI {
 				Debug.Log ("Weak Rival General: " + rival.GetComponent<BattleGeneralMeta>().name + " score: " + armyScore.ToString());
 				weakRivals.Add (rival);
 			}
-//			if (!rival.GetComponent<BattleGeneralMeta>().getPlayer()) {
-//				weakRivals.Add (rival);
-//			}
 		}
 		bool needResources = checkResources (ai.GetComponent<BattleGeneralMeta> ());
 		int choice = 1;
