@@ -62,7 +62,8 @@ public class BattleGeneralAI {
 		foreach (Transform child in board) {
 			if (child.tag.Equals("Unit") && child.gameObject.activeInHierarchy) {
 				BattleGeneralMeta unit = child.GetComponent<BattleGeneralMeta> ();
-				if (unit != null && child.position.x != ai.transform.position.x && child.position.y != ai.transform.position.y) {
+				bool notSamePos = child.position.x != ai.transform.position.x && child.position.y != ai.transform.position.y;
+				if (unit != null && notSamePos) {
 //					rivals.Add (child.transform);
 //					obstacles.Add (new Point3 (child.transform.position));
 					if (unit.getPlayer () || !unit.faction.Equals("Neutral")) {
@@ -118,7 +119,9 @@ public class BattleGeneralAI {
 		List<Transform> weakRivals = new List<Transform> ();
 		foreach (Transform rival in rivals) {
 			int armyScore = getArmyScore(rival.GetComponent<BattleGeneralMeta>());
-			if ((aiArmyScore / 2.75) >= armyScore && turn > 5) {
+			Color thisBanner = ai.GetComponent<BattleGeneralMeta> ().getBanner ();
+			Color rivalBanner = rival.GetComponent<BattleGeneralMeta> ().getBanner ();
+			if ((aiArmyScore / 2.75) >= armyScore && turn > 5 && !rival.GetComponent<BattleGeneralMeta>().faction.Equals("Neutral") && thisBanner != rivalBanner) {
 				Debug.Log ("Weak Rival General: " + rival.GetComponent<BattleGeneralMeta>().name + " score: " + armyScore.ToString());
 				weakRivals.Add (rival);
 			}

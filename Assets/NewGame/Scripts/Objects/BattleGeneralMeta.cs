@@ -392,21 +392,23 @@ public class BattleGeneralMeta : MonoBehaviour {
 				Debug.Log ("Attacking!" + other.name);
 				GameObject board = GameObject.Find ("Board");
 				BattleGeneralMeta gen = other.GetComponent<BattleGeneralMeta> ();
-				if (gen != null && gen.getPlayer() && faction.Equals("Neutral")) {
-					BattleConverter.putSave (gen, this, board.transform);
-					BattleConverter.putPrevScene ("AdventureScene");
-					Coroutines.toggleVisibilityTransform(board.transform,false);
-					if (cam != null) {
-						cam.GetComponent<AdventureLoader>().adventureGameManager.gameObject.SetActive (false);
-					}
-					SceneManager.LoadScene ("BattleScene");
-				} else if (gen != null && !gen.getPlayer()) {
-					BattleGeneralMeta victor = returnVictor (this, gen);
-					BattleConverter.putSave (gen, this, board.transform);
-					BattleConverter.putPrevScene ("AdventureScene");
+				if (gen.getBanner() != getBanner()) {
+					if (gen != null && gen.getPlayer() && faction.Equals("Neutral")) {
+						BattleConverter.putSave (gen, this, board.transform);
+						BattleConverter.putPrevScene ("AdventureScene");
+						Coroutines.toggleVisibilityTransform(board.transform,false);
+						if (cam != null) {
+							cam.GetComponent<AdventureLoader>().adventureGameManager.gameObject.SetActive (false);
+						}
+						SceneManager.LoadScene ("BattleScene");
+					} else if (gen != null && !gen.getPlayer()) {
+						BattleGeneralMeta victor = returnVictor (this, gen);
+						BattleConverter.putSave (gen, this, board.transform);
+						BattleConverter.putPrevScene ("AdventureScene");
 
-					// Reload adventure scene so that the blood shows up for the defeated player
-					SceneManager.LoadScene ("AdventureScene");
+						// Reload adventure scene so that the blood shows up for the defeated player
+						SceneManager.LoadScene ("AdventureScene");
+					}
 				}
 			} else if (other.tag.Equals ("Entrance")) {
 				Debug.Log ("Entering: " + other.name);
@@ -426,6 +428,19 @@ public class BattleGeneralMeta : MonoBehaviour {
 						Glossary glossy = glossary.GetComponent<Glossary> ();
 						//While ai still has money. buy the most expensive unit ai can afford
 						Debug.Log ("Buying Shit");
+						List<BattleGeneralMeta> gens = new List<BattleGeneralMeta> ();
+						if (getResources().getResource("gold") >= 5000) {
+							foreach (GameObject general in glossy.generals) {
+								BattleGeneralMeta gen = general.GetComponent<BattleGeneralMeta> ();
+								if (gen.faction.Equals(castle.affiliation.name)) {
+									gens.Add (gen);
+								}
+							}
+							Coroutines.ShuffleArray (gens);
+							CastleMenu.onClickBuyTavernPos(gens[0], banner, glossy.findFaction(gens[0].faction));
+							getResources ().useResource ("gold", 5000);
+							Debug.Log ("Bought Hero");
+						}
 						foreach(GameObject faction in glossy.factions){
 							AffiliationMeta meta = faction.GetComponent<AffiliationMeta> ();
 							if (meta.name.Equals(castle.affiliation.name)) {
@@ -483,6 +498,10 @@ public class BattleGeneralMeta : MonoBehaviour {
 							}
 						}
 						Debug.Log ("Bought Shit");
+						GameObject board = GameObject.Find ("Board");
+						CastleConverter.putSave (this, board.transform);
+						BattleConverter.putPrevScene ("AdventureScene");
+						SceneManager.LoadScene ("AdventureScene");
 					} 
 				}
 			} else if (other.tag.Equals ("Resource")) {

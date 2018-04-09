@@ -19,6 +19,7 @@ public class CastleMenu : MonoBehaviour {
 	private GameObject tavernHire = null;
 	private GameObject tavernPanelDesc = null;
 	private GameObject tavernNxtPanelDesc = null;
+	private GameObject heroTavernModal = null;
 	private GameObject[] tavernRoster = new GameObject[6];
 	private int tavernSelected = -1;
 
@@ -63,6 +64,10 @@ public class CastleMenu : MonoBehaviour {
 		}
 		if (unitPPurchase == null) {
 			unitPPurchase = imageP.transform.Find ("UnitPanelPurchase").gameObject; 
+		}
+		if (heroTavernModal == null) {
+			heroTavernModal = imageP.transform.Find ("HeroTavernModal").gameObject; 
+			heroTavernModal.SetActive (false);
 		}
 		if (dMeta == null) {
 			dMeta = CastlePrefs.getCastleMeta ();
@@ -177,18 +182,28 @@ public class CastleMenu : MonoBehaviour {
 		}
 	}
 
-	public void onClickBuyTavernHero(){
-		Debug.Log ("Currently Selected Hero: " + tavernSelected);
-		//Remove resources from player
+	public void onToggleModal(bool on){
+		heroTavernModal.SetActive (on);
+	}
 
+	public void onClickBuyTavernHero(){
+		if (genMeta.getResources ().getResource("gold") >= 5000) {
+			Debug.Log ("Currently Selected Hero: " + tavernSelected);
+			BattleGeneralMeta tHero = tavernRoster [tavernSelected - 1].GetComponent<BattleGeneralMeta>();
+			onClickBuyTavernPos (tHero, genMeta.getBanner(), glossary.findFaction(tHero.faction));
+			genMeta.getResources ().useResource ("gold",5000);
+			onToggleModal(false);
+			CastlePrefs.dirty = true;
+		}
+	}
+
+	public static void onClickBuyTavernPos(BattleGeneralMeta tHero, Color banner, AffiliationMeta affmet){
 		//Make sure the hero is marked player and the hero's banner matches the player's banner
-		BattleGeneralMeta tHero = tavernRoster [tavernSelected - 1].GetComponent<BattleGeneralMeta>();
-		tHero.setBanner (genMeta.getBanner());
+		tHero.setBanner (banner);
 		tHero.setPlayer (true);
 		tHero.init ();
 
 		List<GameObject> newUnits = new List<GameObject> ();
-		AffiliationMeta affmet = glossary.findFaction(tHero.faction);
 		foreach (GameObject unit in affmet.units) {
 			BattleMeta gmeta = unit.GetComponent<BattleMeta> ();
 			if (gmeta.lvl < 3) {
@@ -209,19 +224,8 @@ public class CastleMenu : MonoBehaviour {
 			}
 		}
 		tHero.getResources ().init (0,newUnits);
-
-
 		//If the player has enough resources, purchase hero and add it to the queue
 		CastleConverter.putTavernGeneral(new BattleGeneralMeta[]{tHero});
-
-
-//		GameObject clicked = tavernRoster [pos - 1];
-//		if (clicked != null) {
-//			BattleGeneralMeta bgm = clicked.GetComponent<BattleGeneralMeta> ();
-//			tavernPanelDesc.GetComponent<Text>().text = bgm.name;
-//			tavernNxtPanelDesc.GetComponent<Text>().text = bgm.description;
-//			tavernSelected = pos;
-//		}
 	}
 
 	public void onLeaveTavern(){
