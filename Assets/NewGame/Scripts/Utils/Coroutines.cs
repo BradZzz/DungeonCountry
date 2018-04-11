@@ -217,9 +217,11 @@ namespace AssemblyCSharp
 		{
 			foreach (Transform child in parent) {
 				child.GetComponent<SpriteRenderer> ().enabled = shown;
+				//child.GetComponent<SpriteRenderer> ().enabled = shown;
 				//child.GetComponent<BoxCollider2D> ().enabled = shown;
 				//child.GetComponent<Collider2D> ().enabled = shown;
 			}
+			parent.gameObject.SetActive(shown);
 		}
 	}
 }

@@ -64,6 +64,11 @@ public class BattleMeta : MonoBehaviour {
 		init ();
 	}
 
+//	void Start()
+//	{
+//		init ();
+//	}
+
 	public void init() {
 		//Debug.Log ("init");
 		currentHP = hp;

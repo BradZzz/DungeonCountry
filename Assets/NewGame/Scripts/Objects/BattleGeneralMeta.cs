@@ -392,7 +392,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 				Debug.Log ("Attacking!" + other.name);
 				GameObject board = GameObject.Find ("Board");
 				BattleGeneralMeta gen = other.GetComponent<BattleGeneralMeta> ();
-				if (gen.getBanner() != getBanner()) {
+				if (gen != null && gen.getBanner() != getBanner()) {
 					if (gen != null && gen.getPlayer() && faction.Equals("Neutral")) {
 						BattleConverter.putSave (gen, this, board.transform);
 						BattleConverter.putPrevScene ("AdventureScene");

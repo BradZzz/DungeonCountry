@@ -14,6 +14,8 @@ public class AdventurePanel : MonoBehaviour {
 	private BattleGeneralMeta player;
 	private Image playerImg;
 	private BattleGeneralAI ai;
+	private int newSelected;
+
 	[SerializeField]
 	private int turn;
 
@@ -38,6 +40,7 @@ public class AdventurePanel : MonoBehaviour {
 			}
 		}
 		turn = 1;
+		newSelected = 0;
 //		GameObject[] units = GameObject.FindGameObjectsWithTag("Unit");
 //		foreach (GameObject unit in units) {
 //			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
@@ -159,19 +162,29 @@ public class AdventurePanel : MonoBehaviour {
 	public void toggleSelectedPlayer(){
 		BattleGeneralMeta sel = getSelectedPlayer ();
 		List<BattleGeneralMeta> pHeroes = getPlayersHeros ();
-		int newSelected = 0;
+//		int newSelected = 0;
 		if (pHeroes.Count > 1) {
-			int selId = sel.gameObject.GetInstanceID();
-			List<int> ids = new List<int>();
-			foreach(BattleGeneralMeta pHero in pHeroes){
-				ids.Add (pHero.gameObject.GetInstanceID());
-			}
-			if (ids.IndexOf (selId) != 0) {
-				newSelected = ids.IndexOf (selId) - 1;
+			if (newSelected + 1 == pHeroes.Count) {
+				newSelected = 0;
 			} else {
-				newSelected = pHeroes.Count - 1;
+				newSelected += 1;
 			}
 		}
+
+
+//		if (pHeroes.Count > 1) {
+//			int selId = sel.gameObject.GetInstanceID();
+//			List<int> ids = new List<int>();
+//			foreach(BattleGeneralMeta pHero in pHeroes){
+//				ids.Add (pHero.gameObject.GetInstanceID());
+//			}
+//			if (ids.IndexOf (selId) != 0) {
+//				newSelected = ids.IndexOf (selId) - 1;
+//			} else {
+//				newSelected = pHeroes.Count - 1;
+//			}
+//		}
+
 		sel.toggleSelected (false);
 		pHeroes [newSelected].toggleSelected (true);
 
