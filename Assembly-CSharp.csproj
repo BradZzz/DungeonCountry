@@ -66,6 +66,7 @@
      <Compile Include="Assets\NewGame\Scripts\Adventure\AdventurePanel.cs" />
      <Compile Include="Assets\NewGame\Scripts\Adventure\AdventureScenery.cs" />
      <Compile Include="Assets\NewGame\Scripts\Adventure\AdventureWorldCreator.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Adventure\GameOverScreen.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleActions.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleAI.cs" />
      <Compile Include="Assets\NewGame\Scripts\Battle\BattleAIUnit.cs" />

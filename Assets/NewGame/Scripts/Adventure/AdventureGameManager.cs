@@ -72,6 +72,6 @@ public class AdventureGameManager : MonoBehaviour {
 	public void returnToMenu()
 	{
 		Destroy (gameObject);
-		Application.LoadLevel ("MainMenu");
+		Application.LoadLevel ("GameEndScene");
 	}
 }

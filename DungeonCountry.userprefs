@@ -1,10 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/NewGame/Scripts/Adventure/AdventurePanel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/NewGame/Scripts/Adventure/AdventureGameManager.cs">
     <Files>
-      <File FileName="Assets/NewGame/Scripts/Adventure/AdventurePanel.cs" Line="167" Column="26" />
+      <File FileName="Assets/NewGame/Scripts/Adventure/GameOverScreen.cs" Line="9" Column="28" />
       <File FileName="Assets/NewGame/Scripts/Objects/BattleGeneralMeta.cs" Line="1" Column="1" />
-      <File FileName="Assets/NewGame/Scripts/Adventure/AdventureBoardManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/NewGame/Scripts/Adventure/AdventureBoardManager.cs" Line="208" Column="9" />
+      <File FileName="Assets/NewGame/Scripts/Adventure/AdventureGameManager.cs" Line="76" Column="3" />
+      <File FileName="Assets/NewGame/Scripts/Adventure/AdventurePanel.cs" Line="1" Column="1" />
+      <File FileName="Assets/NewGame/Scripts/Objects/BattleMeta.cs" Line="1" Column="1" />
+      <File FileName="Assets/NewGame/Scripts/Battle/BattleBoardManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/NewGame/Scripts/Castle/CastleConverter.cs" Line="1" Column="1" />
+      <File FileName="Assets/NewGame/Scripts/Utils/Coroutines.cs" Line="1" Column="1" />
+      <File FileName="Assets/NewGame/Scripts/Adventure/AdventureLoader.cs" Line="1" Column="1" />
+      <File FileName="Assets/NewGame/Scripts/MainMenu/MainMenuStart.cs" Line="31" Column="35" />
+      <File FileName="Assets/NewGame/Scripts/Adventure/AdventureWorldCreator.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

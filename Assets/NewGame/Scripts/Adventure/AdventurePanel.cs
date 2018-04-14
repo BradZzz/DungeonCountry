@@ -55,50 +55,52 @@ public class AdventurePanel : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		player = getSelectedPlayer ();
-		setPlayerAvatar (player.GetComponent<Image> ());
-		transform.Find ("FactionColorPanel").GetComponent<Image>().color = player.getBanner();
-		transform.Find ("TurnPanel").Find("Turn").GetComponent<Text>().text = turn.ToString();
-		transform.Find ("HeroPanel").Find("HeroToggle").Find("HeroCnt").GetComponent<Text>().text = getPlayersHeros().Count.ToString();
+		if (player != null) {
+			setPlayerAvatar (player.GetComponent<Image> ());
+			transform.Find ("FactionColorPanel").GetComponent<Image>().color = player.getBanner();
+			transform.Find ("TurnPanel").Find("Turn").GetComponent<Text>().text = turn.ToString();
+			transform.Find ("HeroPanel").Find("HeroToggle").Find("HeroCnt").GetComponent<Text>().text = getPlayersHeros().Count.ToString();
 
-		List<GameObject> army = player.getArmy ();
-		for(int i = 0; i < 6; i++){
-			if (i < army.Count) {
-				BattleMeta arm = army [i].GetComponent<BattleMeta> ();
-				SpriteRenderer armyspr = army [i].GetComponent<SpriteRenderer> ();
-				GameObject panel = ArmyPanel.transform.Find ("Image_0" + (i + 1)).gameObject;
-				panel.SetActive (true);
-				GameObject image = panel.transform.Find ("ImageUnit").gameObject;
-				Image spr = image.GetComponent<Image> ();
-				spr.sprite = armyspr.sprite;
-				GameObject textPnl = panel.transform.Find ("Qty").gameObject;
-				GameObject text = textPnl.transform.Find ("QtyTxt").gameObject;
-				Text tm = text.GetComponent<Text> ();
-				tm.text = arm.getLives ().ToString ();
-			} else {
-				GameObject panel = ArmyPanel.transform.Find ("Image_0" + (i + 1)).gameObject;
-				panel.SetActive (false);
+			List<GameObject> army = player.getArmy ();
+			for(int i = 0; i < 6; i++){
+				if (i < army.Count) {
+					BattleMeta arm = army [i].GetComponent<BattleMeta> ();
+					SpriteRenderer armyspr = army [i].GetComponent<SpriteRenderer> ();
+					GameObject panel = ArmyPanel.transform.Find ("Image_0" + (i + 1)).gameObject;
+					panel.SetActive (true);
+					GameObject image = panel.transform.Find ("ImageUnit").gameObject;
+					Image spr = image.GetComponent<Image> ();
+					spr.sprite = armyspr.sprite;
+					GameObject textPnl = panel.transform.Find ("Qty").gameObject;
+					GameObject text = textPnl.transform.Find ("QtyTxt").gameObject;
+					Text tm = text.GetComponent<Text> ();
+					tm.text = arm.getLives ().ToString ();
+				} else {
+					GameObject panel = ArmyPanel.transform.Find ("Image_0" + (i + 1)).gameObject;
+					panel.SetActive (false);
+				}
 			}
+
+			addResource ("Image_01", "gold");
+			addResource ("Image_02", "ore");
+			addResource ("Image_03", "wood");
+			addResource ("Image_04", "ruby");
+			addResource ("Image_05", "sapphire");
+			addResource ("Image_06", "crystal");
+
+			//Attack
+			addGeneralAtt ("Image_01", player.getAttribute(BattleGeneralMeta.AttributeList.attack).ToString());
+			//Magic
+			addGeneralAtt ("Image_02", player.getAttribute(BattleGeneralMeta.AttributeList.magic).ToString());
+			//Movement
+			addGeneralAtt ("Image_03",  "<color='#ff0000ff'>" + player.getAttribute(BattleGeneralMeta.AttributeList.currMovement) + "</color> (<color='#008000ff'>" + player.getAttribute(BattleGeneralMeta.AttributeList.movement) + "</color>)");
+			//Defense
+			addGeneralAtt ("Image_04", player.getAttribute(BattleGeneralMeta.AttributeList.defense).ToString());
+			//Tactics
+			addGeneralAtt ("Image_05", player.getAttribute(BattleGeneralMeta.AttributeList.tactics).ToString());
+			//Level
+			addGeneralAtt ("Image_06", player.getAttribute(BattleGeneralMeta.AttributeList.level).ToString());
 		}
-
-		addResource ("Image_01", "gold");
-		addResource ("Image_02", "ore");
-		addResource ("Image_03", "wood");
-		addResource ("Image_04", "ruby");
-		addResource ("Image_05", "sapphire");
-		addResource ("Image_06", "crystal");
-
-		//Attack
-		addGeneralAtt ("Image_01", player.getAttribute(BattleGeneralMeta.AttributeList.attack).ToString());
-		//Magic
-		addGeneralAtt ("Image_02", player.getAttribute(BattleGeneralMeta.AttributeList.magic).ToString());
-		//Movement
-		addGeneralAtt ("Image_03",  "<color='#ff0000ff'>" + player.getAttribute(BattleGeneralMeta.AttributeList.currMovement) + "</color> (<color='#008000ff'>" + player.getAttribute(BattleGeneralMeta.AttributeList.movement) + "</color>)");
-		//Defense
-		addGeneralAtt ("Image_04", player.getAttribute(BattleGeneralMeta.AttributeList.defense).ToString());
-		//Tactics
-		addGeneralAtt ("Image_05", player.getAttribute(BattleGeneralMeta.AttributeList.tactics).ToString());
-		//Level
-		addGeneralAtt ("Image_06", player.getAttribute(BattleGeneralMeta.AttributeList.level).ToString());
 	}
 
 	public List<GameObject> getAI(){

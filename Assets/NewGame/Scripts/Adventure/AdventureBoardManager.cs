@@ -92,8 +92,8 @@ public class AdventureBoardManager : MonoBehaviour {
 	private Point3[] getEmptySpaces(Point3 startPt, int spcNeeded){
 		string strtPt = (new Point3 (startPt.x, startPt.y, 0)).ToString ();
 		Point3[] spcs = new Point3[spcNeeded];
-		int cnt = 0;
-		int spread = 1;
+		//int cnt = 0;
+		//int spread = 1;
 		//gameManager.getColumns (), gameManager.getRows ()
 		List<string> obs = new List<string>();
 		foreach(Point3 ob in getObstacles ()){
@@ -122,6 +122,26 @@ public class AdventureBoardManager : MonoBehaviour {
 			idx++;
 		}
 		return spcs;
+	}
+
+	private bool allEnemiesDead(){
+		foreach(GameObject unity in GameObject.FindGameObjectsWithTag("Unit")){
+			BattleGeneralMeta meta = unity.GetComponent<BattleGeneralMeta> ();
+			if (meta != null && !meta.getPlayer() && unity.activeInHierarchy && !meta.faction.Equals("Neutral")) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private bool allPlayersDead(){
+		foreach(GameObject unity in GameObject.FindGameObjectsWithTag("Unit")){
+			BattleGeneralMeta meta = unity.GetComponent<BattleGeneralMeta> ();
+			if (meta != null && meta.getPlayer() && unity.activeInHierarchy && !meta.faction.Equals("Neutral")) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	private void formatObjects(bool init){
@@ -275,6 +295,19 @@ public class AdventureBoardManager : MonoBehaviour {
 		}
 		BattleConverter.reset ();
 		CastleConverter.reset ();
+
+		bool enemies = allEnemiesDead ();
+		bool playerseeze = allPlayersDead ();
+
+		//Check to make sure there is at least one enemy hero
+		if (enemies || playerseeze) {
+			Debug.Log ("All enemies or players dead. Returning...");
+			Destroy(boardHolder.gameObject);
+			foreach (GameObject ent in GameObject.FindGameObjectsWithTag ("Entrance")) {
+				Destroy(ent);
+			}
+			gameManager.returnToMenu ();
+		}
 	}
 
 	public void setupScene (AdventureGameManager gameManager)
