@@ -7,14 +7,17 @@ using UnityEngine.SceneManagement;
 public class CastleMenu : MonoBehaviour {
 	private Glossary glossary = null;
 	private BattleGeneralResources bgMeta = null;
+	private BattleGeneralResources castleResources = null;
 	private CastleMeta cMeta = null;
 
 	private GameObject imageP = null;
 	private GameObject unitPMarket = null;
 	private GameObject unitPPurchase = null;
+	private GameObject unitModal = null;
 
 	private GameObject townSelection = null;
 	private GameObject upgradePurchase = null;
+	private GameObject militiaPanel = null;
 
 	private GameObject tavernHire = null;
 	private GameObject tavernPanelDesc = null;
@@ -26,6 +29,7 @@ public class CastleMenu : MonoBehaviour {
 	private CastleMeta dMeta = null;
 	private BattleGeneralResources gMeta = null;
 	private BattleGeneralMeta genMeta = null;
+	private int unitSelected = 1;
 	GameObject purchaseUnit = null;
 
 	private BattleGeneralMeta getGeneral(GameObject glossary){
@@ -37,9 +41,10 @@ public class CastleMenu : MonoBehaviour {
 		return genMeta;
 	}
 
-	public void initVars(GameObject glossary, BattleGeneralResources bgMeta, CastleMeta cMeta){
+	public void initVars(GameObject glossary, BattleGeneralResources castleResources, CastleMeta cMeta){
 		this.glossary = glossary.GetComponent<Glossary>();
-		this.bgMeta = bgMeta;
+		//this.bgMeta = bgMeta;
+		this.castleResources = castleResources;
 		this.cMeta = cMeta;
 
 		if (imageP ==  null){
@@ -69,12 +74,24 @@ public class CastleMenu : MonoBehaviour {
 			heroTavernModal = imageP.transform.Find ("HeroTavernModal").gameObject; 
 			heroTavernModal.SetActive (false);
 		}
+		if (militiaPanel == null) {
+			militiaPanel = imageP.transform.Find ("MilitiaPanel").gameObject; 
+			militiaPanel.SetActive (false);
+		}
+		if (unitModal == null) {
+			unitModal = imageP.transform.Find ("UnitSelectionModal").gameObject; 
+			unitModal.SetActive (false);
+		}
 		if (dMeta == null) {
 			dMeta = CastlePrefs.getCastleMeta ();
 		}
 		if (genMeta == null) {
 			genMeta = getGeneral(glossary);
 		}
+	}
+
+	public void refresh() {
+		refreshMilitia ();
 	}
 
 	public void onPurchaseBuy(){
@@ -111,11 +128,20 @@ public class CastleMenu : MonoBehaviour {
 		unitPPurchase.SetActive(false);
 	}
 
-	public void onCloseAll(){
-		unitPPurchase.SetActive(false);
-		unitPMarket.SetActive(false);
+	private void onCloseAll(){
+		onCloseTown();
+		onCloseMarket();
+	}
+
+	private void onCloseTown(){
 		onLeaveTavern ();
 		onLeaveUpgrades ();
+		onLeaveMilitia ();
+	}
+
+	private void onCloseMarket(){
+		unitPPurchase.SetActive(false);
+		unitPMarket.SetActive(false);
 	}
 
 	public void openPurchaseView(int unit){
@@ -125,6 +151,7 @@ public class CastleMenu : MonoBehaviour {
 
 	public void onClickUnitToggle(){
 		townSelection.SetActive (false);
+		onCloseTown();
 		unitPMarket.SetActive(!unitPMarket.activeSelf);
 		if (!unitPMarket.activeSelf) {
 			onCloseAll ();
@@ -133,6 +160,7 @@ public class CastleMenu : MonoBehaviour {
 
 	public void onClickTownToggle(){
 		unitPMarket.SetActive (false);
+		onCloseMarket();
 		townSelection.SetActive(!townSelection.activeSelf);
 		if (!townSelection.activeSelf) {
 			onCloseAll ();
@@ -240,6 +268,56 @@ public class CastleMenu : MonoBehaviour {
 		upgradePurchase.SetActive(false);
 	}
 		
+	public void onEnterMiltia(){
+		militiaPanel.SetActive(true);
+		refreshMilitia ();
+	}
+
+	public void refreshMilitia(){
+		for (int i = 0; i < 6; i++) {
+			string rw_id = "Rw" + (i + 1).ToString ();
+			GameObject rw = militiaPanel.transform.Find (rw_id).gameObject; 
+			if (i < castleResources.getarmy ().Count) {
+				rw.SetActive (true);
+				GameObject img = rw.transform.Find ("Unit").gameObject; 
+				GameObject name = rw.transform.Find ("NameTxt").gameObject; 
+				GameObject quantity = rw.transform.Find ("QntyTxt").gameObject; 
+				GameObject health = rw.transform.Find ("HealthTxt").gameObject; 
+				GameObject attack = rw.transform.Find ("AttackTxt").gameObject; 
+				GameObject range = rw.transform.Find ("RangeTxt").gameObject; 
+				GameObject action = rw.transform.Find ("ActionTxt").gameObject; 
+
+				img.GetComponent<Image>().sprite = castleResources.getarmy () [i].GetComponent<SpriteRenderer> ().sprite;
+
+				BattleMeta bm = castleResources.getarmy () [i].GetComponent<BattleMeta> ();
+				name.GetComponent<Text>().text = bm.name;
+				quantity.GetComponent<Text>().text = bm.getLives().ToString();
+				health.GetComponent<Text>().text = bm.getCharHp().ToString();
+				attack.GetComponent<Text>().text = bm.attack.ToString();
+				range.GetComponent<Text>().text = bm.range.ToString();
+				action.GetComponent<Text>().text = bm.movement.ToString();
+			} else {
+				rw.SetActive (false);
+			}
+		}
+	}
+
+	public void onLeaveMilitia(){
+		militiaPanel.SetActive(false);
+	}
+
+	public void onUnitToggleModal(bool on){
+		unitModal.SetActive (on);
+		CastlePrefs.toDelete = -1;
+		CastlePrefs.dirty = true;
+	}
+
+	public void onClickModal(int unit){
+		onUnitToggleModal (true);
+		unitSelected = unit;
+		Debug.Log ("Click Modal");
+	}
+
 	/*
 	 * End toggle code
 	 */ 
@@ -249,7 +327,43 @@ public class CastleMenu : MonoBehaviour {
 		SceneManager.LoadScene ("AdventureScene");
 	}
 
-	public void onClickRemove(int unit){
+	public void onClickMilitiaAdd(){
+		int unit = unitSelected;
+		if (castleResources != null && castleResources.getarmy().Count < 6) {
+			List<GameObject> army = genMeta.getResources().getarmy (); 
+			GameObject unitArmy = army[unit - 1];
+			BattleMeta uMeta = unitArmy.GetComponent<BattleMeta>();
+			if (uMeta.getLives () > 0) {
+				castleResources.addUnit (unitArmy, uMeta.getLives ());
+				army.RemoveAt(unit - 1);
+				genMeta.setArmy (army);
+				onUnitToggleModal (false);
+			}
+		}
+	}
+
+	public void onPlayerArmyAdd(int selected){
+		int unit = selected;
+		if (castleResources != null && castleResources.getarmy().Count > 0 
+			&& castleResources.getarmy().Count > unit && genMeta.getResources().getarmy ().Count < 6) {
+			List<GameObject> army = castleResources.getarmy (); 
+			GameObject unitArmy = army[unit];
+			BattleMeta uMeta = unitArmy.GetComponent<BattleMeta>();
+			if (uMeta.getLives () > 0) {
+//				List<GameObject> p_army = genMeta.getResources().getarmy ();
+//				p_army.Add (unitArmy);
+//				genMeta.setArmy (p_army);
+				genMeta.addUnit(unitArmy, uMeta.getLives());
+
+				army.RemoveAt(unit);
+				castleResources.setarmy (army);
+				CastlePrefs.dirty = true;
+			}
+		}
+	}
+
+	public void onClickRemove(){
+		int unit = unitSelected;
 		if (CastlePrefs.toDelete == unit && genMeta.getResources().getarmy ().Count > 1) {
 			// Remove here
 			Debug.Log("Removing here: " + unit);
@@ -257,6 +371,7 @@ public class CastleMenu : MonoBehaviour {
 			List<GameObject> army = genMeta.getResources().getarmy (); 
 			army.RemoveAt(unit - 1);
 			genMeta.setArmy (army);
+			onUnitToggleModal (false);
 		} else {
 			CastlePrefs.toDelete = unit;
 		}

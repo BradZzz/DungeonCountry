@@ -9,6 +9,8 @@ public class CastleLoader : MonoBehaviour {
 
 	private Glossary glossy;
 	private BattleGeneralResources btlRes;
+	private BattleGeneralResources castleResources;
+	private CastleMenu menuHolder = null;
 
 	// Use this for initialization
 	void Start () {
@@ -19,16 +21,20 @@ public class CastleLoader : MonoBehaviour {
 		glossy = glossary.GetComponent<Glossary> ();
 		GameObject gObj = CastleConverter.getSave (glossy);
 		btlRes = gObj.GetComponent<BattleGeneralMeta> ().getResources();
+		castleResources = GetComponent<BattleGeneralResources> ();
 
 		init (btlRes, CastlePrefs.getCastleMeta (), true);
-		CastleMenu menuHolder = castleBtn.GetComponent<CastleMenu>();
-		menuHolder.initVars (glossary, btlRes, CastlePrefs.getCastleMeta ());
+		menuHolder = castleBtn.GetComponent<CastleMenu>();
+		menuHolder.initVars (glossary, castleResources, CastlePrefs.getCastleMeta ());
 	}
 
 	void Update(){
 		if (CastlePrefs.dirty) {
 			CastlePrefs.dirty = false;
 			init (btlRes, CastlePrefs.getCastleMeta (), false);
+			if (menuHolder != null) {
+				menuHolder.refresh ();
+			}
 		}
 	}
 
@@ -139,7 +145,5 @@ public class CastleLoader : MonoBehaviour {
 		rubyText.gameObject.GetComponent<Text> ().text = gMeta.getResource ("ruby").ToString();
 		Transform crystalText = resourceP.transform.Find ("CrystalText"); 
 		crystalText.gameObject.GetComponent<Text> ().text = gMeta.getResource ("crystal").ToString();
-
-
 	}
 }

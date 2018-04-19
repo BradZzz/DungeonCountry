@@ -11,7 +11,8 @@ using System;
  * Add a better check in each instance for enemy unit and player unit
  * 
  */
-using AssemblyCSharp; 
+using AssemblyCSharp;
+using UnityEngine.SceneManagement; 
 
 public class AdventureGameManager : MonoBehaviour {
 
@@ -59,7 +60,7 @@ public class AdventureGameManager : MonoBehaviour {
 
 	void Update()
 	{
-		if ( Input.GetMouseButtonDown (0)){ 
+		if ( Input.GetMouseButtonDown (0) && SceneManager.GetActiveScene ().name.Equals("AdventureScene")){ 
 			Debug.Log ("Click");
 			Vector2 ray = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
 			RaycastHit2D [] hit = Physics2D.RaycastAll(ray,Vector2.zero,Mathf.Infinity,Physics2D.DefaultRaycastLayers);

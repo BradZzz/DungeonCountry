@@ -333,6 +333,10 @@ public class BattleGeneralMeta : MonoBehaviour {
 		}
 	}
 
+	public void resetMoved(){
+		entranceUsed.Clear ();
+	}
+
 	//OnTriggerEnter2D is sent when another object enters a trigger collider attached to this object (2D physics only).
 	private void OnTriggerEnter2D (Collider2D other)
 	{
@@ -340,6 +344,9 @@ public class BattleGeneralMeta : MonoBehaviour {
 		if (getPlayer ()) {
 			if (other.tag == "Entrance" && !entranceUsed.Contains (other.GetInstanceID ())) {
 				Debug.Log ("Entrance!");
+			
+				Debug.Log ("Id: " + other.GetInstanceID ().ToString ());
+				entranceUsed.Add (other.GetInstanceID ());
 
 				SharedPrefs.setPlayerName (gameObject.name);
 				GameObject board = GameObject.Find ("Board");
@@ -357,7 +364,6 @@ public class BattleGeneralMeta : MonoBehaviour {
 						Debug.Log ("Dwelling description: " + dwell.description);
 						DwellingPrefs.setPlayerName (gameObject.name);
 						SceneManager.LoadScene ("DwellingScene");
-						entranceUsed.Add (other.GetInstanceID ());
 					}
 					CastleMeta castle = info.GetComponent<CastleMeta> ();
 					if (castle != null) {

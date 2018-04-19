@@ -543,6 +543,7 @@ public class AdventureBoardManager : MonoBehaviour {
 
 	IEnumerator step_path(Transform origin, List<Point3> path, float speed, bool battle)
 	{
+		origin.gameObject.GetComponent<BattleGeneralMeta> ().resetMoved ();
 		foreach(Point3 step in /*compilePath(*/path/*)*/){
 			yield return StartCoroutine( Coroutines.smooth_move(origin, step.asVector3(), speed));
 		}

@@ -261,6 +261,9 @@ public class BattleMeta : MonoBehaviour {
 
 	public void setLives(int lives){
 		this.lives = lives;
+		if (this.lives <= 0) {
+			gameObject.SetActive (false);
+		}
 	}
 
 	public void addLives(int lives){
