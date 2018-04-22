@@ -85,6 +85,8 @@ public class BattleGeneralMeta : MonoBehaviour {
 	private BattleGeneralResources getResource() {
 		if (resources == null) {
 			BattleGeneralResources bg = gameObject.GetComponent<BattleGeneralResources> ();
+			Debug.Log (name);
+			Debug.Log (tag);
 
 			//bg = gameObject.GetComponent<BattleGeneralResources> ();
 			bg.init (this.GetInstanceID (), army);
@@ -354,6 +356,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 
 				EntranceMeta eMeta = other.gameObject.GetComponent<EntranceMeta> ();
 				if (eMeta != null) {
+					eMeta.saveEntranceResources ();
 					Debug.Log ("Dwelling name: " + eMeta.name);
 
 					GameObject info = eMeta.entranceInfo;
@@ -371,7 +374,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 						turnOffCastleGUI ();
 						Debug.Log ("Castle name: " + castle.name);
 						CastlePrefs.setCastleInfo (resources, castle, this.gameObject.GetInstanceID ());
-						CastleConverter.putSave (this, board.transform);
+						CastleConverter.putSave (this, board.transform, eMeta.getID());
 						SceneManager.LoadScene ("CastleScene");
 					}
 				} else {
@@ -390,6 +393,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 				}
 			} else {
 				Debug.Log ("Found: " + other.tag);
+				Debug.Log ("Name: " + other.name);
 			}
 		} else if (isMoving) {
 			// Do the ai version of whatever interactions we need here
@@ -505,10 +509,10 @@ public class BattleGeneralMeta : MonoBehaviour {
 						}
 						Debug.Log ("Bought Shit");
 						GameObject board = GameObject.Find ("Board");
-						CastleConverter.putSave (this, board.transform);
+						CastleConverter.putSave (this, board.transform, eMeta.getID());
 						BattleConverter.putPrevScene ("AdventureScene");
 						SceneManager.LoadScene ("AdventureScene");
-					} 
+					}
 				}
 			} else if (other.tag.Equals ("Resource")) {
 				ResourceMeta rMeta = other.gameObject.GetComponent<ResourceMeta> ();

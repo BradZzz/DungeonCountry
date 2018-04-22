@@ -101,38 +101,105 @@ public class DataStoreConverter : MonoBehaviour {
 		Debug.Log ("update: " + json);
 	}
 
+	public static bool checkKey(string key){
+		string newInfo = PlayerPrefs.GetString (key);
+		return newInfo.Length != 0;
+	}
+
+	public static void putKey(string data, string key){
+//		string newInfo = PlayerPrefs.GetString (key);
+//		return newInfo.Length != 0;
+//		JsonUtility.ToJson (rpSrz);
+		PlayerPrefs.SetString (key, data);
+	}
+
+	public static string getKey(string key){
+		return PlayerPrefs.GetString (key);
+	}
+
+	public static void resetKey(string key){
+		PlayerPrefs.SetString (key, "");
+	}
+
+//	public static void serializeResources(BattleGeneralResources resources, string key){
+//		BattleSerializeableResource[] res = new BattleSerializeableResource[resources.getResources().Count];
+//		int cnt = 0;
+//		foreach(KeyValuePair<string,int> resStat in resources.getResources())
+//		{
+//			res [cnt] = new BattleSerializeableResource ();
+//			res [cnt].resource = resStat.Key;
+//			res [cnt].qty = resStat.Value;
+//			cnt++;
+//		}
+//		string json = JsonHelper.ToJson(res);
+//		PlayerPrefs.SetString (key + "-res", json);
+//
+//		BattleSerializeableArmy[] army = new BattleSerializeableArmy[resources.getarmy().Count];
+//		cnt = 0;
+//		foreach(KeyValuePair<string,int> unitStat in resources.getarmy())
+//		{
+//			army [cnt] = new BattleSerializeableArmy ();
+//			army [cnt].name = resStat.Key;
+//			army [cnt].qty = resStat.Value;
+//			cnt++;
+//		}
+//		json = JsonHelper.ToJson(res);
+//		PlayerPrefs.SetString (key + "-army", json);
+//	}
+//
+//	public static BattleGeneralResources deSerializeResources(BattleGeneralResources bg_res, string key){
+//		string newInfo = PlayerPrefs.GetString (key + "-res");
+//		BattleSerializeableResource[] resources = JsonHelper.FromJson<BattleSerializeableResource> (newInfo);
+//		Dictionary<string,int> resMap = new Dictionary<string,int> ();
+//		foreach (BattleSerializeableResource res in resources) {
+//			resMap.Add (res.resource,res.qty);
+//		}
+//		bg_res.setResources (resMap);
+//
+//		newInfo = PlayerPrefs.GetString (key + "-res");
+//		BattleSerializeableArmy[] army = JsonHelper.FromJson<BattleSerializeableArmy> (newInfo);
+//		Dictionary<string,int> unitMap = new Dictionary<string,int> ();
+//		foreach (BattleSerializeableArmy unit in army) {
+//			unitMap.Add (res.resource,res.qty);
+//		}
+//		bg_res.setResources (resMap);
+//	}
+
 	public static GameObject deserializeGeneral(BattleSerializeable battle, Glossary glossary){
 		GameObject general = null;
 		BattleGeneralMeta GenMeta = null;
 		//AffiliationMeta GenAff = null; 
 
 		BattleSerializeable btl = battle;
-		general = glossary.findGeneralGO (btl.name);
-		GenMeta = general.GetComponent<BattleGeneralMeta>();
-		GenMeta.init ();
-		BattleSerializeableStats thisStats = JsonUtility.FromJson<BattleSerializeableStats>(btl.stats);
-		GenMeta.setPlayer (thisStats.isPlayer);
+		if (btl != null) {
+			general = glossary.findGeneralGO (btl.name);
+			GenMeta = general.GetComponent<BattleGeneralMeta>();
+			GenMeta.init ();
+			BattleSerializeableStats thisStats = JsonUtility.FromJson<BattleSerializeableStats>(btl.stats);
+			GenMeta.setPlayer (thisStats.isPlayer);
 
-		BattleSerializeableResource[] resources = JsonHelper.FromJson<BattleSerializeableResource> (btl.resources);
-		Dictionary<string,int> resMap = new Dictionary<string,int> ();
-		foreach (BattleSerializeableResource res in resources) {
-			resMap.Add (res.resource,res.qty);
+			BattleSerializeableResource[] resources = JsonHelper.FromJson<BattleSerializeableResource> (btl.resources);
+			Dictionary<string,int> resMap = new Dictionary<string,int> ();
+			foreach (BattleSerializeableResource res in resources) {
+				resMap.Add (res.resource,res.qty);
+			}
+			GenMeta.setResources (resMap);
+
+			List<GameObject> newUnits = new List<GameObject> ();
+			BattleSerializeableArmy[] army = JsonHelper.FromJson<BattleSerializeableArmy> (btl.army);
+			foreach (BattleSerializeableArmy arm in army) {
+				GameObject unit = glossary.findUnit (arm.name.Replace("(Clone)",""));
+				GameObject instance = Instantiate (unit) as GameObject;
+				instance.SetActive (false);
+				BattleMeta bMet = instance.GetComponent<BattleMeta> ();
+				bMet.setLives (arm.qty);
+				newUnits.Add (instance);
+			}
+			GenMeta.setArmy (newUnits);
+
+			return general;
 		}
-		GenMeta.setResources (resMap);
-
-		List<GameObject> newUnits = new List<GameObject> ();
-		BattleSerializeableArmy[] army = JsonHelper.FromJson<BattleSerializeableArmy> (btl.army);
-		foreach (BattleSerializeableArmy arm in army) {
-			GameObject unit = glossary.findUnit (arm.name.Replace("(Clone)",""));
-			GameObject instance = Instantiate (unit) as GameObject;
-			instance.SetActive (false);
-			BattleMeta bMet = instance.GetComponent<BattleMeta> ();
-			bMet.setLives (arm.qty);
-			newUnits.Add (instance);
-		}
-		GenMeta.setArmy (newUnits);
-
-		return general;
+		return null;
 	}
 
 	public static BattleSerializeable serializeGeneral(BattleGeneralMeta general){

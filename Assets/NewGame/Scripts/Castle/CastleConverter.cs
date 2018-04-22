@@ -65,7 +65,7 @@ public class CastleConverter : DataStoreConverter {
 	}
 
 
-	public static void putSave(BattleGeneralMeta player, Transform board){
+	public static void putSave(BattleGeneralMeta player, Transform board, string res_id){
 		if (board != null) {
 			processBoard(board);
 		}
@@ -78,17 +78,39 @@ public class CastleConverter : DataStoreConverter {
 
 		string json = JsonUtility.ToJson(battle);
 		PlayerPrefs.SetString ("castle", json);
+		PlayerPrefs.SetString ("castle_res", res_id);
 
 		Debug.Log("before: " + json);
+	}
+
+	public static void saveEntrance(string id, BattleGeneralMeta castleGeneral){
+		BattleSerializeable bGen = DataStoreConverter.serializeGeneral (castleGeneral);
+		DataStoreConverter.putKey (JsonUtility.ToJson (bGen), id);
+	}
+
+	public static BattleGeneralMeta getEntrance(string id, Glossary glossy){
+		string gen = DataStoreConverter.getKey (id);
+		if (gen.Length > 0) {
+			BattleSerializeable b_gen = JsonUtility.FromJson<BattleSerializeable> (gen);
+			DataStoreConverter.resetKey (id);
+			GameObject general = DataStoreConverter.deserializeGeneral (b_gen, glossy);
+			return general.GetComponent<BattleGeneralMeta> ();
+		}
+		return null;
 	}
 
 	public static void reset(){
 		PlayerPrefs.SetString ("castle", "");
 		PlayerPrefs.SetString ("tavern", "");
+		PlayerPrefs.SetString ("castle_res", "");
 	}
 
 	public static bool hasData(){
 		return PlayerPrefs.GetString ("castle").Length > 0;
+	}
+
+	public static string getRawPref(string key){
+		return PlayerPrefs.GetString (key);
 	}
 
 	public static GameObject getSave(Glossary glossary){

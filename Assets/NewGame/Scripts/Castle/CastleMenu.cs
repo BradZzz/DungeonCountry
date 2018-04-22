@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class CastleMenu : MonoBehaviour {
 	private Glossary glossary = null;
-	private BattleGeneralResources bgMeta = null;
+	//private BattleGeneralResources bgMeta = null;
 	private BattleGeneralResources castleResources = null;
 	private CastleMeta cMeta = null;
 
@@ -29,7 +29,9 @@ public class CastleMenu : MonoBehaviour {
 	private CastleMeta dMeta = null;
 	private BattleGeneralResources gMeta = null;
 	private BattleGeneralMeta genMeta = null;
+	private BattleGeneralMeta castleGenMeta = null;
 	private int unitSelected = 1;
+	private string res_id = "";
 	GameObject purchaseUnit = null;
 
 	private BattleGeneralMeta getGeneral(GameObject glossary){
@@ -41,11 +43,15 @@ public class CastleMenu : MonoBehaviour {
 		return genMeta;
 	}
 
-	public void initVars(GameObject glossary, BattleGeneralResources castleResources, CastleMeta cMeta){
+	public void initVars(GameObject glossary, BattleGeneralMeta castleGenMeta, CastleMeta cMeta, string res_id){
 		this.glossary = glossary.GetComponent<Glossary>();
-		//this.bgMeta = bgMeta;
-		this.castleResources = castleResources;
+
+		// This is the castles general that acts as the holder for the miltia
+		this.castleGenMeta = castleGenMeta;
+		this.castleResources = castleGenMeta.getResources();
+
 		this.cMeta = cMeta;
+		this.res_id = res_id;
 
 		if (imageP ==  null){
 			imageP = GameObject.Find ("ImagePanel");
@@ -323,7 +329,8 @@ public class CastleMenu : MonoBehaviour {
 	 */ 
 
 	public void onClickAccept(){
-		CastleConverter.putSave (genMeta, null);
+		CastleConverter.putSave (genMeta, null, CastleConverter.getRawPref ("castle_res"));
+		CastleConverter.saveEntrance (res_id, castleGenMeta);
 		SceneManager.LoadScene ("AdventureScene");
 	}
 

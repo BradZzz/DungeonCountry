@@ -9,6 +9,11 @@ public class EntranceMeta : MonoBehaviour {
 	public Sprite image;
 	Color thisFlag = Color.clear;
 	bool flagVisible = true;
+	public GameObject glossary;
+
+	//These are the resources belonging to the castle on top of this entrance
+	private BattleGeneralMeta castleGeneral = null;
+	private Glossary glossy;
 
 	public void hideFlag(){
 		flagVisible = false;
@@ -28,6 +33,8 @@ public class EntranceMeta : MonoBehaviour {
 
 	void Awake() {
 		DontDestroyOnLoad(this.gameObject);
+		castleGeneral = GetComponent<BattleGeneralMeta> ();
+		glossy = glossary.GetComponent<Glossary> ();
 	}
 
 	public void addComponent(Component component){
@@ -45,6 +52,13 @@ public class EntranceMeta : MonoBehaviour {
 //		}
 	}
 
+	public void saveEntranceResources(){
+//		BattleSerializeable bGen = DataStoreConverter.serializeGeneral (castleGeneral);
+//		DataStoreConverter.putKey (JsonUtility.ToJson (bGen), getID());
+		Debug.Log("Entrance Saving: " + getID ());
+		CastleConverter.saveEntrance (getID (), castleGeneral);
+	}
+
 	private static Texture2D _staticRectTexture;
 	private static GUIStyle _staticRectStyle;
 
@@ -52,6 +66,21 @@ public class EntranceMeta : MonoBehaviour {
 	private static GUIStyle _staticHealthStyle;
 
 	private int yOffset = -30;
+
+	void LateUpdate () {
+		if(DataStoreConverter.checkKey(getID ())){
+			BattleGeneralMeta bgm = CastleConverter.getEntrance (getID (), glossy);
+			if (bgm != null) {
+				castleGeneral = bgm;
+			} else {
+				castleGeneral = GetComponent<BattleGeneralMeta> ();
+			}
+		}
+	}
+
+	public string getID(){
+		return GetInstanceID ().ToString () + "-castle";
+	}
 
 	private void OnGUI() {
 		if (thisFlag != Color.clear) {
