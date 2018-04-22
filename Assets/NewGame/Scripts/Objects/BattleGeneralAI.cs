@@ -128,7 +128,7 @@ public class BattleGeneralAI {
 
 		if (weakRivals.Count > 0 || aiMeta.faction.Equals("Neutral")) {
 			Debug.Log ("Decision: Attack Player");
-			if (aiMeta.faction.Equals("Neutral")) {
+			if (aiMeta.faction.Equals("Neutral") && turn > 5) {
 				potentialObjectives = rivals;
 			} else {
 				potentialObjectives = weakRivals;

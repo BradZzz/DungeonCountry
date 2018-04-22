@@ -262,7 +262,8 @@ public class BattleMeta : MonoBehaviour {
 	public void setLives(int lives){
 		this.lives = lives;
 		if (this.lives <= 0) {
-			gameObject.SetActive (false);
+//			gameObject.SetActive (false);
+			StartCoroutine (slowDeath ());
 		}
 	}
 
@@ -439,7 +440,7 @@ public class BattleMeta : MonoBehaviour {
 			if (getLives() < 1){
 				setLives (0);
 				currentHP = 0;
-				StartCoroutine (slowDeath ());
+//				StartCoroutine (slowDeath ());
 			}
 		}
 	}
@@ -497,7 +498,9 @@ public class BattleMeta : MonoBehaviour {
 			if (getLives() < 1){
 				setLives (0);
 				currentHP = 0;
-				StartCoroutine (slowDeath ());
+				if (isActiveAndEnabled) {
+					StartCoroutine (slowDeath ());
+				}
 				return false;
 			}
 		}
