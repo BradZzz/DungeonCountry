@@ -11,10 +11,12 @@ public class BattleGeneralAI {
 	private List<Point3> obstacles;
 	private int turn;
 
+	public List<Point3> units;
+
 	public BattleGeneralAI (GameObject ai, int turn) {
 		this.ai = ai;
 		this.turn = turn;
-		Debug.Log ("Turn: " + turn.ToString());
+		//Debug.Log ("Turn: " + turn.ToString());
 	}
 
 	public Transform getObjective(){
@@ -58,19 +60,27 @@ public class BattleGeneralAI {
 		List<Transform> rivals = new List<Transform> ();
 
 		obstacles = new List<Point3> ();
+		units = new List<Point3> ();
+
+		Debug.Log ("This: " + ai.name + " at: " + ai.transform.position.ToString());
 
 		foreach (Transform child in board) {
 			if (child.tag.Equals("Unit") && child.gameObject.activeInHierarchy) {
+				Debug.Log ("Checking: " + child.name + " at: " + child.position.ToString ());
+//				Debug.Log("ai id: " + ai.gameObject.GetInstanceID().ToString() + " trans id: " + child.gameObject.GetInstanceID());
 				BattleGeneralMeta unit = child.GetComponent<BattleGeneralMeta> ();
-				bool notSamePos = child.position.x != ai.transform.position.x && child.position.y != ai.transform.position.y;
-				if (unit != null && notSamePos) {
+				bool notObj = child.gameObject.GetInstanceID() != ai.gameObject.GetInstanceID();
+				if (unit != null && notObj) {
+					//Debug.Log ("Unit: " + child.name);
 //					rivals.Add (child.transform);
 //					obstacles.Add (new Point3 (child.transform.position));
 					if (unit.getPlayer () || !unit.faction.Equals("Neutral")) {
 						rivals.Add (child.transform);
 						obstacles.Add (new Point3 (child.transform.position));
+						units.Add (new Point3 (child.transform.position));
 					} else {
 						obstacles.Add (new Point3 (child.transform.position));
+						units.Add (new Point3 (child.transform.position));
 					}
 				}
 			}
@@ -84,7 +94,7 @@ public class BattleGeneralAI {
 					GameObject info = eMeta.entranceInfo;
 					CastleMeta castle = info.GetComponent<CastleMeta> ();
 					if (castle != null && !checkUnitOn(rivals, new Point3(child.position))) {
-						Debug.Log("Castle at: " + child.transform.position.ToString());
+						//Debug.Log("Castle at: " + child.transform.position.ToString());
 						castles.Add (child.transform);
 						obstacles.Add (new Point3 (child.transform.position));
 					}
@@ -127,7 +137,9 @@ public class BattleGeneralAI {
 		int choice = 1;
 
 		if (weakRivals.Count > 0 || aiMeta.faction.Equals("Neutral")) {
-			Debug.Log ("Decision: Attack Player");
+			if (!aiMeta.faction.Equals("Neutral")) {
+				Debug.Log ("Decision: Attack Player");
+			}
 			if (aiMeta.faction.Equals("Neutral") && turn > 5) {
 				potentialObjectives = rivals;
 			} else {

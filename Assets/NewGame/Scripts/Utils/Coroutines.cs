@@ -132,7 +132,7 @@ namespace AssemblyCSharp
 
 		public static GameObject findUnitParent(Point3 child){
 			foreach (GameObject children in GameObject.FindGameObjectsWithTag("Unit")) {
-				Debug.Log ("Unit: " + children.name + " Position: " + children.transform.position.ToString());
+				//Debug.Log ("Unit: " + children.name + " Position: " + children.transform.position.ToString());
 				if (child.Equals(children.transform.position)) {
 					return children;
 				}

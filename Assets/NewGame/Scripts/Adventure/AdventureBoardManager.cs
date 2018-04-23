@@ -421,8 +421,8 @@ public class AdventureBoardManager : MonoBehaviour {
 
 	public void clicked(Point3 click){
 		if (SceneManager.GetActiveScene ().name.Equals("AdventureScene")){
-			Debug.Log ("Clicked: " + click.ToString());
-			Debug.Log("LastClicked: " + lastClicked);
+			//Debug.Log ("Clicked: " + click.ToString());
+			//Debug.Log("LastClicked: " + lastClicked);
 			if (lastClicked == null) {
 				Debug.Log ("New Click");
 				foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
@@ -481,7 +481,7 @@ public class AdventureBoardManager : MonoBehaviour {
 		//Check to make sure the last step isn't an enemy here
 		int prevTotal = path.Count;
 		Point3 edge  = path [path.Count - 1];
-		Debug.Log ("Searching for: " + edge.ToString());
+		//Debug.Log ("Searching for: " + edge.ToString());
 		bool attacking = false;
 		GameObject enemy = Coroutines.findUnitParent (edge);
 		BattleGeneralMeta player = lastClicked.gameObject.GetComponent<BattleGeneralMeta> ();

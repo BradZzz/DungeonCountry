@@ -142,6 +142,13 @@ public class AdventurePanel : MonoBehaviour {
 					ai = new BattleGeneralAI (unit, turn);
 //					BattleGeneralAI ai = new BattleGeneralAI (unit);
 					ai.moveGeneral (GameObject.Find ("Board").transform);
+
+					List<Point3> obs = ai.getObstacles ();
+					List<Point3> units = ai.units;
+					foreach (Point3 un in units) {
+						Debug.Log ("AI units: " + un.ToString());
+					}
+
 					StartCoroutine (steps.generateMapv2 (unit.transform, new Point3 (unit.transform.position), new Point3 (ai.getObjective ().transform.position), agm.getRows (), agm.getColumns (), ai.getObstacles (), getPath));
 				}
 			}
@@ -277,7 +284,7 @@ public class AdventurePanel : MonoBehaviour {
 	}
 
 	private void getPath(Transform ai, List<Point3> path, Point3 destination){
-		Debug.Log ("Get Path");
+		//Debug.Log ("Get Path");
 		StartCoroutine (step_path (ai, path, destination, .5f));
 	}
 
@@ -330,6 +337,9 @@ public class AdventurePanel : MonoBehaviour {
 		} else {
 			Transform newObjective = ai.getAltObjective ();
 			if (newObjective != null && !aiMeta.faction.Equals("Neutral")) {
+				List<Point3> obs = ai.getObstacles ();
+				List<Point3> units = ai.units;
+
 				StartCoroutine (steps.generateMapv2 (aiObj, new Point3 (aiObj.position), 
 					new Point3 (newObjective.position), agm.getRows (), agm.getColumns (), ai.getObstacles (), getPath));
 			} else {

@@ -85,8 +85,8 @@ public class BattleGeneralMeta : MonoBehaviour {
 	private BattleGeneralResources getResource() {
 		if (resources == null) {
 			BattleGeneralResources bg = gameObject.GetComponent<BattleGeneralResources> ();
-			Debug.Log (name);
-			Debug.Log (tag);
+//			Debug.Log (name);
+//			Debug.Log (tag);
 
 			//bg = gameObject.GetComponent<BattleGeneralResources> ();
 			bg.init (this.GetInstanceID (), army);
@@ -397,9 +397,11 @@ public class BattleGeneralMeta : MonoBehaviour {
 			}
 		} else if (isMoving) {
 			// Do the ai version of whatever interactions we need here
-			Debug.Log ("AI Name: " + gameObject.name);
+			//Debug.Log ("AI Name: " + gameObject.name);
 			if (other.tag.Equals ("Unit")) {
 				Debug.Log ("Attacking!" + other.name);
+				Debug.Log ("Pos This: " + transform.position.ToString());
+				Debug.Log ("Pos Other: " + other.transform.position.ToString());
 				GameObject board = GameObject.Find ("Board");
 				BattleGeneralMeta gen = other.GetComponent<BattleGeneralMeta> ();
 				if (gen != null && gen.getBanner() != getBanner()) {
@@ -490,13 +492,13 @@ public class BattleGeneralMeta : MonoBehaviour {
 										sortedMeta.Add (bm.lvl, recruit);
 									}
 								}
-								Debug.Log (sortedMeta.Keys.ToString());
-								Debug.Log (sortedMeta.Values.ToString());
-								foreach (KeyValuePair<int, GameObject> kvp in sortedMeta)
-								{
-									//textBox3.Text += ("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
-									Debug.Log("Key =" + kvp.Key + " Value = " + kvp.Value.name);
-								}
+//								Debug.Log (sortedMeta.Keys.ToString());
+//								Debug.Log (sortedMeta.Values.ToString());
+//								foreach (KeyValuePair<int, GameObject> kvp in sortedMeta)
+//								{
+//									//textBox3.Text += ("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+//									Debug.Log("Key =" + kvp.Key + " Value = " + kvp.Value.name);
+//								}
 								for (int i = sortedMeta.Count; i > 0; i--) {
 									Dictionary<string, int> cost = sortedMeta[i].GetComponent<BattleMeta> ().getResourcesAsDict ();
 									// Buy as many as you can afford
@@ -520,7 +522,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 					addResource (rMeta.getName (), rMeta.getValue ());
 					other.gameObject.SetActive (false);
 				}
-				Debug.Log ("Picked up resource");
+				//Debug.Log ("Picked up resource");
 			}
 		}
 	}
