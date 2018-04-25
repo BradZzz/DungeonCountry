@@ -121,7 +121,8 @@ public class CastleConverter : DataStoreConverter {
 		}
 		BattleSerializeable thisBattle = JsonUtility.FromJson<BattleSerializeable>(newInfo);
 		if (thisBattle != null) {
-			return deserializeGeneral (thisBattle, glossary);
+			GameObject general = deserializeGeneral (thisBattle, glossary);
+			return general;
 		}
 		return null;
 	}

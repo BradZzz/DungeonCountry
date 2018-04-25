@@ -30,25 +30,26 @@ public class CastleMenu : MonoBehaviour {
 	private BattleGeneralResources gMeta = null;
 	private BattleGeneralMeta genMeta = null;
 	private BattleGeneralMeta castleGenMeta = null;
+	private CastleLoader cLoader = null;
 	private int unitSelected = 1;
 	private string res_id = "";
 	GameObject purchaseUnit = null;
 
 	private BattleGeneralMeta getGeneral(GameObject glossary){
 		if (gMeta == null) {
-			Glossary glossy = glossary.GetComponent<Glossary> ();
-			GameObject gObj = CastleConverter.getSave (glossy);
-			genMeta = gObj.GetComponent<BattleGeneralMeta> ();
+			genMeta = cLoader.getBGM ();
+			gMeta = cLoader.getBGM ().getResources();
 		}
 		return genMeta;
 	}
 
-	public void initVars(GameObject glossary, BattleGeneralMeta castleGenMeta, CastleMeta cMeta, string res_id){
+	public void initVars(CastleLoader cLoader, GameObject glossary, BattleGeneralMeta castleGenMeta, CastleMeta cMeta, string res_id){
 		this.glossary = glossary.GetComponent<Glossary>();
 
 		// This is the castles general that acts as the holder for the miltia
 		this.castleGenMeta = castleGenMeta;
 		this.castleResources = castleGenMeta.getResources();
+		this.cLoader = cLoader;
 
 		this.cMeta = cMeta;
 		this.res_id = res_id;
@@ -329,8 +330,12 @@ public class CastleMenu : MonoBehaviour {
 	 */ 
 
 	public void onClickAccept(){
-		CastleConverter.putSave (genMeta, null, CastleConverter.getRawPref ("castle_res"));
-		CastleConverter.saveEntrance (res_id, castleGenMeta);
+		if (genMeta.getArmy().Count > 0) {
+			CastleConverter.putSave (genMeta, null, CastleConverter.getRawPref ("castle_res"));
+			CastleConverter.saveEntrance (res_id, castleGenMeta);
+		} else {
+			Debug.Log("Error");
+		}
 		SceneManager.LoadScene ("AdventureScene");
 	}
 

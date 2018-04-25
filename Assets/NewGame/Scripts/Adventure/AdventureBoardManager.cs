@@ -124,6 +124,44 @@ public class AdventureBoardManager : MonoBehaviour {
 		return spcs;
 	}
 
+	private void addUnitResources(BattleGeneralMeta meta){
+		int lvl = meta.level;
+
+		meta.addResource ("gold", 10 * lvl);
+		meta.addResource ("ore", 1 * lvl);
+		meta.addResource ("wood", 1 * lvl);
+		meta.addResource ("ruby", (int) Mathf.Floor(lvl / 5));
+		meta.addResource ("crystal", (int) Mathf.Floor(lvl / 5));
+		meta.addResource ("sapphire", (int) Mathf.Floor(lvl / 5));
+	}
+
+	private void printResources(BattleGeneralMeta meta){
+		BattleGeneralResources bgr = meta.getResources ();
+
+		Debug.Log ("Resources for: " + meta.name);
+
+		Debug.Log ("Gold: " + bgr.getResource("gold"));
+		Debug.Log ("Ore: " + bgr.getResource("ore"));
+		Debug.Log ("Wood: " + bgr.getResource("wood"));
+		Debug.Log ("Ruby: " + bgr.getResource("ruby"));
+		Debug.Log ("Crystal: " + bgr.getResource("crystal"));
+		Debug.Log ("Sapphire: " + bgr.getResource("sapphire"));
+	}
+
+	private void addNewTurnResources(){
+		foreach(GameObject unity in GameObject.FindGameObjectsWithTag("Unit")){
+			BattleGeneralMeta meta = unity.GetComponent<BattleGeneralMeta> ();
+			if (meta != null && unity.activeInHierarchy && !meta.faction.Equals("Neutral")) {
+				Debug.Log ("<===== Before =====>");
+				printResources(meta);
+				addUnitResources(meta);
+				Debug.Log ("<===== After =====>");
+				printResources(meta);
+				Debug.Log ("End");
+			}
+		}
+	}
+
 	private bool allEnemiesDead(){
 		foreach(GameObject unity in GameObject.FindGameObjectsWithTag("Unit")){
 			BattleGeneralMeta meta = unity.GetComponent<BattleGeneralMeta> ();
@@ -145,6 +183,9 @@ public class AdventureBoardManager : MonoBehaviour {
 	}
 
 	private void formatObjects(bool init){
+
+		// add resources to acivate players at the beginning of the turn
+//		addNewTurnResources ();
 
 		GameObject[] savedGenerals = new GameObject[0];
 
@@ -253,15 +294,15 @@ public class AdventureBoardManager : MonoBehaviour {
 								bMet.setPlayer (false);
 								if (meta.faction.Equals ("Neutral")) {
 									switch(bMet.lvl){
-//										case 1:
-//											bMet.setLives (Random.Range (80, 100));
-//											break;
-//										case 2:
-//											bMet.setLives (Random.Range (60, 80));
-//											break;
-//										case 3:
-//											bMet.setLives (Random.Range (40, 60));
-//											break;
+										case 1:
+											bMet.setLives (Random.Range (80, 100));
+											break;
+										case 2:
+											bMet.setLives (Random.Range (60, 80));
+											break;
+										case 3:
+											bMet.setLives (Random.Range (40, 60));
+											break;
 										default:
 											bMet.setLives (Random.Range (5, 10));
 											break;

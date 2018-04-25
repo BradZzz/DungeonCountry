@@ -71,23 +71,23 @@ public class BattleGeneralResources : MonoBehaviour {
 	}
 
 	public int setResources(string name, int quantity){
-//		if (resources == null) {
-//			initRes ();
-//		}
+		if (resources == null) {
+			initRes ();
+		}
 		return resources[name] += quantity;
 	}
 
 	public int getResource(string name){
-//		if (resources == null) {
-//			initRes ();
-//		}
+		if (resources == null) {
+			initRes ();
+		}
 		return resources[name];
 	}
 
 	public Dictionary<string, int> getResources(){
-//		if (resources == null) {
-//			initRes ();
-//		}
+		if (resources == null) {
+			initRes ();
+		}
 		return resources;
 	}
 

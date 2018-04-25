@@ -193,6 +193,7 @@ public class DataStoreConverter : MonoBehaviour {
 				instance.SetActive (false);
 				BattleMeta bMet = instance.GetComponent<BattleMeta> ();
 				bMet.setLives (arm.qty);
+
 				newUnits.Add (instance);
 			}
 			GenMeta.setArmy (newUnits);
