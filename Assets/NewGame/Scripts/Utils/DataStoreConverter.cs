@@ -117,10 +117,7 @@ public class DataStoreConverter : MonoBehaviour {
 		return newInfo.Length != 0;
 	}
 
-	public static void putKey(string data, string key){
-//		string newInfo = PlayerPrefs.GetString (key);
-//		return newInfo.Length != 0;
-//		JsonUtility.ToJson (rpSrz);
+	public static void putKey(string key, string data){
 		PlayerPrefs.SetString (key, data);
 	}
 

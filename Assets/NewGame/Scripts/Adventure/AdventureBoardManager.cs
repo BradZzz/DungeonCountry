@@ -260,6 +260,9 @@ public class AdventureBoardManager : MonoBehaviour {
 			DataStoreConverter.reset ("BoardSave");
 			BattleConverter.reset ();
 			CastleConverter.reset ();
+
+			DataStoreConverter.putKey ("turn", "1");
+			DataStoreConverter.putKey ("last_turn", "0");
 		}
 
 		//if (sharedPrefs || init) {

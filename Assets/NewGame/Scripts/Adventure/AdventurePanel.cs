@@ -15,9 +15,21 @@ public class AdventurePanel : MonoBehaviour {
 	private Image playerImg;
 	private BattleGeneralAI ai;
 	private int newSelected;
+	private GameObject eventPanel;
+	private GameObject eventText;
 
-	[SerializeField]
-	private int turn;
+//	[SerializeField]
+//	private int turn = 1;
+	//private int lastTurn = -1;
+
+	void Awake() {
+		eventPanel = GameObject.Find ("EventPanel");
+		eventText = GameObject.Find ("EventText");
+
+		eventPanel.SetActive (false);
+
+//		StartCoroutine (DisplayWait ("Start Turn: " + DataStoreConverter.getKey ("turn")));
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -39,17 +51,13 @@ public class AdventurePanel : MonoBehaviour {
 				Avatar = child.gameObject;
 			}
 		}
-		turn = 1;
 		newSelected = 0;
-//		GameObject[] units = GameObject.FindGameObjectsWithTag("Unit");
-//		foreach (GameObject unit in units) {
-//			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
-//			if (bgm != null && bgm.getPlayer ()) {
-//				player = bgm;
-//				playerImg = unit.GetComponent<Image> ();
-//				transform.Find ("FactionColorPanel").GetComponent<Image>().color = bgm.getBanner();
-//			}
-//		}
+//
+//		eventPanel = GameObject.Find ("EventPanel");
+//		eventText = GameObject.Find ("EventText");
+//
+//		turn = 1;
+		StartCoroutine (DisplayWait ("Turn: " + DataStoreConverter.getKey ("turn")));
 	}
 	
 	// Update is called once per frame
@@ -58,7 +66,7 @@ public class AdventurePanel : MonoBehaviour {
 		if (player != null) {
 			setPlayerAvatar (player.GetComponent<Image> ());
 			transform.Find ("FactionColorPanel").GetComponent<Image>().color = player.getBanner();
-			transform.Find ("TurnPanel").Find("Turn").GetComponent<Text>().text = turn.ToString();
+			transform.Find ("TurnPanel").Find("Turn").GetComponent<Text>().text = DataStoreConverter.getKey("turn");
 			transform.Find ("HeroPanel").Find("HeroToggle").Find("HeroCnt").GetComponent<Text>().text = getPlayersHeros().Count.ToString();
 
 			List<GameObject> army = player.getArmy ();
@@ -143,11 +151,11 @@ public class AdventurePanel : MonoBehaviour {
 				if (!bgm.getPlayer ()) {
 					// TODO: Move the camera to where the ai is for 2 seconds
 					// bgm.startTurn ();
-					ai = new BattleGeneralAI (unit, turn);
+					ai = new BattleGeneralAI (unit, int.Parse(DataStoreConverter.getKey("turn")));
 //					BattleGeneralAI ai = new BattleGeneralAI (unit);
 					ai.moveGeneral (GameObject.Find ("Board").transform);
 
-					List<Point3> obs = ai.getObstacles ();
+					//List<Point3> obs = ai.getObstacles ();
 					List<Point3> units = ai.units;
 					foreach (Point3 un in units) {
 						Debug.Log ("AI units: " + un.ToString());
@@ -241,7 +249,10 @@ public class AdventurePanel : MonoBehaviour {
 	}
 
 	private void startPlayerTurn(){
+		int turn = int.Parse (DataStoreConverter.getKey ("turn"));
 		turn++;
+		DataStoreConverter.putKey("turn",turn.ToString());
+		StartCoroutine(DisplayWait("Turn: " + turn.ToString()));
 		foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
 			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
 			if (bgm != null) {
@@ -314,6 +325,17 @@ public class AdventurePanel : MonoBehaviour {
 			}
 		}
 		return null;
+	}
+
+	IEnumerator DisplayWait(string msg)
+	{
+		if (!DataStoreConverter.getKey ("turn").Equals(DataStoreConverter.getKey ("last_turn"))) {
+			DataStoreConverter.putKey ("last_turn", DataStoreConverter.getKey ("turn"));
+			eventText.GetComponent<Text> ().text = msg;
+			eventPanel.SetActive (true);
+			yield return new WaitForSeconds (2);
+			eventPanel.SetActive (false);
+		}
 	}
 
 	IEnumerator step_path(Transform aiObj, List<Point3> step_path, Point3 destination, float speed)
