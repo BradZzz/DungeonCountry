@@ -40,6 +40,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 	private bool defeated;
 	private Camera cam = null;
 	private SpriteOutline outline = null;
+	private EntranceMeta eMeta;
 
 	void Awake() {
 		//DontDestroyOnLoad(this.gameObject);
@@ -449,6 +450,14 @@ public class BattleGeneralMeta : MonoBehaviour {
 //		}
 //	}
 
+	public void refreshLastEntrance(BattleGeneralMeta unit){
+		if (eMeta != null) {
+			GameObject glossary = GameObject.Find ("Glossary");
+			Glossary glossy = glossary.GetComponent<Glossary> ();
+			eMeta.setGeneral (unit);
+		}
+	}
+
 	//OnTriggerEnter2D is sent when another object enters a trigger collider attached to this object (2D physics only).
 	private void OnTriggerEnter2D (Collider2D other)
 	{
@@ -466,7 +475,6 @@ public class BattleGeneralMeta : MonoBehaviour {
 
 				EntranceMeta eMeta = other.gameObject.GetComponent<EntranceMeta> ();
 				if (eMeta != null) {
-					eMeta.saveEntranceResources ();
 					Debug.Log ("Dwelling name: " + eMeta.name);
 
 					GameObject info = eMeta.entranceInfo;
@@ -484,7 +492,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 						turnOffCastleGUI ();
 						Debug.Log ("Castle name: " + castle.name);
 						CastlePrefs.setCastleInfo (resources, castle, this.gameObject.GetInstanceID ());
-						CastleConverter.putSave (this, board.transform, eMeta.getID());
+						CastleConverter.putSave (eMeta.getGeneral(), this, board.transform);
 						SceneManager.LoadScene ("CastleScene");
 					}
 				} else {
@@ -621,7 +629,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 						}
 						Debug.Log ("Bought Shit");
 						GameObject board = GameObject.Find ("Board");
-						CastleConverter.putSave (this, board.transform, eMeta.getID());
+						CastleConverter.putSave (eMeta.getGeneral(), this, board.transform);
 						BattleConverter.putPrevScene ("AdventureScene");
 						SceneManager.LoadScene ("AdventureScene");
 					}

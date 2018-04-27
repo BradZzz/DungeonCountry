@@ -192,11 +192,14 @@ public class AdventureBoardManager : MonoBehaviour {
 		if (!init) {
 			turnOnCastleGUI ();
 			BattleGeneralMeta[] bGenerals = BattleConverter.getSaveBGM (glossy);
-			GameObject cGeneral = CastleConverter.getSave (glossy);
+			GameObject[] cGenerals = CastleConverter.getSave (glossy);
 			GameObject[] tGenerals = CastleConverter.getBoughtTavernGenerals (glossy);
 
-			if (cGeneral != null) {
-				BattleGeneralMeta cgMeta = cGeneral.GetComponent<BattleGeneralMeta> ();
+			BattleGeneralMeta playerGeneral = cGenerals[1].GetComponent<BattleGeneralMeta>();
+
+			if (playerGeneral != null) {
+				BattleGeneralMeta cgMeta = playerGeneral.GetComponent<BattleGeneralMeta> ();
+				cgMeta.refreshLastEntrance (cGenerals[0].GetComponent<BattleGeneralMeta>());
 				DataStoreConverter.updateGeneral (glossy, "BoardSave", cgMeta);
 				if (tGenerals != null) {
 					//Place the new generals here
@@ -206,7 +209,7 @@ public class AdventureBoardManager : MonoBehaviour {
 					Color banner = Color.clear;
 					bool psUnit = false;
 					foreach (GameObject unity in GameObject.FindGameObjectsWithTag("Unit")) {
-						if (unity.name.Contains(cGeneral.name)) {
+						if (unity.name.Contains(playerGeneral.name)) {
 							pos = new Point3 (unity.transform.position);
 							banner = unity.GetComponent<BattleGeneralMeta>().getBanner();
 							psUnit = unity.GetComponent<BattleGeneralMeta>().getPlayer();

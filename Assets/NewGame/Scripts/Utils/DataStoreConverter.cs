@@ -230,6 +230,7 @@ public class DataStoreConverter : MonoBehaviour {
 			army[i].qty = armMeta.getLives();
 		}
 		battle.army = JsonHelper.ToJson(army);
+		battle.level = "World";
 		return battle;
 	}
 }

@@ -37,6 +37,14 @@ public class EntranceMeta : MonoBehaviour {
 		glossy = glossary.GetComponent<Glossary> ();
 	}
 
+	public void setGeneral(BattleGeneralMeta general){
+		this.castleGeneral = general;
+	}
+
+	public BattleGeneralMeta getGeneral(){
+		return castleGeneral;
+	}
+
 	public void addComponent(Component component){
 		if (entranceInfo == null) {
 			entranceInfo = new GameObject ("Entrance");
@@ -44,19 +52,6 @@ public class EntranceMeta : MonoBehaviour {
 			entranceInfo.tag = "Entrance";
 		}
 		Coroutines.CopyComponent (component,entranceInfo);
-//		CastleMeta cMet = entranceInfo.GetComponent<CastleMeta> ();
-//		if (cMet != null) {
-//			thisFlag = Color.blue;
-//			Debug.Log (this.transform.position);
-//			Debug.Log (this.name);
-//		}
-	}
-
-	public void saveEntranceResources(){
-//		BattleSerializeable bGen = DataStoreConverter.serializeGeneral (castleGeneral);
-//		DataStoreConverter.putKey (JsonUtility.ToJson (bGen), getID());
-		Debug.Log("Entrance Saving: " + getID ());
-		CastleConverter.saveEntrance (getID (), castleGeneral);
 	}
 
 	private static Texture2D _staticRectTexture;
@@ -67,21 +62,21 @@ public class EntranceMeta : MonoBehaviour {
 
 	private int yOffset = -30;
 
-	void LateUpdate () {
-		if(DataStoreConverter.checkKey(getID ())){
-			BattleGeneralMeta bgm = CastleConverter.getEntrance (getID (), glossy);
-			if (bgm != null) {
-				Debug.Log ("Setting Army For Castle: " + getID ());
-				for (int i = 0; i < bgm.getArmy ().Count; i++) {
-					Debug.Log (bgm.getArmy()[0].GetComponent<BattleMeta>().name);
-				}
-				castleGeneral.setArmy (bgm.getArmy());
-				castleGeneral.setResources (bgm.getResources());
-			} else {
-				Awake ();
-			}
-		}
-	}
+//	void LateUpdate () {
+//		if(DataStoreConverter.checkKey(getID ())){
+//			BattleGeneralMeta bgm = CastleConverter.getEntrance (getID (), glossy);
+//			if (bgm != null) {
+//				Debug.Log ("Setting Army For Castle: " + getID ());
+//				for (int i = 0; i < bgm.getArmy ().Count; i++) {
+//					Debug.Log (bgm.getArmy()[0].GetComponent<BattleMeta>().name);
+//				}
+//				castleGeneral.setArmy (bgm.getArmy());
+//				castleGeneral.setResources (bgm.getResources());
+//			} else {
+//				Awake ();
+//			}
+//		}
+//	}
 
 	public string getID(){
 		return GetInstanceID ().ToString () + "-castle";

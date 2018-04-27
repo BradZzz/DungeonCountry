@@ -65,49 +65,97 @@ public class CastleConverter : DataStoreConverter {
 	}
 
 
-	public static void putSave(BattleGeneralMeta player, Transform board, string res_id){
-		Debug.Log ("Saving Entrance Key: " + res_id);
+	public static void putSave(BattleGeneralMeta castle, BattleGeneralMeta player, Transform board){
 
 		if (board != null) {
 			processBoard(board);
 		}
 
+		BattleSerializeable[] battle_ary = new BattleSerializeable[2];
+
+		BattleGeneralMeta cstlGenMeta = castle.GetComponent<BattleGeneralMeta> ();
+		BattleSerializeable cstle_ser = new BattleSerializeable();
+		cstle_ser = serializeGeneral (cstlGenMeta);
+		battle_ary [0] = cstle_ser;
+
 		BattleGeneralMeta playerGenMeta = player.GetComponent<BattleGeneralMeta> ();
+		BattleSerializeable ply_ser = new BattleSerializeable();
+		ply_ser = serializeGeneral (playerGenMeta);
+		battle_ary [1] = ply_ser;
 
-		BattleSerializeable battle = new BattleSerializeable();
-		battle = serializeGeneral (playerGenMeta);
-		battle.level = "World";
-
-		string json = JsonUtility.ToJson(battle);
+		string json = JsonHelper.ToJson(battle_ary);
 		PlayerPrefs.SetString ("castle", json);
-		PlayerPrefs.SetString ("castle_res", res_id);
 
 		Debug.Log("before: " + json);
 	}
 
-	public static void saveEntrance(string id, BattleGeneralMeta castleGeneral){
-		BattleSerializeable bGen = DataStoreConverter.serializeGeneral (castleGeneral);
-		DataStoreConverter.putKey (JsonUtility.ToJson (bGen), id);
-	}
+//	public static BattleGeneralMeta[] getSaveBGM(Glossary glossary){
+//		string newInfo = PlayerPrefs.GetString ("battle");
+//		Debug.Log("after: " + newInfo);
+//		if (newInfo.Length == 0) {
+//			return null;
+//		}
+//		BattleSerializeable[] thisBattle = JsonHelper.FromJson<BattleSerializeable>(newInfo);
+//		if (thisBattle != null) {
+//			BattleGeneralMeta[] generals = new BattleGeneralMeta[2];
+//			generals [0] = deserializeGeneral (thisBattle [0], glossary).GetComponent<BattleGeneralMeta> ();
+//			generals [1] = deserializeGeneral (thisBattle [1], glossary).GetComponent<BattleGeneralMeta> ();
+//
+//			return generals;
+//		}
+//		return null;
+//	}
+//
+//	{"Items":[{"level":"World","name":"Strength","stats":"{\"attack\":1,\"defense\":1,\"speed\":1," +
+//		"\"range\":1,\"isPlayer\":false}","army":"{\"Items\":[]}","resources":"{\"Items\":[{\"resource\":" +
+//		"\"gold\",\"qty\":1000},{\"resource\":\"ore\",\"qty\":5},{\"resource\":\"wood\",\"qty\":5},{\"resource" +
+//		"\":\"ruby\",\"qty\":0},{\"resource\":\"crystal\",\"qty\":0},{\"resource\":\"sapphire\",\"qty\":0}]}"},
+//		{"level":"World","name":"Strategy","stats":"{\"attack\":1,\"defense\":1,\"speed\":1,\"range\":1,\"isPlayer" +
+//			"\":true}","army":"{\"Items\":[{\"name\":\"Human_Peasant(Clone)\",\"qty\":19},{\"name\":\"Human_Rogue(Clone)" +
+//			"\",\"qty\":151}]}","resources":"{\"Items\":[{\"resource\":\"gold\",\"qty\":1000},{\"resource\":\"ore\",\"qty\":5}," +
+//			"{\"resource\":\"wood\",\"qty\":5},{\"resource\":\"ruby\",\"qty\":0},{\"resource\":\"crystal\",\"qty\":0},{\"resource\":\"sapphire\",\"qty\":0}]}"}]}
 
-	public static BattleGeneralMeta getEntrance(string id, Glossary glossy){
-		Debug.Log ("Getting Entrance Key: " + id);
-
-		string gen = DataStoreConverter.getKey (id);
-		if (gen.Length > 0) {
-			BattleSerializeable b_gen = JsonUtility.FromJson<BattleSerializeable> (gen);
-			DataStoreConverter.resetKey (id);
-			GameObject general = DataStoreConverter.deserializeGeneral (b_gen, glossy);
-			BattleGeneralMeta bgm = general.GetComponent<BattleGeneralMeta> ();
-			return bgm;
+	public static GameObject[] getSave(Glossary glossary){
+		string newInfo = PlayerPrefs.GetString ("castle");
+		Debug.Log("after: " + newInfo);
+		if (newInfo.Length == 0) {
+			return null;
+		}
+		BattleSerializeable[] thisBattle = JsonHelper.FromJson<BattleSerializeable>(newInfo);
+		if (thisBattle != null) {
+			GameObject[] generals = new GameObject[2];
+			//castle
+			generals [0] = deserializeGeneral (thisBattle [0], glossary);
+			//player
+			generals [1] = deserializeGeneral (thisBattle [1], glossary);
+			return generals;
 		}
 		return null;
 	}
 
+//	public static void saveEntrance(string id, BattleGeneralMeta castleGeneral){
+//		BattleSerializeable bGen = DataStoreConverter.serializeGeneral (castleGeneral);
+//		DataStoreConverter.putKey (JsonUtility.ToJson (bGen), id);
+//	}
+
+//	public static BattleGeneralMeta getEntrance(string id, Glossary glossy){
+//		Debug.Log ("Getting Entrance Key: " + id);
+//
+//		string gen = DataStoreConverter.getKey (id);
+//		if (gen.Length > 0) {
+//			BattleSerializeable b_gen = JsonUtility.FromJson<BattleSerializeable> (gen);
+//			DataStoreConverter.resetKey (id);
+//			GameObject general = DataStoreConverter.deserializeGeneral (b_gen, glossy);
+//			BattleGeneralMeta bgm = general.GetComponent<BattleGeneralMeta> ();
+//			return bgm;
+//		}
+//		return null;
+//	}
+
 	public static void reset(){
 		PlayerPrefs.SetString ("castle", "");
 		PlayerPrefs.SetString ("tavern", "");
-		PlayerPrefs.SetString ("castle_res", "");
+//		PlayerPrefs.SetString ("castle_res", "");
 	}
 
 	public static bool hasData(){
@@ -116,20 +164,6 @@ public class CastleConverter : DataStoreConverter {
 
 	public static string getRawPref(string key){
 		return PlayerPrefs.GetString (key);
-	}
-
-	public static GameObject getSave(Glossary glossary){
-		string newInfo = PlayerPrefs.GetString ("castle");
-		Debug.Log("after: " + newInfo);
-		if (newInfo.Length == 0) {
-			return null;
-		}
-		BattleSerializeable thisBattle = JsonUtility.FromJson<BattleSerializeable>(newInfo);
-		if (thisBattle != null) {
-			GameObject general = deserializeGeneral (thisBattle, glossary);
-			return general;
-		}
-		return null;
 	}
 
 	public static void putTavernGeneral(BattleGeneralMeta[] newGeneral){

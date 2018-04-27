@@ -8,7 +8,7 @@ public class CastleLoader : MonoBehaviour {
 	public GameObject castleBtn;
 
 	private Glossary glossy;
-	private BattleGeneralMeta btlRes;
+	private BattleGeneralMeta player_gen_meta;
 	private BattleGeneralMeta castleGeneral;
 	private BattleGeneralResources castleResources;
 	private CastleMenu menuHolder = null;
@@ -20,11 +20,14 @@ public class CastleLoader : MonoBehaviour {
 		 */
 
 		glossy = glossary.GetComponent<Glossary> ();
-		GameObject gObj = CastleConverter.getSave (glossy);
+		GameObject[] generals = CastleConverter.getSave (glossy);
+		GameObject castle_general = generals [0];
+		GameObject player_general = generals [1];
+
 		string res_id = CastleConverter.getRawPref ("castle_res");
 		Debug.Log("Castle Loading: " + res_id);
-		btlRes = gObj.GetComponent<BattleGeneralMeta> ();
-		castleResources = btlRes.getResources ();
+		player_gen_meta = player_general.GetComponent<BattleGeneralMeta> ();
+		castleResources = player_gen_meta.getResources ();
 		init (castleResources, CastlePrefs.getCastleMeta (), true);
 
 //		castleGeneral = CastleConverter.getEntrance (res_id, glossy);
@@ -33,7 +36,7 @@ public class CastleLoader : MonoBehaviour {
 //		init (btlRes.getResources(), CastlePrefs.getCastleMeta (), true);
 		menuHolder = castleBtn.GetComponent<CastleMenu>();
 //		castleGeneral = CastleConverter.getEntrance (res_id, glossy);
-		menuHolder.initVars (this, glossary, CastleConverter.getEntrance (res_id, glossy), CastlePrefs.getCastleMeta (), res_id);
+		menuHolder.initVars (this, glossary, castle_general.GetComponent<BattleGeneralMeta>(), CastlePrefs.getCastleMeta (), res_id);
 	}
 
 	void Update(){
@@ -47,7 +50,7 @@ public class CastleLoader : MonoBehaviour {
 	}
 
 	public BattleGeneralMeta getBGM(){
-		return btlRes;
+		return player_gen_meta;
 	}
 
 	void init (BattleGeneralResources gMeta, CastleMeta dMeta, bool reset) {
