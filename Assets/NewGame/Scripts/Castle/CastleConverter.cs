@@ -65,7 +65,7 @@ public class CastleConverter : DataStoreConverter {
 	}
 
 
-	public static void putSave(BattleGeneralMeta castle, BattleGeneralMeta player, Transform board){
+	public static void putSave(BattleGeneralMeta castle, BattleGeneralMeta player, Transform board, string id){
 
 		if (board != null) {
 			processBoard(board);
@@ -85,6 +85,10 @@ public class CastleConverter : DataStoreConverter {
 
 		string json = JsonHelper.ToJson(battle_ary);
 		PlayerPrefs.SetString ("castle", json);
+
+		if (id.Length > 0) {
+			setEnt (id);
+		}
 
 		Debug.Log("before: " + json);
 	}
@@ -152,14 +156,26 @@ public class CastleConverter : DataStoreConverter {
 //		return null;
 //	}
 
+	public static void setEnt(string ent_id){
+		PlayerPrefs.SetString ("ent_id", ent_id);
+	}
+
+	public static string getEnt(){
+		return PlayerPrefs.GetString ("ent_id");
+	}
+
 	public static void reset(){
 		PlayerPrefs.SetString ("castle", "");
 		PlayerPrefs.SetString ("tavern", "");
-//		PlayerPrefs.SetString ("castle_res", "");
+		PlayerPrefs.SetString ("ent_id", "");
 	}
 
 	public static bool hasData(){
 		return PlayerPrefs.GetString ("castle").Length > 0;
+	}
+
+	public static string setRawPref(string key){
+		return PlayerPrefs.GetString (key);
 	}
 
 	public static string getRawPref(string key){

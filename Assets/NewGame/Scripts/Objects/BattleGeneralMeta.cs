@@ -40,7 +40,6 @@ public class BattleGeneralMeta : MonoBehaviour {
 	private bool defeated;
 	private Camera cam = null;
 	private SpriteOutline outline = null;
-	private EntranceMeta eMeta;
 
 	void Awake() {
 		//DontDestroyOnLoad(this.gameObject);
@@ -450,13 +449,18 @@ public class BattleGeneralMeta : MonoBehaviour {
 //		}
 //	}
 
-	public void refreshLastEntrance(BattleGeneralMeta unit){
-		if (eMeta != null) {
-			GameObject glossary = GameObject.Find ("Glossary");
-			Glossary glossy = glossary.GetComponent<Glossary> ();
-			eMeta.setGeneral (unit);
-		}
-	}
+//	public void refreshLastEntrance(BattleGeneralMeta unit){
+//		Debug.Log ("Looking For: " + unit.transform.position.ToString());
+//		foreach (GameObject ent in GameObject.FindGameObjectsWithTag("Entrance")){
+//			Debug.Log ("Finding For: " + ent.transform.position.ToString());
+//			if (ent.transform.position.x == transform.position.x && ent.transform.position.x == transform.position.x) {
+//				EntranceMeta eMeta = ent.GetComponent<EntranceMeta>();
+//				GameObject glossary = GameObject.Find ("Glossary");
+//				Glossary glossy = glossary.GetComponent<Glossary> ();
+//				eMeta.setGeneral (unit);
+//			}
+//		}
+//	}
 
 	//OnTriggerEnter2D is sent when another object enters a trigger collider attached to this object (2D physics only).
 	private void OnTriggerEnter2D (Collider2D other)
@@ -492,7 +496,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 						turnOffCastleGUI ();
 						Debug.Log ("Castle name: " + castle.name);
 						CastlePrefs.setCastleInfo (resources, castle, this.gameObject.GetInstanceID ());
-						CastleConverter.putSave (eMeta.getGeneral(), this, board.transform);
+						CastleConverter.putSave (eMeta.getGeneral(), this, board.transform, eMeta.getID());
 						SceneManager.LoadScene ("CastleScene");
 					}
 				} else {
@@ -510,8 +514,8 @@ public class BattleGeneralMeta : MonoBehaviour {
 					Debug.Log ("Resource Not Found!");
 				}
 			} else {
-				Debug.Log ("Found: " + other.tag);
-				Debug.Log ("Name: " + other.name);
+				//Debug.Log ("Found: " + other.tag);
+				//Debug.Log ("Name: " + other.name);
 			}
 		} else if (isMoving) {
 			// Do the ai version of whatever interactions we need here
@@ -532,7 +536,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 						}
 						SceneManager.LoadScene ("BattleScene");
 					} else if (gen != null && !gen.getPlayer()) {
-						BattleGeneralMeta victor = returnVictor (this, gen);
+						//BattleGeneralMeta victor = returnVictor (this, gen);
 						BattleConverter.putSave (gen, this, board.transform);
 						BattleConverter.putPrevScene ("AdventureScene");
 
@@ -629,7 +633,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 						}
 						Debug.Log ("Bought Shit");
 						GameObject board = GameObject.Find ("Board");
-						CastleConverter.putSave (eMeta.getGeneral(), this, board.transform);
+						CastleConverter.putSave (eMeta.getGeneral(), this, board.transform, eMeta.getID());
 						BattleConverter.putPrevScene ("AdventureScene");
 						SceneManager.LoadScene ("AdventureScene");
 					}

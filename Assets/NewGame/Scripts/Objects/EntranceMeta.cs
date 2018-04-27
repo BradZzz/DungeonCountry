@@ -2,6 +2,7 @@
 using System.Collections;
 using AssemblyCSharp;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class EntranceMeta : MonoBehaviour {
 
@@ -13,6 +14,8 @@ public class EntranceMeta : MonoBehaviour {
 
 	//These are the resources belonging to the castle on top of this entrance
 	private BattleGeneralMeta castleGeneral = null;
+	private Dictionary<string,int> serArmyStore;
+	private List<string> arm_2;
 	private Glossary glossy;
 
 	public void hideFlag(){
@@ -35,13 +38,44 @@ public class EntranceMeta : MonoBehaviour {
 		DontDestroyOnLoad(this.gameObject);
 		castleGeneral = GetComponent<BattleGeneralMeta> ();
 		glossy = glossary.GetComponent<Glossary> ();
+		serArmyStore = new Dictionary<string,int>();
 	}
 
 	public void setGeneral(BattleGeneralMeta general){
-		this.castleGeneral = general;
+		// For all the units in the incoming generals army, create new instances
+		serArmyStore.Clear();
+		List<GameObject> new_army = new List<GameObject>();
+		foreach (GameObject arm in general.getArmy()) {
+			GameObject unit = glossy.findUnit (arm.name.Replace("(Clone)",""));
+//			arm_2.Add (unit.name, arm.GetComponent<BattleMeta>().getLives());
+//
+//
+//			GameObject instance = Instantiate (unit) as GameObject;
+//			instance.SetActive (false);
+//			BattleMeta bMet = instance.GetComponent<BattleMeta> ();
+//			bMet.setLives (arm.GetComponent<BattleMeta>().getLives());
+//			new_army.Add (instance);
+//
+//			arm_2.Add (unit.name, arm.GetComponent<BattleMeta>().getLives());
+//
+			serArmyStore.Add (unit.name, arm.GetComponent<BattleMeta>().getLives());
+		}
+		castleGeneral.setArmy(new_army);
+		castleGeneral.getResources().setResources(general.getResources().getResources());
+		Debug.Log ("Finished Setting Resources");
 	}
 
 	public BattleGeneralMeta getGeneral(){
+		List<GameObject> this_army = new List<GameObject>();
+		foreach (KeyValuePair<string,int> armUnit in serArmyStore) {
+			GameObject unit = glossy.findUnit (armUnit.Key);
+			GameObject instance = Instantiate (unit) as GameObject;
+			instance.SetActive (false);
+			BattleMeta bMet = instance.GetComponent<BattleMeta> ();
+			bMet.setLives (armUnit.Value);
+			this_army.Add (instance);
+		}
+		castleGeneral.setArmy (this_army);
 		return castleGeneral;
 	}
 

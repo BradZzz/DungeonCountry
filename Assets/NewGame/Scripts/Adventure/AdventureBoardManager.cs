@@ -199,7 +199,26 @@ public class AdventureBoardManager : MonoBehaviour {
 
 			if (playerGeneral != null) {
 				BattleGeneralMeta cgMeta = playerGeneral.GetComponent<BattleGeneralMeta> ();
-				cgMeta.refreshLastEntrance (cGenerals[0].GetComponent<BattleGeneralMeta>());
+				BattleGeneralMeta castleGeneral = cGenerals[0].GetComponent<BattleGeneralMeta>();
+
+				//GameObject sG = DataStoreConverter.findStoredGeneral (glossy, "BoardSave", cgMeta);
+//				cgMeta.refreshLastEntrance (castleGeneral);
+
+				string id = CastleConverter.getEnt ();
+				Debug.Log ("Looking For: " + id);
+				foreach (GameObject ent in GameObject.FindGameObjectsWithTag("Entrance")){
+					EntranceMeta eMet = ent.GetComponent<EntranceMeta> ();
+					if (eMet != null) {
+						if (eMet.getID().Equals(id)) {
+							Debug.Log ("Match: " + eMet.getID());
+							//GameObject glossary = GameObject.Find ("Glossary");
+							//Glossary glossy = glossary.GetComponent<Glossary> ();
+							eMet.setGeneral (castleGeneral);
+							break;
+						}
+					}
+				}
+
 				DataStoreConverter.updateGeneral (glossy, "BoardSave", cgMeta);
 				if (tGenerals != null) {
 					//Place the new generals here
@@ -468,13 +487,13 @@ public class AdventureBoardManager : MonoBehaviour {
 			//Debug.Log ("Clicked: " + click.ToString());
 			//Debug.Log("LastClicked: " + lastClicked);
 			if (lastClicked == null) {
-				Debug.Log ("New Click");
+//				Debug.Log ("New Click");
 				foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
-					Debug.Log ("Searching");
+//					Debug.Log ("Searching");
 					BattleGeneralMeta gMeta = unit.GetComponent<BattleGeneralMeta> ();
 					if (gMeta != null) {
 						if (click.Equals (unit.transform.position) && gMeta.getPlayer ()) {
-							Debug.Log ("Clicked: " + click.ToString ());
+//							Debug.Log ("Clicked: " + click.ToString ());
 							lastClicked = unit.transform;
 							gMeta.toggleSelected (true);
 						} else {
@@ -483,10 +502,10 @@ public class AdventureBoardManager : MonoBehaviour {
 					}
 				}
 			} else if (lastClicked != null) { 
-				Debug.Log("LastClicked: " + lastClicked.name + " pos: " + lastClicked.position);
+				//Debug.Log("LastClicked: " + lastClicked.name + " pos: " + lastClicked.position);
 				if (!click.Equals(lastClicked.position) && (!steps.walking () || !click.Equals(lastClick)) && !obsClick(click)) {
 					steps.destroySteps ();
-					Debug.Log ("Moving: " + lastClicked.name);
+					//Debug.Log ("Moving: " + lastClicked.name);
 					StartCoroutine (steps.generateMapv2 (new Point3(lastClicked.position), click, gameManager.getRows (), gameManager.getColumns (), getObstacles(), setPath));
 				} else if (steps.walking () && click.Equals(lastClick)) {
 	//				BattleConverter.reset ();

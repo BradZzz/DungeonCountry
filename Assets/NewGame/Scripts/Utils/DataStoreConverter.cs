@@ -32,7 +32,7 @@ public class DataStoreConverter : MonoBehaviour {
 
 	public static GameObject[] getSave(Glossary glossary, string saveKey){
 		string newInfo = PlayerPrefs.GetString (saveKey);
-		Debug.Log("after: " + newInfo);
+		//Debug.Log("after: " + newInfo);
 		if (newInfo.Length == 0) {
 			return null;
 		}
@@ -51,11 +51,22 @@ public class DataStoreConverter : MonoBehaviour {
 		PlayerPrefs.SetString (saveKey, "");
 	}
 
+	public static GameObject findStoredGeneral(Glossary glossary, string saveKey, BattleGeneralMeta bgMet){
+		GameObject[] generals = getSave(glossary, saveKey);
+		for (int i = 0; i < generals.Length; i++) {
+			BattleGeneralMeta gm = generals[i].GetComponent<BattleGeneralMeta>();
+			if (bgMet.name.Equals (gm.name)) {
+				return generals [i];
+			}
+		}
+		return null;
+	}
+
 	public static void updateGeneral(Glossary glossary, string saveKey, BattleGeneralMeta bgMet){
-		Debug.Log ("Update General!");
+		//Debug.Log ("Update General!");
 		//		BattleGeneralMeta bgMet = replaceGeneral.GetComponent<BattleGeneralMeta> ();
 		BattleSerializeable rpSrz = serializeGeneral (bgMet);
-		Debug.Log ("From: " + JsonUtility.ToJson(rpSrz));
+		//Debug.Log ("From: " + JsonUtility.ToJson(rpSrz));
 		GameObject[] generals = getSave(glossary, saveKey);
 
 		BattleSerializeable[] newGenerals = new BattleSerializeable[generals.Length];
@@ -69,7 +80,7 @@ public class DataStoreConverter : MonoBehaviour {
 		}
 		string json = JsonHelper.ToJson(newGenerals);
 		PlayerPrefs.SetString (saveKey, json);
-		Debug.Log ("update: " + json);
+		//Debug.Log ("update: " + json);
 	}
 
 	public static void updateGeneral(Glossary glossary, string saveKey, BattleGeneralMeta[] bgMet){

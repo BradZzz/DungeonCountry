@@ -330,7 +330,7 @@ public class CastleMenu : MonoBehaviour {
 
 	public void onClickAccept(){
 		if (genMeta.getArmy().Count > 0) {
-			CastleConverter.putSave (castleGenMeta, genMeta, null);
+			CastleConverter.putSave (castleGenMeta, genMeta, null, "");
 		} else {
 			Debug.Log("Error");
 		}
