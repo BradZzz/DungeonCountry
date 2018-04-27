@@ -136,7 +136,7 @@ public class AdventureBoardManager : MonoBehaviour {
 	}
 
 	private void printResources(BattleGeneralMeta meta){
-		BattleGeneralResources bgr = meta.getResources ();
+		BattleGeneralResources bgr = meta.getResources();
 
 		Debug.Log ("Resources for: " + meta.name);
 

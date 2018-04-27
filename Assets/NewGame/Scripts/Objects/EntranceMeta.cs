@@ -34,7 +34,6 @@ public class EntranceMeta : MonoBehaviour {
 	void Awake() {
 		DontDestroyOnLoad(this.gameObject);
 		castleGeneral = GetComponent<BattleGeneralMeta> ();
-		castleGeneral.init ();
 		glossy = glossary.GetComponent<Glossary> ();
 	}
 

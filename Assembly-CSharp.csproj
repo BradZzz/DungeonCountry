@@ -106,7 +106,7 @@
      <Compile Include="Assets\NewGame\Scripts\Objects\BattleGeneralAI.cs" />
      <Compile Include="Assets\NewGame\Scripts\Objects\BattleGeneralMeta.cs" />
      <Compile Include="Assets\NewGame\Scripts\Objects\BattleGeneralResources.cs" />
-     <Compile Include="Assets\NewGame\Scripts\Objects\BattleGeneralResourcesNew.cs" />
+     <Compile Include="Assets\NewGame\Scripts\Objects\BattleGeneralResourcesOld.cs" />
      <Compile Include="Assets\NewGame\Scripts\Objects\BattleMeta.cs" />
      <Compile Include="Assets\NewGame\Scripts\Objects\DwellingMeta.cs" />
      <Compile Include="Assets\NewGame\Scripts\Objects\EntranceMeta.cs" />

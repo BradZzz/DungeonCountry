@@ -174,7 +174,6 @@ public class DataStoreConverter : MonoBehaviour {
 		if (btl != null) {
 			general = glossary.findGeneralGO (btl.name);
 			GenMeta = general.GetComponent<BattleGeneralMeta>();
-			GenMeta.init ();
 			BattleSerializeableStats thisStats = JsonUtility.FromJson<BattleSerializeableStats>(btl.stats);
 			GenMeta.setPlayer (thisStats.isPlayer);
 

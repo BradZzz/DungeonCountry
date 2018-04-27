@@ -110,7 +110,7 @@ public class CastleLoader : MonoBehaviour {
 		}
 		count = 0;
 
-		foreach (GameObject unit in gMeta.getarmy()) {
+		foreach (GameObject unit in gMeta.getArmy()) {
 			if (count < 6) {
 				count += 1;
 

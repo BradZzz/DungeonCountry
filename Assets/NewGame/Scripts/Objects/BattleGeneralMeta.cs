@@ -47,8 +47,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 		entranceUsed = new List<int> ();
 		isPlayer = false;
 		isSelected = false;
-		init ();
-		//resources = new BattleGeneralResources (this.GetInstanceID (), army);
+		resources = new BattleGeneralResources ();
 	}
 
 	void Start(){
@@ -82,29 +81,11 @@ public class BattleGeneralMeta : MonoBehaviour {
 		return banner;
 	}
 
-	private BattleGeneralResources getResource() {
+	public BattleGeneralResources getResources() {
 		if (resources == null) {
-			BattleGeneralResources bg = gameObject.GetComponent<BattleGeneralResources> ();
-//			Debug.Log (name);
-//			Debug.Log (tag);
-
-			//bg = gameObject.GetComponent<BattleGeneralResources> ();
-			bg.init (this.GetInstanceID (), army);
-
-//			if (gameObject.GetComponent<BattleGeneralResources> () != null) {
-//				bg = gameObject.GetComponent<BattleGeneralResources> ();
-//				bg.init (this.GetInstanceID (), army);
-//			} else {
-////				bg = gameObject.AddComponent<BattleGeneralResources> ();
-////				bg.init (this.GetInstanceID (), army);
-//			}
-			resources = bg;
+			resources = new BattleGeneralResources ();
 		}
 		return resources;
-	}
-
-	public void init() {
-		resources = getResource ();
 	}
 
 	void LateUpdate () 
@@ -202,15 +183,11 @@ public class BattleGeneralMeta : MonoBehaviour {
 
 	public void setArmy(List<GameObject> army){
 		this.army = army;
-		resources.setarmy (army);
-	}
-
-	public void addUnit(GameObject unit, int amt){
-		resources.addUnitFill(unit, amt);
+		resources.setArmy (army);
 	}
 
 	public List<GameObject> getArmy(){
-		return getResources().getarmy();
+		return getResources().getArmy();
 	}
 
 	public void setPlayer(bool isPlayer){
@@ -221,20 +198,17 @@ public class BattleGeneralMeta : MonoBehaviour {
 		return isPlayer;
 	}
 
-	public BattleGeneralResources getResources(){
-		return getResource();
-	}
-
 	public void setResources(BattleGeneralResources resources){
 		this.resources = resources;
 	}
 
 	public void setResources(Dictionary<string,int> resources){
-		this.resources.setResources (resources);
+		getResources().setResources (resources);
 	}
 
 	public int addResource(string name, int quantity){
-		return resources.setResources (name, quantity);
+		getResources().setResource (name, getResources().getResource(name) + quantity);
+		return getResources ().getResource (name);
 	}
 
 	public bool useResource(string name, int quantity){
@@ -316,11 +290,11 @@ public class BattleGeneralMeta : MonoBehaviour {
 		Debug.Log ("General: " + genB.name + " score: " + scoreB.ToString());
 		if (scoreA >= scoreB) {
 			genB.setDefeated (true);
-			genA.setArmy (pruneArmy(genA.getResources().getarmy(), scoreB));
+			genA.setArmy (pruneArmy(genA.getResources().getArmy(), scoreB));
 			return genA;
 		} else {
 			genA.setDefeated (true);
-			genB.setArmy (pruneArmy(genB.getResources().getarmy(), scoreA));
+			genB.setArmy (pruneArmy(genB.getResources().getArmy(), scoreA));
 			return genB;
 		}
 	}
@@ -338,6 +312,63 @@ public class BattleGeneralMeta : MonoBehaviour {
 	public void resetMoved(){
 		entranceUsed.Clear ();
 	}
+
+	// Basically, all that needs to happen in the bgm is instantiation. the only things that need to be instantiated are the units
+	/*
+	 * Things that need to happen in bgm
+	 * 1) Buy Unit
+	 * 2) Get Resource Object
+	 */
+
+	public bool buyUnit(Dictionary<string, int> cost, GameObject unit){
+		if (getResources().canPurchase(cost)) {
+			if (getResources().hasSpaceArmy() && getResources().makePurchase(cost)) {
+				addUnit(unit, 1);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void addUnit(GameObject unit, int amt){
+		List<GameObject> army = getResources ().getArmy ();
+		if (army.Count < 6) {
+			bool found = false;
+			foreach (GameObject arm in army) {
+				if (arm.name.Contains (unit.name)) {
+					BattleMeta bMet = arm.GetComponent<BattleMeta> ();
+					bMet.setLives (bMet.getLives () + amt);
+					found = true;
+				}
+			}
+			if (!found) {
+				GameObject instance = Instantiate (unit) as GameObject;
+				BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+				meta.setLives (amt);
+				instance.SetActive (false);
+				meta.setGUI (false);
+				meta.setPlayer (false);
+				getResources ().addUnit (instance);
+			}
+		} else {
+			foreach (GameObject arm in army) {
+				if (arm.name.Contains (unit.name)) {
+					BattleMeta bMet = arm.GetComponent<BattleMeta> ();
+					bMet.setLives (bMet.getLives () + amt);
+				}
+			}
+		}
+	}
+
+//	/*
+//	 * Actions that need to happen in the bgresources:
+//	 * 1) check if a hero can add an unit to an army
+//	 * 2) check if a hero can buy an unit
+//	 * 3) buy a unit
+//	 * 4) remove a unit
+//	 * 5) set an army
+//	 * 6) set resources
+//	 */ 
 
 //	public bool addUnit(GameObject unit, int amount){
 //		//Debug.Log ("Searching for unit");
@@ -365,22 +396,22 @@ public class BattleGeneralMeta : MonoBehaviour {
 //
 //		return false;
 //	}
-
-	public bool addUnitFill(GameObject unit, int amount){
-		BattleMeta pUnitMeta = unit.GetComponent<BattleMeta> ();
-		if (army.Count < 6) {
-			GameObject instance = Instantiate (unit) as GameObject;
-			BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
-			meta.setPlayer (true);
-			meta.setLives (amount);
-			meta.setGUI (false);
-			instance.SetActive (false);
-			army.Add (instance);
-			return true;
-		}
-		return false;
-	}
-
+//
+//	public bool addUnitFill(GameObject unit, int amount){
+//		BattleMeta pUnitMeta = unit.GetComponent<BattleMeta> ();
+//		if (army.Count < 6) {
+//			GameObject instance = Instantiate (unit) as GameObject;
+//			BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+//			meta.setPlayer (true);
+//			meta.setLives (amount);
+//			meta.setGUI (false);
+//			instance.SetActive (false);
+//			army.Add (instance);
+//			return true;
+//		}
+//		return false;
+//	}
+//
 //	public bool purchaseUnit(Dictionary<string, int> cost, GameObject unit){
 //		if (checkCanPurchase (cost, unit)) {
 //			foreach (KeyValuePair<string, int> entry in cost) {
@@ -537,8 +568,8 @@ public class BattleGeneralMeta : MonoBehaviour {
 							if (meta.name.Equals(castle.affiliation.name)) {
 								
 								//If the ai doesn't have enough space in their army...
-								if (getResources().getarmy().Count == 6) {
-									List<GameObject> army = getResources ().getarmy ();
+								if (getResources().getArmy().Count == 6) {
+									List<GameObject> army = getResources ().getArmy ();
 									//fire the weakest units and buy better ones
 									int lowestScore = ScoreConverter.computeResults(army[0]);
 									GameObject weakestUnit = army[0];
@@ -556,12 +587,12 @@ public class BattleGeneralMeta : MonoBehaviour {
 									//Add the units resources for as many times as the unit has lives
 									foreach(KeyValuePair<string,int> res in cost)
 									{
-										getResources ().setResources (res.Key, res.Value * lives);
+										getResources ().setResource (res.Key, res.Value * lives);
 									}
 
 									//Remove the unit from the army and reinstantiate
 									army.Remove(weakestUnit);
-									getResources().setarmy(army);
+									getResources().setArmy(army);
 								}
 
 								SortedDictionary<int, GameObject> sortedMeta = new SortedDictionary<int,GameObject>();
@@ -581,7 +612,7 @@ public class BattleGeneralMeta : MonoBehaviour {
 								for (int i = sortedMeta.Count; i > 0; i--) {
 									Dictionary<string, int> cost = sortedMeta[i].GetComponent<BattleMeta> ().getResourcesAsDict ();
 									// Buy as many as you can afford
-									while (getResources().purchaseUnit(cost, sortedMeta[i])) {
+									while (buyUnit(cost, sortedMeta[i])) {
 										// Do nothing. (canPurchaseUnit buys the unit...)
 									}
 								}

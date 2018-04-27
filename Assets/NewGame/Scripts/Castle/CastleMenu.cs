@@ -103,17 +103,17 @@ public class CastleMenu : MonoBehaviour {
 
 	public void onPurchaseBuy(){
 		if (purchaseUnit != null) {
-			BattleMeta pUnitMeta = purchaseUnit.GetComponent<BattleMeta> ();
+			BattleMeta pUnit = purchaseUnit.GetComponent<BattleMeta> ();
 				
 			Dictionary<string, int> resources = new Dictionary<string, int> ();
-			resources.Add ("gold", pUnitMeta.costGold);
-			resources.Add ("ore", pUnitMeta.costOre);
-			resources.Add ("wood", pUnitMeta.costWood);
-			resources.Add ("ruby", pUnitMeta.costRuby);
-			resources.Add ("crystal", pUnitMeta.costCrystal);
-			resources.Add ("sapphire", pUnitMeta.costSapphire);
+			resources.Add ("gold", pUnit.costGold);
+			resources.Add ("ore", pUnit.costOre);
+			resources.Add ("wood", pUnit.costWood);
+			resources.Add ("ruby", pUnit.costRuby);
+			resources.Add ("crystal", pUnit.costCrystal);
+			resources.Add ("sapphire", pUnit.costSapphire);
 
-			if (genMeta.getResources().canPurchaseUnit (resources, purchaseUnit)) {
+			if (genMeta.buyUnit(resources, purchaseUnit)) {
 				Debug.Log ("Purchased!");
 				CastlePrefs.dirty = true;
 			} else {
@@ -236,7 +236,6 @@ public class CastleMenu : MonoBehaviour {
 		//Make sure the hero is marked player and the hero's banner matches the player's banner
 		tHero.setBanner (banner);
 		tHero.setPlayer (true);
-		tHero.init ();
 
 		List<GameObject> newUnits = new List<GameObject> ();
 		foreach (GameObject unit in affmet.units) {
@@ -258,7 +257,7 @@ public class CastleMenu : MonoBehaviour {
 				newUnits.Add (instance);
 			}
 		}
-		tHero.getResources ().init (0,newUnits);
+
 		//If the player has enough resources, purchase hero and add it to the queue
 		CastleConverter.putTavernGeneral(new BattleGeneralMeta[]{tHero});
 	}
@@ -284,7 +283,7 @@ public class CastleMenu : MonoBehaviour {
 		for (int i = 0; i < 6; i++) {
 			string rw_id = "Rw" + (i + 1).ToString ();
 			GameObject rw = militiaPanel.transform.Find (rw_id).gameObject; 
-			if (i < castleResources.getarmy ().Count) {
+			if (i < castleResources.getArmy ().Count) {
 				rw.SetActive (true);
 				GameObject img = rw.transform.Find ("Unit").gameObject; 
 				GameObject name = rw.transform.Find ("NameTxt").gameObject; 
@@ -294,9 +293,9 @@ public class CastleMenu : MonoBehaviour {
 				GameObject range = rw.transform.Find ("RangeTxt").gameObject; 
 				GameObject action = rw.transform.Find ("ActionTxt").gameObject; 
 
-				img.GetComponent<Image>().sprite = castleResources.getarmy () [i].GetComponent<SpriteRenderer> ().sprite;
+				img.GetComponent<Image>().sprite = castleResources.getArmy () [i].GetComponent<SpriteRenderer> ().sprite;
 
-				BattleMeta bm = castleResources.getarmy () [i].GetComponent<BattleMeta> ();
+				BattleMeta bm = castleResources.getArmy () [i].GetComponent<BattleMeta> ();
 				name.GetComponent<Text>().text = bm.name;
 				quantity.GetComponent<Text>().text = bm.getLives().ToString();
 				health.GetComponent<Text>().text = bm.getCharHp().ToString();
@@ -339,14 +338,15 @@ public class CastleMenu : MonoBehaviour {
 		SceneManager.LoadScene ("AdventureScene");
 	}
 
+	// Adds the army to the miltia
 	public void onClickMilitiaAdd(){
 		int unit = unitSelected;
-		if (castleResources != null && castleResources.getarmy().Count < 6) {
-			List<GameObject> army = genMeta.getResources().getarmy (); 
+		if (castleResources != null && castleResources.getArmy().Count < 6) {
+			List<GameObject> army = genMeta.getResources().getArmy (); 
 			GameObject unitArmy = army[unit - 1];
 			BattleMeta uMeta = unitArmy.GetComponent<BattleMeta>();
 			if (uMeta.getLives () > 0) {
-				castleResources.addUnit (unitArmy, uMeta.getLives ());
+				castleGenMeta.addUnit (unitArmy, uMeta.getLives ());
 				army.RemoveAt(unit - 1);
 				genMeta.setArmy (army);
 				onUnitToggleModal (false);
@@ -354,21 +354,18 @@ public class CastleMenu : MonoBehaviour {
 		}
 	}
 
+	// Adds the militia back to the players army
 	public void onPlayerArmyAdd(int selected){
 		int unit = selected;
-		if (castleResources != null && castleResources.getarmy().Count > 0 
-			&& castleResources.getarmy().Count > unit && genMeta.getResources().getarmy ().Count < 6) {
-			List<GameObject> army = castleResources.getarmy (); 
+		if (castleResources != null && castleResources.getArmy().Count > 0 
+			&& castleResources.getArmy().Count > unit && genMeta.getResources().getArmy ().Count < 6) {
+			List<GameObject> army = castleResources.getArmy (); 
 			GameObject unitArmy = army[unit];
 			BattleMeta uMeta = unitArmy.GetComponent<BattleMeta>();
 			if (uMeta.getLives () > 0) {
-//				List<GameObject> p_army = genMeta.getResources().getarmy ();
-//				p_army.Add (unitArmy);
-//				genMeta.setArmy (p_army);
 				genMeta.addUnit(unitArmy, uMeta.getLives());
-
 				army.RemoveAt(unit);
-				castleResources.setarmy (army);
+				castleResources.setArmy (army);
 				CastlePrefs.dirty = true;
 			}
 		}
@@ -376,11 +373,11 @@ public class CastleMenu : MonoBehaviour {
 
 	public void onClickRemove(){
 		int unit = unitSelected;
-		if (CastlePrefs.toDelete == unit && genMeta.getResources().getarmy ().Count > 1) {
+		if (CastlePrefs.toDelete == unit && genMeta.getResources().getArmy ().Count > 1) {
 			// Remove here
 			Debug.Log("Removing here: " + unit);
 			CastlePrefs.toDelete = -1;
-			List<GameObject> army = genMeta.getResources().getarmy (); 
+			List<GameObject> army = genMeta.getResources().getArmy (); 
 			army.RemoveAt(unit - 1);
 			genMeta.setArmy (army);
 			onUnitToggleModal (false);

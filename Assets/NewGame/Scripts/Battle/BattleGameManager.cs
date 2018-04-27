@@ -124,7 +124,7 @@ public class BattleGameManager : MonoBehaviour {
 		BattleGeneralMeta playerGenMeta = playerGeneral.GetComponent<BattleGeneralMeta>();
 		BattleGeneralMeta aiGenMeta = aiGeneral.GetComponent<BattleGeneralMeta>();
 
-		armyScript = new BattleArmyManager(playerGenMeta.getResources().getarmy().ToArray(), aiGenMeta.getResources().getarmy().ToArray());
+		armyScript = new BattleArmyManager(playerGenMeta.getResources().getArmy().ToArray(), aiGenMeta.getResources().getArmy().ToArray());
 		boardSetup.SetupScene (armyScript, instance, glossary.findLevels(BattleConverter.getSaveWorld()));
 
 		//This puts the player's army into the ui panel
