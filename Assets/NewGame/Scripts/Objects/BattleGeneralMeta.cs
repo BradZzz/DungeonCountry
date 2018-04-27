@@ -339,6 +339,85 @@ public class BattleGeneralMeta : MonoBehaviour {
 		entranceUsed.Clear ();
 	}
 
+//	public bool addUnit(GameObject unit, int amount){
+//		//Debug.Log ("Searching for unit");
+//		BattleMeta pUnitMeta = unit.GetComponent<BattleMeta> ();
+//
+//		foreach (GameObject arm in army) {
+//			BattleMeta armMeta = arm.GetComponent<BattleMeta> ();
+//			if (pUnitMeta.name == armMeta.name) {
+//				armMeta.addLives (amount);
+//				return true;
+//			}
+//		}
+//
+//		if (army.Count < 6) {
+//			Debug.Log ("");
+//			GameObject instance = Instantiate (unit) as GameObject;
+//			BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+//			meta.setPlayer (true);
+//			meta.setLives (amount);
+//			meta.setGUI (false);
+//			instance.SetActive (false);
+//			army.Add (instance);
+//			return true;
+//		}
+//
+//		return false;
+//	}
+
+	public bool addUnitFill(GameObject unit, int amount){
+		BattleMeta pUnitMeta = unit.GetComponent<BattleMeta> ();
+		if (army.Count < 6) {
+			GameObject instance = Instantiate (unit) as GameObject;
+			BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+			meta.setPlayer (true);
+			meta.setLives (amount);
+			meta.setGUI (false);
+			instance.SetActive (false);
+			army.Add (instance);
+			return true;
+		}
+		return false;
+	}
+
+//	public bool purchaseUnit(Dictionary<string, int> cost, GameObject unit){
+//		if (checkCanPurchase (cost, unit)) {
+//			foreach (KeyValuePair<string, int> entry in cost) {
+//				useResource (entry.Key, entry.Value);
+//			}
+//			if (army.Count < 6) {
+//				bool found = false;
+//				foreach (GameObject arm in army) {
+//					if (arm.name.Contains (unit.name)) {
+//						BattleMeta bMet = arm.GetComponent<BattleMeta> ();
+//						bMet.setLives (bMet.getLives () + 1);
+//						found = true;
+//					}
+//				}
+//				if (!found) {
+//					GameObject instance = Instantiate (unit) as GameObject;
+//					BattleMeta meta = instance.GetComponent( typeof(BattleMeta) ) as BattleMeta;
+//					meta.setLives (1);
+//					instance.SetActive (false);
+//					meta.setGUI (false);
+//					meta.setPlayer (false);
+//					army.Add (instance);
+//				}
+//			} else {
+//				foreach (GameObject arm in army) {
+//					if (arm.name.Contains (unit.name)) {
+//						BattleMeta bMet = arm.GetComponent<BattleMeta> ();
+//						bMet.setLives (bMet.getLives () + 1);
+//					}
+//				}
+//			}
+//			return true;
+//		} else {
+//			return false;
+//		}
+//	}
+
 	//OnTriggerEnter2D is sent when another object enters a trigger collider attached to this object (2D physics only).
 	private void OnTriggerEnter2D (Collider2D other)
 	{

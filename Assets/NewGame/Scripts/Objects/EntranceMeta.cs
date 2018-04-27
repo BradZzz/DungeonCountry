@@ -34,6 +34,7 @@ public class EntranceMeta : MonoBehaviour {
 	void Awake() {
 		DontDestroyOnLoad(this.gameObject);
 		castleGeneral = GetComponent<BattleGeneralMeta> ();
+		castleGeneral.init ();
 		glossy = glossary.GetComponent<Glossary> ();
 	}
 
@@ -71,9 +72,14 @@ public class EntranceMeta : MonoBehaviour {
 		if(DataStoreConverter.checkKey(getID ())){
 			BattleGeneralMeta bgm = CastleConverter.getEntrance (getID (), glossy);
 			if (bgm != null) {
-				castleGeneral = bgm;
+				Debug.Log ("Setting Army For Castle: " + getID ());
+				for (int i = 0; i < bgm.getArmy ().Count; i++) {
+					Debug.Log (bgm.getArmy()[0].GetComponent<BattleMeta>().name);
+				}
+				castleGeneral.setArmy (bgm.getArmy());
+				castleGeneral.setResources (bgm.getResources());
 			} else {
-				castleGeneral = GetComponent<BattleGeneralMeta> ();
+				Awake ();
 			}
 		}
 	}

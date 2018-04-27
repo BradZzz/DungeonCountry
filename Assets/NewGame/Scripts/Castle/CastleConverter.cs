@@ -66,6 +66,8 @@ public class CastleConverter : DataStoreConverter {
 
 
 	public static void putSave(BattleGeneralMeta player, Transform board, string res_id){
+		Debug.Log ("Saving Entrance Key: " + res_id);
+
 		if (board != null) {
 			processBoard(board);
 		}
@@ -89,12 +91,15 @@ public class CastleConverter : DataStoreConverter {
 	}
 
 	public static BattleGeneralMeta getEntrance(string id, Glossary glossy){
+		Debug.Log ("Getting Entrance Key: " + id);
+
 		string gen = DataStoreConverter.getKey (id);
 		if (gen.Length > 0) {
 			BattleSerializeable b_gen = JsonUtility.FromJson<BattleSerializeable> (gen);
 			DataStoreConverter.resetKey (id);
 			GameObject general = DataStoreConverter.deserializeGeneral (b_gen, glossy);
-			return general.GetComponent<BattleGeneralMeta> ();
+			BattleGeneralMeta bgm = general.GetComponent<BattleGeneralMeta> ();
+			return bgm;
 		}
 		return null;
 	}
