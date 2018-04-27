@@ -116,9 +116,13 @@ public class AdventurePanel : MonoBehaviour {
 	}
 
 	public void EndTurn(){
-		Debug.Log ("End Turn");
-		wakeAI ();
-		makeDecision(getNextAI());
+		if (getNextAI () == null) {
+			Debug.Log ("End Turn");
+			wakeAI ();
+			makeDecision (getNextAI ());
+		} else {
+			Debug.Log ("Still AI Turn!");
+		}
 	}
 
 	public void FinishTurn(){

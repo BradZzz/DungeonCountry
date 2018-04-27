@@ -44,23 +44,12 @@ public class EntranceMeta : MonoBehaviour {
 	public void setGeneral(BattleGeneralMeta general){
 		// For all the units in the incoming generals army, create new instances
 		serArmyStore.Clear();
-		List<GameObject> new_army = new List<GameObject>();
+//		List<GameObject> new_army = new List<GameObject>();
 		foreach (GameObject arm in general.getArmy()) {
 			GameObject unit = glossy.findUnit (arm.name.Replace("(Clone)",""));
-//			arm_2.Add (unit.name, arm.GetComponent<BattleMeta>().getLives());
-//
-//
-//			GameObject instance = Instantiate (unit) as GameObject;
-//			instance.SetActive (false);
-//			BattleMeta bMet = instance.GetComponent<BattleMeta> ();
-//			bMet.setLives (arm.GetComponent<BattleMeta>().getLives());
-//			new_army.Add (instance);
-//
-//			arm_2.Add (unit.name, arm.GetComponent<BattleMeta>().getLives());
-//
 			serArmyStore.Add (unit.name, arm.GetComponent<BattleMeta>().getLives());
 		}
-		castleGeneral.setArmy(new_army);
+//		castleGeneral.setArmy(new_army);
 		castleGeneral.getResources().setResources(general.getResources().getResources());
 		Debug.Log ("Finished Setting Resources");
 	}
@@ -95,22 +84,6 @@ public class EntranceMeta : MonoBehaviour {
 	private static GUIStyle _staticHealthStyle;
 
 	private int yOffset = -30;
-
-//	void LateUpdate () {
-//		if(DataStoreConverter.checkKey(getID ())){
-//			BattleGeneralMeta bgm = CastleConverter.getEntrance (getID (), glossy);
-//			if (bgm != null) {
-//				Debug.Log ("Setting Army For Castle: " + getID ());
-//				for (int i = 0; i < bgm.getArmy ().Count; i++) {
-//					Debug.Log (bgm.getArmy()[0].GetComponent<BattleMeta>().name);
-//				}
-//				castleGeneral.setArmy (bgm.getArmy());
-//				castleGeneral.setResources (bgm.getResources());
-//			} else {
-//				Awake ();
-//			}
-//		}
-//	}
 
 	public string getID(){
 		return GetInstanceID ().ToString () + "-castle";
