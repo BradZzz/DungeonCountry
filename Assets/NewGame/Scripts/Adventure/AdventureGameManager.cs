@@ -58,6 +58,10 @@ public class AdventureGameManager : MonoBehaviour {
 		return rows + level;
 	}
 
+	public AdventureBoardManager getBoard(){
+		return boardSetup;
+	}
+
 	void Update()
 	{
 		if ( Input.GetMouseButtonDown (0) && SceneManager.GetActiveScene ().name.Equals("AdventureScene")){ 

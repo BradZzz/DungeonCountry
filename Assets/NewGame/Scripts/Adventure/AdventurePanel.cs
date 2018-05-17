@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using AssemblyCSharp;
+using System;
 
 public class AdventurePanel : MonoBehaviour {
 	public GameObject path;
@@ -253,6 +254,13 @@ public class AdventurePanel : MonoBehaviour {
 		turn++;
 		DataStoreConverter.putKey("turn",turn.ToString());
 		StartCoroutine(DisplayWait("Turn: " + turn.ToString()));
+
+		try{
+			GameObject.Find ("Main Camera").GetComponent<AdventureLoader> ().getGameManager().getBoard().addNewTurnResources();
+		} catch(Exception e){
+			Debug.Log ("Error allocating new turn resources");
+		}
+
 		foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
 			BattleGeneralMeta bgm = unit.GetComponent<BattleGeneralMeta> ();
 			if (bgm != null) {

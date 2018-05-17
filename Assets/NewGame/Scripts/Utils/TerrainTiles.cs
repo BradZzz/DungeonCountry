@@ -154,6 +154,22 @@ public class TerrainTiles {
 		{ 0, 0, 2, 0, 0 } 
 	};
 
+	public static int[,] smallCityRoad4 = { 
+		{ 0, 2, 2, 2, 2 }, 
+		{ 0, 2,10,14, 2 }, 
+		{ 0, 2,10,19, 2 }, 
+		{ 0, 2, 2, 2, 2 }, 
+		{ 0, 0, 2, 0, 0 } 
+	};
+
+	public static int[,] smallCityRoadAlt4 = { 
+		{ 2, 2, 2, 2, 0 }, 
+		{ 2, 10,14,2, 0 }, 
+		{ 2, 10,19,2, 0 }, 
+		{ 2, 2, 2, 2, 0 }, 
+		{ 0, 0, 2, 0, 0 } 
+	};
+
 	/*public static int[,] cityRoad = { 
 		{ 0, 0, 2, 0, 0,  0,  0, 2, 0, 0 }, 
 		{ 0, 2, 2, 2, 2,  2,  2, 2, 2, 0 }, 
@@ -206,6 +222,8 @@ public class TerrainTiles {
 		tiles.Add (TerrainTiles.smallCityRoadAlt2);
 		tiles.Add (TerrainTiles.smallCityRoad3);
 		tiles.Add (TerrainTiles.smallCityRoadAlt3);
+		tiles.Add (TerrainTiles.smallCityRoad4);
+		tiles.Add (TerrainTiles.smallCityRoadAlt4);
 
 		//tiles.Add (TerrainTiles.riverStraight);
 		//tiles.Add (Coroutines.RotateMatrixCounterClockwise (TerrainTiles.riverStraight));

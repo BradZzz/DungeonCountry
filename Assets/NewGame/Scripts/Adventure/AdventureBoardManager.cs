@@ -127,7 +127,7 @@ public class AdventureBoardManager : MonoBehaviour {
 	private void addUnitResources(BattleGeneralMeta meta){
 		int lvl = meta.level;
 
-		meta.addResource ("gold", 10 * lvl);
+		meta.addResource ("gold", 50 * lvl);
 		meta.addResource ("ore", 1 * lvl);
 		meta.addResource ("wood", 1 * lvl);
 		meta.addResource ("ruby", (int) Mathf.Floor(lvl / 5));
@@ -148,10 +148,10 @@ public class AdventureBoardManager : MonoBehaviour {
 		Debug.Log ("Sapphire: " + bgr.getResource("sapphire"));
 	}
 
-	private void addNewTurnResources(){
+	public void addNewTurnResources(){
 		foreach(GameObject unity in GameObject.FindGameObjectsWithTag("Unit")){
 			BattleGeneralMeta meta = unity.GetComponent<BattleGeneralMeta> ();
-			if (meta != null && unity.activeInHierarchy && !meta.faction.Equals("Neutral")) {
+			if (meta != null && unity.activeInHierarchy) {
 				Debug.Log ("<===== Before =====>");
 				printResources(meta);
 				addUnitResources(meta);
@@ -183,9 +183,6 @@ public class AdventureBoardManager : MonoBehaviour {
 	}
 
 	private void formatObjects(bool init){
-
-		// add resources to acivate players at the beginning of the turn
-//		addNewTurnResources ();
 
 		GameObject[] savedGenerals = new GameObject[0];
 
